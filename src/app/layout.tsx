@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "楽マッチ AI — 不動産AI営業CRM",
-  description:
-    "顧客・物件の入力から提案・契約まで、不動産営業のすべてをAIがサポート。入力作業を減らし、成約率を高める新しいCRM。",
+  title: '楽マッチ AI — 不動産売買専用の反則級AI',
+  description: '新人が、即戦力に変わる。個人でも企業でも月3,000円で導入可能。コピペだけで物件登録、AIが自動マッチング、提案もヒアリングもAIがサポート。不動産売買特化のAI営業支援ツール。',
+  openGraph: {
+    title: '楽マッチ AI — 不動産売買専用の反則級AI',
+    description: '新人が、即戦力に変わる。不動産売買特化のAI営業支援ツール。',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
@@ -24,11 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ja"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="ja" className="h-full antialiased">
+      <body className="min-h-full flex flex-col bg-surface-50 text-neutral-900">
+        {children}
+      </body>
     </html>
   );
 }
