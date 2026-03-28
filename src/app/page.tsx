@@ -1,18 +1,19 @@
 import {
   BrainCircuit,
-  BarChart3,
-  Home,
-  FileText,
-  Users,
-  Zap,
-  CheckCircle2,
   ArrowRight,
-  Clock,
-  TrendingUp,
-  FolderOpen,
-  ChevronRight,
+  ClipboardList,
+  Search,
+  Mail,
+  Upload,
+  GitCompare,
+  MessageSquare,
+  CheckSquare,
+  Brain,
+  Database,
+  CreditCard,
+  Shield,
+  CheckCircle2,
 } from "lucide-react";
-import ScrollToButton from "@/components/ScrollToButton";
 import FadeIn from "@/components/FadeIn";
 import CountUp from "@/components/CountUp";
 import Accordion from "@/components/Accordion";
@@ -20,6 +21,64 @@ import Accordion from "@/components/Accordion";
 const APP_URL = "https://top-sales-ai.vercel.app";
 
 /* ---------- Data ---------- */
+
+const stats = [
+  { end: 90, suffix: "%", label: "入力時間削減" },
+  { end: 3, suffix: "分", label: "1物件の登録時間" },
+  { end: 1, suffix: "分", label: "追客メール作成" },
+];
+
+const painPoints = [
+  {
+    icon: ClipboardList,
+    text: "物件情報の手入力に毎日1〜2時間かかる",
+  },
+  {
+    icon: Search,
+    text: "どの顧客にどの物件を提案すべきか迷う",
+  },
+  {
+    icon: Mail,
+    text: "メール・電話の準備で営業時間が削られる",
+  },
+];
+
+const zigzagFeatures = [
+  {
+    icon: Upload,
+    title: "コピペだけ。レインズもSUUMOもExcelも。",
+    desc: "レインズの詳細画面をCtrl+Aで全コピー、貼り付けるだけでAIが自動振り分け・物件登録。顧客情報もExcelでもどんな媒体でも、ページ丸ごとコピペすればAIが適切な項目へ自動入力。",
+    badge: "入力時間90%削減",
+  },
+  {
+    icon: GitCompare,
+    title: "物件からも、顧客からも。双方向マッチング。",
+    desc: "実務的な幅を持たせたマッチングロジックで、物件側からも顧客側からも最適な組み合わせをスコアリング。提案すべき物件がすぐにわかる。",
+    badge: "マッチング精度スコア自動計算",
+  },
+  {
+    icon: MessageSquare,
+    title: "顧客1人1人に、専属AIがつく。",
+    desc: "足りない情報のヒアリング方法、お客様へのベネフィット提案、メール文、電話トークをAIが自動生成。新人でもトップ営業マンレベルの提案ができる。",
+    badge: "メール作成1分",
+  },
+  {
+    icon: CheckSquare,
+    title: "契約フェーズも、精算も、書類も。全部ここに。",
+    desc: "契約フェーズごとのTODO管理、顧客ごとのTODOリスト、精算金ツール（自動入力対応）、図面・書類の顧客ページ保存。漏れがない。",
+    badge: "精算計算書も自動作成",
+  },
+];
+
+const trustPoints = [
+  { icon: Brain, title: "Google AI（Gemini）搭載" },
+  { icon: Database, title: "Amazon Web Servicesのデータベース" },
+  { icon: CreditCard, title: "世界シェアNo.1のStripe決済" },
+  {
+    icon: Shield,
+    title: "お客様のデータ・支払い情報は弊社では管理しません",
+  },
+];
 
 const plans = [
   {
@@ -29,11 +88,12 @@ const plans = [
     storage: "250GB",
     featured: false,
     features: [
-      "AIアシスタント搭載（Gemini 2.5）",
-      "AI顧客・物件一括抽出",
-      "マッチングスコア自動計算",
-      "契約フェーズ・精算管理",
-      "メンバー招待（人数課金）",
+      "AIアシスタント（Gemini 2.5）",
+      "AI一括抽出",
+      "マッチング",
+      "契約管理",
+      "メンバー招待",
+      "250GBストレージ",
     ],
   },
   {
@@ -43,117 +103,58 @@ const plans = [
     storage: "500GB",
     featured: true,
     features: [
-      "高性能AIアシスタント搭載（Gemini 3）",
-      "AI顧客・物件一括抽出",
-      "マッチングスコア自動計算",
-      "契約フェーズ・精算管理",
-      "メンバー招待（人数課金）",
-      "ストレージ 500GB",
+      "高性能AI（Gemini 3）",
+      "全Standard機能",
+      "500GBストレージ",
     ],
-  },
-];
-
-const features = [
-  {
-    icon: BrainCircuit,
-    title: "AI一括入力",
-    desc: "チラシや物件資料をドラッグ&ドロップするだけ。AIが物件名・価格・間取りを自動で読み取り、データベースに登録します。",
-  },
-  {
-    icon: BarChart3,
-    title: "スマートマッチング",
-    desc: "顧客の希望条件と物件情報をAIが自動スコアリング。最適な提案候補を瞬時にリストアップします。",
-  },
-  {
-    icon: Home,
-    title: "物件・顧客管理",
-    desc: "担当物件と一般物件をタブで整理。顧客ごとの活動履歴・タスク・書類をひとつの画面で確認できます。",
-  },
-  {
-    icon: FileText,
-    title: "契約フェーズ管理",
-    desc: "重要事項説明から決済完了まで、契約の進捗をステップごとに管理。精算計算書もワンクリックで作成。",
-  },
-  {
-    icon: Users,
-    title: "チーム連携",
-    desc: "メンバーを招待して組織全体で顧客・物件情報を共有。担当者の自動アサインやフリー顧客の引き取りにも対応。",
-  },
-  {
-    icon: Zap,
-    title: "AI営業アシスト",
-    desc: "メール文面・電話トーク・物件提案文をAIが下書き。経験の浅いスタッフでもベテラン水準の提案が可能に。",
-  },
-];
-
-const problems = [
-  {
-    icon: Clock,
-    title: "入力に時間がかかりすぎる",
-    desc: "物件情報の手入力、顧客データの転記、活動履歴の記録。本来の営業活動に使うべき時間が事務作業に消えていませんか。",
-  },
-  {
-    icon: TrendingUp,
-    title: "提案の精度にバラつきがある",
-    desc: "経験豊富な営業と新人で提案の質に差が出る。どの物件をどの顧客に提案すべきか、判断基準が属人化していませんか。",
-  },
-  {
-    icon: FolderOpen,
-    title: "情報が散在して管理できない",
-    desc: "Excel、メモ帳、メール。顧客情報や物件資料がバラバラに保存され、チーム全体の状況が見えなくなっていませんか。",
-  },
-];
-
-const steps = [
-  {
-    num: "01",
-    title: "資料をドロップ",
-    desc: "チラシやPDFをドラッグ&ドロップ。AIが物件・顧客情報を自動抽出します。",
-  },
-  {
-    num: "02",
-    title: "AIがマッチング",
-    desc: "登録された情報をもとに、各顧客に最適な物件をスコア付きで提案。",
-  },
-  {
-    num: "03",
-    title: "提案・契約まで一気通貫",
-    desc: "メール作成、電話トーク、契約管理、精算まで。すべてひとつの画面で完結します。",
   },
 ];
 
 const faqs = [
   {
-    q: "無料トライアル中に料金は発生しますか？",
-    a: "いいえ。14日間のトライアル期間中は完全無料です。クレジットカードの登録も不要でお試しいただけます。",
+    q: "無料トライアル中に解約できますか？",
+    a: "はい、1週間以内に解約すれば一切料金はかかりません。",
   },
   {
-    q: "途中でプランを変更できますか？",
-    a: "はい。Standard から Premium への変更、またはその逆もいつでも可能です。変更は次の請求サイクルから適用されます。",
+    q: "他のCRMからデータ移行できますか？",
+    a: "Excelやどんな媒体でも、コピペするだけでAIが自動登録します。",
   },
   {
-    q: "データのセキュリティは大丈夫ですか？",
-    a: "全データはSupabase上で暗号化して保管。行レベルセキュリティ（RLS）により、組織外のユーザーからはアクセスできません。",
+    q: "1人でも使えますか？",
+    a: "はい、個人の営業マンの方も同じ料金でご利用いただけます。",
   },
   {
-    q: "何人まで利用できますか？",
-    a: "人数制限はありません。メンバー1名ごとの課金制なので、チームの規模に合わせて柔軟にご利用いただけます。",
+    q: "セキュリティは大丈夫ですか？",
+    a: "Google AI・Amazon DB・Stripe決済を採用。銀行レベルのセキュリティです。お客様のデータは弊社では管理しません。",
+  },
+  {
+    q: "賃貸でも使えますか？",
+    a: "楽マッチAIは不動産売買に特化して設計されています。売買仲介の業務フローに最適化されています。",
   },
 ];
+
+/* ---------- Screenshot placeholder ---------- */
+function ScreenshotPlaceholder() {
+  return (
+    <div className="bg-surface-100 rounded-2xl shadow-lg aspect-video flex items-center justify-center text-neutral-400 text-sm">
+      スクリーンショット準備中
+    </div>
+  );
+}
 
 /* ---------- Page ---------- */
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-surface-50 text-neutral-900">
-      {/* ───────── 1. Header ───────── */}
+      {/* ───────── Header ───────── */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="h-8 w-8 rounded-lg bg-primary-500 flex items-center justify-center">
               <BrainCircuit className="h-4 w-4 text-white" />
             </div>
-            <span className="text-base font-bold tracking-tight text-neutral-900">
+            <span className="text-base font-bold tracking-tight">
               楽マッチ AI
             </span>
           </div>
@@ -166,7 +167,7 @@ export default function LandingPage() {
             </a>
             <a
               href={`${APP_URL}/login`}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary-500 hover:bg-primary-600 text-sm font-medium text-white transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary-600 hover:bg-primary-700 text-sm font-medium text-white transition-colors"
             >
               無料で試す
               <ArrowRight className="h-3.5 w-3.5" />
@@ -175,99 +176,112 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* ───────── 2. Hero ───────── */}
+      {/* ───────── 1. Hero ───────── */}
       <section className="relative overflow-hidden bg-white">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-50 rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/4" />
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-primary-100/40 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
 
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 pt-20 pb-20 sm:pt-28 sm:pb-28 text-center">
-          <p className="inline-block px-3.5 py-1 mb-6 rounded-full text-xs font-semibold tracking-wide text-primary-700 bg-primary-50 border border-primary-100">
-            不動産売買に特化した AI 営業支援ツール
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] text-neutral-900">
-            新人が、即戦力に変わる。
-          </h1>
-          <p className="mt-2 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15]">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-primary-700">
-              不動産売買専用の反則級AI。
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
+          <div className="text-center max-w-3xl mx-auto">
+            <span className="inline-block rounded-full bg-primary-50 text-primary-700 text-sm font-semibold px-4 py-1.5 mb-6 border border-primary-100">
+              不動産売買専用の反則級AI
             </span>
-          </p>
-          <p className="mt-6 text-lg text-neutral-500 max-w-xl mx-auto leading-relaxed">
-            コピペだけで物件登録。AIが自動マッチング。
-            <br className="hidden sm:block" />
-            提案もヒアリングもAIがサポート。月3,000円から。
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href={`${APP_URL}/login`}
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white font-medium transition-colors shadow-lg shadow-primary-500/20"
-            >
-              14日間無料で始める
-              <ArrowRight className="h-4 w-4" />
-            </a>
-            <ScrollToButton
-              targetId="features"
-              className="inline-flex items-center gap-1.5 px-7 py-3 rounded-lg text-neutral-600 hover:text-neutral-900 font-medium transition-colors"
-            >
-              機能を見る
-              <ChevronRight className="h-4 w-4" />
-            </ScrollToButton>
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.1]">
+              新人が、即戦力に変わる。
+            </h1>
+            <p className="mt-5 text-lg text-neutral-500 max-w-xl mx-auto leading-relaxed">
+              個人でも企業でも、月3,000円で導入可能。コピペだけで物件登録、AIが自動マッチング、提案もヒアリングもAIがサポート。
+            </p>
+            <p className="mt-4 inline-block text-sm font-medium text-primary-700 bg-primary-50/60 rounded-lg px-4 py-1.5">
+              導入費0円 ／ 個人でも企業でも月3,000円
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={`${APP_URL}/login`}
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-primary-600 hover:bg-primary-700 hover:scale-105 text-white font-bold transition-all duration-200 shadow-lg shadow-primary-500/20"
+              >
+                1週間無料で試してみる
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href={`${APP_URL}/login`}
+                className="inline-flex items-center gap-2 px-8 py-3 rounded-xl border-2 border-surface-200 text-neutral-700 font-semibold hover:border-primary-200 hover:text-primary-700 transition-all duration-200"
+              >
+                資料ダウンロード
+              </a>
+            </div>
+            <p className="mt-3 text-xs text-neutral-400">
+              クレジットカード不要・30秒で登録完了
+            </p>
           </div>
 
-          {/* Stats */}
-          <div className="mt-16 grid grid-cols-3 gap-4 max-w-md mx-auto">
-            <div className="text-center">
-              <p className="text-2xl sm:text-3xl font-bold text-neutral-900">
-                <CountUp end={70} suffix="%" />
-              </p>
-              <p className="mt-1 text-xs text-neutral-400">入力作業の削減</p>
-            </div>
-            <div className="text-center">
-              <p className="text-2xl sm:text-3xl font-bold text-neutral-900">
-                <CountUp end={2} suffix="x" />
-              </p>
-              <p className="mt-1 text-xs text-neutral-400">
-                提案スピード向上
-              </p>
-            </div>
-            <div className="text-center">
-              <p className="text-2xl sm:text-3xl font-bold text-neutral-900">
-                <CountUp end={5} suffix="分" />
-              </p>
-              <p className="mt-1 text-xs text-neutral-400">
-                で初期セットアップ
-              </p>
+          {/* Product screenshot placeholder */}
+          <div className="mt-14 max-w-4xl mx-auto">
+            <div className="bg-surface-100 rounded-2xl shadow-xl aspect-video flex items-center justify-center text-neutral-400 text-sm">
+              スクリーンショット準備中
             </div>
           </div>
         </div>
       </section>
 
-      {/* ───────── 3. Problem / Pain Points ───────── */}
+      {/* ───────── 2. Stats bar ───────── */}
+      <section className="py-14 bg-surface-50 border-y border-surface-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-3 gap-8">
+            {stats.map((s) => (
+              <FadeIn key={s.label} className="text-center">
+                <p className="text-4xl md:text-5xl font-bold text-primary-600 tracking-tight">
+                  <CountUp end={s.end} suffix={s.suffix} />
+                </p>
+                <p className="mt-2 text-sm text-neutral-500">{s.label}</p>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 3. Developer story ───────── */}
+      <section className="py-20 sm:py-24 bg-surface-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <FadeIn>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-10">
+              現役の不動産営業マンが、
+              <br className="hidden sm:block" />
+              自分のために作りました。
+            </h2>
+            <div className="bg-white rounded-2xl border border-surface-200 p-8 md:p-10">
+              <div className="border-l-4 border-primary-400 pl-6">
+                <p className="text-neutral-700 leading-relaxed">
+                  東京で不動産売買をやっている、現役の営業マンです。
+                </p>
+                <p className="mt-4 text-neutral-700 leading-relaxed">
+                  低学歴で覚えが悪い自分が、もっと楽に、もっとわかりやすく、誰がやってもできるツールを追い求めて作りました。
+                </p>
+                <p className="mt-4 text-neutral-700 leading-relaxed">
+                  説明は不要です。使えば直感的にわかります。必要最低限を、ぎゅっと詰め込みました。
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ───────── 4. Pain points ───────── */}
       <section className="py-20 sm:py-24 bg-surface-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
-            <p className="text-sm font-semibold text-primary-600 mb-3 text-center tracking-wide">
-              課題
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 text-neutral-900">
-              こんなお悩みはありませんか？
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-14">
+              こんなお悩み、ありませんか？
             </h2>
-            <p className="text-neutral-500 text-center mb-14 max-w-lg mx-auto">
-              多くの不動産営業チームが、同じ課題を抱えています。
-            </p>
           </FadeIn>
-          <div className="grid md:grid-cols-3 gap-6">
-            {problems.map((p) => (
-              <FadeIn key={p.title}>
-                <div className="rounded-2xl bg-white border border-surface-200 p-7 h-full">
-                  <div className="h-10 w-10 rounded-xl bg-surface-100 flex items-center justify-center mb-5">
-                    <p.icon className="h-5 w-5 text-neutral-500" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {painPoints.map((p) => (
+              <FadeIn key={p.text}>
+                <div className="bg-white rounded-2xl shadow-sm border border-surface-200 p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full">
+                  <div className="h-12 w-12 rounded-xl bg-primary-50 flex items-center justify-center mb-5">
+                    <p.icon className="h-6 w-6 text-primary-600" />
                   </div>
-                  <h3 className="font-semibold text-base mb-2 text-neutral-900">
-                    {p.title}
-                  </h3>
-                  <p className="text-sm text-neutral-500 leading-relaxed">
-                    {p.desc}
+                  <p className="text-neutral-700 leading-relaxed font-medium">
+                    {p.text}
                   </p>
                 </div>
               </FadeIn>
@@ -276,71 +290,67 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ───────── 4. Solution / How it works ───────── */}
-      <section className="py-20 sm:py-24 bg-white">
+      {/* ───────── 5. Features (zig-zag) ───────── */}
+      <section id="features" className="py-20 sm:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
-            <p className="text-sm font-semibold text-primary-600 mb-3 text-center tracking-wide">
-              使い方
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 text-neutral-900">
-              3ステップで業務が変わる
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-16">
+              楽マッチ AI でできること
             </h2>
-            <p className="text-neutral-500 text-center mb-14 max-w-lg mx-auto">
-              複雑な初期設定は不要。すぐに使い始められます。
-            </p>
           </FadeIn>
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {steps.map((s, i) => (
-              <FadeIn key={s.num}>
-                <div className="relative text-center">
-                  {i < steps.length - 1 && (
-                    <div className="hidden md:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] border-t border-dashed border-surface-200" />
-                  )}
-                  <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-primary-50 border border-primary-100 mb-5">
-                    <span className="text-xl font-bold text-primary-600">
-                      {s.num}
-                    </span>
+
+          <div className="space-y-20 md:space-y-28">
+            {zigzagFeatures.map((f, i) => {
+              const isEven = i % 2 === 0;
+              return (
+                <FadeIn key={f.title}>
+                  <div
+                    className={`flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} gap-10 md:gap-14 items-center`}
+                  >
+                    {/* Text */}
+                    <div className="flex-1 min-w-0">
+                      <div className="h-11 w-11 rounded-xl bg-primary-50 flex items-center justify-center mb-4">
+                        <f.icon className="h-5.5 w-5.5 text-primary-600" />
+                      </div>
+                      <h3 className="text-2xl font-bold tracking-tight mb-3">
+                        {f.title}
+                      </h3>
+                      <p className="text-neutral-600 leading-relaxed mb-4">
+                        {f.desc}
+                      </p>
+                      <span className="inline-block text-xs font-semibold text-primary-700 bg-primary-50 rounded-full px-3 py-1 border border-primary-100">
+                        {f.badge}
+                      </span>
+                    </div>
+                    {/* Screenshot placeholder */}
+                    <div className="flex-1 min-w-0 w-full">
+                      <ScreenshotPlaceholder />
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-base mb-2 text-neutral-900">
-                    {s.title}
-                  </h3>
-                  <p className="text-sm text-neutral-500 leading-relaxed max-w-xs mx-auto">
-                    {s.desc}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ───────── 5. Features ───────── */}
-      <section id="features" className="py-20 sm:py-24 bg-surface-50">
+      {/* ───────── 6. Trust / Security ───────── */}
+      <section className="py-20 sm:py-24 bg-surface-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
-            <p className="text-sm font-semibold text-primary-600 mb-3 text-center tracking-wide">
-              機能
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 text-neutral-900">
-              営業プロセスを、まるごとカバー
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-14">
+              エンタープライズレベルのセキュリティ
             </h2>
-            <p className="text-neutral-500 text-center mb-14 max-w-lg mx-auto">
-              入力から提案、契約管理まで。必要な機能がすべて揃っています。
-            </p>
           </FadeIn>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {features.map((f) => (
-              <FadeIn key={f.title}>
-                <div className="group rounded-2xl bg-white border border-surface-200 p-6 hover:border-primary-200 hover:shadow-sm transition-all h-full">
-                  <div className="h-10 w-10 rounded-xl bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary-100 transition-colors">
-                    <f.icon className="h-5 w-5 text-primary-600" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {trustPoints.map((t) => (
+              <FadeIn key={t.title}>
+                <div className="bg-white rounded-2xl border border-surface-200 p-6 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full">
+                  <div className="h-12 w-12 rounded-xl bg-surface-100 flex items-center justify-center mx-auto mb-4">
+                    <t.icon className="h-6 w-6 text-neutral-600" />
                   </div>
-                  <h3 className="font-semibold text-[15px] mb-2 text-neutral-900">
-                    {f.title}
-                  </h3>
-                  <p className="text-sm text-neutral-500 leading-relaxed">
-                    {f.desc}
+                  <p className="text-sm font-medium text-neutral-700 leading-relaxed">
+                    {t.title}
                   </p>
                 </div>
               </FadeIn>
@@ -349,52 +359,59 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ───────── 6. Pricing ───────── */}
+      {/* ───────── 7. Pricing ───────── */}
       <section id="plans" className="py-20 sm:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
-            <p className="text-sm font-semibold text-primary-600 mb-3 text-center tracking-wide">
-              料金
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 text-neutral-900">
-              シンプルな料金体系
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-4">
+              シンプルな料金。隠れたコストなし。
             </h2>
-            <p className="text-neutral-500 text-center mb-14">
-              14日間の無料トライアル付き。いつでもキャンセル可能。
+            <p className="text-neutral-500 text-center mb-14 max-w-lg mx-auto">
+              1週間の無料トライアル付き。いつでも解約可能。
             </p>
           </FadeIn>
+
           <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             {plans.map((plan) => (
               <FadeIn key={plan.name}>
                 <div
-                  className={`relative rounded-2xl p-7 border transition-all h-full ${
+                  className={`relative rounded-2xl p-7 border transition-all h-full hover:shadow-lg hover:-translate-y-1 duration-300 ${
                     plan.featured
-                      ? "bg-white border-primary-300 ring-2 ring-primary-100 shadow-md"
-                      : "bg-white border-surface-200"
+                      ? "bg-white border-2 border-primary-600 shadow-md"
+                      : "bg-white border border-surface-200 shadow-sm"
                   }`}
                 >
                   {plan.featured && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-primary-500 text-[11px] font-semibold tracking-wide text-white">
-                      おすすめ
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-amber-500 text-[11px] font-bold tracking-wide text-white">
+                      人気
                     </div>
                   )}
-                  <h3 className="text-lg font-bold mb-1 text-neutral-900">
-                    {plan.name}
-                  </h3>
-                  <p className="text-neutral-400 text-xs mb-5">
+                  <h3 className="text-lg font-bold mb-1">{plan.name}</h3>
+                  <p className="text-neutral-400 text-xs mb-4">
                     ストレージ {plan.storage}
                   </p>
-                  <div className="flex items-baseline gap-1 mb-1">
-                    <span className="text-3xl font-bold tracking-tight text-neutral-900">
-                      &yen;{plan.price.toLocaleString()}
-                    </span>
-                    <span className="text-sm text-neutral-400">
-                      /月（税別）
-                    </span>
+
+                  {/* Pricing tiers */}
+                  <div className="space-y-1 mb-5">
+                    <p className="text-sm text-primary-600 font-semibold">
+                      1週間無料
+                    </p>
+                    <p className="text-sm text-neutral-500">
+                      2週目〜1ヶ月目:{" "}
+                      <span className="font-semibold text-neutral-700">
+                        &yen;{plan.firstMonth.toLocaleString()}
+                      </span>
+                    </p>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl font-bold tracking-tight">
+                        &yen;{plan.price.toLocaleString()}
+                      </span>
+                      <span className="text-sm text-neutral-400">
+                        /人/月（税別）
+                      </span>
+                    </div>
                   </div>
-                  <p className="text-primary-600 text-xs font-medium mb-6">
-                    初月 &yen;{plan.firstMonth.toLocaleString()}
-                  </p>
+
                   <ul className="space-y-2.5 mb-7">
                     {plan.features.map((feat) => (
                       <li
@@ -408,30 +425,31 @@ export default function LandingPage() {
                   </ul>
                   <a
                     href={`${APP_URL}/login`}
-                    className={`block text-center py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                    className={`block text-center py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-105 ${
                       plan.featured
-                        ? "bg-primary-500 hover:bg-primary-600 text-white"
+                        ? "bg-primary-600 hover:bg-primary-700 text-white"
                         : "bg-surface-100 hover:bg-surface-200 text-neutral-700"
                     }`}
                   >
-                    無料で始める
+                    1週間無料で始める
                   </a>
                 </div>
               </FadeIn>
             ))}
           </div>
+
+          <p className="text-center text-sm text-neutral-400 mt-8">
+            導入費0円・個人でも企業でも同一料金・いつでも解約可能
+          </p>
         </div>
       </section>
 
-      {/* ───────── 7. FAQ ───────── */}
+      {/* ───────── 8. FAQ ───────── */}
       <section className="py-20 sm:py-24 bg-surface-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <FadeIn>
-            <p className="text-sm font-semibold text-primary-600 mb-3 text-center tracking-wide">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-14">
               よくある質問
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-14 text-neutral-900">
-              FAQ
             </h2>
           </FadeIn>
           <FadeIn>
@@ -440,28 +458,30 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ───────── 8. CTA ───────── */}
-      <section className="py-20 sm:py-24 bg-white">
+      {/* ───────── 9. Final CTA ───────── */}
+      <section className="py-20 sm:py-24 bg-primary-600">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <FadeIn>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-neutral-900">
-              まずは14日間、無料で体験してください
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
+              まず触ってみてください。
+              <br />
+              説明は不要です。
             </h2>
-            <p className="text-neutral-500 mb-8 max-w-md mx-auto">
-              クレジットカード不要。5分で初期設定が完了します。
-            </p>
             <a
               href={`${APP_URL}/login`}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-primary-500 hover:bg-primary-600 text-white font-medium transition-colors shadow-lg shadow-primary-500/20"
+              className="inline-flex items-center gap-2 bg-white text-primary-700 rounded-xl px-8 py-4 font-bold text-base hover:scale-105 transition-transform duration-200 shadow-lg"
             >
-              無料トライアルを始める
+              1週間無料で試してみる
               <ArrowRight className="h-4 w-4" />
             </a>
+            <p className="mt-4 text-sm text-primary-100">
+              1週間無料・クレジットカード不要
+            </p>
           </FadeIn>
         </div>
       </section>
 
-      {/* ───────── 9. Footer ───────── */}
+      {/* ───────── Footer ───────── */}
       <footer className="py-10 border-t border-surface-200 bg-surface-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5 text-neutral-400">
