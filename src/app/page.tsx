@@ -7,11 +7,16 @@ import {
   Zap,
   CheckCircle2,
   ArrowRight,
-  Sparkles,
+  Clock,
+  TrendingUp,
+  Shield,
+  ChevronRight,
 } from "lucide-react";
-import ScrollToPlanButton from "@/components/ScrollToPlanButton";
+import ScrollToButton from "@/components/ScrollToPlanButton";
 
 const APP_URL = "https://top-sales-ai.vercel.app";
+
+/* ---------- Data ---------- */
 
 const plans = [
   {
@@ -49,146 +54,273 @@ const features = [
   {
     icon: BrainCircuit,
     title: "AI一括入力",
-    desc: "チラシや物件情報をそのまま貼り付けるだけで、AIが顧客・物件データを自動入力。入力作業を大幅に削減。",
+    desc: "チラシや物件資料をドラッグ&ドロップするだけ。AIが物件名・価格・間取りを自動で読み取り、データベースに登録します。",
   },
   {
     icon: BarChart3,
     title: "スマートマッチング",
-    desc: "顧客の希望条件と物件情報をAIがスコアリング。最適な物件を瞬時に絞り込み、提案の質を高めます。",
+    desc: "顧客の希望条件と物件情報をAIが自動スコアリング。最適な提案候補を瞬時にリストアップします。",
   },
   {
     icon: Home,
     title: "物件・顧客管理",
-    desc: "担当物件・一般物件をわかりやすく整理。顧客の活動履歴・タスク・書類を一元管理。",
+    desc: "担当物件と一般物件をタブで整理。顧客ごとの活動履歴・タスク・書類をひとつの画面で確認できます。",
   },
   {
     icon: FileText,
     title: "契約フェーズ管理",
-    desc: "重要事項説明から決済まで、契約の進捗をステップごとに管理。精算計算書も自動作成。",
+    desc: "重要事項説明から決済完了まで、契約の進捗をステップごとに管理。精算計算書もワンクリックで作成。",
   },
   {
     icon: Users,
-    title: "チーム対応",
-    desc: "全プランでメンバーを招待可能。組織全体の顧客・物件情報を共有できます。",
+    title: "チーム連携",
+    desc: "メンバーを招待して組織全体で顧客・物件情報を共有。担当者の自動アサインやフリー顧客の引き取りにも対応。",
   },
   {
     icon: Zap,
     title: "AI営業アシスト",
-    desc: "メール文・電話トーク・提案文をAIが自動生成。経験の浅いスタッフでもトップ営業と同水準の提案が可能に。",
+    desc: "メール文面・電話トーク・物件提案文をAIが下書き。経験の浅いスタッフでもベテラン水準の提案が可能に。",
   },
 ];
 
-const painPoints = [
+const problems = [
   {
-    emoji: "\u{1F629}",
-    text: "物件入力や顧客管理に毎日何時間もかかっている",
+    icon: Clock,
+    title: "入力に時間がかかりすぎる",
+    desc: "物件情報の手入力、顧客データの転記、活動履歴の記録...。本来の営業活動に使うべき時間が事務作業に消えていませんか。",
   },
   {
-    emoji: "\u{1F613}",
-    text: "どの物件をどのお客様に提案すべきか迷ってしまう",
+    icon: TrendingUp,
+    title: "提案の精度にバラつきがある",
+    desc: "経験豊富な営業と新人で提案の質に差が出る。どの物件をどの顧客に提案すべきか、判断基準が属人化していませんか。",
   },
   {
-    emoji: "\u{1F630}",
-    text: "メール文や電話トークの作成に自信がない",
+    icon: Shield,
+    title: "情報が散在して管理できない",
+    desc: "Excel、メモ帳、メール...。顧客情報や物件資料がバラバラに保存され、チーム全体の状況が見えなくなっていませんか。",
   },
 ];
+
+const steps = [
+  {
+    num: "01",
+    title: "資料をドロップ",
+    desc: "チラシやPDFをドラッグ&ドロップ。AIが物件・顧客情報を自動抽出します。",
+  },
+  {
+    num: "02",
+    title: "AIがマッチング",
+    desc: "登録された情報をもとに、各顧客に最適な物件をスコア付きで提案。",
+  },
+  {
+    num: "03",
+    title: "提案・契約まで一気通貫",
+    desc: "メール作成、電話トーク、契約管理、精算まで。すべてひとつの画面で完結します。",
+  },
+];
+
+const stats = [
+  { value: "70%", label: "入力作業の削減" },
+  { value: "2x", label: "提案スピードの向上" },
+  { value: "5分", label: "で初期セットアップ完了" },
+];
+
+const faqs = [
+  {
+    q: "無料トライアル中に料金は発生しますか？",
+    a: "いいえ。14日間のトライアル期間中は完全無料です。クレジットカードの登録も不要でお試しいただけます。",
+  },
+  {
+    q: "途中でプランを変更できますか？",
+    a: "はい。Standard から Premium への変更、またはその逆もいつでも可能です。変更は次の請求サイクルから適用されます。",
+  },
+  {
+    q: "データのセキュリティは大丈夫ですか？",
+    a: "全データはSupabase上で暗号化して保管。行レベルセキュリティ（RLS）により、組織外のユーザーからはアクセスできません。",
+  },
+  {
+    q: "何人まで利用できますか？",
+    a: "人数制限はありません。メンバー1名ごとの課金制なので、チームの規模に合わせて柔軟にご利用いただけます。",
+  },
+];
+
+/* ---------- Page ---------- */
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <BrainCircuit className="h-7 w-7 text-blue-400" />
-            <span className="text-lg font-bold tracking-tight">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      {/* ───────── 1. Header ───────── */}
+      <header className="sticky top-0 z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center">
+              <BrainCircuit className="h-4.5 w-4.5 text-white" />
+            </div>
+            <span className="text-base font-semibold tracking-tight">
               楽マッチ AI
             </span>
           </div>
-          <a
-            href={`${APP_URL}/login`}
-            className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
-          >
-            ログイン
-          </a>
+          <div className="flex items-center gap-4">
+            <a
+              href={`${APP_URL}/login`}
+              className="text-sm text-slate-400 hover:text-white transition-colors"
+            >
+              ログイン
+            </a>
+            <a
+              href={`${APP_URL}/login`}
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-sm font-medium text-white transition-colors"
+            >
+              無料で試す
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
         </div>
       </header>
 
-      {/* Hero */}
+      {/* ───────── 2. Hero ───────── */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-slate-900 to-purple-600/20" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 mb-6 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm">
-            <Sparkles className="h-3.5 w-3.5" />
-            不動産営業に特化したAI CRM
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-            営業の手間を、
+        {/* Subtle gradient orbs */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-600/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-indigo-500/6 rounded-full blur-3xl" />
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 pt-20 pb-24 sm:pt-28 sm:pb-32 text-center">
+          <p className="inline-block px-3 py-1 mb-6 rounded-full text-xs font-medium tracking-wide uppercase text-blue-400 bg-blue-500/10 border border-blue-500/15">
+            不動産営業に特化した AI CRM
+          </p>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15]">
+            入力・提案・契約を
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-              AIで一気に解消。
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-300 to-indigo-400">
+              ひとつの画面で。
             </span>
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            顧客・物件の入力から提案・契約まで、
+          <p className="mt-6 text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
+            物件チラシをドロップするだけで自動入力。
             <br className="hidden sm:block" />
-            不動産営業のすべてをAIがサポートします。
+            AIマッチングで最適な提案を、すべての営業に。
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
               href={`${APP_URL}/login`}
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-base transition-colors shadow-lg shadow-blue-600/25"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors shadow-lg shadow-blue-600/20"
             >
-              無料で試す
+              14日間無料で始める
               <ArrowRight className="h-4 w-4" />
             </a>
-            <ScrollToPlanButton className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-base transition-colors border border-slate-700">
-              プランを見て始める
-            </ScrollToPlanButton>
+            <ScrollToButton
+              targetId="features"
+              className="inline-flex items-center gap-1.5 px-7 py-3 rounded-lg text-slate-300 hover:text-white font-medium transition-colors"
+            >
+              機能を見る
+              <ChevronRight className="h-4 w-4" />
+            </ScrollToButton>
           </div>
-        </div>
-      </section>
 
-      {/* Pain Points */}
-      <section className="py-20 bg-slate-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-            こんな方に
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {painPoints.map((p, i) => (
-              <div
-                key={i}
-                className="bg-slate-800 rounded-2xl p-6 border border-slate-700/50 text-center"
-              >
-                <div className="text-4xl mb-4">{p.emoji}</div>
-                <p className="text-slate-200 leading-relaxed">{p.text}</p>
+          {/* Social proof numbers */}
+          <div className="mt-16 grid grid-cols-3 gap-4 max-w-md mx-auto">
+            {stats.map((s) => (
+              <div key={s.label} className="text-center">
+                <p className="text-2xl sm:text-3xl font-bold text-white">
+                  {s.value}
+                </p>
+                <p className="mt-1 text-xs text-slate-500">{s.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">
-            機能一覧
-          </h2>
-          <p className="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-            営業プロセスのあらゆる場面をカバーする機能を搭載
+      {/* ───────── 3. Problem / Pain Points ───────── */}
+      <section className="py-20 sm:py-24 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <p className="text-sm font-medium text-blue-400 mb-3 text-center tracking-wide uppercase">
+            課題
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">
+            こんなお悩みはありませんか？
+          </h2>
+          <p className="text-slate-500 text-center mb-14 max-w-lg mx-auto">
+            多くの不動産営業チームが、同じ課題を抱えています。
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {problems.map((p) => (
+              <div
+                key={p.title}
+                className="rounded-2xl bg-slate-900/80 border border-white/5 p-7"
+              >
+                <div className="h-10 w-10 rounded-xl bg-slate-800 flex items-center justify-center mb-5">
+                  <p.icon className="h-5 w-5 text-slate-400" />
+                </div>
+                <h3 className="font-semibold text-base mb-2">{p.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {p.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 4. Solution / How it works ───────── */}
+      <section className="py-20 sm:py-24 bg-slate-900/40 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <p className="text-sm font-medium text-blue-400 mb-3 text-center tracking-wide uppercase">
+            使い方
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">
+            3ステップで業務が変わる
+          </h2>
+          <p className="text-slate-500 text-center mb-14 max-w-lg mx-auto">
+            複雑な初期設定は不要。すぐに使い始められます。
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {steps.map((s, i) => (
+              <div key={s.num} className="relative text-center">
+                {i < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] border-t border-dashed border-slate-700/60" />
+                )}
+                <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-blue-600/10 border border-blue-500/15 mb-5">
+                  <span className="text-xl font-bold text-blue-400">
+                    {s.num}
+                  </span>
+                </div>
+                <h3 className="font-semibold text-base mb-2">{s.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed max-w-xs mx-auto">
+                  {s.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 5. Features ───────── */}
+      <section
+        id="features"
+        className="py-20 sm:py-24 border-t border-white/5"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <p className="text-sm font-medium text-blue-400 mb-3 text-center tracking-wide uppercase">
+            機能
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">
+            営業プロセスを、まるごとカバー
+          </h2>
+          <p className="text-slate-500 text-center mb-14 max-w-lg mx-auto">
+            入力から提案、契約管理まで。必要な機能がすべて揃っています。
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map((f) => (
               <div
                 key={f.title}
-                className="bg-slate-800/60 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/30 transition-colors"
+                className="group rounded-2xl bg-slate-900/60 border border-white/5 p-6 hover:border-blue-500/20 transition-colors"
               >
-                <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4">
+                <div className="h-10 w-10 rounded-xl bg-blue-600/10 flex items-center justify-center mb-4 group-hover:bg-blue-600/15 transition-colors">
                   <f.icon className="h-5 w-5 text-blue-400" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">{f.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <h3 className="font-semibold text-[15px] mb-2">{f.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">
                   {f.desc}
                 </p>
               </div>
@@ -197,62 +329,66 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Plans */}
-      <section id="plans" className="py-20 bg-slate-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ───────── 6. Pricing ───────── */}
+      <section
+        id="plans"
+        className="py-20 sm:py-24 bg-slate-900/40 border-t border-white/5"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <p className="text-sm font-medium text-blue-400 mb-3 text-center tracking-wide uppercase">
+            料金
+          </p>
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">
-            料金プラン
+            シンプルな料金体系
           </h2>
-          <p className="text-slate-400 text-center mb-12">
+          <p className="text-slate-500 text-center mb-14">
             14日間の無料トライアル付き。いつでもキャンセル可能。
           </p>
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className={`relative rounded-2xl p-8 border ${
+                className={`relative rounded-2xl p-7 border transition-colors ${
                   plan.featured
-                    ? "bg-slate-800 border-blue-500 ring-2 ring-blue-500/30"
-                    : "bg-slate-800/60 border-slate-700/50"
+                    ? "bg-slate-900 border-blue-500/40 ring-1 ring-blue-500/20"
+                    : "bg-slate-900/60 border-white/5"
                 }`}
               >
                 {plan.featured && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-blue-600 text-xs font-semibold">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-blue-600 text-[11px] font-semibold tracking-wide uppercase">
                     おすすめ
                   </div>
                 )}
-                <h3 className="text-xl font-bold mb-1">{plan.name}</h3>
-                <p className="text-slate-400 text-sm mb-4">
+                <h3 className="text-lg font-bold mb-1">{plan.name}</h3>
+                <p className="text-slate-500 text-xs mb-5">
                   ストレージ {plan.storage}
                 </p>
-                <div className="mb-1">
-                  <span className="text-4xl font-extrabold">
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className="text-3xl font-bold tracking-tight">
                     &yen;{plan.price.toLocaleString()}
                   </span>
-                  <span className="text-slate-400 text-sm ml-1">
-                    /月（税別）
-                  </span>
+                  <span className="text-sm text-slate-500">/月（税別）</span>
                 </div>
-                <p className="text-blue-400 text-sm mb-6">
+                <p className="text-blue-400 text-xs mb-6">
                   初月 &yen;{plan.firstMonth.toLocaleString()}
                 </p>
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-2.5 mb-7">
                   {plan.features.map((feat) => (
                     <li
                       key={feat}
                       className="flex items-start gap-2 text-sm text-slate-300"
                     >
-                      <CheckCircle2 className="h-4 w-4 text-blue-400 mt-0.5 shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-blue-500 mt-0.5 shrink-0" />
                       {feat}
                     </li>
                   ))}
                 </ul>
                 <a
                   href={`${APP_URL}/login`}
-                  className={`block text-center py-3 rounded-xl font-semibold transition-colors ${
+                  className={`block text-center py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     plan.featured
                       ? "bg-blue-600 hover:bg-blue-500 text-white"
-                      : "bg-slate-700 hover:bg-slate-600 text-slate-200"
+                      : "bg-white/5 hover:bg-white/10 text-slate-300"
                   }`}
                 >
                   無料で始める
@@ -263,14 +399,60 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-slate-400">
-            <BrainCircuit className="h-5 w-5" />
+      {/* ───────── 7. FAQ ───────── */}
+      <section className="py-20 sm:py-24 border-t border-white/5">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <p className="text-sm font-medium text-blue-400 mb-3 text-center tracking-wide uppercase">
+            よくある質問
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-14">
+            FAQ
+          </h2>
+          <div className="space-y-6">
+            {faqs.map((faq) => (
+              <div
+                key={faq.q}
+                className="rounded-xl bg-slate-900/60 border border-white/5 p-6"
+              >
+                <h3 className="font-semibold text-[15px] mb-2">{faq.q}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 8. CTA ───────── */}
+      <section className="py-20 sm:py-24 bg-slate-900/40 border-t border-white/5">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+            まずは14日間、無料で体験してください
+          </h2>
+          <p className="text-slate-500 mb-8 max-w-md mx-auto">
+            クレジットカード不要。5分で初期設定が完了します。
+          </p>
+          <a
+            href={`${APP_URL}/login`}
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition-colors shadow-lg shadow-blue-600/20"
+          >
+            無料トライアルを始める
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
+      </section>
+
+      {/* ───────── 9. Footer ───────── */}
+      <footer className="py-10 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5 text-slate-500">
+            <div className="h-6 w-6 rounded bg-slate-800 flex items-center justify-center">
+              <BrainCircuit className="h-3.5 w-3.5" />
+            </div>
             <span className="text-sm font-medium">楽マッチ AI</span>
           </div>
-          <p className="text-sm text-slate-500">
+          <p className="text-xs text-slate-600">
             &copy; 2026 楽マッチ AI. All rights reserved.
           </p>
         </div>
