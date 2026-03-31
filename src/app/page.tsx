@@ -87,7 +87,7 @@ const trustPoints = [
 
 const plans = [
   {
-    name: "Standard",
+    name: "スタンダード",
     price: 3000,
     firstMonth: 1500,
     storage: "250GB",
@@ -102,14 +102,14 @@ const plans = [
     ],
   },
   {
-    name: "Premium",
+    name: "プレミアム",
     price: 5000,
     firstMonth: 2000,
     storage: "500GB",
     featured: true,
     features: [
       "高性能AI（Gemini 3）",
-      "全Standard機能",
+      "全スタンダード機能",
       "500GBストレージ",
     ],
   },
@@ -167,10 +167,10 @@ export default function LandingPage() {
               新人が、即戦力に変わる。
             </h1>
             <p className="mt-5 text-lg text-neutral-500 max-w-xl mx-auto leading-relaxed">
-              個人でも企業でも、月3,000円で導入可能。コピペだけで物件登録、AIが自動マッチング、提案もヒアリングもAIがサポート。
+              個人でも企業でも、月3,000円/人で導入可能。コピペだけで物件登録、AIが自動マッチング、提案もヒアリングもAIがサポート。
             </p>
             <p className="mt-4 inline-block text-sm font-medium text-primary-700 bg-primary-50/60 rounded-lg px-4 py-1.5">
-              導入費0円 ／ 個人でも企業でも月3,000円
+              導入費0円 ／ 個人でも企業でも月3,000円/人（税込）
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
@@ -188,7 +188,7 @@ export default function LandingPage() {
               </a>
             </div>
             <p className="mt-3 text-xs text-neutral-400">
-              クレジットカード不要・30秒で登録完了
+              30秒で登録完了・1週間無料トライアル
             </p>
           </div>
 
@@ -387,7 +387,7 @@ export default function LandingPage() {
                   </tr>
                   <tr className="bg-primary-50">
                     <td className="px-6 py-4 text-primary-600 font-bold">楽マッチ AI</td>
-                    <td className="px-6 py-4 text-primary-600 font-bold">3,000円</td>
+                    <td className="px-6 py-4 text-primary-600 font-bold">3,000円/人</td>
                     <td className="px-6 py-4 text-primary-600 font-bold">7つのAI搭載</td>
                     <td className="px-6 py-4 text-primary-600 font-bold">即日・セルフ</td>
                   </tr>
@@ -449,7 +449,7 @@ export default function LandingPage() {
                         &yen;{plan.price.toLocaleString()}
                       </span>
                       <span className="text-sm text-neutral-400">
-                        /人/月（税別）
+                        /人/月（税込）
                       </span>
                     </div>
                   </div>
@@ -481,7 +481,7 @@ export default function LandingPage() {
           </div>
 
           <p className="text-center text-sm text-neutral-400 mt-8">
-            導入費0円・個人でも企業でも同一料金・いつでも解約可能
+            導入費0円・追加課金なし・いつでも解約可能
           </p>
         </div>
       </section>
@@ -517,7 +517,7 @@ export default function LandingPage() {
               <ArrowRight className="h-4 w-4" />
             </a>
             <p className="mt-4 text-sm text-primary-100">
-              1週間無料・クレジットカード不要
+              1週間無料トライアル・いつでも解約可能
             </p>
           </FadeIn>
         </div>
