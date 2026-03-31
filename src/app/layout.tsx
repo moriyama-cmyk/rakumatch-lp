@@ -17,11 +17,13 @@ export const metadata: Metadata = {
     siteName: '楽マッチ AI',
     locale: 'ja_JP',
     type: 'website',
+    images: [{ url: '/ogp.png', width: 1200, height: 630, alt: '楽マッチ AI' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: '楽マッチ AI — 不動産売買専用の反則級AI',
     description: '新人が、即戦力に変わる。不動産売買特化のAI営業支援ツール。',
+    images: ['/ogp.png'],
   },
   alternates: {
     canonical: SITE_URL,
