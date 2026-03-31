@@ -174,7 +174,7 @@ export default function LandingPage() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
-                href={`${APP_URL}/login`}
+                href={`${APP_URL}/signup`}
                 className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-primary-600 hover:bg-primary-700 hover:scale-105 text-white font-bold transition-all duration-200 shadow-lg shadow-primary-500/20"
               >
                 1週間無料で試してみる
@@ -466,7 +466,7 @@ export default function LandingPage() {
                     ))}
                   </ul>
                   <a
-                    href={`${APP_URL}/login`}
+                    href={`${APP_URL}/signup`}
                     className={`block text-center py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-105 ${
                       plan.featured
                         ? "bg-primary-600 hover:bg-primary-700 text-white"
@@ -510,7 +510,7 @@ export default function LandingPage() {
               説明は不要です。
             </h2>
             <a
-              href={`${APP_URL}/login`}
+              href={`${APP_URL}/signup`}
               className="inline-flex items-center gap-2 bg-white text-primary-700 rounded-xl px-8 py-4 font-bold text-base hover:scale-105 transition-transform duration-200 shadow-lg"
             >
               1週間無料で試してみる
