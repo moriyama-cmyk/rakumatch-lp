@@ -4,7 +4,16 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "利用規約 | 楽マッチ AI",
+  title: "利用規約",
+  description: "楽マッチ AI の利用規約です。サービスのご利用条件をご確認ください。",
+  openGraph: {
+    title: "利用規約 | 楽マッチ AI",
+    description: "楽マッチ AI の利用規約です。サービスのご利用条件をご確認ください。",
+    url: "https://rakumatch-ai.com/terms",
+  },
+  alternates: {
+    canonical: "https://rakumatch-ai.com/terms",
+  },
 };
 
 export default function TermsPage() {

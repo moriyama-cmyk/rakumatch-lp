@@ -4,7 +4,16 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "特定商取引法に基づく表記 | 楽マッチ AI",
+  title: "特定商取引法に基づく表記",
+  description: "楽マッチ AI の特定商取引法に基づく表記です。事業者情報をご確認ください。",
+  openGraph: {
+    title: "特定商取引法に基づく表記 | 楽マッチ AI",
+    description: "楽マッチ AI の特定商取引法に基づく表記です。事業者情報をご確認ください。",
+    url: "https://rakumatch-ai.com/tokusho",
+  },
+  alternates: {
+    canonical: "https://rakumatch-ai.com/tokusho",
+  },
 };
 
 export default function TokushoPage() {

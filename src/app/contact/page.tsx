@@ -5,7 +5,16 @@ import { Mail } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "お問い合わせ | 楽マッチ AI",
+  title: "お問い合わせ",
+  description: "楽マッチ AI へのお問い合わせページです。ご質問・ご要望はこちらからお気軽にどうぞ。",
+  openGraph: {
+    title: "お問い合わせ | 楽マッチ AI",
+    description: "楽マッチ AI へのお問い合わせページです。ご質問・ご要望はこちらからお気軽にどうぞ。",
+    url: "https://rakumatch-ai.com/contact",
+  },
+  alternates: {
+    canonical: "https://rakumatch-ai.com/contact",
+  },
 };
 
 export default function ContactPage() {

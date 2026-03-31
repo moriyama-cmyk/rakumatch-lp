@@ -4,7 +4,16 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "プライバシーポリシー | 楽マッチ AI",
+  title: "プライバシーポリシー",
+  description: "楽マッチ AI のプライバシーポリシーです。個人情報の取り扱いについてご確認ください。",
+  openGraph: {
+    title: "プライバシーポリシー | 楽マッチ AI",
+    description: "楽マッチ AI のプライバシーポリシーです。個人情報の取り扱いについてご確認ください。",
+    url: "https://rakumatch-ai.com/privacy",
+  },
+  alternates: {
+    canonical: "https://rakumatch-ai.com/privacy",
+  },
 };
 
 export default function PrivacyPage() {
