@@ -31,7 +31,7 @@ export default function PrivacyPage() {
 
           <h1 className="text-2xl font-bold mt-6 mb-8">プライバシーポリシー</h1>
 
-          <p className="text-sm text-neutral-500 mb-8">最終更新日: 2026年3月31日</p>
+          <p className="text-sm text-neutral-500 mb-8">最終更新日: 2026年4月1日</p>
 
           <div className="space-y-8 text-neutral-700 leading-relaxed text-sm">
             <section>
@@ -126,10 +126,13 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-bold mb-3">8. データの保管と削除</h2>
-              <p>
-                ユーザーが退会した場合、ユーザーの個人情報および業務データは、退会後30日以内に削除されます。ただし、法令により保存が義務づけられている情報については、当該法令の定める期間保存するものとします。
-              </p>
+              <h2 className="text-lg font-bold mb-3">8. データの保持・削除</h2>
+              <ol className="list-decimal pl-5 space-y-2">
+                <li>ユーザーがサブスクリプションを解約した場合、運営者は解約日から30日間、ユーザーのアカウントおよび個人情報・業務データ（顧客情報、物件情報、活動履歴、書類・画像等を含みます）を保持します。</li>
+                <li>保持期間内にユーザーが再度サブスクリプションを開始した場合、保持されていたデータは復元されます。</li>
+                <li>保持期間（30日）の経過後、ユーザーの全てのデータは自動的かつ不可逆的に削除されます。削除後のデータの復元には対応いたしかねます。</li>
+                <li>ただし、法令により保存が義務づけられている情報については、当該法令の定める期間保存するものとします。</li>
+              </ol>
             </section>
 
             <section>

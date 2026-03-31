@@ -31,7 +31,7 @@ export default function TermsPage() {
 
           <h1 className="text-2xl font-bold mt-6 mb-8">利用規約</h1>
 
-          <p className="text-sm text-neutral-500 mb-8">最終更新日: 2026年3月31日</p>
+          <p className="text-sm text-neutral-500 mb-8">最終更新日: 2026年4月1日</p>
 
           <div className="space-y-8 text-neutral-700 leading-relaxed text-sm">
             <section>
@@ -143,11 +143,12 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-bold mb-3">第13条（解約後のデータ取り扱い）</h2>
+              <h2 className="text-lg font-bold mb-3">第13条（解約後のデータ保持・削除）</h2>
               <ol className="list-decimal pl-5 space-y-2">
-                <li>サブスクリプション解約後、30日間はお客様のデータ（顧客情報、物件情報、活動履歴等）を保持します。この期間内に再契約いただいた場合、データは復元されます。</li>
-                <li>解約後30日を経過した時点で、お客様の全データを完全かつ不可逆的に削除します。削除されたデータの復元はできません。</li>
-                <li>解約前にデータの保存を希望される場合は、アプリ内の設定ページからCSV形式でエクスポートが可能です。解約後のデータエクスポートのご依頼には対応いたしかねます。</li>
+                <li>サブスクリプションの解約後、運営者は30日間、ユーザーのアカウントおよび登録データ（顧客情報、物件情報、活動履歴、書類・画像等を含みます）を保持します。</li>
+                <li>前項の保持期間内にユーザーが再度サブスクリプションを開始した場合、保持されていたデータは復元され、引き続き利用することができます。</li>
+                <li>保持期間（30日）の経過後、ユーザーの全てのデータは自動的かつ不可逆的に削除されます。削除後のデータの復元には一切対応いたしかねます。</li>
+                <li>解約前にデータの保存を希望される場合は、アプリ内の設定ページからCSV形式でエクスポートが可能です。保持期間経過後のデータエクスポートのご依頼には対応いたしかねます。</li>
               </ol>
             </section>
           </div>
