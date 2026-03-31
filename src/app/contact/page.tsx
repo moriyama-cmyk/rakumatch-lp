@@ -43,7 +43,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-xs text-neutral-400 mb-0.5">メールアドレス</p>
-                <p className="text-sm font-semibold text-neutral-800">【YOUR_EMAIL】</p>
+                <p className="text-sm font-semibold text-neutral-800">moriyama@fm-y.com</p>
               </div>
             </div>
 

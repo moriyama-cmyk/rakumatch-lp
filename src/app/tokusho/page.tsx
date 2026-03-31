@@ -36,23 +36,23 @@ export default function TokushoPage() {
               <tbody className="divide-y divide-surface-200">
                 <tr>
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">事業者名</th>
-                  <td className="px-6 py-4">【YOUR_NAME】</td>
+                  <td className="px-6 py-4">森山 幸弘</td>
                 </tr>
                 <tr>
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">所在地</th>
-                  <td className="px-6 py-4">【YOUR_ADDRESS】</td>
+                  <td className="px-6 py-4">神奈川県川崎市高津区二子1-19-2</td>
                 </tr>
                 <tr>
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">電話番号</th>
-                  <td className="px-6 py-4">【YOUR_PHONE】</td>
+                  <td className="px-6 py-4">080-3956-7935</td>
                 </tr>
                 <tr>
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">メールアドレス</th>
-                  <td className="px-6 py-4">【YOUR_EMAIL】</td>
+                  <td className="px-6 py-4">moriyama@fm-y.com</td>
                 </tr>
                 <tr>
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">運営統括責任者</th>
-                  <td className="px-6 py-4">【YOUR_NAME】</td>
+                  <td className="px-6 py-4">代表 森山 幸弘</td>
                 </tr>
                 <tr>
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">販売価格</th>
