@@ -17,6 +17,8 @@ import {
 import FadeIn from "@/components/FadeIn";
 import CountUp from "@/components/CountUp";
 import Accordion from "@/components/Accordion";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const APP_URL = "https://top-sales-ai.vercel.app";
 
@@ -147,34 +149,7 @@ function ScreenshotPlaceholder() {
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-surface-50 text-neutral-900">
-      {/* ───────── Header ───────── */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="h-8 w-8 rounded-lg bg-primary-500 flex items-center justify-center">
-              <BrainCircuit className="h-4 w-4 text-white" />
-            </div>
-            <span className="text-base font-bold tracking-tight">
-              楽マッチ AI
-            </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <a
-              href={`${APP_URL}/login`}
-              className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
-            >
-              ログイン
-            </a>
-            <a
-              href={`${APP_URL}/login`}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary-600 hover:bg-primary-700 text-sm font-medium text-white transition-colors"
-            >
-              無料で試す
-              <ArrowRight className="h-3.5 w-3.5" />
-            </a>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* ───────── 1. Hero ───────── */}
       <section className="relative overflow-hidden bg-white">
@@ -481,20 +456,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ───────── Footer ───────── */}
-      <footer className="py-10 border-t border-surface-200 bg-surface-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5 text-neutral-400">
-            <div className="h-6 w-6 rounded bg-surface-200 flex items-center justify-center">
-              <BrainCircuit className="h-3.5 w-3.5" />
-            </div>
-            <span className="text-sm font-medium">楽マッチ AI</span>
-          </div>
-          <p className="text-xs text-neutral-400">
-            &copy; 2026 楽マッチ AI. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

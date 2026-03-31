@@ -1,0 +1,35 @@
+import { BrainCircuit, ArrowRight } from "lucide-react";
+
+const APP_URL = "https://top-sales-ai.vercel.app";
+
+export default function Header() {
+  return (
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-200">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <a href="/" className="flex items-center gap-2.5">
+          <div className="h-8 w-8 rounded-lg bg-primary-500 flex items-center justify-center">
+            <BrainCircuit className="h-4 w-4 text-white" />
+          </div>
+          <span className="text-base font-bold tracking-tight">
+            楽マッチ AI
+          </span>
+        </a>
+        <div className="flex items-center gap-4">
+          <a
+            href={`${APP_URL}/login`}
+            className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
+          >
+            ログイン
+          </a>
+          <a
+            href={`${APP_URL}/login`}
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary-600 hover:bg-primary-700 text-sm font-medium text-white transition-colors"
+          >
+            無料で試す
+            <ArrowRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
+      </div>
+    </header>
+  );
+}
