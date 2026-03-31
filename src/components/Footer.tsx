@@ -1,4 +1,3 @@
-import { BrainCircuit } from "lucide-react";
 import Link from "next/link";
 
 const footerLinks = [
@@ -14,9 +13,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5 text-neutral-400">
-            <div className="h-6 w-6 rounded bg-surface-200 flex items-center justify-center">
-              <BrainCircuit className="h-3.5 w-3.5" />
-            </div>
+            <img src="/icon-192.png" alt="楽マッチ AI" className="h-6 w-6 rounded" />
             <span className="text-sm font-medium">楽マッチ AI</span>
           </div>
           <p className="text-xs text-neutral-400">

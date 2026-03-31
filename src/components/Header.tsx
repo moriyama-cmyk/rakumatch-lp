@@ -1,4 +1,4 @@
-import { BrainCircuit, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const APP_URL = "https://top-sales-ai.vercel.app";
 
@@ -7,9 +7,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-surface-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a href="/" className="flex items-center gap-2.5">
-          <div className="h-8 w-8 rounded-lg bg-primary-500 flex items-center justify-center">
-            <BrainCircuit className="h-4 w-4 text-white" />
-          </div>
+          <img src="/icon-192.png" alt="楽マッチ AI" className="h-8 w-8 rounded-lg" />
           <span className="text-base font-bold tracking-tight">
             楽マッチ AI
           </span>
