@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 
-const APP_URL = "https://top-sales-ai.vercel.app";
+const APP_URL = "https://app.rakumatch-ai.com";
 
 export default function Header() {
   return (
@@ -13,6 +13,11 @@ export default function Header() {
           </span>
         </a>
         <div className="flex items-center gap-4">
+          <nav className="hidden sm:flex items-center gap-6 mr-4">
+            <a href="#features" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">機能</a>
+            <a href="#plans" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">料金</a>
+            <a href="#faq" className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors">FAQ</a>
+          </nav>
           <a
             href={`${APP_URL}/login`}
             className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"

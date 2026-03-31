@@ -20,7 +20,7 @@ import Accordion from "@/components/Accordion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const APP_URL = "https://top-sales-ai.vercel.app";
+const APP_URL = "https://app.rakumatch-ai.com";
 
 /* ---------- Data ---------- */
 
@@ -34,14 +34,17 @@ const painPoints = [
   {
     icon: ClipboardList,
     text: "物件情報の手入力に毎日1〜2時間かかる",
+    cost: "月30時間 = 約15万円の人件費ロス",
   },
   {
     icon: Search,
     text: "どの顧客にどの物件を提案すべきか迷う",
+    cost: "提案遅れで月2〜3件の機会損失",
   },
   {
     icon: Mail,
     text: "メール・電話の準備で営業時間が削られる",
+    cost: "1日1時間 = 年間250時間のムダ",
   },
 ];
 
@@ -181,7 +184,7 @@ export default function LandingPage() {
                 href={`${APP_URL}/login`}
                 className="inline-flex items-center gap-2 px-8 py-3 rounded-xl border-2 border-surface-200 text-neutral-700 font-semibold hover:border-primary-200 hover:text-primary-700 transition-all duration-200"
               >
-                資料ダウンロード
+                ログインはこちら
               </a>
             </div>
             <p className="mt-3 text-xs text-neutral-400">
@@ -245,7 +248,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-14">
-              こんなお悩み、ありませんか？
+              不動産営業、こんなお悩みありませんか？
             </h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -258,6 +261,7 @@ export default function LandingPage() {
                   <p className="text-neutral-700 leading-relaxed font-medium">
                     {p.text}
                   </p>
+                  <p className="mt-2 text-sm text-red-500 font-medium">{p.cost}</p>
                 </div>
               </FadeIn>
             ))}
@@ -270,7 +274,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-16">
-              楽マッチ AI でできること
+              不動産AI営業支援CRM「楽マッチ AI」の機能
             </h2>
           </FadeIn>
 
@@ -314,7 +318,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-14">
-              エンタープライズレベルのセキュリティ
+              不動産CRMに求められるセキュリティ
             </h2>
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -334,7 +338,70 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ───────── 7. Pricing ───────── */}
+      {/* ───────── 7. Comparison ───────── */}
+      <section id="comparison" className="py-20 sm:py-24 bg-surface-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <FadeIn>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-4">
+              他社と比べてください。
+            </h2>
+            <p className="text-neutral-500 text-center mb-14 max-w-lg mx-auto">
+              不動産CRM市場の主要サービスとの比較
+            </p>
+          </FadeIn>
+          <FadeIn>
+            <div className="overflow-x-auto rounded-2xl border border-surface-200 shadow-sm bg-white">
+              <table className="w-full text-sm text-left min-w-[600px]">
+                <thead>
+                  <tr className="border-b border-surface-200 bg-surface-50">
+                    <th className="px-6 py-4 font-semibold text-neutral-700">サービス</th>
+                    <th className="px-6 py-4 font-semibold text-neutral-700">月額</th>
+                    <th className="px-6 py-4 font-semibold text-neutral-700">AI機能</th>
+                    <th className="px-6 py-4 font-semibold text-neutral-700">導入方法</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-surface-200">
+                    <td className="px-6 py-4 text-neutral-700">KASIKA</td>
+                    <td className="px-6 py-4 text-neutral-600">60,000円〜</td>
+                    <td className="px-6 py-4 text-neutral-600">一部あり</td>
+                    <td className="px-6 py-4 text-neutral-600">要問い合わせ</td>
+                  </tr>
+                  <tr className="border-b border-surface-200">
+                    <td className="px-6 py-4 text-neutral-700">いえらぶCLOUD</td>
+                    <td className="px-6 py-4 text-neutral-600">50,000円〜</td>
+                    <td className="px-6 py-4 text-neutral-600">一部あり</td>
+                    <td className="px-6 py-4 text-neutral-600">要問い合わせ</td>
+                  </tr>
+                  <tr className="border-b border-surface-200">
+                    <td className="px-6 py-4 text-neutral-700">Digima</td>
+                    <td className="px-6 py-4 text-neutral-600">10,000円〜</td>
+                    <td className="px-6 py-4 text-neutral-600">なし</td>
+                    <td className="px-6 py-4 text-neutral-600">要問い合わせ</td>
+                  </tr>
+                  <tr className="border-b border-surface-200">
+                    <td className="px-6 py-4 text-neutral-700">PropoCloud</td>
+                    <td className="px-6 py-4 text-neutral-600">要問い合わせ</td>
+                    <td className="px-6 py-4 text-neutral-600">一部あり</td>
+                    <td className="px-6 py-4 text-neutral-600">要問い合わせ</td>
+                  </tr>
+                  <tr className="bg-primary-50">
+                    <td className="px-6 py-4 text-primary-600 font-bold">楽マッチ AI</td>
+                    <td className="px-6 py-4 text-primary-600 font-bold">3,000円</td>
+                    <td className="px-6 py-4 text-primary-600 font-bold">7つのAI搭載</td>
+                    <td className="px-6 py-4 text-primary-600 font-bold">即日・セルフ</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-neutral-400 mt-4 text-center">
+              ※ 各社公式サイトの公開情報に基づく（2026年3月時点）
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ───────── 8. Pricing ───────── */}
       <section id="plans" className="py-20 sm:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
@@ -419,12 +486,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ───────── 8. FAQ ───────── */}
-      <section className="py-20 sm:py-24 bg-surface-50">
+      {/* ───────── 9. FAQ ───────── */}
+      <section id="faq" className="py-20 sm:py-24 bg-surface-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <FadeIn>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-14">
-              よくある質問
+              不動産AI営業支援CRMについてよくある質問
             </h2>
           </FadeIn>
           <FadeIn>
@@ -433,7 +500,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ───────── 9. Final CTA ───────── */}
+      {/* ───────── 10. Final CTA ───────── */}
       <section className="py-20 sm:py-24 bg-primary-600">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <FadeIn>
