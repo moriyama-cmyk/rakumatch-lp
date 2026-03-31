@@ -26,8 +26,8 @@ const APP_URL = "https://app.rakumatch-ai.com";
 
 const stats = [
   { end: 90, suffix: "%", label: "入力時間削減" },
-  { end: 3, suffix: "分", label: "1物件の登録時間" },
-  { end: 1, suffix: "分", label: "追客メール作成" },
+  { end: 1, suffix: "秒", label: "1物件の登録時間" },
+  { end: 5, suffix: "秒", label: "追客メール作成" },
 ];
 
 const painPoints = [
@@ -65,7 +65,7 @@ const zigzagFeatures = [
     icon: MessageSquare,
     title: "顧客1人1人に、専属AIがつく。",
     desc: "足りない情報のヒアリング方法、お客様へのベネフィット提案、メール文、電話トークをAIが自動生成。新人でもトップ営業マンレベルの提案ができる。",
-    badge: "メール作成1分",
+    badge: "メール作成5秒",
   },
   {
     icon: CheckSquare,
@@ -481,7 +481,7 @@ export default function LandingPage() {
           </div>
 
           <p className="text-center text-sm text-neutral-400 mt-8">
-            導入費0円・追加課金なし・いつでも解約可能
+            導入費0円・個人でも企業でも同一料金・いつでも解約可能
           </p>
         </div>
       </section>
