@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { Mail, Phone, User } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -37,13 +37,33 @@ export default function ContactPage() {
               楽マッチ AI に関するご質問・ご要望・不具合のご報告等は、下記メールアドレスまでお気軽にお問い合わせください。
             </p>
 
-            <div className="flex items-center gap-3 bg-surface-50 rounded-xl p-5 mb-6">
-              <div className="h-10 w-10 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
-                <Mail className="h-5 w-5 text-primary-600" />
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center gap-3 bg-surface-50 rounded-xl p-5">
+                <div className="h-10 w-10 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
+                  <User className="h-5 w-5 text-primary-600" />
+                </div>
+                <div>
+                  <p className="text-xs text-neutral-400 mb-0.5">担当者</p>
+                  <p className="text-sm font-semibold text-neutral-800">森山 幸弘</p>
+                </div>
               </div>
-              <div>
-                <p className="text-xs text-neutral-400 mb-0.5">メールアドレス</p>
-                <p className="text-sm font-semibold text-neutral-800">moriyama@fm-y.com</p>
+              <div className="flex items-center gap-3 bg-surface-50 rounded-xl p-5">
+                <div className="h-10 w-10 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
+                  <Phone className="h-5 w-5 text-primary-600" />
+                </div>
+                <div>
+                  <p className="text-xs text-neutral-400 mb-0.5">電話番号</p>
+                  <a href="tel:08039567935" className="text-sm font-semibold text-neutral-800 hover:text-primary-600 transition-colors">080-3956-7935</a>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 bg-surface-50 rounded-xl p-5">
+                <div className="h-10 w-10 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
+                  <Mail className="h-5 w-5 text-primary-600" />
+                </div>
+                <div>
+                  <p className="text-xs text-neutral-400 mb-0.5">メールアドレス</p>
+                  <p className="text-sm font-semibold text-neutral-800">moriyama@fm-y.com</p>
+                </div>
               </div>
             </div>
 
