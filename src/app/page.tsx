@@ -13,12 +13,14 @@ import {
   CreditCard,
   Shield,
   CheckCircle2,
+  Sparkles,
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 import CountUp from "@/components/CountUp";
 import Accordion from "@/components/Accordion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import DeviceMockup from "@/components/DeviceMockup";
 
 const APP_URL = "https://app.rakumatch-ai.com";
 
@@ -64,7 +66,7 @@ const zigzagFeatures = [
   {
     icon: MessageSquare,
     title: "顧客1人1人に、専属AIがつく。",
-    desc: "足りない情報のヒアリング方法、お客様へのベネフィット提案、メール文、電話トークをAIが自動生成。新人でもトップ営業マンレベルの提案ができる。",
+    desc: "顧客ごとにAIが条件・履歴を分析し、「次に何をすべきか」「どうヒアリングすべきか」「この物件のどこがこのお客様に刺さるか」を具体的に提案。メール文も電話トークも自動生成。新人でもトップ営業マンレベルの提案ができます。",
     badge: "メール作成5秒",
   },
   {
@@ -76,13 +78,10 @@ const zigzagFeatures = [
 ];
 
 const trustPoints = [
-  { icon: Brain, title: "Google AI（Gemini）搭載" },
-  { icon: Database, title: "Amazon Web Servicesのデータベース" },
-  { icon: CreditCard, title: "世界シェアNo.1のStripe決済" },
-  {
-    icon: Shield,
-    title: "お客様のデータ・支払い情報は弊社では管理しません",
-  },
+  { icon: Brain, title: "Google AI（Gemini）搭載", desc: "世界最先端のAIエンジン" },
+  { icon: Database, title: "Amazon Web Services", desc: "世界シェアNo.1のクラウド基盤" },
+  { icon: CreditCard, title: "Stripe決済", desc: "世界135カ国以上で利用される決済インフラ" },
+  { icon: Shield, title: "データは全て暗号化", desc: "弊社サーバーでは一切管理しません" },
 ];
 
 const plans = [
@@ -130,22 +129,13 @@ const faqs = [
   },
   {
     q: "セキュリティは大丈夫ですか？",
-    a: "Google AI・Amazon DB・Stripe決済を採用。銀行レベルのセキュリティです。お客様のデータは弊社では管理しません。",
+    a: "自社で大手と同等のセキュリティを構築するのはほぼ不可能です。楽マッチAIは、Amazon Web Services（AWS）・Google Cloud・Stripeなど、世界中の大企業や銀行が採用するインフラ上で稼働しています。お客様のデータや決済情報を弊社サーバーで保持することはありません。",
   },
   {
     q: "賃貸でも使えますか？",
     a: "楽マッチAIは不動産売買に特化して設計されています。売買仲介の業務フローに最適化されています。",
   },
 ];
-
-/* ---------- Screenshot placeholder ---------- */
-function ScreenshotPlaceholder() {
-  return (
-    <div className="bg-surface-100 rounded-2xl shadow-lg aspect-video flex items-center justify-center text-neutral-400 text-sm">
-      スクリーンショット準備中
-    </div>
-  );
-}
 
 /* ---------- Page ---------- */
 
@@ -192,11 +182,9 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Product screenshot placeholder */}
+          {/* Product device mockup */}
           <div className="mt-14 max-w-4xl mx-auto">
-            <div className="bg-surface-100 rounded-2xl shadow-xl aspect-video flex items-center justify-center text-neutral-400 text-sm">
-              スクリーンショット準備中
-            </div>
+            <DeviceMockup />
           </div>
         </div>
       </section>
@@ -232,10 +220,13 @@ export default function LandingPage() {
                   東京で不動産売買をやっている、現役の営業マンです。
                 </p>
                 <p className="mt-4 text-neutral-700 leading-relaxed">
-                  低学歴で覚えが悪い自分が、もっと楽に、もっとわかりやすく、誰がやってもできるツールを追い求めて作りました。
+                  「もっと楽に、もっとわかりやすく、誰がやってもできるツール」を追い求めて作りました。
                 </p>
                 <p className="mt-4 text-neutral-700 leading-relaxed">
                   説明は不要です。使えば直感的にわかります。必要最低限を、ぎゅっと詰め込みました。
+                </p>
+                <p className="mt-4 text-primary-700 font-semibold leading-relaxed">
+                  AIが進化するたびに、このアプリも進化します。あなたの営業トークも、提案も、一緒に進化し続けます。
                 </p>
               </div>
             </div>
@@ -301,9 +292,11 @@ export default function LandingPage() {
                         {f.badge}
                       </span>
                     </div>
-                    {/* Screenshot placeholder */}
+                    {/* Screenshot */}
                     <div className="flex-1 min-w-0 w-full">
-                      <ScreenshotPlaceholder />
+                      <div className="bg-surface-100 rounded-2xl shadow-lg aspect-video flex items-center justify-center text-neutral-400 text-sm border border-surface-200">
+                        スクリーンショット準備中
+                      </div>
                     </div>
                   </div>
                 </FadeIn>
@@ -317,9 +310,12 @@ export default function LandingPage() {
       <section className="py-20 sm:py-24 bg-surface-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-14">
-              不動産CRMに求められるセキュリティ
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-4">
+              大手テック企業のインフラで守る。
             </h2>
+            <p className="text-neutral-500 text-center mb-14 max-w-2xl mx-auto leading-relaxed">
+              自社で大手企業レベルのセキュリティを実現することは、ほぼ不可能です。楽マッチAIは、Google・Amazon・Stripeという世界最大級のインフラ上で稼働。お客様のデータや決済情報を弊社サーバーで管理することはありません。世界中の銀行・大企業が信頼する基盤を、そのままあなたの営業に。
+            </p>
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {trustPoints.map((t) => (
@@ -328,13 +324,35 @@ export default function LandingPage() {
                   <div className="h-12 w-12 rounded-xl bg-surface-100 flex items-center justify-center mx-auto mb-4">
                     <t.icon className="h-6 w-6 text-neutral-600" />
                   </div>
-                  <p className="text-sm font-medium text-neutral-700 leading-relaxed">
+                  <p className="text-sm font-bold text-neutral-700">
                     {t.title}
+                  </p>
+                  <p className="text-xs text-neutral-500 mt-1">
+                    {t.desc}
                   </p>
                 </div>
               </FadeIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ───────── 6.5 AI Evolution ───────── */}
+      <section className="py-20 sm:py-24 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <FadeIn>
+            <div className="h-14 w-14 rounded-2xl bg-primary-50 flex items-center justify-center mx-auto mb-6">
+              <Sparkles className="h-7 w-7 text-primary-600" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+              AIが進化するたびに、
+              <br className="hidden sm:block" />
+              あなたの営業力も進化する。
+            </h2>
+            <p className="text-neutral-500 leading-relaxed max-w-xl mx-auto">
+              楽マッチAIは、常に最新のAIモデルを搭載しています。AIが進化すれば、提案の質が上がり、ヒアリングの精度が上がり、マッチングの的中率が上がります。あなたは何もしなくても、使い続けるだけで営業力が進化し続けます。
+            </p>
+          </FadeIn>
         </div>
       </section>
 
