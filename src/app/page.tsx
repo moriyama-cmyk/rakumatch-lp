@@ -394,7 +394,7 @@ export default function LandingPage() {
                   <tr className="border-b border-surface-200">
                     <td className="px-6 py-4 text-neutral-700">Digima</td>
                     <td className="px-6 py-4 text-neutral-600">10,000円〜</td>
-                    <td className="px-6 py-4 text-neutral-600">なし</td>
+                    <td className="px-6 py-4 text-neutral-600">要確認</td>
                     <td className="px-6 py-4 text-neutral-600">要問い合わせ</td>
                   </tr>
                   <tr className="border-b border-surface-200">
@@ -413,7 +413,7 @@ export default function LandingPage() {
               </table>
             </div>
             <p className="text-xs text-neutral-400 mt-4 text-center">
-              ※ 各社公式サイトの公開情報に基づく（2026年3月時点）
+              ※ 各社公式サイトの公開情報に基づく（2026年3月時点）。最新情報は各社公式サイトをご確認ください。
             </p>
           </FadeIn>
         </div>
