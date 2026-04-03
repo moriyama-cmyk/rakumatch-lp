@@ -65,35 +65,34 @@ export default function DeviceMockup({
           </div>
         </div>
 
-        {/* Hinge — aluminum strip, wider than screen */}
+        {/* Hinge — thin strip same width as screen lid */}
         <div
-          className="relative mx-auto w-[100%] h-[10px]"
+          className="relative mx-auto w-[88%] h-[6px]"
           style={{
             background:
-              "linear-gradient(to bottom, #a8a8aa 0%, #c8c8ca 20%, #d6d6d8 50%, #c0c0c2 80%, #b0b0b2 100%)",
-            borderRadius: "0 0 2px 2px",
+              "linear-gradient(to bottom, #b0b0b2 0%, #d0d0d2 40%, #c4c4c6 100%)",
           }}
         >
           {/* Center opening notch */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[16%] h-[4px] rounded-b-[5px] bg-[#8e8e90]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[16%] h-[3px] rounded-b-[4px] bg-[#9a9a9c]" />
         </div>
 
-        {/* Base — bottom wedge */}
+        {/* Base — slightly wider, tapered bottom */}
         <div
-          className="relative mx-auto h-[7px]"
+          className="relative mx-auto h-[4px]"
           style={{
-            width: "98%",
+            width: "92%",
             background:
-              "linear-gradient(to bottom, #c4c4c6, #d8d8da)",
-            borderRadius: "0 0 16px 16px",
+              "linear-gradient(to bottom, #c8c8ca, #d8d8da)",
+            borderRadius: "0 0 8px 8px",
           }}
         />
         {/* Bottom edge shadow */}
         <div
-          className="mx-auto h-[2px] rounded-b-full opacity-15"
+          className="mx-auto h-[2px] rounded-b-full opacity-10"
           style={{
-            width: "100%",
-            background: "linear-gradient(to right, transparent 3%, rgba(0,0,0,0.3) 50%, transparent 97%)",
+            width: "90%",
+            background: "linear-gradient(to right, transparent 5%, rgba(0,0,0,0.25) 50%, transparent 95%)",
           }}
         />
       </div>
