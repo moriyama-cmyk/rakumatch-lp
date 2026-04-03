@@ -35,7 +35,7 @@ export default function DeviceMockup({
       <div className="relative">
         {/* Screen lid */}
         <div
-          className="relative mx-auto w-[88%] rounded-[16px] bg-[#1d1d1f] p-[6px]"
+          className="relative mx-auto w-[88%] rounded-t-[16px] bg-[#1d1d1f] p-[6px] pb-0"
           style={{
             boxShadow:
               "0 -1px 0 0 rgba(255,255,255,0.08) inset, 0 2px 8px rgba(0,0,0,0.15)",
@@ -49,7 +49,7 @@ export default function DeviceMockup({
           </div>
 
           {/* Screen */}
-          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[13px] bg-white">
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-[13px] bg-white">
             {desktopSrc ? (
               <Image
                 src={desktopSrc}
@@ -65,34 +65,36 @@ export default function DeviceMockup({
           </div>
         </div>
 
-        {/* Hinge — thin strip same width as screen lid */}
+        {/* Hinge — aluminum strip, wider than screen */}
         <div
-          className="relative mx-auto w-[88%] h-[6px]"
+          className="relative mx-auto w-[100%] h-[10px]"
           style={{
             background:
-              "linear-gradient(to bottom, #b0b0b2 0%, #d0d0d2 40%, #c4c4c6 100%)",
+              "linear-gradient(to bottom, #a8a8aa 0%, #c8c8ca 20%, #d6d6d8 50%, #c0c0c2 80%, #b0b0b2 100%)",
+            borderRadius: "0 0 2px 2px",
           }}
         >
           {/* Center opening notch */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[16%] h-[3px] rounded-b-[4px] bg-[#9a9a9c]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[16%] h-[4px] rounded-b-[5px] bg-[#8e8e90]" />
         </div>
 
-        {/* Base — slightly wider, tapered bottom */}
+        {/* Base — wider tapered wedge */}
         <div
-          className="relative mx-auto h-[4px]"
+          className="relative mx-auto h-[5px]"
           style={{
-            width: "92%",
+            width: "100%",
             background:
-              "linear-gradient(to bottom, #c8c8ca, #d8d8da)",
-            borderRadius: "0 0 8px 8px",
+              "linear-gradient(to bottom, #c4c4c6, #d8d8da)",
+            borderRadius: "0 0 12px 12px",
+            clipPath: "polygon(2% 0%, 98% 0%, 99.5% 100%, 0.5% 100%)",
           }}
         />
         {/* Bottom edge shadow */}
         <div
-          className="mx-auto h-[2px] rounded-b-full opacity-10"
+          className="mx-auto h-[2px] rounded-b-full opacity-15"
           style={{
-            width: "90%",
-            background: "linear-gradient(to right, transparent 5%, rgba(0,0,0,0.25) 50%, transparent 95%)",
+            width: "100%",
+            background: "linear-gradient(to right, transparent 3%, rgba(0,0,0,0.3) 50%, transparent 97%)",
           }}
         />
       </div>
