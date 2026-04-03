@@ -35,7 +35,7 @@ export default function DeviceMockup({
       <div className="relative">
         {/* Screen lid */}
         <div
-          className="relative mx-auto w-[88%] rounded-t-[16px] bg-[#1d1d1f] p-[6px] pb-0"
+          className="relative mx-auto w-[88%] rounded-[16px] bg-[#1d1d1f] p-[6px]"
           style={{
             boxShadow:
               "0 -1px 0 0 rgba(255,255,255,0.08) inset, 0 2px 8px rgba(0,0,0,0.15)",
@@ -49,7 +49,7 @@ export default function DeviceMockup({
           </div>
 
           {/* Screen */}
-          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-[13px] bg-white">
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[13px] bg-white">
             {desktopSrc ? (
               <Image
                 src={desktopSrc}
