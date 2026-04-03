@@ -78,15 +78,14 @@ export default function DeviceMockup({
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[16%] h-[4px] rounded-b-[5px] bg-[#8e8e90]" />
         </div>
 
-        {/* Base — wider tapered wedge */}
+        {/* Base — bottom wedge */}
         <div
-          className="relative mx-auto h-[5px]"
+          className="relative mx-auto h-[7px]"
           style={{
-            width: "100%",
+            width: "98%",
             background:
               "linear-gradient(to bottom, #c4c4c6, #d8d8da)",
-            borderRadius: "0 0 12px 12px",
-            clipPath: "polygon(2% 0%, 98% 0%, 99.5% 100%, 0.5% 100%)",
+            borderRadius: "0 0 16px 16px",
           }}
         />
         {/* Bottom edge shadow */}
