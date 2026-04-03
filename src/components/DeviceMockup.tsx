@@ -82,10 +82,11 @@ export default function DeviceMockup({
         <div
           className="relative mx-auto h-[5px]"
           style={{
-            width: "96%",
+            width: "100%",
             background:
               "linear-gradient(to bottom, #c4c4c6, #d8d8da)",
-            borderRadius: "0 0 8px 8px",
+            borderRadius: "0 0 12px 12px",
+            clipPath: "polygon(2% 0%, 98% 0%, 99.5% 100%, 0.5% 100%)",
           }}
         />
         {/* Bottom edge shadow */}
