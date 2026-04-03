@@ -65,42 +65,41 @@ export default function DeviceMockup({
           </div>
         </div>
 
-        {/* Hinge — thin line connecting screen to base */}
+        {/* Keyboard base — thick wedge with rounded ends */}
         <div
-          className="relative mx-auto w-[88%] h-[3px]"
+          className="relative mx-auto"
           style={{
+            width: "102%",
+            maxWidth: "100%",
+            height: "18px",
             background:
-              "linear-gradient(to bottom, #a8a8aa, #c0c0c2)",
-          }}
-        />
-
-        {/* Base — wide rounded slab like real MacBook */}
-        <div
-          className="relative mx-auto h-[8px]"
-          style={{
-            width: "100%",
-            background:
-              "linear-gradient(to bottom, #b8b8ba 0%, #c8c8ca 30%, #d6d6d8 60%, #cdcdcf 100%)",
-            borderRadius: "0 0 14px 14px",
+              "linear-gradient(to bottom, #b0b0b2 0%, #c4c4c6 25%, #d2d2d4 50%, #c8c8ca 75%, #bdbdbd 100%)",
+            borderRadius: "0 0 16px 16px / 0 0 12px 12px",
+            boxShadow: "0 2px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.3)",
           }}
         >
-          {/* Center notch indent */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[14%] h-[3px] rounded-b-[4px] bg-[#a0a0a2]" />
-          {/* Front lip edge */}
+          {/* Top edge highlight */}
           <div
-            className="absolute bottom-0 left-0 right-0 h-[2px]"
+            className="absolute top-0 left-[6%] right-[6%] h-[1px]"
+            style={{ background: "rgba(255,255,255,0.4)" }}
+          />
+          {/* Center notch opening */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[14%] h-[4px] rounded-b-[5px] bg-[#9a9a9c]" />
+          {/* Front lip */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[3px]"
             style={{
-              background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.06))",
-              borderRadius: "0 0 14px 14px",
+              background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.08))",
+              borderRadius: "0 0 16px 16px",
             }}
           />
         </div>
         {/* Bottom shadow */}
         <div
-          className="mx-auto h-[3px] rounded-b-full opacity-10"
+          className="mx-auto h-[4px] opacity-15"
           style={{
-            width: "98%",
-            background: "linear-gradient(to right, transparent 5%, rgba(0,0,0,0.3) 50%, transparent 95%)",
+            width: "96%",
+            background: "radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, transparent 70%)",
           }}
         />
       </div>
