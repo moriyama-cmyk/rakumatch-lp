@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
 interface Props {
@@ -33,32 +34,35 @@ export default function VideoModal({ src, className }: Props) {
         </div>
       </div>
 
-      {/* モーダル */}
-      {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
-          onClick={() => setOpen(false)}
-        >
+      {/* モーダル — document.body 直下にポータルで描画 */}
+      {open &&
+        createPortal(
           <div
-            className="relative w-full max-w-5xl"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 flex items-center justify-center bg-black/80 p-4"
+            style={{ zIndex: 9999 }}
+            onClick={() => setOpen(false)}
           >
-            <button
-              onClick={() => setOpen(false)}
-              className="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors"
+            <div
+              className="relative w-full max-w-5xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="h-7 w-7" />
-            </button>
-            <video
-              src={src}
-              className="w-full rounded-xl shadow-2xl"
-              autoPlay
-              controls
-              playsInline
-            />
-          </div>
-        </div>
-      )}
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors"
+              >
+                <X className="h-7 w-7" />
+              </button>
+              <video
+                src={src}
+                className="w-full rounded-xl shadow-2xl"
+                autoPlay
+                controls
+                playsInline
+              />
+            </div>
+          </div>,
+          document.body
+        )}
     </>
   );
 }
