@@ -56,6 +56,7 @@ const zigzagFeatures = [
     title: "コピペだけ。レインズもSUUMOもExcelも。",
     desc: "レインズの詳細画面をCtrl+Aで全コピー、貼り付けるだけでAIが自動振り分け・物件登録。顧客情報もExcelでもどんな媒体でも、ページ丸ごとコピペすればAIが適切な項目へ自動入力。",
     badge: "入力時間90%削減",
+    videoSrc: "/reins-bulk.mp4",
   },
   {
     icon: GitCompare,
@@ -295,11 +296,22 @@ export default function LandingPage() {
                         {f.badge}
                       </span>
                     </div>
-                    {/* Screenshot */}
+                    {/* Screenshot / Video */}
                     <div className="flex-1 min-w-0 w-full">
-                      <div className="bg-surface-100 rounded-2xl shadow-lg aspect-video flex items-center justify-center text-neutral-400 text-sm border border-surface-200">
-                        スクリーンショット準備中
-                      </div>
+                      {f.videoSrc ? (
+                        <video
+                          src={f.videoSrc}
+                          className="w-full rounded-2xl shadow-lg border border-surface-200"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                        />
+                      ) : (
+                        <div className="bg-surface-100 rounded-2xl shadow-lg aspect-video flex items-center justify-center text-neutral-400 text-sm border border-surface-200">
+                          スクリーンショット準備中
+                        </div>
+                      )}
                     </div>
                   </div>
                 </FadeIn>
