@@ -184,7 +184,10 @@ export default function LandingPage() {
 
           {/* Product device mockup */}
           <div className="mt-14 max-w-4xl mx-auto">
-            <DeviceMockup />
+            <DeviceMockup
+              desktopSrc="/lp-desktop.png"
+              mobileSrc="/lp-mobile.jpg"
+            />
           </div>
         </div>
       </section>
