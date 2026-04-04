@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   BrainCircuit,
   ArrowRight,
@@ -63,18 +64,21 @@ const zigzagFeatures = [
     title: "物件からも、顧客からも。双方向マッチング。",
     desc: "実務的な幅を持たせたマッチングロジックで、物件側からも顧客側からも最適な組み合わせをスコアリング。提案すべき物件がすぐにわかる。",
     badge: "マッチング精度スコア自動計算",
+    imageSrc: "/feature-matching.png",
   },
   {
     icon: MessageSquare,
     title: "顧客1人1人に、専属AIがつく。",
     desc: "顧客ごとにAIが条件・履歴を分析し、「次に何をすべきか」「どうヒアリングすべきか」「この物件のどこがこのお客様に刺さるか」を具体的に提案。メール文も電話トークも自動生成。新人でもトップ営業マンレベルの提案ができます。",
     badge: "メール作成5秒",
+    imageSrc: "/feature-ai-assistant.png",
   },
   {
     icon: CheckSquare,
     title: "契約フェーズも、精算も、書類も。全部ここに。",
     desc: "契約フェーズごとのTODO管理、顧客ごとのTODOリスト、精算金ツール（自動入力対応）、図面・書類の顧客ページ保存。漏れがない。",
     badge: "精算計算書も自動作成",
+    imageSrc: "/feature-contract.png",
   },
 ];
 
@@ -306,6 +310,14 @@ export default function LandingPage() {
                           muted
                           loop
                           playsInline
+                        />
+                      ) : f.imageSrc ? (
+                        <Image
+                          src={f.imageSrc}
+                          alt={f.title}
+                          width={700}
+                          height={440}
+                          className="w-full rounded-2xl shadow-lg border border-surface-200"
                         />
                       ) : (
                         <div className="bg-surface-100 rounded-2xl shadow-lg aspect-video flex items-center justify-center text-neutral-400 text-sm border border-surface-200">
