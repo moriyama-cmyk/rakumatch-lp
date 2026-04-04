@@ -1,4 +1,5 @@
 import Image from "next/image";
+import VideoModal from "@/components/VideoModal";
 import {
   BrainCircuit,
   ArrowRight,
@@ -303,13 +304,9 @@ export default function LandingPage() {
                     {/* Screenshot / Video */}
                     <div className="flex-1 min-w-0 w-full">
                       {f.videoSrc ? (
-                        <video
+                        <VideoModal
                           src={f.videoSrc}
                           className="w-full rounded-2xl shadow-lg border border-surface-200"
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
                         />
                       ) : f.imageSrc ? (
                         <Image
