@@ -37,8 +37,8 @@ const stats = [
 const painPoints = [
   {
     icon: ClipboardList,
-    text: "物件情報の手入力に毎日1〜2時間かかる",
-    cost: "月30時間 = 約15万円の人件費ロス",
+    text: "SUUMOやアットホームと連携したいけど、システム費用が高すぎて導入できない",
+    cost: "楽マッチAIなら追加料金なし。もう大金を払う必要がない",
   },
   {
     icon: Search,
@@ -98,7 +98,7 @@ const plans = [
     storage: "250GB",
     featured: false,
     features: [
-      "AIアシスタント（Gemini 2.5）",
+      "AIアシスタント（Gemini 3.1）",
       "AI一括抽出",
       "マッチング",
       "契約管理",
@@ -113,7 +113,7 @@ const plans = [
     storage: "500GB",
     featured: true,
     features: [
-      "高性能AI（Gemini 3）",
+      "高性能AI（Gemini 3.1）",
       "全スタンダード機能",
       "500GBストレージ",
     ],
