@@ -112,10 +112,6 @@ const requirements: RequirementItem[] = [
     label: "PC側のマイク入力設定",
     desc: "PCの音声設定で、入力に使うマイクを、お使いのマイクに合わせて選んでおいてください。",
   },
-  {
-    label: "録音が無音・途中で止まる場合",
-    desc: "PCの音声設定で「Intel Smart Sound Technology（Intel SST）」を無効にすると改善することがあります。あくまで切り分けの一案で、特定の機種で使えないという意味ではありません。",
-  },
 ];
 
 const faqs: FaqItem[] = [
@@ -125,7 +121,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: "録音が無音になります。",
-    a: "まずPCのマイク入力設定をご確認ください。改善しない場合は「Intel Smart Sound Technology（Intel SST）」を無効にすると直ることがあります。",
+    a: "まずPCのマイク入力設定で、使用するマイクが正しく選ばれているかをご確認ください。",
   },
   {
     q: "長い通話でも大丈夫ですか？",
@@ -223,7 +219,7 @@ export default function CallRecordingPage() {
         background="white"
         eyebrow="REQUIREMENTS"
         title="必要なもの・推奨機材"
-        lead="PC内蔵マイクでも始められます。通話相手の声までしっかり録るなら、下記の推奨機材が安定します。"
+        lead="大がかりな機材は要りません。PC内蔵マイクでも始められ、通話相手の声までしっかり録るなら、Amazonで買える小さなマイクを1つ足すだけです。"
       >
         <div className="max-w-3xl">
           <RequirementCard

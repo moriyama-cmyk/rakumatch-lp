@@ -65,7 +65,7 @@ export default function TokushoPage() {
                 </tr>
                 <tr>
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">販売価格以外の必要料金</th>
-                  <td className="px-6 py-4">消費税、インターネット接続に必要な通信料等はお客様のご負担となります。</td>
+                  <td className="px-6 py-4">表示価格は消費税込みです。インターネット接続に必要な通信料等はお客様のご負担となります。</td>
                 </tr>
                 <tr>
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">支払方法</th>
