@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-surface-50 text-neutral-900 flex flex-col">
+    <div className="min-h-screen bg-surface-50 text-ink-900 flex flex-col">
       <Header />
       <main className="flex-1 py-12">
         <div className="max-w-3xl mx-auto px-4">
@@ -31,9 +31,9 @@ export default function TermsPage() {
 
           <h1 className="text-2xl font-bold mt-6 mb-8">利用規約</h1>
 
-          <p className="text-sm text-neutral-500 mb-8">最終更新日: 2026年4月1日</p>
+          <p className="text-sm text-ink-500 mb-8">最終更新日: 2026年4月1日</p>
 
-          <div className="space-y-8 text-neutral-700 leading-relaxed text-sm">
+          <div className="space-y-8 text-ink-700 leading-relaxed text-sm">
             <section>
               <h2 className="text-lg font-bold mb-3">第1条（適用）</h2>
               <p>

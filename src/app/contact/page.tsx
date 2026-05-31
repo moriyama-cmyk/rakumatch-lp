@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-surface-50 text-neutral-900 flex flex-col">
+    <div className="min-h-screen bg-surface-50 text-ink-900 flex flex-col">
       <Header />
       <main className="flex-1 py-12">
         <div className="max-w-3xl mx-auto px-4">
@@ -33,7 +33,7 @@ export default function ContactPage() {
           <h1 className="text-2xl font-bold mt-6 mb-8">お問い合わせ</h1>
 
           <div className="bg-white rounded-2xl border border-surface-200 p-8 md:p-10">
-            <p className="text-neutral-700 leading-relaxed mb-6">
+            <p className="text-ink-700 leading-relaxed mb-6">
               楽マッチ AI に関するご質問・ご要望・不具合のご報告等は、下記メールアドレスまでお気軽にお問い合わせください。
             </p>
 
@@ -43,8 +43,8 @@ export default function ContactPage() {
                   <User className="h-5 w-5 text-primary-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-neutral-400 mb-0.5">担当者</p>
-                  <p className="text-sm font-semibold text-neutral-800">森山 幸弘</p>
+                  <p className="text-xs text-ink-500 mb-0.5">担当者</p>
+                  <p className="text-sm font-semibold text-ink-900">森山 幸弘</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 bg-surface-50 rounded-xl p-5">
@@ -52,8 +52,8 @@ export default function ContactPage() {
                   <Phone className="h-5 w-5 text-primary-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-neutral-400 mb-0.5">電話番号</p>
-                  <a href="tel:08039567935" className="text-sm font-semibold text-neutral-800 hover:text-primary-600 transition-colors">080-3956-7935</a>
+                  <p className="text-xs text-ink-500 mb-0.5">電話番号</p>
+                  <a href="tel:08039567935" className="text-sm font-semibold text-ink-900 hover:text-primary-600 transition-colors">080-3956-7935</a>
                 </div>
               </div>
               <div className="flex items-center gap-3 bg-surface-50 rounded-xl p-5">
@@ -61,13 +61,13 @@ export default function ContactPage() {
                   <Mail className="h-5 w-5 text-primary-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-neutral-400 mb-0.5">メールアドレス</p>
-                  <p className="text-sm font-semibold text-neutral-800">moriyama@fm-y.com</p>
+                  <p className="text-xs text-ink-500 mb-0.5">メールアドレス</p>
+                  <p className="text-sm font-semibold text-ink-900">moriyama@fm-y.com</p>
                 </div>
               </div>
             </div>
 
-            <div className="space-y-4 text-sm text-neutral-600">
+            <div className="space-y-4 text-sm text-ink-700">
               <p>
                 お問い合わせの際は、以下の情報をご記載いただくとスムーズに対応できます。
               </p>

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function TokushoPage() {
   return (
-    <div className="min-h-screen bg-surface-50 text-neutral-900 flex flex-col">
+    <div className="min-h-screen bg-surface-50 text-ink-900 flex flex-col">
       <Header />
       <main className="flex-1 py-12">
         <div className="max-w-3xl mx-auto px-4">
@@ -58,8 +58,8 @@ export default function TokushoPage() {
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">販売価格</th>
                   <td className="px-6 py-4">
                     <ul className="space-y-1">
-                      <li>Standard プラン: 月額 3,000円（税別）/ 人</li>
-                      <li>Premium プラン: 月額 5,000円（税別）/ 人</li>
+                      <li>Standard プラン: 月額 3,000円（税込）/ 人</li>
+                      <li>Premium プラン: 月額 5,000円（税込）/ 人</li>
                     </ul>
                   </td>
                 </tr>
