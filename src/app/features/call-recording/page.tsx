@@ -251,7 +251,7 @@ export default function CallRecordingPage() {
       {/* 末尾CTA（濃色フィナーレ・1ページ1回） */}
       <FeatureCTA
         ctaLabel="通話録音・要約をまず無料で試す"
-        ctaHref={`${APP_URL}/signup`}
+        ctaHref={`${APP_URL}/try`}
       />
     </FeaturePageShell>
   );

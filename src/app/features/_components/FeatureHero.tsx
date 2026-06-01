@@ -35,7 +35,7 @@ export default function FeatureHero({
   sub,
   breadcrumb,
   ctaLabel = "1週間無料で試してみる",
-  ctaHref = `${APP_URL}/signup`,
+  ctaHref = `${APP_URL}/try`,
   media,
 }: FeatureHeroProps) {
   return (

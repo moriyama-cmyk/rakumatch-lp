@@ -261,7 +261,7 @@ export default function CustomerAppPage() {
       {/* 末尾CTA（濃色フィナーレ・1ページ1回） */}
       <FeatureCTA
         ctaLabel="お客様連動アプリを、まず無料で試す"
-        ctaHref={`${APP_URL}/signup`}
+        ctaHref={`${APP_URL}/try`}
       />
     </FeaturePageShell>
   );

@@ -23,7 +23,7 @@ export interface FeatureCTAProps {
 export default function FeatureCTA({
   title = "まず触ってみてください。説明は不要です。",
   ctaLabel,
-  ctaHref = `${APP_URL}/signup`,
+  ctaHref = `${APP_URL}/try`,
   microcopy = "1週間無料トライアル・いつでも解約可能",
 }: FeatureCTAProps) {
   return (

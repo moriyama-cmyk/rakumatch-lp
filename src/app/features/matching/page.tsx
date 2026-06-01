@@ -335,7 +335,7 @@ export default function MatchingPage() {
       {/* 末尾CTA（濃色フィナーレ・1ページ1回） */}
       <FeatureCTA
         ctaLabel="AIマッチングを、まず無料で試す"
-        ctaHref={`${APP_URL}/signup`}
+        ctaHref={`${APP_URL}/try`}
       />
     </FeaturePageShell>
   );

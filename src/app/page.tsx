@@ -251,7 +251,7 @@ export default function LandingPage() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
-                href={`${APP_URL}/signup`}
+                href={`${APP_URL}/try`}
                 className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-primary-600 hover:shadow-md hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 motion-reduce:transition-none motion-reduce:hover:scale-100 break-keep"
               >
                 1週間無料で試してみる
@@ -1034,7 +1034,7 @@ export default function LandingPage() {
               </h2>
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <a
-                  href={`${APP_URL}/signup`}
+                  href={`${APP_URL}/try`}
                   className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-base font-semibold text-primary-700 shadow-sm transition hover:bg-surface-50 hover:scale-[1.02] motion-reduce:hover:scale-100 break-keep"
                 >
                   1週間無料で試してみる
