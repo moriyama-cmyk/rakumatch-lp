@@ -28,7 +28,7 @@ export default function VideoModal({ src, className }: Props) {
           playsInline
         />
         <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-black/0 group-hover:bg-black/20 transition-colors duration-200">
-          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/90 rounded-full px-5 py-2.5 text-sm font-semibold text-neutral-700 shadow-lg">
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/90 rounded-full px-5 py-2.5 text-sm font-semibold text-ink-700 shadow-lg">
             クリックで拡大
           </div>
         </div>

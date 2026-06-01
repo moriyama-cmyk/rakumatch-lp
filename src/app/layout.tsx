@@ -1,5 +1,17 @@
 import type { Metadata } from "next";
+import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
+
+// 日本語フォントを next/font でセルフホストし、CSS変数 --font-sans を実定義する。
+// globals.css の `font-family: var(--font-sans), ...` がこれで解決される。
+// CJK は容量が大きく preload は無駄が多いため preload:false。display:swap で FOIT を回避。
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+  variable: "--font-sans",
+  preload: false,
+});
 
 const SITE_URL = 'https://rakumatch-ai.com';
 
@@ -40,8 +52,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-surface-50 text-neutral-900">
+    <html lang="ja" className={`${notoSansJP.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-surface-50 text-ink-900">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
