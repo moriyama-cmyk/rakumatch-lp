@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 import CountUp from "@/components/CountUp";
+import FeatureHub from "@/components/FeatureHub";
 import Accordion from "@/components/Accordion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -336,6 +337,9 @@ export default function LandingPage() {
           </p>
         </div>
       </section>
+
+      {/* ───────── 全部入りハブ図（¥3,000で、これ全部。） ───────── */}
+      <FeatureHub />
 
       {/* ───────── 3. 社会的証明（開発者ストーリー内包） ───────── */}
       <section className="py-20 sm:py-28 lg:py-32 bg-surface-100">
