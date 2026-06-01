@@ -4,53 +4,52 @@
 //  FeatureHub — 「¥3,000で、これ全部。」全部入りハブ図セクション
 //
 //  中央ハブ（楽マッチAI ¥3,000）から、7機能を3グループに分けて提示。
-//  ・上段: 入力のムダをなくす / 契約まで取りこぼさない
-//  ・下段: 売れる相手を逃さない（お客様連動アプリ＝堀を含む・主役）
-//  ハブ→各カードへの接続線は offset 計測で描画（transform に影響されない）。
-//  スクロールで画面に入ったら1回だけ順番に出現（スクロールは奪わない）。
-//  配色はブランド（primary 緑 / accent ゴールド極細ライン / ink）に統一。
+//  ・上段: 入力のムダをなくす（緑） / 契約まで取りこぼさない（青）
+//  ・下段: 売れる相手を逃さない（青緑・お客様連動アプリ＝堀を含む・主役）
+//  ハブ→全カードへ扇状の接続線（getBoundingClientRect でステージ基準に計測）。
+//  スクロールで画面に入ったら1回だけ順番にフェードイン（スクロールは奪わない）。
 // ============================================================
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import {
-  Home, ClipboardPaste, Mic, ClipboardCheck, Calculator,
+  ClipboardPaste, Mic, ClipboardCheck, Calculator,
   ArrowLeftRight, Smartphone, Sparkles, ArrowRight,
 } from "lucide-react";
 
 const APP_URL = "https://app.rakumatch-ai.com";
 
-type PillKind = "soft" | "strong" | "gold";
+type Tone = "green" | "teal" | "blue";
 type Item = { Icon: React.ComponentType<{ className?: string; strokeWidth?: number }>; title: string; sub: string };
-type Group = { label: string; pill: PillKind; items: Item[] };
+type Group = { label: string; tone: Tone; items: Item[] };
 
-// 上段（左: 入力のムダ / 右: 契約取りこぼさない）
+// 効果ごとの色（緑=入力のムダ / 青緑=売れる相手 / 青=契約取りこぼさない）
+const TONE: Record<Tone, { pill: string; chip: string; icon: string; hover: string }> = {
+  green: { pill: "bg-[#e7f8f0] text-[#0c7a4f]", chip: "bg-[#e7f8f0]", icon: "text-[#10a26a]", hover: "hover:border-[#bbf3da]" },
+  teal: { pill: "bg-[#e6fafb] text-[#0a7680]", chip: "bg-[#e6fafb]", icon: "text-[#0d9aa6]", hover: "hover:border-[#bdf0f3]" },
+  blue: { pill: "bg-[#eceefe] text-[#3f4fcf]", chip: "bg-[#eceefe]", icon: "text-[#5b6ef0]", hover: "hover:border-[#cdd3fb]" },
+};
+
 const TOP: Group[] = [
   {
-    label: "入力のムダをなくす", pill: "soft", items: [
+    label: "入力のムダをなくす", tone: "green", items: [
       { Icon: ClipboardPaste, title: "コピペ/PDF登録", sub: "レインズ・SUUMOを貼るだけ" },
       { Icon: Mic, title: "通話録音・要約", sub: "電話メモも手入力ゼロ" },
     ],
   },
   {
-    label: "契約まで取りこぼさない", pill: "gold", items: [
+    label: "契約まで取りこぼさない", tone: "blue", items: [
       { Icon: ClipboardCheck, title: "TODO・契約フェーズ", sub: "審査→決済まで管理" },
       { Icon: Calculator, title: "かんたん精算", sub: "固都税・管理費を自動計算" },
     ],
   },
 ];
-// 下段（主役）
 const BOTTOM: Group = {
-  label: "売れる相手を逃さない", pill: "strong", items: [
+  label: "売れる相手を逃さない", tone: "teal", items: [
     { Icon: ArrowLeftRight, title: "双方向マッチング", sub: "顧客⇄物件を逆引き" },
     { Icon: Smartphone, title: "お客様連動アプリ", sub: "お客様の反応が逆流" },
     { Icon: Sparkles, title: "専属AI", sub: "顧客ごとに次の一手" },
   ],
-};
-
-const PILL: Record<PillKind, string> = {
-  soft: "bg-primary-50 text-primary-700 border border-primary-100",
-  strong: "bg-primary-500 text-white",
-  gold: "bg-white text-ink-700 border border-accent-500",
 };
 
 const TOTAL = 7; // 出現アニメ用のカード総数
@@ -64,29 +63,36 @@ export default function FeatureHub() {
   const [vis, setVis] = useState<boolean[]>(() => Array(TOTAL).fill(false));
   const [linesShown, setLinesShown] = useState(false);
 
-  // 接続線の計測（offset ベース＝出現時の transform に影響されない）
-  useEffect(() => {
+  // 接続線の計測（getBoundingClientRect でステージ基準。ネストした
+  // positioned 要素があっても座標がズレない）
+  const measure = useCallback(() => {
     const stage = stageRef.current, hub = hubRef.current;
     if (!stage || !hub) return;
-    const measure = () => {
-      const nodes = stage.querySelectorAll<HTMLElement>("[data-node]");
-      const hx = hub.offsetLeft + hub.offsetWidth / 2;
-      const hy = hub.offsetTop + hub.offsetHeight;
-      const ps: string[] = [];
-      nodes.forEach((n) => {
-        const x = n.offsetLeft + n.offsetWidth / 2;
-        const y = n.offsetTop;
-        const my = (hy + y) / 2;
-        ps.push(`M ${hx} ${hy} C ${hx} ${my}, ${x} ${my}, ${x} ${y}`);
-      });
-      setPaths(ps);
-      setSize({ w: stage.offsetWidth, h: stage.offsetHeight });
-    };
+    const sb = stage.getBoundingClientRect();
+    const hb = hub.getBoundingClientRect();
+    const hx = hb.left + hb.width / 2 - sb.left;
+    const hy = hb.bottom - sb.top;
+    const ps: string[] = [];
+    stage.querySelectorAll<HTMLElement>("[data-node]").forEach((n) => {
+      const r = n.getBoundingClientRect();
+      const x = r.left + r.width / 2 - sb.left;
+      const y = r.top - sb.top;
+      const my = (hy + y) / 2;
+      ps.push(`M ${hx} ${hy} C ${hx} ${my}, ${x} ${my}, ${x} ${y}`);
+    });
+    setPaths(ps);
+    setSize({ w: stage.offsetWidth, h: stage.offsetHeight });
+  }, []);
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(stage);
-    return () => ro.disconnect();
-  }, []);
+    window.addEventListener("resize", measure);
+    return () => { ro.disconnect(); window.removeEventListener("resize", measure); };
+  }, [measure]);
 
   // 画面に入ったら1回だけ順番に出現
   useEffect(() => {
@@ -117,12 +123,13 @@ export default function FeatureHub() {
         </p>
 
         <div ref={stageRef} className="relative mx-auto mt-12 max-w-[900px]">
-          {/* ハブ */}
+          {/* ハブ（ブランドアイコン） */}
           <div className="text-center">
             <div ref={hubRef} className="relative z-20 inline-flex flex-col items-center gap-1">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-500 shadow-lg shadow-primary-500/30">
-                <Home className="h-8 w-8 text-white" strokeWidth={1.8} />
-              </div>
+              <Image
+                src="/icon-192.png" alt="楽マッチ AI" width={64} height={64} priority
+                className="h-16 w-16 rounded-2xl shadow-lg"
+              />
               <div className="mt-1.5 text-lg font-bold text-ink-900">楽マッチ AI</div>
               <div className="rounded-full border border-primary-100 bg-primary-50 px-3.5 py-1.5 text-sm font-bold text-primary-700">
                 ¥3,000 <span className="font-semibold text-primary-600/90">/人・月（税込）</span>
@@ -137,8 +144,8 @@ export default function FeatureHub() {
           >
             {paths.map((d, i) => (
               <path
-                key={i} d={d} fill="none" stroke="#CCEBE1" strokeWidth={1.5}
-                className={`transition-opacity duration-500 ${linesShown ? "opacity-100" : "opacity-0"}`}
+                key={i} d={d} fill="none" stroke="#CBD5E1" strokeWidth={1.5}
+                className={`transition-opacity duration-700 ${linesShown ? "opacity-100" : "opacity-0"}`}
               />
             ))}
           </svg>
@@ -150,13 +157,13 @@ export default function FeatureHub() {
                 <GroupBlock key={g.label} g={g} startIndex={gi * 2} vis={vis} />
               ))}
             </div>
-            <div className="mt-8 flex justify-center md:mt-9">
+            <div className="mt-8 flex justify-center md:mt-10">
               <GroupBlock g={BOTTOM} startIndex={4} vis={vis} />
             </div>
           </div>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-12">
           <a
             href={`${APP_URL}/try`}
             className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-7 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-primary-600 hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 motion-reduce:hover:scale-100"
@@ -173,34 +180,35 @@ export default function FeatureHub() {
 function GroupBlock({ g, startIndex, vis }: { g: Group; startIndex: number; vis: boolean[] }) {
   return (
     <div className="flex w-full flex-col items-center gap-3 md:w-auto">
-      <span className={`whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-bold ${PILL[g.pill]}`}>
+      <span className={`whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-bold ${TONE[g.tone].pill}`}>
         {g.label}
       </span>
-      <div className="flex w-full max-w-[340px] flex-col gap-3 md:max-w-none md:flex-row md:gap-3">
+      <div className="flex w-full max-w-[360px] flex-col gap-3 md:max-w-none md:flex-row md:items-stretch md:gap-3">
         {g.items.map((it, i) => (
-          <Card key={it.title} it={it} shown={vis[startIndex + i]} />
+          <Card key={it.title} it={it} tone={g.tone} shown={vis[startIndex + i]} />
         ))}
       </div>
     </div>
   );
 }
 
-function Card({ it, shown }: { it: Item; shown: boolean }) {
+function Card({ it, tone, shown }: { it: Item; tone: Tone; shown: boolean }) {
   const { Icon } = it;
+  const t = TONE[tone];
   return (
     <div
       data-node
       className={`group flex w-full items-center gap-3 rounded-2xl border border-surface-200 bg-white p-3.5 text-left shadow-sm transition-all duration-500 ease-out
-        md:w-[150px] md:flex-col md:items-stretch md:gap-0 md:p-4 md:text-center
-        hover:-translate-y-2 hover:border-primary-200 hover:shadow-xl
-        ${shown ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
+        md:w-[172px] md:flex-col md:items-stretch md:gap-0 md:p-4 md:text-center
+        hover:-translate-y-2 hover:shadow-xl ${t.hover}
+        ${shown ? "opacity-100" : "opacity-0"}`}
     >
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 md:mx-auto md:mb-2">
-        <Icon className="h-5 w-5 text-primary-600" strokeWidth={1.7} />
+      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${t.chip} md:mx-auto md:mb-2`}>
+        <Icon className={`h-5 w-5 ${t.icon}`} strokeWidth={1.7} />
       </div>
       <div>
-        <div className="text-sm font-bold leading-snug text-ink-900">{it.title}</div>
-        <div className="mt-0.5 text-xs leading-snug text-ink-500">{it.sub}</div>
+        <div className="text-sm font-bold leading-snug text-ink-900 break-keep">{it.title}</div>
+        <div className="mt-0.5 text-xs leading-snug text-ink-500 break-keep">{it.sub}</div>
       </div>
     </div>
   );
