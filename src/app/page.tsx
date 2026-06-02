@@ -5,8 +5,6 @@ import {
   ClipboardList,
   Search,
   UserPlus,
-  Upload,
-  GitCompare,
   Brain,
   Database,
   CreditCard,
@@ -30,25 +28,6 @@ import MobileStickyCTA from "@/components/MobileStickyCTA";
 const APP_URL = "https://app.rakumatch-ai.com";
 
 /* ---------- Data ---------- */
-
-/* Hero 直下のベネフィット3点 */
-const heroBenefits = [
-  {
-    icon: Upload,
-    title: "コピペ & PDFで多重入力ゼロ",
-    desc: "同じ物件を何媒体にも手入力するムダをなくす",
-  },
-  {
-    icon: GitCompare,
-    title: "逆引きマッチングで属人化を解消",
-    desc: "物件を開けば「買いそうなお客様」が点数順に",
-  },
-  {
-    icon: Brain,
-    title: "専属AIで新人を即戦力化",
-    desc: "ヒアリング・提案・追客の“動き”をAIが用意",
-  },
-];
 
 /* Problem（課題3カード） */
 const painPoints = [
@@ -230,26 +209,6 @@ export default function LandingPage() {
             <p className="mt-3 text-sm leading-relaxed text-ink-500 max-w-xl mx-auto">
               個人でも企業でも月3,000円/人（税込）・30秒で登録・1週間無料・いつでも解約可能
             </p>
-          </div>
-
-          {/* Hero 直下のベネフィット3点 */}
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
-            {heroBenefits.map((b) => (
-              <div
-                key={b.title}
-                className="group rounded-2xl border border-surface-200 bg-white p-5 text-left shadow-[0_2px_12px_rgba(5,57,43,0.04)] transition hover:-translate-y-0.5 hover:border-primary-200 hover:shadow-[0_10px_30px_rgba(13,124,102,0.08)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
-              >
-                <div className="size-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mb-3 transition group-hover:bg-primary-100">
-                  <b.icon className="h-5 w-5" />
-                </div>
-                <p className="text-sm font-semibold text-ink-900 leading-snug">
-                  {b.title}
-                </p>
-                <p className="mt-1 text-sm leading-relaxed text-ink-500">
-                  {b.desc}
-                </p>
-              </div>
-            ))}
           </div>
 
           {/* Product device mockup */}
