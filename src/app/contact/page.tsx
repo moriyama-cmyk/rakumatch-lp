@@ -62,7 +62,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs text-ink-500 mb-0.5">メールアドレス</p>
-                  <p className="text-sm font-semibold text-ink-900">moriyama@fm-y.com</p>
+                  <a href="mailto:moriyama@fm-y.com" className="text-sm font-semibold text-ink-900 hover:text-primary-600 transition-colors">moriyama@fm-y.com</a>
                 </div>
               </div>
             </div>

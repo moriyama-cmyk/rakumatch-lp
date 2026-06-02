@@ -21,6 +21,7 @@ import {
   FeatureFAQ,
   FeatureCTA,
   RelatedFeatures,
+  FeatureDemoMedia,
   type FeaturePoint,
   type Step,
   type RequirementItem,
@@ -266,7 +267,17 @@ export default function MatchingPage() {
           { name: "ホーム", href: "/" },
           { name: "AI自動マッチング・逆引き", href: "/features/matching" },
         ]}
-        media={<MatchingFlowDiagram />}
+        media={
+          // 差し替え予定: demo-matching.mp4（+poster）を /public に置き video/ready を渡せば動画版に。
+          // それまではブランド配色の内製フロー図（SVG）をそのまま表示する。
+          <FeatureDemoMedia
+            video="/demo-matching.mp4"
+            poster="/demo-matching-poster.jpg"
+            alt="逆引きマッチングのデモ画面（イメージ・点数は一例）"
+            ready={false}
+            fallback={<MatchingFlowDiagram />}
+          />
+        }
       />
 
       {/* 価値（なぜ重要か）— 属人化の解消 */}

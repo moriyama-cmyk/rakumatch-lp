@@ -18,6 +18,8 @@ export { default as FeatureFAQ } from "./FeatureFAQ";
 export { default as FeatureCTA } from "./FeatureCTA";
 export { default as FeatureBreadcrumb } from "./FeatureBreadcrumb";
 export { default as RelatedFeatures } from "./RelatedFeatures";
+export { default as FeatureDemoMedia } from "./FeatureDemoMedia";
+export { default as DemoVideoPoster } from "./DemoVideoPoster";
 
 export type { FeatureHeroProps } from "./FeatureHero";
 export type { FeatureSectionProps } from "./FeatureSection";
@@ -28,3 +30,5 @@ export type { FaqItem } from "./FeatureFAQ";
 export type { FeatureCTAProps } from "./FeatureCTA";
 export type { Crumb } from "./FeatureBreadcrumb";
 export type { RelatedFeature } from "./RelatedFeatures";
+export type { FeatureDemoMediaProps } from "./FeatureDemoMedia";
+export type { DemoVideoPosterProps } from "./DemoVideoPoster";

@@ -70,7 +70,7 @@ export default function FeatureHero({
             <div className="mt-8">
               <a
                 href={ctaHref}
-                className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-primary-600 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 motion-reduce:transition-none"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-primary-700 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 motion-reduce:transition-none"
               >
                 {ctaLabel}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />

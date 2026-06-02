@@ -132,7 +132,7 @@ export default function DeviceMockup({
                 fill
                 className="object-cover object-top"
                 sizes="150px"
-                priority
+                loading="lazy"
               />
             ) : (
               <Placeholder label="モバイル画面" />

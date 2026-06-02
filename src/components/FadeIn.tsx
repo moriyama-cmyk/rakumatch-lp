@@ -5,7 +5,14 @@ export default function FadeIn({ children, className = "" }: { children: ReactNo
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.1 });
+    // 前庭障害ユーザ配慮: アニメ抑制設定のときは出現演出をせず即表示する。
+    // matchMedia の matches を見て即 visible にする。globals.css の
+    // prefers-reduced-motion ルールで transition も実質無効化されるため、
+    // フェード/スライドは起きず初期状態のまま即座に最終表示になる。
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const obs = new IntersectionObserver(([e]) => {
+      if (reduce || e.isIntersecting) setVisible(true);
+    }, { threshold: 0.1 });
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
