@@ -18,6 +18,7 @@ import {
   FeatureFAQ,
   FeatureCTA,
   RelatedFeatures,
+  FeatureDemoMedia,
   type FeaturePoint,
   type Step,
   type RequirementItem,
@@ -179,15 +180,25 @@ export default function CustomerAppPage() {
           { name: "お客様連動アプリ", href: "/features/customer-app" },
         ]}
         media={
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-sm rounded-full bg-primary-50 opacity-70 blur-3xl" />
-            <div className="mx-auto max-w-sm">
-              <ScreenMockup
-                alt="楽マッチ AI お客様連動アプリのデモ画面"
-                label="デモ画面（イメージ）"
-              />
-            </div>
-          </div>
+          // 差し替え予定: 縦型 demo-customer-app.mp4（+poster）を /public に置き video/ready を渡せば動画版に。
+          // それまでは ScreenMockup のプレースホルダを中央寄せ・幅を取りすぎない形で表示する。
+          <FeatureDemoMedia
+            video="/demo-customer-app.mp4"
+            poster="/demo-customer-app-poster.jpg"
+            alt="お客様連動アプリのデモ画面（イメージ）"
+            ready={false}
+            fallback={
+              <div className="relative">
+                <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-sm rounded-full bg-primary-50 opacity-70 blur-3xl" />
+                <div className="mx-auto max-w-sm">
+                  <ScreenMockup
+                    alt="楽マッチ AI お客様連動アプリのデモ画面"
+                    label="デモ画面（イメージ）"
+                  />
+                </div>
+              </div>
+            }
+          />
         }
       />
 

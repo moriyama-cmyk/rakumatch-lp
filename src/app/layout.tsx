@@ -74,11 +74,14 @@ export default function RootLayout({
           "@context": "https://schema.org",
           "@type": "FAQPage",
           "mainEntity": [
-            { "@type": "Question", "name": "無料トライアル中に解約できますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい、1週間以内に解約すれば一切料金はかかりません。" }},
-            { "@type": "Question", "name": "他のCRMからデータ移行できますか？", "acceptedAnswer": { "@type": "Answer", "text": "Excelやどんな媒体でも、コピペするだけでAIが自動登録します。" }},
-            { "@type": "Question", "name": "1人でも使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい、個人の営業マンの方も同じ料金でご利用いただけます。" }},
-            { "@type": "Question", "name": "セキュリティは大丈夫ですか？", "acceptedAnswer": { "@type": "Answer", "text": "Google AI・Amazon DB・Stripe決済を採用。銀行レベルのセキュリティです。お客様のデータは弊社では管理しません。" }},
-            { "@type": "Question", "name": "賃貸でも使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "楽マッチAIは不動産売買に特化して設計されています。売買仲介の業務フローに最適化されています。" }}
+            { "@type": "Question", "name": "無料トライアル中に解約できますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい、1週間以内に解約すれば料金はかかりません。" }},
+            { "@type": "Question", "name": "SUUMOやレインズとAPI契約が必要ですか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。物件情報はページをコピペするか、PDF・画像を投げ込むだけで登録できます。外部サービスとの連携契約や設定は不要で、導入したその日から使えます。" }},
+            { "@type": "Question", "name": "1人でも、会社でも使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい。個人の営業の方は自分の顧客・物件・追客をまるごと管理でき、料金は同じ¥3,000/人（税込）です。会社で使う場合は、オーナーが全体を見ながら、担当者ごとに情報を分けて運用できます（会社間・担当者間のデータは分離されます）。" }},
+            { "@type": "Question", "name": "賃貸でも使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "楽マッチAIは売買仲介に全振りして設計しているので、売買の業務フローに合わせた作りです。賃貸にも対応（業態モードの切替）しており、売買・賃貸を兼業されている事務所でもお使いいただけます。賃貸メインでのご利用はまずご相談ください。" }},
+            { "@type": "Question", "name": "スマホでも使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい。ブラウザで動くので、スマホ・タブレット・PCのどれでも使えます。お客様連動アプリはスマホのホームに追加すればアプリのように使えます（iPhone・Android対応）。" }},
+            { "@type": "Question", "name": "スタンダードとプレミアムの違いは？", "acceptedAnswer": { "@type": "Answer", "text": "使えるAI機能・AIの性能は同じです。違いは1ヶ月のAI利用枠の大きさと保存容量（250GB/500GB）です。AIをたくさん使う事務所はプレミアムが向いています。" }},
+            { "@type": "Question", "name": "メンバーが増減したら料金はどうなりますか？", "acceptedAnswer": { "@type": "Answer", "text": "人数分の課金です。メンバーを招待すると枠が1つ増え、削除すると1つ減るよう自動で連動します。使わない分を払い続けることはありません。" }},
+            { "@type": "Question", "name": "セキュリティは大丈夫ですか？", "acceptedAnswer": { "@type": "Answer", "text": "自社で大手と同等のセキュリティを構築するのはほぼ不可能です。楽マッチAIは、AWS・Google Cloud・Stripeなど、世界中の大企業や銀行が採用するインフラ上で稼働しています。お客様のデータや決済情報を弊社サーバーで保持することはありません。" }}
           ]
         })}} />
         {children}

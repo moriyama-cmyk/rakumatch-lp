@@ -17,6 +17,7 @@ import {
   FeatureFAQ,
   FeatureCTA,
   RelatedFeatures,
+  FeatureDemoMedia,
   type FeaturePoint,
   type Step,
   type RequirementItem,
@@ -169,15 +170,25 @@ export default function CallRecordingPage() {
           { name: "通話録音・要約・記録", href: "/features/call-recording" },
         ]}
         media={
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-md rounded-full bg-primary-50 opacity-70 blur-3xl" />
-            <div className="mx-auto max-w-md">
-              <ScreenMockup
-                alt="楽マッチ AI 通話録音・要約のデモ画面"
-                label="デモ画面（イメージ）"
-              />
-            </div>
-          </div>
+          // 差し替え予定: demo-call-recording.mp4（+poster）を /public に置き video/ready を渡せば動画版に。
+          // それまでは ScreenMockup のプレースホルダを表示する。
+          <FeatureDemoMedia
+            video="/demo-call-recording.mp4"
+            poster="/demo-call-recording-poster.jpg"
+            alt="通話録音・要約のデモ画面（イメージ）"
+            ready={false}
+            fallback={
+              <div className="relative">
+                <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-md rounded-full bg-primary-50 opacity-70 blur-3xl" />
+                <div className="mx-auto max-w-md">
+                  <ScreenMockup
+                    alt="楽マッチ AI 通話録音・要約のデモ画面"
+                    label="デモ画面（イメージ）"
+                  />
+                </div>
+              </div>
+            }
+          />
         }
       />
 

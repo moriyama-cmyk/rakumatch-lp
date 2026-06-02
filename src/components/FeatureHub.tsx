@@ -166,7 +166,7 @@ export default function FeatureHub() {
         <div className="mt-12">
           <a
             href={`${APP_URL}/try`}
-            className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-7 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-primary-600 hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 motion-reduce:hover:scale-100"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-7 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-primary-700 hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 motion-reduce:hover:scale-100"
           >
             無料で試す <ArrowRight className="h-4 w-4" />
           </a>

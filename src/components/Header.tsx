@@ -58,7 +58,7 @@ export default function Header() {
           </a>
           <a
             href={`${APP_URL}/try`}
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary-500 hover:bg-primary-600 text-sm font-medium text-white transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary-600 hover:bg-primary-700 text-sm font-medium text-white transition-colors"
           >
             無料で試す
             <ArrowRight className="h-3.5 w-3.5" />

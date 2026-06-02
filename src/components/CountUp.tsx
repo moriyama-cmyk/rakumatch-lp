@@ -7,12 +7,17 @@ export default function CountUp({ end, suffix = "", duration = 1500 }: { end: nu
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
+    // 前庭障害ユーザ配慮: アニメ抑制設定のときはカウントアップせず最終値を即表示。
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(end);
+      return;
+    }
     const obs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting && !started) setStarted(true);
     }, { threshold: 0.5 });
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
-  }, [started]);
+  }, [started, end]);
 
   useEffect(() => {
     if (!started) return;

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import VideoModal from "@/components/VideoModal";
 import {
   ClipboardPaste,
   FileText,
@@ -21,6 +20,8 @@ import {
   FeatureFAQ,
   FeatureCTA,
   RelatedFeatures,
+  FeatureDemoMedia,
+  DemoVideoPoster,
   type FeaturePoint,
   type Step,
   type RequirementItem,
@@ -206,16 +207,22 @@ export default function PropertyInputPage() {
           { name: "コピペ物件登録・契約管理", href: "/features/property-input" },
         ]}
         media={
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-md rounded-full bg-primary-50 opacity-70 blur-3xl" />
-            <VideoModal
-              src="/reins-bulk.mp4"
-              className="w-full rounded-2xl ring-1 ring-surface-200 shadow-[0_20px_60px_rgba(5,57,43,0.12)]"
-            />
-            <p className="mt-3 text-center text-sm text-ink-500">
-              デモ画面（イメージ）。クリックで拡大できます。
-            </p>
-          </div>
+          // 差し替え予定: /public に demo-copypaste.mp4（+poster）を置き、video/ready を渡せば動画版に。
+          // それまでは既存の reins-bulk.mp4 を「ポスター＋クリック再生」で表示する。
+          // DESIGN_SYSTEM §8 準拠で自動再生はせず、14MB級の動画はクリックまでロードしない（preload="none"）。
+          <FeatureDemoMedia
+            video="/demo-copypaste.mp4"
+            poster="/demo-copypaste-poster.jpg"
+            alt="コピペ物件登録のデモ画面（イメージ）"
+            ready={false}
+            fallback={
+              <DemoVideoPoster
+                src="/reins-bulk.mp4"
+                poster="/demo-copypaste-poster.jpg"
+                alt="コピペ物件登録のデモ画面（イメージ）"
+              />
+            }
+          />
         }
       />
 

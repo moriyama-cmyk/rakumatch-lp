@@ -5,8 +5,28 @@ html {
   scroll-behavior: smooth;
 }
 
+/* アニメ抑制設定（prefers-reduced-motion: reduce）を尊重する。
+   前庭障害ユーザ向けに、トランジション/アニメーション/スムーススクロールを
+   実質無効化する（WCAG 2.3.3 / 全 transition・animation に横断的に適用）。 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* スマホでの横スクロール防止。装飾のぼかし円や下部固定CTAバーが
+     ビューポート幅を超えても横スクロールを生まないようにする。
+     overflow-x: clip はスクロールコンテナを作らないので、Header の
+     position: sticky を壊さない（hidden と違う点）。
+     比較表は自前の overflow-x-auto を持つため影響を受けない。 */
+  overflow-x: clip;
 }
