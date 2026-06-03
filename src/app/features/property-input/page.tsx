@@ -36,7 +36,7 @@ const APP_URL = "https://app.rakumatch-ai.com";
 export const metadata: Metadata = {
   title: "コピペ物件登録・契約管理",
   description:
-    "レインズ・SUUMO・Excelのページを丸ごとコピペ、チラシ・マイソクはPDFや画像のまま投げ込むだけ。AIが価格・利回り・管理費などを項目に下書きします。契約フェーズ管理・固都税の日割り精算・書類管理まで、登録した物件のまま扱えます。",
+    "レインズ・SUUMO・Excelのページを丸ごとコピペ、チラシ・マイソクはPDFや画像のまま投げ込むだけ。AIが価格・利回り・管理費などを項目に下書きします。顧客情報も同じ要領で取り込めます。契約フェーズ管理・固都税の日割り精算・書類管理まで、登録した物件のまま扱えます。",
   alternates: {
     canonical: "/features/property-input",
   },
@@ -249,6 +249,21 @@ export default function PropertyInputPage() {
         lead="貼って下書き、手直しして確定。登録したあとは、契約フェーズ・精算・書類管理までひとつながりで扱えます。"
       >
         <FeaturePointGrid points={points} columns={2} />
+      </FeatureSection>
+
+      {/* 顧客情報も丸ごと取り込み（穴3：会社の顧客管理システムをコピペ／スクショ→顧客ページ自動生成） */}
+      <FeatureSection
+        background="surface-50"
+        eyebrow="CUSTOMER IMPORT"
+        title="顧客情報も、丸ごと貼るだけ。"
+        lead="物件だけではありません。会社の顧客管理システムの画面をコピペ、または名刺・問い合わせメールのスクショを投げ込むだけ。AIが名前・連絡先・希望条件などを項目に振り分け、お客様ごとのページを下書きします。"
+      >
+        <p className="max-w-2xl text-base leading-relaxed text-ink-700">
+          バラバラの顧客情報を一件ずつ入力し直す手間を、AIが肩代わり。取り込んだ顧客は、そのまま逆引きマッチングの対象になります。
+          <span className="mt-2 block text-sm text-ink-500">
+            ※ AIの抽出結果は下書きです。内容をご確認のうえ手直し・確定してください。
+          </span>
+        </p>
       </FeatureSection>
 
       {/* 契約・精算・書類のデモ画面（feature-contract.png・売買フェーズ管理を主役に） */}

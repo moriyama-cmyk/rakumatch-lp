@@ -6,6 +6,7 @@ import {
   ListChecks,
   Sparkles,
   Users,
+  Phone,
 } from "lucide-react";
 import {
   FeaturePageShell,
@@ -63,6 +64,12 @@ export const metadata: Metadata = {
 
 // 機能ブロック（COPY_DECK §B-2 / §8-1）。録音→文字起こし→要約→記録の自動化が軸。
 const featurePoints: FeaturePoint[] = [
+  {
+    icon: Phone,
+    title: "携帯・固定電話・対面、どの通話でも",
+    desc: "携帯でも固定電話でも、対面の商談でも。マイクで拾えればAIが文字起こし・要約します。専用の電話システムや高額な機器は不要です。",
+    note: "※ 録音はお客様の同意を得たうえでご利用ください。",
+  },
   {
     icon: FileText,
     title: "録音 → 文字起こし → 要約を自動化",
@@ -163,7 +170,7 @@ export default function CallRecordingPage() {
             AIが文字起こし・要約。
           </>
         }
-        lead="お客様との通話をその場で録音。AIが文字起こしして要点を要約し、活動履歴に自動で残します。聞き漏らしも「言った言わない」も防げます。"
+        lead="お客様との通話をその場で録音。AIが文字起こしして要点を要約し、活動履歴に自動で残します。携帯でも固定電話でも、対面の商談でも、マイクで拾えればOK。専用の電話システムは不要です。聞き漏らしも「言った言わない」も防げます。"
         sub="メモ取りに気を取られず、お客様との会話に集中できます。"
         breadcrumb={[
           { name: "ホーム", href: "/" },
@@ -235,7 +242,7 @@ export default function CallRecordingPage() {
         <div className="max-w-3xl">
           <RequirementCard
             items={requirements}
-            note="※ 推奨機材はあくまで案内です。特定の機種で「使えない」と断定するものではありません。録音がうまくいかない場合は、まずマイク入力の設定からお試しください。"
+            note="※ 録音はお客様の同意を得たうえでご利用ください。推奨機材はあくまで案内で、特定の機種で「使えない」と断定するものではありません。録音がうまくいかない場合は、まずマイク入力の設定からお試しください。"
           />
         </div>
       </FeatureSection>

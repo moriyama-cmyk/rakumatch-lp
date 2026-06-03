@@ -15,6 +15,8 @@ import {
   Eye,
   Bell,
   Phone,
+  ListChecks,
+  Users,
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn";
 import CountUp from "@/components/CountUp";
@@ -83,6 +85,7 @@ const matchingPoints = [
 
 /* 通話録音の要点 */
 const callRecordingPoints = [
+  "携帯でも固定電話でも、対面の商談でも。マイクで拾えればOK（専用の電話システムは不要）",
   "録音 → AIが文字起こし → 自動で要約・タイトル付け",
   "長い通話も自動で小分け処理。無音はスキップ",
   "「お客様に何を聞くべきか」のAI質問テンプレを画面に常設",
@@ -189,7 +192,7 @@ export default function LandingPage() {
               トップセールスには、仕組みがある。
             </p>
             <p className="mt-5 text-lg leading-relaxed text-ink-700 max-w-2xl mx-auto">
-              物件はコピペ・PDFで登録。AIが顧客と逆引きマッチングし、提案も追客もヒアリングも用意。お客様専用アプリまで連動します。
+              物件も顧客もコピペ・PDFで登録。AIが逆引きマッチングし、提案も追客もヒアリングも用意。お客様専用アプリまで連動します。
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 max-w-sm sm:max-w-none mx-auto">
               <a
@@ -323,6 +326,16 @@ export default function LandingPage() {
                   </li>
                 ))}
               </ul>
+
+              {/* 営業メリット（堀）— 相談窓口の集約。法務配慮で「囲い込み」不使用・断定回避（〜にくい） */}
+              <div className="mt-8 rounded-xl border border-primary-100 bg-primary-50/60 p-5">
+                <p className="text-base font-semibold text-ink-900">
+                  お客様の相談窓口が、自然とあなたに。
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-700">
+                  お客様連動アプリを入り口に、保存物件・星評価・内見希望があなたのもとへ集約。やり取りを重ねるほど「相談するならこの人」という関係が育ち、ほかの営業にお客様を奪われにくくなります。
+                </p>
+              </div>
 
               <p className="mt-6 text-sm leading-relaxed text-ink-500">
                 お客様が見つけた物件が担当者に集まる&ldquo;逆方向&rdquo;の仕組みは、他にあまり見られません。
@@ -503,6 +516,9 @@ export default function LandingPage() {
               <p className="mt-4 text-base leading-relaxed text-ink-700 max-w-2xl">
                 ヒアリングの抜けは「なぜ聞くのか・プロはどう聞くか」付きで教えてくれるので、新人教育も兼ねます。
               </p>
+              <p className="mt-4 text-base leading-relaxed text-ink-700 max-w-2xl">
+                いわば、<span className="font-semibold text-ink-900">めちゃくちゃ仕事ができる優しい上司</span>が、顧客一人ひとりに1人ずつ。自分では気づきにくい潜在ニーズや次の一手まで指摘してくれます。物件にも同じ専属AIが付き、その物件の資料や注意点まで把握しています。
+              </p>
 
               <div className="mt-6">
                 <span className="inline-flex items-center rounded-full bg-primary-50 px-3 py-1 text-sm font-medium text-primary-700">
@@ -563,7 +579,57 @@ export default function LandingPage() {
                       </li>
                     ))}
                   </ul>
+                  <p className="mt-4 text-xs leading-relaxed text-ink-500">
+                    ※ 録音はお客様の同意を得たうえでご利用ください。
+                  </p>
                 </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── 7.5 ダッシュボード／全体把握（穴4=次の一手・穴5=組織の見渡し・bg-white） ───────── */}
+      <section id="dashboard" className="py-20 sm:py-28 lg:py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8">
+          <FadeIn>
+            <div className="max-w-2xl mx-auto text-center">
+              <p className="text-sm font-semibold tracking-wider text-primary-600">
+                DASHBOARD
+              </p>
+              <h2 className="mt-3 text-[1.75rem] sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 sm:break-keep">
+                開けば、次の一手が分かる。
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-ink-700">
+                やるべきことも、チームの動きも、ダッシュボードに集約。
+              </p>
+            </div>
+          </FadeIn>
+          <div className="mt-12 lg:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <FadeIn>
+              <div className="rounded-2xl border border-surface-200 bg-surface-50 p-6 lg:p-8 h-full">
+                <div className="size-12 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mb-5">
+                  <ListChecks className="h-6 w-6" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold leading-snug text-ink-900 sm:break-keep">
+                  個人：やることを取りこぼさない
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-ink-700">
+                  締切つきのタスク、進行中の契約、追客のタイミングが1画面に。お客様からの頼まれごともタスクにして期日で管理。楽マッチを開けば、次に何をすべきかが分かります。
+                </p>
+              </div>
+            </FadeIn>
+            <FadeIn>
+              <div className="rounded-2xl border border-surface-200 bg-surface-50 p-6 lg:p-8 h-full">
+                <div className="size-12 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mb-5">
+                  <Users className="h-6 w-6" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold leading-snug text-ink-900 sm:break-keep">
+                  組織：報告しなくても、見える
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-ink-700">
+                  オーナーは組織全体の顧客・物件・契約の進捗を見渡せます。担当者ごとに顧客を割り当てて運用でき、わざわざ報告書をまとめなくても、進捗はそのまま共有されます。
+                </p>
               </div>
             </FadeIn>
           </div>
