@@ -30,3 +30,15 @@ body {
      比較表は自前の overflow-x-auto を持つため影響を受けない。 */
   overflow-x: clip;
 }
+
+/* スマホでの見出し見切れ対策の保険。
+   長い日本語見出し（word-break: keep-all を付けたもの）でも、行が画面幅を
+   超える場合は最終手段として折り返し、overflow-x: clip で文字が切れて読めなく
+   なるのを防ぐ。個別の見出しは sm:break-keep で「スマホは通常折り返し / PC のみ
+   keep-all」に調整済み。これはその取りこぼし用の横断的なフォールバック。 */
+h1,
+h2,
+h3,
+h4 {
+  overflow-wrap: break-word;
+}

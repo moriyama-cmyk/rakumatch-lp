@@ -180,7 +180,7 @@ export default function LandingPage() {
                 不動産売買特化のAI営業CRM
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-ink-900 break-keep">
+            <h1 className="text-[clamp(1.875rem,6vw,3.75rem)] font-bold tracking-tight leading-[1.15] text-ink-900 sm:break-keep">
               入社初日の新人が、
               <br className="hidden sm:block" />
               トップ営業の&ldquo;動き&rdquo;をする。
@@ -235,7 +235,7 @@ export default function LandingPage() {
               <p className="text-sm font-semibold tracking-wider text-primary-600">
                 PROBLEM
               </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 break-keep">
+              <h2 className="mt-3 text-[1.75rem] sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 sm:break-keep">
                 不動産営業、こんなお悩みありませんか？
               </h2>
             </div>
@@ -295,7 +295,7 @@ export default function LandingPage() {
               <p className="text-sm font-semibold tracking-wider text-primary-600">
                 お客様連動アプリ
               </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 break-keep">
+              <h2 className="mt-3 text-[1.75rem] sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 sm:break-keep">
                 お客様が見つけた物件が、
                 <br className="hidden sm:block" />
                 担当者に集まる。
@@ -426,7 +426,7 @@ export default function LandingPage() {
               <p className="text-sm font-semibold tracking-wider text-primary-600">
                 MATCHING
               </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 break-keep">
+              <h2 className="mt-3 text-[1.75rem] sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 sm:break-keep">
                 この物件、誰に当てるか。
                 <br className="hidden sm:block" />
                 一瞬で分かる。
@@ -488,7 +488,7 @@ export default function LandingPage() {
               <p className="text-sm font-semibold tracking-wider text-primary-600">
                 AI ASSISTANT
               </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 break-keep">
+              <h2 className="mt-3 text-[1.75rem] sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 sm:break-keep">
                 新人が、初日から動ける。
                 <br className="hidden sm:block" />
                 顧客1人1人に、専属AI。
@@ -545,7 +545,7 @@ export default function LandingPage() {
                     <span className="mt-0.5 size-10 shrink-0 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center">
                       <Phone className="h-5 w-5" />
                     </span>
-                    <h3 className="text-xl font-semibold leading-snug text-ink-900 break-keep">
+                    <h3 className="text-lg sm:text-xl font-semibold leading-snug text-ink-900 sm:break-keep">
                       電話の内容も、AIが文字起こし・要約。
                     </h3>
                   </div>
@@ -574,7 +574,7 @@ export default function LandingPage() {
               <p className="text-sm font-semibold tracking-wider text-primary-600">
                 WHY TRUST US
               </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 break-keep">
+              <h2 className="mt-3 text-[1.75rem] sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 sm:break-keep">
                 現役の不動産営業マンが、
                 <br className="hidden sm:block" />
                 自分のために作りました。
@@ -608,7 +608,7 @@ export default function LandingPage() {
           {/* インフラ */}
           <FadeIn>
             <div className="mt-16 lg:mt-20 max-w-2xl mx-auto text-center">
-              <h3 className="text-xl sm:text-2xl font-semibold leading-snug text-ink-900 break-keep">
+              <h3 className="text-xl sm:text-2xl font-semibold leading-snug text-ink-900 sm:break-keep">
                 データは、大手テック企業のインフラで守る。
               </h3>
               <p className="mt-4 text-base leading-relaxed text-ink-700">
@@ -647,7 +647,7 @@ export default function LandingPage() {
               <p className="text-sm font-semibold tracking-wider text-primary-600">
                 COMPARISON
               </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 break-keep">
+              <h2 className="mt-3 text-[1.75rem] sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 sm:break-keep">
                 他社と比べてください。
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-ink-700">
@@ -661,25 +661,25 @@ export default function LandingPage() {
                 いえらぶ/Facilo/ノマド/Digima/PropoCloud 等は価格非公開 or 未裏取りのため断定せず
                 「一般的な不動産CRM」の一般化列でまとめる（社名・価格の断定は出典裏取り後に差し替え）。 */}
             <div className="mt-12 lg:mt-16">
-              {/* スマホでは横スクロールできることを明示（表は min-w-[720px] のため画面外に続く） */}
+              {/* スマホでは横スクロールできることを明示（表は min-w で画面外に続く・先頭列は固定追従） */}
               <p className="mb-3 text-center text-xs text-ink-500 md:hidden">
                 ← 横にスクロールできます →
               </p>
               <div className="overflow-x-auto rounded-2xl border border-surface-200 shadow-sm bg-white">
-                <table className="w-full text-sm text-left min-w-[720px]">
+                <table className="w-full text-[13px] sm:text-sm text-left min-w-[600px]">
                 <thead>
                   <tr className="border-b border-surface-200 bg-surface-50">
-                    <th className="px-5 py-4 font-semibold text-ink-700">比較項目</th>
-                    <th className="px-5 py-4 font-semibold text-ink-700">
+                    <th className="sticky left-0 z-20 bg-surface-50 border-r border-surface-200 px-3 py-3 sm:px-5 sm:py-4 font-semibold text-ink-700">比較項目</th>
+                    <th className="px-3 py-3 sm:px-5 sm:py-4 font-semibold text-ink-700">
                       KASIKA
                     </th>
-                    <th className="px-5 py-4 font-semibold text-ink-700">
+                    <th className="px-3 py-3 sm:px-5 sm:py-4 font-semibold text-ink-700">
                       一般的な不動産CRM
                     </th>
-                    <th className="px-5 py-4 font-semibold text-ink-700">
+                    <th className="px-3 py-3 sm:px-5 sm:py-4 font-semibold text-ink-700">
                       Excel・手作業
                     </th>
-                    <th className="px-5 py-4 font-semibold text-primary-700">
+                    <th className="px-3 py-3 sm:px-5 sm:py-4 font-semibold text-primary-700">
                       楽マッチ AI
                     </th>
                   </tr>
@@ -744,13 +744,13 @@ export default function LandingPage() {
                     },
                   ].map((row) => (
                     <tr key={row.label} className="border-b border-surface-200">
-                      <td className="px-5 py-4 font-medium text-ink-900">
+                      <td className="sticky left-0 z-10 bg-white border-r border-surface-200 px-3 py-3 sm:px-5 sm:py-4 font-medium text-ink-900">
                         {row.label}
                       </td>
-                      <td className="px-5 py-4 text-ink-700">{row.kasika}</td>
-                      <td className="px-5 py-4 text-ink-700">{row.crm}</td>
-                      <td className="px-5 py-4 text-ink-700">{row.excel}</td>
-                      <td className="px-5 py-4 font-semibold text-primary-600 bg-primary-50">
+                      <td className="px-3 py-3 sm:px-5 sm:py-4 text-ink-700">{row.kasika}</td>
+                      <td className="px-3 py-3 sm:px-5 sm:py-4 text-ink-700">{row.crm}</td>
+                      <td className="px-3 py-3 sm:px-5 sm:py-4 text-ink-700">{row.excel}</td>
+                      <td className="px-3 py-3 sm:px-5 sm:py-4 font-semibold text-primary-600 bg-primary-50">
                         {row.raku}
                       </td>
                     </tr>
@@ -774,7 +774,7 @@ export default function LandingPage() {
               <p className="text-sm font-semibold tracking-wider text-primary-600">
                 PRICING
               </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 break-keep">
+              <h2 className="mt-3 text-[1.75rem] sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 sm:break-keep">
                 シンプルな料金。隠れたコストなし。
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-ink-700">
@@ -869,7 +869,7 @@ export default function LandingPage() {
               <p className="text-sm font-semibold tracking-wider text-primary-600">
                 FAQ
               </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 break-keep">
+              <h2 className="mt-3 text-[1.75rem] sm:text-4xl font-bold tracking-tight leading-snug text-ink-900 sm:break-keep">
                 よくある質問
               </h2>
             </div>
@@ -888,7 +888,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-6 sm:px-8">
           <FadeIn>
             <div className="rounded-3xl bg-primary-900 text-white px-6 py-16 sm:px-16 sm:py-20 text-center">
-              <h2 className="text-2xl sm:text-4xl font-bold tracking-tight leading-snug text-white break-keep">
+              <h2 className="text-2xl sm:text-4xl font-bold tracking-tight leading-snug text-white sm:break-keep">
                 まず触ってみてください。
                 <br />
                 説明は不要です。

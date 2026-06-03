@@ -15,7 +15,7 @@ export default function Accordion({ items }: { items: { q: string; a: string }[]
             id={`accordion-button-${i}`}
             className="w-full flex items-center justify-between gap-3 px-6 py-4 text-left font-semibold text-ink-900 hover:bg-surface-50 transition-colors"
           >
-            <span className="break-keep">{item.q}</span>
+            <span className="min-w-0 break-words">{item.q}</span>
             <ChevronDown aria-hidden="true" className={`w-5 h-5 shrink-0 text-ink-500 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`} />
           </button>
           {open === i && (

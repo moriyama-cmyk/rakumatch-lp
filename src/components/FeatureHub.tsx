@@ -115,10 +115,10 @@ export default function FeatureHub() {
     <section ref={sectionRef} className="py-20 sm:py-28 lg:py-32 bg-white">
       <div className="max-w-5xl mx-auto px-6 sm:px-8 text-center">
         <p className="text-sm font-semibold tracking-wider text-primary-600">ALL-IN-ONE</p>
-        <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-ink-900 break-keep">
+        <h2 className="mt-3 text-[1.75rem] sm:text-4xl font-bold text-ink-900 sm:break-keep">
           月<span className="text-primary-600">¥3,000</span>で、これ全部。
         </h2>
-        <p className="mt-3 text-ink-500 max-w-2xl mx-auto leading-relaxed break-keep">
+        <p className="mt-3 text-ink-500 max-w-2xl mx-auto leading-relaxed">
           物件集めから契約・精算、お客様連動アプリまで。1本で、1人でも会社でも同額（税込）。
         </p>
 
