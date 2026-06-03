@@ -207,7 +207,11 @@ export default function LandingPage() {
               </a>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-ink-500 max-w-xl mx-auto">
-              個人でも企業でも月3,000円/人（税込）・30秒で登録・1週間無料・いつでも解約可能
+              個人でも企業でも
+              <span className="whitespace-nowrap">月3,000円/人（税込）</span>・
+              <span className="whitespace-nowrap">30秒で登録</span>・
+              <span className="whitespace-nowrap">1週間無料</span>・
+              <span className="whitespace-nowrap">いつでも解約可能</span>
             </p>
           </div>
 
@@ -856,7 +860,10 @@ export default function LandingPage() {
             ※ スタンダードとプレミアムで、使えるAI機能・AIの性能は同じです。違いは「1ヶ月にAIをどれだけ使えるか（利用枠）」と「保存できる容量」です。AIをヘビーに使う事務所はプレミアムが向いています。
           </p>
           <p className="mt-4 text-center text-sm text-ink-500">
-            導入費0円・個人でも企業でも同一料金（¥3,000/人・税込）・いつでも解約可能
+            <span className="whitespace-nowrap">導入費0円</span>・
+            <span className="whitespace-nowrap">個人でも企業でも同一料金</span>
+            <span className="whitespace-nowrap">（¥3,000/人・税込）</span>・
+            <span className="whitespace-nowrap">いつでも解約可能</span>
           </p>
         </div>
       </section>
@@ -910,7 +917,8 @@ export default function LandingPage() {
                 </Link>
               </div>
               <p className="mt-4 text-sm text-primary-100">
-                1週間無料トライアル・いつでも解約可能
+                <span className="whitespace-nowrap">1週間無料トライアル</span>・
+                <span className="whitespace-nowrap">いつでも解約可能</span>
               </p>
             </div>
           </FadeIn>

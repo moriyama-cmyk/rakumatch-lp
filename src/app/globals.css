@@ -42,3 +42,31 @@ h3,
 h4 {
   overflow-wrap: break-word;
 }
+
+/* スマホ(≤639px)での日本語の「自然な位置での改行」。
+   ここまでの修正でスマホは通常折り返し（word-break: normal）になり見切れは解消したが、
+   語の途中や1〜2文字だけ次行にこぼれる不自然な改行が残るため、それを整える。
+   - word-break: auto-phrase … 対応ブラウザ(Chrome/Edge等)は文節（意味のまとまり）
+     単位で改行し、不自然な位置での改行を避ける。非対応(Safari/Firefox)はこの値を
+     無視して通常折り返しに戻るだけで、見切れは起きない（害のない上乗せ）。
+   - text-wrap: balance(見出し)/pretty(本文) … 行の長さを均し、最終行に1文字だけ
+     取り残される「孤立行」を抑える。標準値なので全ブラウザで安全。
+   PCでは見出しに sm:break-keep(keep-all) が効くため、上書きは ≤639px に限定する。 */
+@media (max-width: 639px) {
+  h1,
+  h2,
+  h3,
+  h4 {
+    word-break: auto-phrase;
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd,
+  figcaption,
+  blockquote {
+    word-break: auto-phrase;
+    text-wrap: pretty;
+  }
+}

@@ -15,7 +15,7 @@ export default function Accordion({ items }: { items: { q: string; a: string }[]
             id={`accordion-button-${i}`}
             className="w-full flex items-center justify-between gap-3 px-6 py-4 text-left font-semibold text-ink-900 hover:bg-surface-50 transition-colors"
           >
-            <span className="min-w-0 break-words">{item.q}</span>
+            <span className="min-w-0 break-words max-sm:text-pretty max-sm:[word-break:auto-phrase]">{item.q}</span>
             <ChevronDown aria-hidden="true" className={`w-5 h-5 shrink-0 text-ink-500 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`} />
           </button>
           {open === i && (
@@ -23,7 +23,7 @@ export default function Accordion({ items }: { items: { q: string; a: string }[]
               id={`accordion-panel-${i}`}
               role="region"
               aria-labelledby={`accordion-button-${i}`}
-              className="px-6 pb-4 text-ink-700 leading-relaxed"
+              className="px-6 pb-4 text-ink-700 leading-relaxed max-sm:text-pretty max-sm:[word-break:auto-phrase]"
             >
               {item.a}
             </div>

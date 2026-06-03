@@ -170,7 +170,11 @@ export default function FeatureHub() {
           >
             無料で試す <ArrowRight className="h-4 w-4" />
           </a>
-          <p className="mt-2.5 text-xs text-ink-500">30秒で登録・1週間無料・いつでも解約可能</p>
+          <p className="mt-2.5 text-xs text-ink-500">
+            <span className="whitespace-nowrap">30秒で登録</span>・
+            <span className="whitespace-nowrap">1週間無料</span>・
+            <span className="whitespace-nowrap">いつでも解約可能</span>
+          </p>
         </div>
       </div>
     </section>
