@@ -4,7 +4,7 @@ import {
   ArrowRight,
   ClipboardList,
   Search,
-  UserPlus,
+  GraduationCap,
   Brain,
   Database,
   CreditCard,
@@ -44,9 +44,9 @@ const painPoints = [
     cost: "提案遅れで月2〜3件の機会損失 ※自社利用に基づく試算",
   },
   {
-    icon: UserPlus,
-    text: "メール・電話の準備で営業時間が削られる",
-    cost: "1日1時間 = 年間250時間のムダ ※自社利用に基づく試算",
+    icon: GraduationCap,
+    text: "新人がなかなか育たない。教える時間もない",
+    cost: "対応は人によってバラバラ。育つまで時間もコストもかかる",
   },
 ];
 
