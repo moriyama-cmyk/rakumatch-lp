@@ -17,6 +17,7 @@ import { Ingest } from "@/components/lp/sections/Ingest";
 import { Workflow } from "@/components/lp/sections/Workflow";
 import { Settlement } from "@/components/lp/sections/Settlement";
 import { Why } from "@/components/lp/sections/Why";
+import { Story } from "@/components/lp/sections/Story";
 import { Security } from "@/components/lp/sections/Security";
 import { Solutions } from "@/components/lp/sections/Solutions";
 import { Pricing } from "@/components/lp/sections/Pricing";
@@ -58,7 +59,9 @@ export default function LandingPage() {
 
         {/* 12. WHY */}
         <Why />
-        {/* 12.5 セキュリティ／インフラの信頼（比較→安全→誰のため） */}
+        {/* 12.3 開発者の声（WHY TRUST US ストーリー） */}
+        <Story />
+        {/* 12.5 セキュリティ／インフラの信頼（比較→ストーリー→安全→誰のため） */}
         <Security />
         {/* 13. FOR WHOM */}
         <Solutions />
