@@ -4,6 +4,7 @@ import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GradientText } from '../ui/GradientText'
+import { protect } from '../lib/protect'
 
 // COMPARISON_DATA.md の実データ（A社/B社/C社の匿名カテゴリ列＋楽マッチ）。
 // 文言はそのまま（盛らない・削らない／語尾「目安」「例が多い」を保持）。実社名は出さない。
@@ -92,7 +93,9 @@ export function Why() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mx-auto mt-4 max-w-xl text-base text-ink-700">
-              不動産売買のために、最初から作りました。料金も導入も、個人から始められます。
+              不動産売買のために、最初から作りました。
+              <br className="hidden sm:block" />
+              料金も導入も、個人から始められます。
             </p>
           </Reveal>
         </div>
@@ -129,11 +132,11 @@ export function Why() {
                       {r.label}
                     </th>
                     {COLS.map((c) => (
-                      <Td key={c.key}>{r[c.key]}</Td>
+                      <Td key={c.key}>{protect(r[c.key])}</Td>
                     ))}
                     <Td highlight>
                       <Check className="mr-1 inline h-3.5 w-3.5 text-primary-600" strokeWidth={3} />
-                      <span className="font-bold">{r.raku}</span>
+                      <span className="font-bold">{protect(r.raku)}</span>
                     </Td>
                   </tr>
                 ))}

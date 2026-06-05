@@ -7,6 +7,7 @@ import { Badge } from '../ui/Badge'
 import { GradientText } from '../ui/GradientText'
 import { GlowButton } from '../ui/GlowButton'
 import { SITE } from '../site'
+import { protect } from '../lib/protect'
 
 type Step = { n: string; icon: LucideIcon; title: string; body: string }
 
@@ -80,7 +81,7 @@ export function SolutionCore() {
                   <span className="text-3xl font-bold text-surface-200">{s.n}</span>
                 </div>
                 <h3 className="mt-5 text-xl font-bold text-ink-900">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-700">{s.body}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-700">{protect(s.body)}</p>
               </div>
             </Reveal>
           ))}

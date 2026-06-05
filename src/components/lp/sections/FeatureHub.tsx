@@ -26,6 +26,7 @@ import {
 import { Container } from '../ui/Container'
 import { GlowButton } from '../ui/GlowButton'
 import { SITE } from '../site'
+import { protect } from '../lib/protect'
 
 type Tone = 'green' | 'teal' | 'blue'
 type Item = { Icon: LucideIcon; title: string; sub: string; href: string }
@@ -268,8 +269,8 @@ function Card({ it, tone, shown }: { it: Item; tone: Tone; shown: boolean }) {
         <Icon className={`h-5 w-5 ${t.icon}`} strokeWidth={1.9} aria-hidden />
       </span>
       <span className="block">
-        <span className="block text-sm font-bold leading-snug text-ink-900">{it.title}</span>
-        <span className="mt-0.5 block text-xs leading-snug text-ink-500">{it.sub}</span>
+        <span className="block text-sm font-bold leading-snug text-ink-900">{protect(it.title)}</span>
+        <span className="mt-0.5 block text-xs leading-snug text-ink-500">{protect(it.sub)}</span>
       </span>
     </a>
   )
