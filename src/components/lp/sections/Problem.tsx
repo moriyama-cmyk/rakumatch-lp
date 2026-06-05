@@ -1,0 +1,69 @@
+import { Section } from '../ui/Section'
+import { Container } from '../ui/Container'
+import { Reveal } from '../ui/Reveal'
+import { Badge } from '../ui/Badge'
+import { GradientText } from '../ui/GradientText'
+import { HelpCircle, NotebookPen, GraduationCap } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+
+type Pain = { icon: LucideIcon; title: string; body: string }
+
+const PAINS: Pain[] = [
+  {
+    icon: HelpCircle,
+    title: 'このお客様に、何を出せばいい？',
+    body: '抱えている顧客は増える一方。誰にどの物件が刺さるか、頭の中だけで管理しきれない。良い物件が出ても、結びつける前に時間が過ぎていく。',
+  },
+  {
+    icon: NotebookPen,
+    title: 'メモが追いつかない。聞き逃す。',
+    body: '電話しながら要点を書ききれない。Excelは更新が止まり、履歴は自分の頭の中だけ。「言った・言わない」も起きる。一つにまとめたいのに、ばらばらのまま。',
+  },
+  {
+    icon: GraduationCap,
+    title: '新人がなかなか育たない。属人化する。',
+    body: 'できる人のやり方は共有されず、教える時間も取れない。担当が変わると引き継ぎが重い。仕組みではなく“人”に依存してしまう。',
+  },
+]
+
+/** 課題提起。個人/企業に共通する痛みで「これ、うちだ」と刺す。 */
+export function Problem() {
+  return (
+    <Section id="problem" className="bg-surface-50">
+      <Container>
+        <div className="mx-auto max-w-2xl text-center">
+          <Reveal>
+            <Badge>こんな現場、ありませんか</Badge>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-5 text-display-lg text-ink-900">
+              こんな<GradientText>“もったいない”</GradientText>、
+              <br className="hidden sm:block" />
+              起きていませんか。
+            </h2>
+          </Reveal>
+        </div>
+
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {PAINS.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.08}>
+              <div className="flex h-full flex-col rounded-2xl border border-surface-200 bg-white p-7 shadow-soft">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-surface-100 text-primary-600">
+                  <p.icon className="h-5 w-5" strokeWidth={2.2} aria-hidden />
+                </span>
+                <h3 className="mt-5 text-lg font-bold text-ink-900">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-500">{p.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={0.12}>
+          <p className="mt-10 text-center text-display-md text-ink-900">
+            その全部に、<GradientText>AIの相棒</GradientText>で手を打てます。
+          </p>
+        </Reveal>
+      </Container>
+    </Section>
+  )
+}

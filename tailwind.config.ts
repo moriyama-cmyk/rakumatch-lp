@@ -22,6 +22,7 @@ const config: Config = {
           700: '#0A6652',
           800: '#084F3F',
           900: '#05392B',
+          DEFAULT: '#0D9B76',
         },
         surface: {
           50: '#FAFAF8',
@@ -40,6 +41,40 @@ const config: Config = {
           700: '#36433D',
           900: '#0F1A16',
         },
+      },
+      // 以下、トップページ新デザイン（lp-bold 版）で用いるトークン。
+      // 既存トークンは変更せず追記のみ（DESIGN_MODERN_LIGHT 準拠・Vite版と同値）。
+      fontSize: {
+        // clamp ベースの大きな見出し（型は大胆・質感はクリーン）
+        'display-2xl': ['clamp(2.25rem, 5.2vw, 3.75rem)', { lineHeight: '1.12', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display-xl': ['clamp(2rem, 4.6vw, 3.25rem)', { lineHeight: '1.14', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'display-lg': ['clamp(1.75rem, 3.8vw, 2.75rem)', { lineHeight: '1.2', letterSpacing: '-0.015em', fontWeight: '700' }],
+        'display-md': ['clamp(1.5rem, 3vw, 2.1rem)', { lineHeight: '1.28', letterSpacing: '-0.01em', fontWeight: '700' }],
+      },
+      maxWidth: {
+        container: '1180px',
+        'container-narrow': '860px',
+      },
+      boxShadow: {
+        // 柔らかく低不透明（Stripe/Notion風）
+        soft: '0 1px 2px rgba(15,26,22,0.04), 0 4px 16px -4px rgba(15,26,22,0.08)',
+        'soft-md': '0 2px 4px rgba(15,26,22,0.04), 0 12px 32px -8px rgba(15,26,22,0.12)',
+        'soft-lg': '0 8px 40px -12px rgba(15,26,22,0.16)',
+        cta: '0 4px 14px -4px rgba(13,124,102,0.4)',
+      },
+      backgroundImage: {
+        // 極薄グラデのみ
+        'fade-surface': 'linear-gradient(180deg, #FFFFFF 0%, #FAFAF8 100%)',
+        'fade-primary': 'linear-gradient(180deg, #E6F5F0 0%, #FAFAF8 100%)',
+      },
+      keyframes: {
+        'rise-in': {
+          from: { opacity: '0', transform: 'translateY(10px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'rise-in': 'rise-in 0.5s ease-out both',
       },
     },
   },

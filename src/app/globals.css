@@ -3,6 +3,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* 固定ヘッダー分のアンカーオフセット（#hub 等へのジャンプが見出しの下に隠れない） */
+  scroll-padding-top: 5rem;
 }
 
 /* アニメ抑制設定（prefers-reduced-motion: reduce）を尊重する。
