@@ -46,7 +46,9 @@ export function CustomerApp() {
             </div>
 
             <Reveal delay={0.1}>
-              <p className="mt-5 text-xs text-ink-500">※ お客様はログイン不要で使えます。</p>
+              <p className="mt-5 text-xs text-ink-500">
+                ※ お客様はログイン不要のまま、保存・星評価・メモ・内見リクエストまで全機能使えます。
+              </p>
               <GlowButton href={SITE.ctaTryUrl} variant="ghost" size="sm" className="mt-3 -ml-2">
                 {SITE.ctaPrimaryLabel} →
               </GlowButton>
