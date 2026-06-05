@@ -55,7 +55,7 @@ export function Hero() {
               <span className="text-3xl font-bold tracking-tight text-accent-600 sm:text-4xl">
                 3,000円
               </span>
-              <span className="text-sm font-medium text-ink-700">（税込）/ 人 から</span>
+              <span className="text-sm font-medium text-ink-700">（税込）/ 人〜</span>
             </p>
           </Reveal>
 

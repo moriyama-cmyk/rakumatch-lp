@@ -28,7 +28,7 @@ export function Footer() {
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-ink-500">
-              不動産仲介営業専門の顧客・物件管理AI。月々3,000円（税込・スタンダード）/人から。
+              不動産仲介営業専門の顧客・物件管理AI。月々3,000円（税込・スタンダード）/人〜
             </p>
           </div>
 
