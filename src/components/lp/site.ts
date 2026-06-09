@@ -11,6 +11,10 @@ export const SITE = {
   categoryLine: '不動産仲介営業専門CRM',
   catchMain: '今いる顧客のままで、売上が変わる。',
   catchSub: 'このお客様に、何を。この物件を、誰に。— AIが両方から答えます。',
+  // 計測用バリアントID。上の catchMain / catchSub を差し替えるたびに必ずここも更新する。
+  // この値が GA4 のユーザープロパティ／Clarity のタグに送られ、コピー別に成果を比較できる。
+  // 命名: v<連番>-<訴求軸>。例: v1-baseline-sales → v2-customer-app → v3-training
+  copyVariant: 'v1-baseline-sales',
   // 価格（森山さん指定・本番LP/特商法と同一表記）
   priceLead: '月々たったの3,000円（税込）/人',
   priceShort: '月3,000円/人（税込）',

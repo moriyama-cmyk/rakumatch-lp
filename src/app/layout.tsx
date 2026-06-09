@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "../components/lp/Analytics";
 
 // 日本語フォントを next/font でセルフホストし、CSS変数 --font-sans を実定義する。
 // globals.css の `font-family: var(--font-sans), ...` がこれで解決される。
@@ -82,6 +83,7 @@ export default function RootLayout({
           ]
         })}} />
         {children}
+        <Analytics />
       </body>
     </html>
   );
