@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Container } from '../ui/Container'
 
 const ITEMS = [
-  { icon: Building2, text: '不動産仲介営業専門' },
+  { icon: Building2, text: '不動産営業専門' },
   { icon: JapaneseYen, text: '月3,000円/人（税込）〜' },
   { icon: ArrowLeftRight, text: '双方向マッチング' },
   { icon: Banknote, text: '媒体連携 0円' },

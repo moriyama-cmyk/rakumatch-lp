@@ -5,10 +5,10 @@ export const SITE = {
   brand: '楽マッチ AI',
   tagline: '不動産売買のための AI 営業相棒',
   // カテゴリ（森山さん指定・大々的に表示）
-  category: '不動産仲介営業専門の顧客・物件管理システムAI',
-  categoryShort: '不動産仲介営業専門',
+  category: '不動産営業専門の顧客・物件管理システムAI',
+  categoryShort: '不動産営業専門',
   // Hero のカテゴリ行・キャッチ（後から一行で差し替えられるよう定数化）
-  categoryLine: '不動産仲介営業専門CRM',
+  categoryLine: '不動産営業専門',
   catchMain: '月3,000円で、月5万円のCRMに勝つ方法があります。',
   catchSub: 'このお客様に、何を。この物件を、誰に。— AIが両方から答えます。',
   // 計測用バリアントID。上の catchMain / catchSub を差し替えるたびに必ずここも更新する。

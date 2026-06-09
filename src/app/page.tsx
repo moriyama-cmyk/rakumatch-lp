@@ -1,5 +1,5 @@
 // トップページ（新デザイン＝lp-bold 版・ハブ軸）。
-// 仲介営業専門CRMとして、PROBLEM → 機能ハブ（#hub）→ 7機能 → WHY/料金/FAQ/CTA の順に提示。
+// 不動産営業専門CRMとして、PROBLEM → 機能ハブ（#hub）→ 7機能 → WHY/料金/FAQ/CTA の順に提示。
 // 各コンポーネントは src/components/lp 配下（Vite 版を Next.js へ忠実移植）。
 import { Header } from "@/components/lp/layout/Header";
 import { StickyCta } from "@/components/lp/layout/StickyCta";
