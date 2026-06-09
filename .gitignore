@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# 個人写真の作業フォルダ（元画像・切り抜き素材。公開リポジトリに含めない）
+_photo-work/

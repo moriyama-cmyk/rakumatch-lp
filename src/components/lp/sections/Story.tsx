@@ -27,7 +27,26 @@ export function Story() {
 
         <Reveal delay={0.1}>
           <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-surface-200 bg-white p-8 shadow-soft sm:p-10">
-            <div className="border-l-4 border-primary-400 pl-6">
+            {/* 開発者の顔（主役・大きめ中央）。「誰が作ったか」を最初に見せる。 */}
+            <div className="flex flex-col items-center text-center">
+              <span className="relative block h-32 w-32 overflow-hidden rounded-full bg-primary-50 shadow-soft-md ring-1 ring-black/5 sm:h-44 sm:w-44">
+                <picture>
+                  <source srcSet="/founder.webp" type="image/webp" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/founder.png"
+                    alt="楽マッチ AI 開発者 森山 幸弘"
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </picture>
+              </span>
+              <p className="mt-5 text-lg font-bold text-ink-900">森山 幸弘</p>
+              <p className="mt-1 text-sm text-ink-500">現役不動産営業 ／ 楽マッチ AI 開発者</p>
+            </div>
+
+            <div className="mt-8 border-l-4 border-primary-400 pl-6">
               <p className="text-base leading-relaxed text-ink-700">
                 東京で不動産売買をやっている、現役の営業マンです。
               </p>
