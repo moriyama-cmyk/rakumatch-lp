@@ -6,8 +6,9 @@ import { SITE } from './site'
 /**
  * 計測タグ（GA4 + Microsoft Clarity）。両方とも無料。
  *
- * - 環境変数が無ければ何も読み込まない（＝ID未設定の本番では完全に無影響）。
- *   Vercel の環境変数に NEXT_PUBLIC_GA_ID / NEXT_PUBLIC_CLARITY_ID を入れると有効化される。
+ * - ID は公開識別子（サイトのソースに出る前提＝秘密ではない）なのでデフォルト値を直書き。
+ *   Vercel の環境変数 NEXT_PUBLIC_GA_ID / NEXT_PUBLIC_CLARITY_ID があればそちらを優先。
+ *   空文字や 'off' を入れれば個別に無効化できる。
  * - 表示中のキャッチコピー識別子 SITE.copyVariant を GA4 のユーザープロパティと
  *   Clarity のタグに送る → 「どのコピーの時に何が起きたか」をコピー別に集計・録画フィルタできる。
  * - 主CTA（/try への遷移）クリックを cta_try_click イベントとして送る。
@@ -15,8 +16,15 @@ import { SITE } from './site'
  * バージョン非依存にするため next/script は使わず、標準DOMでスクリプトを注入する。
  */
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID
-const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID
+// 楽マッチAI LP の本番計測ID（公開ID）。環境変数があれば上書き、'off' で無効化。
+const GA_ID = pickId(process.env.NEXT_PUBLIC_GA_ID, 'G-88BXPJS279')
+const CLARITY_ID = pickId(process.env.NEXT_PUBLIC_CLARITY_ID, 'x4evfvyhyp')
+
+function pickId(envValue: string | undefined, fallback: string): string | undefined {
+  if (envValue === undefined) return fallback
+  if (envValue === '' || envValue.toLowerCase() === 'off') return undefined
+  return envValue
+}
 
 declare global {
   interface Window {
