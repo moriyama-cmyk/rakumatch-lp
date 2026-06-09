@@ -21,18 +21,20 @@ export function Hero() {
     >
       <Container className="relative">
         <div className="mx-auto max-w-3xl text-center">
-          {/* 1. 超特大カテゴリ行（H1級・最重要） */}
+          {/* 1. カテゴリ行（H1でSEOキーワードを保持しつつ、エヤブロウとして小さめに） */}
           <Reveal>
-            <h1 className="text-balance font-bold leading-[1.08] tracking-tight text-ink-900 [font-size:clamp(2rem,8vw,4.25rem)]">
+            <h1 className="font-bold tracking-tight text-primary-700 [font-size:clamp(0.95rem,3.6vw,1.45rem)]">
               {SITE.categoryLine}
             </h1>
           </Reveal>
 
-          {/* 2. メインキャッチ */}
+          {/* 2. メインキャッチ（最大・森山さん指定）。金額を強調し、価格はここに統合。 */}
           <Reveal delay={0.05}>
-            <p className="mt-3 text-balance font-bold leading-[1.18] tracking-tight text-ink-900 [font-size:clamp(1.35rem,5vw,2.4rem)] sm:mt-5">
-              今いる顧客のままで、
-              <GradientText className="text-primary-700">売上が変わる。</GradientText>
+            <p className="mt-2.5 text-balance font-bold leading-[1.12] tracking-tight text-ink-900 [font-size:clamp(1.9rem,7.2vw,3.6rem)] sm:mt-3.5">
+              <span className="text-accent-600">月3,000円</span>で、
+              <span className="text-accent-600">月5万円</span>のCRMに
+              <GradientText className="text-primary-700">勝つ方法</GradientText>
+              があります。
             </p>
           </Reveal>
 
@@ -44,19 +46,13 @@ export function Hero() {
             </p>
           </Reveal>
 
-          {/* 4. アンカリング（チップ2＋価格） */}
+          {/* 4. アンカリング（チップ2）。価格は見出しに統合したので重複表示はしない。 */}
           <Reveal delay={0.13}>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2 sm:mt-6">
               <Chip>導入費 0円</Chip>
               <Chip>高額なAPI連携 0円</Chip>
             </div>
-            <p className="mt-2.5 inline-flex flex-wrap items-baseline justify-center gap-x-1.5 gap-y-1">
-              <span className="text-sm font-medium text-ink-700">月々たったの</span>
-              <span className="text-3xl font-bold tracking-tight text-accent-600 sm:text-4xl">
-                3,000円
-              </span>
-              <span className="text-sm font-medium text-ink-700">（税込）/ 人〜</span>
-            </p>
+            <p className="mt-2 text-xs text-ink-500">※ 料金はすべて税込・1人あたりの月額です。</p>
           </Reveal>
 
           {/* 5. CTA */}
