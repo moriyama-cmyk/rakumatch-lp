@@ -49,9 +49,12 @@ export function Analytics() {
       }
       window.gtag = gtag
       gtag('js', new Date())
-      // 表示中コピーを全イベントに付与（ユーザープロパティ）
+      // 表示中コピーを全イベントに付与（ユーザープロパティ）。
+      // linker: LP（rakumatch-ai.com）→ アプリ（app.rakumatch-ai.com）の遷移を
+      // 同一ユーザーとして計測する（クロスドメイン）。domains 配列はアプリ側と完全一致させる。
       gtag('config', GA_ID, {
         user_properties: { copy_variant: SITE.copyVariant },
+        linker: { domains: ['rakumatch-ai.com', 'app.rakumatch-ai.com'] },
       })
     }
 

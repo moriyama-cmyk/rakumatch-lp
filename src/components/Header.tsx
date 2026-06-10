@@ -48,6 +48,7 @@ export default function Header() {
             </div>
             <Link href="/#comparison" className="text-sm text-ink-500 hover:text-ink-900 transition-colors">比較</Link>
             <Link href="/#plans" className="text-sm text-ink-500 hover:text-ink-900 transition-colors">料金</Link>
+            <Link href="/blog" className="text-sm text-ink-500 hover:text-ink-900 transition-colors">ブログ</Link>
             <Link href="/#faq" className="text-sm text-ink-500 hover:text-ink-900 transition-colors">FAQ</Link>
           </nav>
           <a

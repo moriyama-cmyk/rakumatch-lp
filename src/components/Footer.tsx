@@ -9,6 +9,7 @@ const featureLinks = [
 ];
 
 const legalLinks = [
+  { href: "/blog", label: "ブログ" },
   { href: "/terms", label: "利用規約" },
   { href: "/privacy", label: "プライバシーポリシー" },
   { href: "/tokusho", label: "特定商取引法" },
