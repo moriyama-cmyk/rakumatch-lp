@@ -67,6 +67,61 @@ function Block({ block }: { block: ContentBlock }) {
           <p className="text-[15px] leading-relaxed text-ink-700">{block.text}</p>
         </aside>
       );
+    case "definition":
+      // 平文で「◯◯とは〜」を明示（生成AIが定義を抜き出しやすい形）。
+      return (
+        <div className="rounded-xl border-l-4 border-primary-500 bg-white p-4 sm:p-5">
+          <p className="text-[15px] leading-relaxed text-ink-700">
+            <strong className="font-bold text-ink-900">{block.term}とは</strong>
+            、{block.description}
+          </p>
+        </div>
+      );
+    case "table":
+      return (
+        <figure className="-mx-6 overflow-x-auto px-6 sm:mx-0 sm:px-0">
+          <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
+            {block.caption && (
+              <caption className="mb-2 text-left text-xs text-ink-500">
+                {block.caption}
+              </caption>
+            )}
+            <thead>
+              <tr className="border-b border-surface-200">
+                <th scope="col" className="py-2.5 pr-3 font-semibold text-ink-900">
+                  {block.rowHeader}
+                </th>
+                {block.columns.map((col, i) => (
+                  <th
+                    key={i}
+                    scope="col"
+                    className="px-3 py-2.5 font-semibold text-ink-900"
+                  >
+                    {col}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, ri) => (
+                <tr key={ri} className="border-b border-surface-200 align-top">
+                  <th
+                    scope="row"
+                    className="py-3 pr-3 font-medium text-ink-900"
+                  >
+                    {row.axis}
+                  </th>
+                  {row.cells.map((cell, ci) => (
+                    <td key={ci} className="px-3 py-3 leading-relaxed text-ink-700">
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </figure>
+      );
     default:
       return null;
   }

@@ -157,7 +157,8 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
                 <Clock className="h-3.5 w-3.5" aria-hidden="true" />
                 約{post.readingMinutes}分で読めます
               </span>
-              <time dateTime={post.datePublished}>{post.datePublished}</time>
+              <time dateTime={post.datePublished}>{post.datePublished} 公開</time>
+              <span>（{post.asOf}の情報）</span>
             </div>
             <h1 className="mt-4 text-2xl font-bold leading-snug tracking-tight text-ink-900 sm:text-3xl">
               {post.title}
@@ -166,6 +167,28 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
               {post.lead}
             </p>
           </header>
+
+          {/* この記事の要点（結論先出し＝生成AI検索に抜き出されやすい平文の答え） */}
+          <section
+            aria-label="この記事の要点"
+            className="mt-8 rounded-2xl border border-primary-100 bg-primary-50/50 p-5 sm:p-6"
+          >
+            <p className="text-sm font-semibold text-primary-700">この記事の要点</p>
+            <ul className="mt-3 space-y-2">
+              {post.keyTakeaways.map((point, i) => (
+                <li
+                  key={i}
+                  className="flex gap-2.5 text-[15px] leading-relaxed text-ink-700"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-500"
+                  />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
 
           {/* 目次 */}
           <nav aria-label="目次" className="mt-8 rounded-xl border border-surface-200 bg-white p-5">

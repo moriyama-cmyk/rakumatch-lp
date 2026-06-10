@@ -2,6 +2,7 @@ import type { BlogPost } from "./types";
 import { realEstateCrmChoosing } from "./real-estate-crm-choosing";
 import { soloAgentCustomerManagement } from "./solo-agent-customer-management";
 import { callRecordingAiSummary } from "./call-recording-ai-summary";
+import { reinsStatusRegistration } from "./reins-status-registration";
 
 export type { BlogPost } from "./types";
 
@@ -11,6 +12,7 @@ export const BLOG_POSTS: BlogPost[] = [
   realEstateCrmChoosing,
   soloAgentCustomerManagement,
   callRecordingAiSummary,
+  reinsStatusRegistration,
 ];
 
 export function getAllPosts(): BlogPost[] {

@@ -37,13 +37,39 @@ export type ChecklistBlock = {
   items: { label: string; desc: string }[];
 };
 
+/**
+ * 比較表（GEO 対策＝生成AIが観点×タイプを抽出しやすい形）。
+ * 法務: 特定社名で勝ち負けを書かない。列は「タイプ比較」に留める
+ *（例: 表計算ソフト／一般的なCRM／不動産営業特化）。
+ */
+export type TableBlock = {
+  type: "table";
+  /** 表のキャプション（任意） */
+  caption?: string;
+  /** 先頭列のヘッダー名（観点の列見出し。例: 観点） */
+  rowHeader: string;
+  /** データ列の見出し（タイプ名。社名は入れない） */
+  columns: string[];
+  /** 各行: axis=観点、cells=各列のセル。cells.length は columns.length と一致させる */
+  rows: { axis: string; cells: string[] }[];
+};
+
+/** 定義の明示（GEO 対策＝AIが定義を抜き出しやすい平文の用語＋説明） */
+export type DefinitionBlock = {
+  type: "definition";
+  term: string;
+  description: string;
+};
+
 export type ContentBlock =
   | ParagraphBlock
   | ListBlock
   | OrderedListBlock
   | SubheadingBlock
   | NoteBlock
-  | ChecklistBlock;
+  | ChecklistBlock
+  | TableBlock
+  | DefinitionBlock;
 
 /** 大見出し（h2）で区切られる記事のセクション */
 export type ArticleSection = {
@@ -74,8 +100,15 @@ export type BlogPost = {
   dateModified: string;
   /** 想定読了時間（分） */
   readingMinutes: number;
+  /** 情報の基準時点（GEO 対策＝鮮度の明示。例: 2026年6月時点） */
+  asOf: string;
   /** 導入文（リード。記事冒頭に大きめに表示） */
   lead: string;
+  /**
+   * 結論・要点の先出し（GEO 対策＝生成AIが冒頭から抜き出せる平文の要約）。
+   * 質問→即答の構造で、各記事の検索意図に対する答えを2〜4行で。
+   */
+  keyTakeaways: string[];
   sections: ArticleSection[];
   faq: FaqItem[];
 };
