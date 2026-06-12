@@ -30,11 +30,22 @@ export function Hero() {
 
           {/* 2. メインキャッチ（最大・森山さん指定）。金額を強調し、価格はここに統合。 */}
           <Reveal delay={0.05}>
-            <p className="mt-2.5 text-balance font-bold leading-[1.12] tracking-tight text-ink-900 [font-size:clamp(1.9rem,7.2vw,3.6rem)] sm:mt-3.5">
-              <span className="text-accent-600">月3,000円</span>で、
-              <span className="text-accent-600">月5万円</span>のCRMに
-              <GradientText className="text-primary-700">勝つ方法</GradientText>
-              があります。
+            {/*
+              意味のまとまり（文節）ごとに whitespace-nowrap で包み、語の途中では絶対に
+              折り返さない。「月5万円」が「月5／万円」に割れる・「勝つ方法」が割れるのを防ぐ。
+              text-balance は外す（幅が余っていても短く均してしまい「なぜここで折り返す？」に
+              見えるため）。改行は3つのかたまりの境界でのみ起きる。
+            */}
+            <p className="mt-2.5 font-bold leading-[1.18] tracking-tight text-ink-900 [font-size:clamp(1.75rem,7vw,3.6rem)] sm:mt-3.5">
+              <span className="inline-block whitespace-nowrap">
+                <span className="text-accent-600">月3,000円</span>で、
+              </span>
+              <span className="inline-block whitespace-nowrap">
+                <span className="text-accent-600">月5万円</span>のCRMに
+              </span>
+              <span className="inline-block whitespace-nowrap">
+                <GradientText className="text-primary-700">勝つ方法</GradientText>があります。
+              </span>
             </p>
           </Reveal>
 
