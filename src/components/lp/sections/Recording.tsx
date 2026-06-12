@@ -2,6 +2,7 @@ import { Mic, MessageSquareX, EarOff, Sparkles, Phone, FileText, ArrowRight } fr
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { FeatureSplit } from '../ui/FeatureSplit'
+import { hlText } from '../lib/headline'
 
 /** 録音→文字起こし→要約 の流れを示す軽量ビジュアル（ライト・作り込みすぎない）。 */
 function RecordingVisual() {
@@ -56,9 +57,9 @@ export function Recording() {
           eyebrow="会話を、資産に"
           title={
             <>
-              電話も対面も、録って・起こして・要約。
+              {hlText('電話も対面も、録って・起こして・要約。')}
               <br className="hidden sm:block" />
-              導入費なし。
+              {hlText('導入費なし。')}
             </>
           }
           visual={<RecordingVisual />}

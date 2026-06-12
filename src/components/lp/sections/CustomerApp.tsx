@@ -5,6 +5,7 @@ import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GlowButton } from '../ui/GlowButton'
 import { SITE } from '../site'
+import { hlText } from '../lib/headline'
 
 const SALES = [
   '保存物件と条件が逆流。「何を出すか」の精度が上がる',
@@ -27,9 +28,9 @@ export function CustomerApp() {
             <Reveal>
               <Badge icon={<Smartphone className="h-3.5 w-3.5" />}>最大の差別化</Badge>
               <h3 className="mt-5 text-display-md text-ink-900">
-                お客様の“欲しい”が、
+                {hlText('お客様の“欲しい”が、')}
                 <br className="hidden sm:block" />
-                向こうから届く。
+                {hlText('向こうから届く。')}
               </h3>
               <p className="mt-4 text-[1.0625rem] leading-[1.9] text-ink-700">
                 担当者が発行するリンクを、お客様が自分のアプリとして使います。SUUMOなど色々な媒体で気になった物件を、お客様が1か所に集約。その希望と保存物件が、そのままあなたに届きます。好みを言葉にしてもらわなくても、ニーズが伝わってくる。

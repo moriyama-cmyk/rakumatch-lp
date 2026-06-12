@@ -41,7 +41,10 @@ export function SolutionCore() {
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-5 text-display-xl text-ink-900">
-              <GradientText>楽マッチ AI</GradientText> が、やること。
+              <span className="whitespace-nowrap">
+                <GradientText>楽マッチ AI</GradientText>
+              </span>{' '}
+              <span className="whitespace-nowrap">が、やること。</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>

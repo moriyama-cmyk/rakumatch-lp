@@ -4,6 +4,7 @@ import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { AppShot } from '../ui/AppShot'
+import { hlText } from '../lib/headline'
 
 /** ⑥ TODO・契約フェーズ・ダッシュボード。ここで経営者へ橋渡し。ライト・実画面。 */
 export function Workflow() {
@@ -15,9 +16,9 @@ export function Workflow() {
             <Reveal>
               <Badge icon={<LayoutDashboard className="h-3.5 w-3.5" />}>全体が、見える</Badge>
               <h3 className="mt-5 text-display-md text-ink-900">
-                やること・契約の今・全体像。
+                {hlText('やること・契約の今・全体像。')}
                 <br className="hidden sm:block" />
-                楽マッチを見れば分かる。
+                {hlText('楽マッチを見れば分かる。')}
               </h3>
               <p className="mt-4 text-base leading-relaxed text-ink-700">
                 お客様からの頼まれごとや次のアクションは、TODOで取りこぼさない。契約は案件ごとに進捗と「次にやること」が分かるから、混乱しない。関係各所へのメールも、つじつまを合わせてAIが下書き。

@@ -1,12 +1,15 @@
+import type { ReactNode } from 'react'
 import { User, Building, Check } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GradientText } from '../ui/GradientText'
+import { hl } from '../lib/headline'
 
 const PERSONAL = {
-  title: '一人で戦う営業マンへ',
+  // 句読点が無いカード見出しは、文節境界で手分割して語中で割れないようにする。
+  title: hl('一人で戦う', '営業マンへ'),
   intro:
     '会社のシステムとは別に、自分のAI相棒を。抱えている顧客を取りこぼさず、「次に誰へ何を」をAIと決める。導入は重くありません。',
   items: [
@@ -17,7 +20,7 @@ const PERSONAL = {
 }
 
 const COMPANY = {
-  title: '中小の不動産営業チームへ',
+  title: hl('中小の', '不動産営業', 'チームへ'),
   intro:
     '高い導入費なしで、AIを現場に。新人が初日から動け、部下の状況は報告いらずで見える。属人化を、仕組みに変える。',
   items: [
@@ -38,9 +41,9 @@ export function Solutions() {
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-5 text-display-lg text-ink-900">
-              個人の<GradientText>武器</GradientText>にも、
+              {hl(<>個人の<GradientText>武器</GradientText>にも、</>)}
               <br className="hidden sm:block" />
-              チームの<GradientText>仕組み</GradientText>にも。
+              {hl(<>チームの<GradientText>仕組み</GradientText>にも。</>)}
             </h2>
           </Reveal>
         </div>
@@ -67,7 +70,7 @@ function WhomCard({
   accent,
 }: {
   icon: typeof User
-  title: string
+  title: ReactNode
   intro: string
   items: string[]
   accent?: boolean

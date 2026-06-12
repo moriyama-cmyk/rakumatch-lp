@@ -7,6 +7,7 @@ import { GradientText } from '../ui/GradientText'
 import { GlowButton } from '../ui/GlowButton'
 import { SITE, PLANS } from '../site'
 import type { Plan } from '../site'
+import { hl } from '../lib/headline'
 
 const COMMON_FEATURES = [
   '双方マッチング・逆引き',
@@ -27,7 +28,7 @@ export function Pricing() {
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-5 text-display-lg text-ink-900">
-              <GradientText variant="gold">月々たったの3,000円</GradientText>から。
+              {hl(<GradientText variant="gold">月々たったの3,000円</GradientText>, 'から。')}
             </h2>
           </Reveal>
           <Reveal delay={0.08}>

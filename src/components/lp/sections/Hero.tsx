@@ -6,6 +6,7 @@ import { GradientText } from '../ui/GradientText'
 import { Reveal } from '../ui/Reveal'
 import { AppShot } from '../ui/AppShot'
 import { SITE } from '../site'
+import { hlText } from '../lib/headline'
 
 /**
  * ファーストビュー（1スクリーン縦積み）。
@@ -51,8 +52,8 @@ export function Hero() {
 
           {/* 3. サブ行 */}
           <Reveal delay={0.1}>
-            <p className="mx-auto mt-3 max-w-2xl text-balance text-[0.95rem] leading-relaxed text-ink-700 sm:mt-5 sm:text-lg">
-              このお客様に、何を。この物件を、誰に。
+            <p className="mx-auto mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-ink-700 sm:mt-5 sm:text-lg">
+              {hlText('このお客様に、何を。この物件を、誰に。')}
               <span className="whitespace-nowrap">— AIが両方から答えます。</span>
             </p>
           </Reveal>

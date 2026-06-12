@@ -3,6 +3,7 @@ import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GradientText } from '../ui/GradientText'
+import { hl, hlText } from '../lib/headline'
 import { HelpCircle, NotebookPen, GraduationCap } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -37,9 +38,9 @@ export function Problem() {
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-5 text-display-lg text-ink-900">
-              こんな<GradientText>“もったいない”</GradientText>、
+              {hl(<>こんな<GradientText>“もったいない”</GradientText>、</>)}
               <br className="hidden sm:block" />
-              起きていませんか。
+              {hl('起きていませんか。')}
             </h2>
           </Reveal>
         </div>
@@ -51,7 +52,7 @@ export function Problem() {
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-surface-100 text-primary-600">
                   <p.icon className="h-5 w-5" strokeWidth={2.2} aria-hidden />
                 </span>
-                <h3 className="mt-5 text-lg font-bold text-ink-900">{p.title}</h3>
+                <h3 className="mt-5 text-lg font-bold text-ink-900">{hlText(p.title)}</h3>
                 <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-700">{p.body}</p>
               </div>
             </Reveal>
@@ -60,7 +61,7 @@ export function Problem() {
 
         <Reveal delay={0.12}>
           <p className="mt-10 text-center text-display-md text-ink-900">
-            その全部に、<GradientText>AIの相棒</GradientText>で手を打てます。
+            {hl('その全部に、', <><GradientText>AIの相棒</GradientText>で</>, '手を打てます。')}
           </p>
         </Reveal>
       </Container>

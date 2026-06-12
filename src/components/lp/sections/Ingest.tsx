@@ -14,6 +14,7 @@ import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { AppShot } from '../ui/AppShot'
+import { hl, hlText } from '../lib/headline'
 
 // ⑤一括投げ込み の手順（コード製の4ステップ）。貼る→AIが整理→物件カード化。
 const STEPS: { icon: LucideIcon; caption: string }[] = [
@@ -43,9 +44,9 @@ export function Ingest() {
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-5 text-display-lg text-ink-900">
-              貼る・撮る・投げ込む。
+              {hlText('貼る・撮る・投げ込む。')}
               <br className="hidden sm:block" />
-              あとはAIがマッチに乗せる。
+              {hl('あとはAIが', 'マッチに乗せる。')}
             </h2>
           </Reveal>
           <Reveal delay={0.1}>

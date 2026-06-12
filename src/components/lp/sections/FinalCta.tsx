@@ -5,6 +5,7 @@ import { GlowButton } from '../ui/GlowButton'
 import { GradientText } from '../ui/GradientText'
 import { Reveal } from '../ui/Reveal'
 import { SITE } from '../site'
+import { hl } from '../lib/headline'
 
 /** 最終 CTA（特大・全幅）。柔らかい primary-50 パネル（発光・ダークなし）。 */
 export function FinalCta() {
@@ -20,9 +21,9 @@ export function FinalCta() {
               </span>
 
               <h2 className="mt-6 text-display-xl text-ink-900">
-                今いる顧客から、
+                {hl('今いる顧客から、')}
                 <br />
-                <GradientText>次の一手が見える。</GradientText>
+                {hl(<GradientText>次の一手が見える。</GradientText>)}
               </h2>
 
               <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-700 sm:text-lg">

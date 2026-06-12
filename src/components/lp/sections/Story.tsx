@@ -2,6 +2,7 @@ import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
+import { hl } from '../lib/headline'
 
 /**
  * WHY TRUST US（開発者の声・ストーリー）。WHY比較表の後・セキュリティ節の前に配置。
@@ -18,9 +19,9 @@ export function Story() {
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-5 text-display-lg text-ink-900">
-              現役の不動産営業マンが、
+              {hl('現役の', '不動産営業マンが、')}
               <br className="hidden sm:block" />
-              自分のために作りました。
+              {hl('自分のために', '作りました。')}
             </h2>
           </Reveal>
         </div>

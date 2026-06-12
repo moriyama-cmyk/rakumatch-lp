@@ -2,6 +2,7 @@ import { Calculator, Receipt, Sparkles } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { FeatureSplit } from '../ui/FeatureSplit'
+import { hlText } from '../lib/headline'
 
 /** 書類スクショ→自動入力の精算書 を示す軽量ビジュアル（ライト）。 */
 function SettlementVisual() {
@@ -53,7 +54,7 @@ export function Settlement() {
           reverse
           icon={Calculator}
           eyebrow="面倒を、貼るだけに"
-          title="精算書は、書類を貼るだけ。"
+          title={hlText('精算書は、書類を貼るだけ。')}
           visual={<SettlementVisual />}
           note="※ 精算金額は確認のうえご利用ください（自動計算は目安です）。"
         >

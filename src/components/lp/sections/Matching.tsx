@@ -3,6 +3,7 @@ import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { FeatureSplit } from '../ui/FeatureSplit'
 import { MatchDiagram } from '../ui/MatchDiagram'
+import { hlText } from '../lib/headline'
 
 /** ② 双方マッチング（逆引き）。ビジュアルは左・コード製の図解。 */
 export function Matching() {
@@ -15,9 +16,9 @@ export function Matching() {
           eyebrow="双方向マッチング"
           title={
             <>
-              この物件、誰に出す？
+              {hlText('この物件、誰に出す？')}
               <br className="hidden sm:block" />
-              もう探さない。
+              {hlText('もう探さない。')}
             </>
           }
           visual={<MatchDiagram />}

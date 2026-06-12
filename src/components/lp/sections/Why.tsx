@@ -5,6 +5,7 @@ import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GradientText } from '../ui/GradientText'
 import { protect } from '../lib/protect'
+import { hl, hlText } from '../lib/headline'
 
 // COMPARISON_DATA.md の実データ（A社/B社/C社の匿名カテゴリ列＋楽マッチ）。
 // 文言はそのまま（盛らない・削らない／語尾「目安」「例が多い」を保持）。実社名は出さない。
@@ -86,9 +87,9 @@ export function Why() {
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-5 text-display-lg text-ink-900">
-              <GradientText>“合わせる”CRM</GradientText>から、
+              {hl(<><GradientText>“合わせる”CRM</GradientText>から、</>)}
               <br className="hidden sm:block" />
-              “効く”CRMへ。
+              {hl('“効く”CRMへ。')}
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
@@ -155,10 +156,13 @@ export function Why() {
         {/* 締めコピー（COMPARISON_DATA §4） */}
         <Reveal delay={0.12}>
           <p className="mt-8 text-center text-display-md text-ink-900">
-            初期費用<GradientText variant="gold">0円</GradientText>・1人 月
-            <GradientText variant="gold">3,000円</GradientText>（税込）から。
+            {hl(
+              <>初期費用<GradientText variant="gold">0円</GradientText>・</>,
+              <>1人 月<GradientText variant="gold">3,000円</GradientText></>,
+              '（税込）から。',
+            )}
             <br className="hidden sm:block" />
-            <span className="text-ink-700">法人契約も、20万円の初期費用も、いりません。</span>
+            <span className="text-ink-700">{hlText('法人契約も、20万円の初期費用も、いりません。')}</span>
           </p>
         </Reveal>
       </Container>

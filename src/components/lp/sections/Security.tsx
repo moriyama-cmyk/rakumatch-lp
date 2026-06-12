@@ -5,6 +5,7 @@ import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { protect } from '../lib/protect'
+import { hl } from '../lib/headline'
 
 type Trust = { icon: LucideIcon; title: string; desc: string }
 
@@ -29,8 +30,8 @@ export function Security() {
             <Badge icon={<Shield className="h-3.5 w-3.5" />}>セキュリティ</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-5 text-balance text-display-lg text-ink-900">
-              {protect('データは、大手テック企業のインフラで守る。')}
+            <h2 className="mt-5 text-display-lg text-ink-900">
+              {hl('データは、', '大手テック企業の', 'インフラで守る。')}
             </h2>
           </Reveal>
           <Reveal delay={0.1}>

@@ -24,6 +24,7 @@ import {
 } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { protect } from '../lib/protect'
+import { hl } from '../lib/headline'
 
 type Tone = 'green' | 'teal' | 'blue'
 type Item = { Icon: LucideIcon; title: string; sub: string; href: string }
@@ -160,7 +161,7 @@ export function FeatureHub() {
       <Container className="text-center">
         <p className="text-sm font-bold tracking-[0.18em] text-primary-600">ALL-IN-ONE</p>
         <h2 className="mt-3 text-display-lg text-ink-900">
-          月<span className="text-accent-600">¥3,000</span>で、これ全部。
+          {hl(<>月<span className="text-accent-600">¥3,000</span>で、</>, 'これ全部。')}
         </h2>
         <p className="mx-auto mt-3 max-w-2xl leading-relaxed text-ink-700">
           物件集めから契約・精算、お客様連動アプリまで。1本で、1人でも会社でも同額（税込）。
