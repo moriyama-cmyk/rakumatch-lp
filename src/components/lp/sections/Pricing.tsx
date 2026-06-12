@@ -55,14 +55,9 @@ export function Pricing() {
           ))}
         </div>
 
+        {/* 各プランカードに「無料で試す」があるため、直後の重複ボタンは撤去。マイクロコピーのみ残す。 */}
         <Reveal delay={0.1}>
-          <div className="mt-10 flex flex-col items-center gap-3">
-            <GlowButton href={SITE.ctaTryUrl} size="lg">
-              {SITE.ctaPrimaryLabel}
-              <ArrowRight className="h-5 w-5" />
-            </GlowButton>
-            <p className="text-xs text-ink-500">{SITE.microCopy}</p>
-          </div>
+          <p className="mt-8 text-center text-xs text-ink-500">{SITE.microCopy}</p>
         </Reveal>
 
         <Reveal delay={0.1}>

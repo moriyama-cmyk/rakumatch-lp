@@ -11,8 +11,9 @@ type ButtonProps = {
   size?: Size
 } & AnchorHTMLAttributes<HTMLAnchorElement>
 
+// whitespace-nowrap: ボタン内テキストは絶対に折り返さない（スマホで「無料で／試す」のように割れるのを防ぐ）。
 const base =
-  'group inline-flex items-center justify-center gap-2 rounded-full font-bold tracking-tight transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50 disabled:opacity-50 disabled:pointer-events-none'
+  'group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-bold tracking-tight transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-50 disabled:opacity-50 disabled:pointer-events-none'
 
 const variants: Record<Variant, string> = {
   // 単色 primary-600（hover 700）。柔らかい影のみ。発光なし。

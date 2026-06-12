@@ -30,6 +30,14 @@ export function Footer() {
             <p className="mt-4 text-sm leading-relaxed text-ink-500">
               不動産営業専門の顧客・物件管理AI。月々3,000円（税込・スタンダード）/人〜
             </p>
+            {/* スマホのヘッダーからログインを外したため、ここに既存ユーザー向けの導線を置く。 */}
+            <a
+              href={`${SITE.appUrl}/login`}
+              className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary-700 transition-colors hover:text-primary-800 hover:underline"
+            >
+              既存アカウントでログイン
+              <span aria-hidden>→</span>
+            </a>
           </div>
 
           <div className="flex flex-wrap gap-x-16 gap-y-8">

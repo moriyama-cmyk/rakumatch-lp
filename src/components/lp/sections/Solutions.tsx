@@ -1,11 +1,9 @@
-import { User, Building, Check, ArrowRight } from 'lucide-react'
+import { User, Building, Check } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GradientText } from '../ui/GradientText'
-import { GlowButton } from '../ui/GlowButton'
-import { SITE } from '../site'
 
 const PERSONAL = {
   title: '一人で戦う営業マンへ',
@@ -55,15 +53,7 @@ export function Solutions() {
             <WhomCard icon={Building} accent {...COMPANY} />
           </Reveal>
         </div>
-
-        <Reveal delay={0.1}>
-          <div className="mt-10 flex justify-center">
-            <GlowButton href={SITE.ctaTryUrl} size="lg">
-              {SITE.ctaPrimaryLabel}
-              <ArrowRight className="h-5 w-5" />
-            </GlowButton>
-          </div>
-        </Reveal>
+        {/* CTAはヒーロー・料金・最終CTAに集約。中間セクションの「無料で試す」連打は撤去。 */}
       </Container>
     </Section>
   )
@@ -95,7 +85,7 @@ function WhomCard({
         <h3 className="text-xl font-bold text-ink-900">{title}</h3>
       </div>
 
-      <p className="mt-4 text-[0.95rem] leading-relaxed text-ink-700">{intro}</p>
+      <p className="mt-4 text-base leading-relaxed text-ink-700">{intro}</p>
 
       <ul className="mt-5 space-y-3">
         {items.map((it) => (

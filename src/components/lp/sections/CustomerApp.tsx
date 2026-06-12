@@ -31,7 +31,7 @@ export function CustomerApp() {
                 <br className="hidden sm:block" />
                 向こうから届く。
               </h3>
-              <p className="mt-4 text-base leading-relaxed text-ink-700">
+              <p className="mt-4 text-[1.0625rem] leading-[1.9] text-ink-700">
                 担当者が発行するリンクを、お客様が自分のアプリとして使います。SUUMOなど色々な媒体で気になった物件を、お客様が1か所に集約。その希望と保存物件が、そのままあなたに届きます。好みを言葉にしてもらわなくても、ニーズが伝わってくる。
               </p>
             </Reveal>

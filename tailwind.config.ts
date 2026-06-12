@@ -10,6 +10,12 @@ const config: Config = {
         // next/font が定義する --font-sans（Noto Sans JP）を Tailwind の font-sans でも使う。
         sans: ['var(--font-sans)', 'system-ui', '-apple-system', 'sans-serif'],
       },
+      // 本文の行間。Tailwind 既定の relaxed(1.625) は日本語の長文だと詰まって読みにくい。
+      // この LP では leading-relaxed は本文（読み物）にのみ使っているため、ここを 1.85 に
+      // 引き上げることで、文章ブロックを横断的に読みやすくする（見出し・ボタンには無影響）。
+      lineHeight: {
+        relaxed: '1.85',
+      },
       colors: {
         primary: {
           50: '#E6F5F0',

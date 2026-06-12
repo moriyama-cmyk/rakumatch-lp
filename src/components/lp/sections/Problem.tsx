@@ -52,7 +52,7 @@ export function Problem() {
                   <p.icon className="h-5 w-5" strokeWidth={2.2} aria-hidden />
                 </span>
                 <h3 className="mt-5 text-lg font-bold text-ink-900">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-500">{p.body}</p>
+                <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-700">{p.body}</p>
               </div>
             </Reveal>
           ))}

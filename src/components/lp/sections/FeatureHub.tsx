@@ -21,11 +21,8 @@ import {
   ArrowLeftRight,
   Smartphone,
   Sparkles,
-  ArrowRight,
 } from 'lucide-react'
 import { Container } from '../ui/Container'
-import { GlowButton } from '../ui/GlowButton'
-import { SITE } from '../site'
 import { protect } from '../lib/protect'
 
 type Tone = 'green' | 'teal' | 'blue'
@@ -220,14 +217,7 @@ export function FeatureHub() {
             </div>
           </div>
         </div>
-
-        <div className="mt-12 flex flex-col items-center gap-2.5">
-          <GlowButton href={SITE.ctaTryUrl} size="lg">
-            {SITE.ctaPrimaryLabel}
-            <ArrowRight className="h-5 w-5" />
-          </GlowButton>
-          <p className="text-xs text-ink-500">{SITE.microCopy}</p>
-        </div>
+        {/* CTAはヒーロー・料金・最終CTAに集約。ハブ直後の「無料で試す」連打は撤去。 */}
       </Container>
     </section>
   )

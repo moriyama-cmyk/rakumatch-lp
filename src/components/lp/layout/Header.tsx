@@ -46,9 +46,18 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2.5">
-          <GlowButton href={SITE.appUrl} variant="ghost" size="sm" className="hidden sm:inline-flex">
-            ログイン
-          </GlowButton>
+          {/*
+            ログインは sm 以上のみ表示。スマホのヘッダーは主要CTA 1 つに集約し、
+            「ログイン」と「無料で試す」が詰まって 2 行に折り返す不具合を根治する。
+            ※ GlowButton の base が inline-flex のため className に hidden を足しても
+            　 CSS の出力順で打ち消されない。確実に隠すため、表示ユーティリティだけを持つ
+            　 div でラップする。スマホのログインはフッターの導線から。
+          */}
+          <div className="hidden sm:block">
+            <GlowButton href={`${SITE.appUrl}/login`} variant="ghost" size="sm">
+              ログイン
+            </GlowButton>
+          </div>
           <GlowButton href={SITE.ctaTryUrl} size="sm">
             {SITE.ctaPrimaryLabel}
             <ArrowRight className="h-4 w-4" />

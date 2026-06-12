@@ -1,12 +1,10 @@
-import { ArrowRight, Inbox, Eye, Rocket, User, Home, Bot } from 'lucide-react'
+import { Inbox, Eye, Rocket, User, Home, Bot } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GradientText } from '../ui/GradientText'
-import { GlowButton } from '../ui/GlowButton'
-import { SITE } from '../site'
 import { protect } from '../lib/protect'
 
 type Step = { n: string; icon: LucideIcon; title: string; body: string }
@@ -86,15 +84,7 @@ export function SolutionCore() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={0.1}>
-          <div className="mt-10 flex justify-center">
-            <GlowButton href={SITE.ctaTryUrl} size="lg">
-              {SITE.ctaPrimaryLabel}
-              <ArrowRight className="h-5 w-5" />
-            </GlowButton>
-          </div>
-        </Reveal>
+        {/* CTAはヒーロー・料金・最終CTAに集約。中間セクションの「無料で試す」連打は撤去。 */}
       </Container>
     </Section>
   )
