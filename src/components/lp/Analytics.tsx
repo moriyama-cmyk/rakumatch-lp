@@ -44,9 +44,14 @@ export function Analytics() {
       document.head.appendChild(s)
 
       window.dataLayer = window.dataLayer || []
-      const gtag = (...args: unknown[]) => {
-        window.dataLayer!.push(args)
-      }
+      // GA4/GTM は dataLayer に積まれた arguments オブジェクトをコマンドとして解釈する。
+      // 配列（[...args]）を push すると config/js が認識されず計測先が初期化されない
+      // （_ga クッキー不発・ヒット送信ゼロ＝計測が一切動かない）。標準の gtag スニペット
+      // （function gtag(){dataLayer.push(arguments)}）と同義に、arguments をそのまま積む。
+      const gtag = (function () {
+        // eslint-disable-next-line prefer-rest-params
+        window.dataLayer!.push(arguments)
+      }) as (...args: unknown[]) => void
       window.gtag = gtag
       gtag('js', new Date())
       // 表示中コピーを全イベントに付与（ユーザープロパティ）。
