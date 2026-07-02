@@ -1,0 +1,18 @@
+
+> rakumatch-lp@0.1.0 dev
+> next dev
+
+⚠ Port 3000 is in use by process 19812, using available port 3001 instead.
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://10.20.1.36:3001
+✓ Ready in 560ms
+⨯ Another next dev server is already running.
+
+- Local:        http://localhost:3000
+- PID:          19812
+- Dir:          C:\Users\yukih\楽マッチ開発フォルダ\rakumatch-lp
+- Log:          .next\dev\logs\next-development.log
+
+Run taskkill /PID 19812 /F to stop it.
+[?25h

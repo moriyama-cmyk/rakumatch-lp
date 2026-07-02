@@ -15,7 +15,6 @@ import {
   FeatureHero,
   FeatureSection,
   FeaturePointGrid,
-  StepList,
   RequirementCard,
   FeatureFAQ,
   FeatureCTA,
@@ -23,11 +22,11 @@ import {
   FeatureDemoMedia,
   DemoVideoPoster,
   type FeaturePoint,
-  type Step,
   type RequirementItem,
   type FaqItem,
   type RelatedFeature,
 } from "@/app/features/_components";
+import BulkInputSteps from "@/components/BulkInputSteps";
 
 const APP_URL = "https://app.rakumatch-ai.com";
 
@@ -64,7 +63,7 @@ export const metadata: Metadata = {
 };
 
 /* ---------- HowTo JSON-LD（SEO_BRIEF §4。コピペ登録手順を HowTo 化） ---------- */
-// 視覚的な使い方ステップ（下記 steps）と内容を一致させる。
+// 視覚的な使い方ステップ（BulkInputSteps コンポーネント）と内容を一致させる。
 
 const howToJsonLd = {
   "@context": "https://schema.org",
@@ -113,21 +112,6 @@ const points: FeaturePoint[] = [
     icon: Calculator,
     title: "固都税の日割り精算・書類管理",
     desc: "固定資産税・都市計画税、管理費の日割り精算に対応。関東・関西それぞれの起算日方式に沿って計算でき、書類のスクショを貼ればAIが数値を下書きします。図面・重説などのPDFは顧客ページに保存できます。",
-  },
-];
-
-const steps: Step[] = [
-  {
-    title: "レインズ等のページを全選択してコピー、またはPDF・画像をアップロード",
-    desc: "レインズ・SUUMO・Excel・手書きメモのテキストはCtrl+Aで丸ごとコピー。チラシ・マイソクはPDFや画像のまま投げ込めばOKです。顧客情報も同じように取り込めます。",
-  },
-  {
-    title: "AIが項目に下書き。内容を確認して手直し",
-    desc: "AIが価格・利回り・管理費などを項目に振り分けて下書きします。読み取りは100%ではないので、内容を確認して必要なところを直してください。",
-  },
-  {
-    title: "登録した物件で、マッチング・提案・契約管理へ",
-    desc: "登録した物件は、そのままAIマッチング・提案・契約フェーズ管理・精算・書類管理に使えます。",
   },
 ];
 
@@ -351,15 +335,14 @@ export default function PropertyInputPage() {
         </div>
       </FeatureSection>
 
-      {/* 使い方ステップ（HowTo と一致） */}
+      {/* 使い方ステップ（パワポ風の視覚ステップ＝実機スクショ4枚。HowTo と内容一致） */}
       <FeatureSection
         background="surface-50"
         eyebrow="HOW IT WORKS"
-        title="貼る → 手直し → 登録。3ステップ。"
+        title="レインズを全選択してコピペ。物件が1件ずつカードになる。"
+        lead="レインズの一覧をCtrl+Aで丸ごとコピー → 楽マッチに貼り付けるだけ。AIが1件ずつ解析して、物件ごとのカード（フォルダ）を自動で作ります。"
       >
-        <div className="max-w-3xl">
-          <StepList steps={steps} />
-        </div>
+        <BulkInputSteps />
       </FeatureSection>
 
       {/* 必要なもの */}
