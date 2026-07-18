@@ -3,6 +3,7 @@
 // 各コンポーネントは src/components/lp 配下（Vite 版を Next.js へ忠実移植）。
 import { Header } from "@/components/lp/layout/Header";
 import { Footer } from "@/components/lp/layout/Footer";
+import { StickyCta } from "@/components/lp/layout/StickyCta";
 import { Hero } from "@/components/lp/sections/Hero";
 import { TrustStrip } from "@/components/lp/sections/TrustStrip";
 import { Problem } from "@/components/lp/sections/Problem";
@@ -74,6 +75,9 @@ export default function LandingPage() {
 
       {/* 17. フッター */}
       <Footer />
+
+      {/* モバイル下部固定CTA */}
+      <StickyCta />
     </div>
   );
 }

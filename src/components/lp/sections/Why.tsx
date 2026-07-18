@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
 import { Check } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
@@ -78,6 +81,18 @@ const COLS = [
 
 /** WHY（対立軸の比較表・実データ版）。スマホは先頭列sticky＋表内のみ横スクロール。 */
 export function Why() {
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    // モバイル幅は初期表示のままだと勝ち列（楽マッチ AI・表の右端）が画面外になるため、
+    // 初期スクロール位置を右端に寄せる（PC/タブレット幅では触らない＝最小差分）。
+    const el = scrollRef.current
+    if (!el) return
+    if (window.innerWidth < 640) {
+      el.scrollLeft = el.scrollWidth
+    }
+  }, [])
+
   return (
     <Section id="why" className="bg-white" spacing="lg">
       <Container>
@@ -102,7 +117,7 @@ export function Why() {
         </div>
 
         <Reveal delay={0.12}>
-          <div className="mt-12 -mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+          <div ref={scrollRef} className="mt-12 -mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
             <table className="w-full min-w-[860px] border-separate border-spacing-0 overflow-hidden rounded-2xl border border-surface-200 text-left">
               <thead>
                 <tr>

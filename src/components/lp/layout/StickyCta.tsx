@@ -7,16 +7,38 @@ import { SITE } from '../site'
 import { cn } from '../lib/cn'
 import { trackCta } from '@/lib/track'
 
-/** モバイル下部固定 CTA。少しスクロールしてから出現。ライト・safe-area対応。 */
+/**
+ * モバイル下部固定 CTA。ヒーローのCTAが画面外に出た後（少しスクロール後）に出現し、
+ * 最終CTAセクション（#cta・自前の大きいCTAを持つ）に近づいたら非表示にする。
+ * ライト・safe-area対応。
+ */
 export function StickyCta() {
-  const [show, setShow] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [nearFinalCta, setNearFinalCta] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 520)
+    // IntersectionObserver は失敗時に「気づかず出っぱなし」になり得るため使わず、
+    // 表示制御は Reveal.tsx と同じ考え方で scroll イベント駆動の getBoundingClientRect に統一する。
+    const onScroll = () => {
+      setScrolled(window.scrollY > 520)
+      const target = document.getElementById('cta')
+      if (target) {
+        const rect = target.getBoundingClientRect()
+        // 最終CTAセクションが画面の85%ラインより上に入ってきたら、自前の大きいCTAと
+        // 重ならないよう固定バーを隠す。
+        setNearFinalCta(rect.top < window.innerHeight * 0.85 && rect.bottom > 0)
+      }
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
   }, [])
+
+  const show = scrolled && !nearFinalCta
 
   return (
     <div

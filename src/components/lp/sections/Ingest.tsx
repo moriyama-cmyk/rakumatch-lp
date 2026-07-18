@@ -3,7 +3,6 @@ import {
   Layers,
   PackageOpen,
   BadgeJapaneseYen,
-  ArrowRight,
   Monitor,
   Copy,
   Sparkles,
@@ -84,39 +83,73 @@ export function Ingest() {
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:items-start">
               <div>
                 <p className="mb-2 text-center text-xs font-bold text-ink-500">1. レインズの検索結果</p>
-                <img
-                  src="/bulk-step-01-reins-list.png"
-                  alt="レインズの売買検索結果一覧のイメージ（内容はぼかし加工）"
-                  className="block h-auto w-full rounded-xl border border-surface-200 shadow-soft"
-                  loading="lazy"
-                />
+                <a
+                  href="/bulk-step-01-reins-list.png"
+                  target="_blank"
+                  rel="noopener"
+                  className="block cursor-zoom-in"
+                  aria-label="1. レインズの検索結果（原寸画像を新しいタブで開く）"
+                >
+                  <img
+                    src="/bulk-step-01-reins-list.png"
+                    alt="レインズの売買検索結果一覧のイメージ（内容はぼかし加工）"
+                    className="block h-auto w-full rounded-xl border border-surface-200 shadow-soft"
+                    loading="lazy"
+                  />
+                </a>
               </div>
               <div>
                 <p className="mb-2 text-center text-xs font-bold text-ink-500">2. Ctrl+Aで全選択コピー</p>
-                <img
-                  src="/bulk-step-02-reins-selected.png"
-                  alt="一覧をCtrl+Aで全選択した状態のイメージ（内容はぼかし加工）"
-                  className="block h-auto w-full rounded-xl border border-surface-200 shadow-soft"
-                  loading="lazy"
-                />
+                <a
+                  href="/bulk-step-02-reins-selected.png"
+                  target="_blank"
+                  rel="noopener"
+                  className="block cursor-zoom-in"
+                  aria-label="2. Ctrl+Aで全選択コピー（原寸画像を新しいタブで開く）"
+                >
+                  <img
+                    src="/bulk-step-02-reins-selected.png"
+                    alt="一覧をCtrl+Aで全選択した状態のイメージ（内容はぼかし加工）"
+                    className="block h-auto w-full rounded-xl border border-surface-200 shadow-soft"
+                    loading="lazy"
+                  />
+                </a>
               </div>
               <div>
                 <p className="mb-2 text-center text-xs font-bold text-ink-500">3. 楽マッチに貼る</p>
-                <AppShot
-                  base="/shot-bulk-input"
-                  alt="コピーしたテキストを貼り付けるだけのAI一括入力ハブ画面"
-                  width={1600}
-                  height={900}
-                />
+                <a
+                  href="/shot-bulk-input.png"
+                  target="_blank"
+                  rel="noopener"
+                  className="block cursor-zoom-in"
+                  aria-label="3. 楽マッチに貼る（原寸画像を新しいタブで開く）"
+                >
+                  <AppShot
+                    base="/shot-bulk-input"
+                    alt="コピーしたテキストを貼り付けるだけのAI一括入力ハブ画面"
+                    width={1600}
+                    height={900}
+                  />
+                </a>
               </div>
               <div>
-                <p className="mb-2 text-center text-xs font-bold text-ink-500">4. 「マッチ」バッジ付きで並ぶ</p>
-                <AppShot
-                  base="/shot-properties"
-                  alt="投げ込んだ物件がカードに整理され「マッチ」バッジ付きで並ぶ楽マッチ AI の物件一覧画面"
-                  width={1600}
-                  height={900}
-                />
+                <p className="mb-2 text-center text-xs font-bold text-ink-500">
+                  4. 全物件が「マッチ○名」バッジ付きで並ぶ
+                </p>
+                <a
+                  href="/shot-properties.png"
+                  target="_blank"
+                  rel="noopener"
+                  className="block cursor-zoom-in"
+                  aria-label="4. 全物件が「マッチ○名」バッジ付きで並ぶ（原寸画像を新しいタブで開く）"
+                >
+                  <AppShot
+                    base="/shot-properties"
+                    alt="投げ込んだ物件がカードに整理され「マッチ○名」バッジ付きで並ぶ楽マッチ AI の物件一覧画面"
+                    width={1600}
+                    height={900}
+                  />
+                </a>
               </div>
             </div>
             <p className="mt-6 text-center text-lg font-bold text-ink-900">
@@ -143,8 +176,7 @@ export function Ingest() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="mx-auto mt-6 flex max-w-3xl items-center justify-center gap-1.5 text-center text-xs text-ink-500">
-            <ArrowRight className="h-3.5 w-3.5 text-primary-600" />
+          <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-ink-500">
             ※ レインズ等のデータは各サービスの規約に沿ってご利用ください。
           </p>
         </Reveal>

@@ -3,7 +3,7 @@ import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { FeatureSplit } from '../ui/FeatureSplit'
 import { Img } from '../ui/Img'
-import { hl, hlText } from '../lib/headline'
+import { hlText } from '../lib/headline'
 
 /** ③ 専属AI（各ページに上司）。ライト・イメージ画像。 */
 export function AiPartner() {
@@ -15,9 +15,9 @@ export function AiPartner() {
           eyebrow="一人ひとり・一件ごとにAI"
           title={
             <>
-              {hl('全部わかってる', '“優しい上司”が、')}
+              {hlText('ページを開けば、')}
               <br className="hidden sm:block" />
-              {hlText('各ページに。')}
+              {hlText('頼れる上司がいる。')}
             </>
           }
           visual={
