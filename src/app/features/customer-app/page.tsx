@@ -191,23 +191,23 @@ export default function CustomerAppPage() {
               <FeatureShot
                 base="/shot-customer-app-list"
                 alt="お客様アプリの保存物件リストと「あなたの傾向」実画面"
-                width={700}
-                height={1522}
+                width={868}
+                height={1887}
                 priority
               />
               <FeatureShot
                 base="/shot-customer-app-ai"
                 alt="保存した物件へのAIコメント（良い点・確認ポイント）実画面"
-                width={700}
-                height={1522}
+                width={868}
+                height={1887}
                 priority
                 className="mt-8"
               />
               <FeatureShot
                 base="/shot-customer-app-trend"
                 alt="保存物件から見える「お客様の傾向」詳細分析の実画面"
-                width={700}
-                height={1522}
+                width={868}
+                height={1887}
                 priority
               />
             </div>

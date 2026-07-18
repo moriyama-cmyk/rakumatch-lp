@@ -320,8 +320,8 @@ export default function PropertyInputPage() {
             <FeatureShot
               base="/shot-contract-phase"
               alt="事前審査から決済までの契約フェーズを6ステップの進捗バーで管理する実画面"
-              width={1600}
-              height={900}
+              width={1920}
+              height={1080}
               caption="契約フェーズの進捗バー（実画面）"
             />
           </div>

@@ -55,8 +55,8 @@ export function Workflow() {
             <AppShot
               base="/shot-dashboard"
               alt="契約フェーズとTODOを横断把握する楽マッチ AI のダッシュボード画面"
-              width={1600}
-              height={900}
+              width={1920}
+              height={1080}
             />
           </Reveal>
         </div>

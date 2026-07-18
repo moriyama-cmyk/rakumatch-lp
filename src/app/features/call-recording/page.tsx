@@ -183,8 +183,8 @@ export default function CallRecordingPage() {
               <FeatureShot
                 base="/shot-customer-detail"
                 alt="顧客詳細ページ。電話する・録音開始ボタンが同じ行にある楽マッチ AI の実画面"
-                width={1600}
-                height={900}
+                width={1920}
+                height={1080}
                 priority
                 caption="顧客詳細ページの実画面（録音は「録音開始」から開始します）"
               />

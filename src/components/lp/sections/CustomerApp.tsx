@@ -85,8 +85,8 @@ function PhoneShot() {
           <Img
             base="/shot-customer-app-list"
             alt="お客様アプリの保存物件リストと「あなたの傾向」AI分析の実画面"
-            width={700}
-            height={1522}
+            width={868}
+            height={1887}
             priority
           />
         </div>

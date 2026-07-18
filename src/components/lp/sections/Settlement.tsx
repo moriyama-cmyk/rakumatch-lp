@@ -21,8 +21,8 @@ export function Settlement() {
                 <AppShot
                   base="/shot-settlement-form"
                   alt="固都税・管理費等の精算書がAIで自動入力される楽マッチ AI の精算計算画面"
-                  width={1600}
-                  height={900}
+                  width={1920}
+                  height={1080}
                 />
                 <p className="mt-3 text-center text-sm text-ink-500">固都税・管理費の入力画面</p>
               </div>
@@ -30,8 +30,8 @@ export function Settlement() {
                 <AppShot
                   base="/shot-settlement-statement"
                   alt="STEP1〜3で金額が積み上がっていく清算金計算書の実画面"
-                  width={1600}
-                  height={900}
+                  width={1920}
+                  height={1080}
                 />
                 <p className="mt-3 text-center text-sm text-ink-500">清算金計算書（STEP1〜3）</p>
               </div>

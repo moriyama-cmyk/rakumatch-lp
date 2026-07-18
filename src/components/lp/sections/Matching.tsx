@@ -25,8 +25,8 @@ export function Matching() {
             <AppShot
               base="/shot-customer-detail"
               alt="顧客の希望条件と右側にマッチした物件が並ぶ楽マッチ AI の顧客詳細画面"
-              width={1600}
-              height={900}
+              width={1920}
+              height={1080}
             />
           }
           points={[

@@ -25,8 +25,8 @@ export function AiPartner() {
               <Img
                 base="/shot-ai-insight"
                 alt="顧客詳細ページでAIが潜在ニーズを提案している楽マッチ AI の実画面"
-                width={1600}
-                height={900}
+                width={1920}
+                height={1080}
               />
             </figure>
           }

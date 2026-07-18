@@ -75,7 +75,7 @@ const ROWS: Row[] = [
 
 const COLS = [
   { key: 'a' as const, head: 'A社', sub: '不動産特化CRM' },
-  { key: 'b' as const, head: 'B社', sub: 'ポータル/媒体連動型' },
+  { key: 'b' as const, head: 'B社', sub: 'ポータル連動型' },
   { key: 'c' as const, head: 'C社', sub: '汎用CRM＋Excel' },
 ]
 
@@ -123,14 +123,14 @@ export function Why() {
                 <tr>
                   <th className="sticky left-0 z-10 w-[8.5rem] bg-surface-100 p-4 sm:w-44" />
                   {COLS.map((c) => (
-                    <th key={c.key} className="bg-surface-100 p-4 align-bottom">
+                    <th key={c.key} className="bg-surface-100 p-4 align-top">
                       <span className="block text-sm font-bold text-ink-700">{c.head}</span>
-                      <span className="mt-0.5 block text-[0.7rem] font-medium text-ink-500">
+                      <span className="mt-0.5 block whitespace-nowrap text-[0.7rem] font-medium text-ink-500">
                         （{c.sub}）
                       </span>
                     </th>
                   ))}
-                  <th className="bg-primary-50 p-4 align-bottom">
+                  <th className="bg-primary-50 p-4 align-top">
                     <span className="block text-sm font-bold text-primary-700">楽マッチ AI</span>
                     <span className="mt-0.5 block text-[0.7rem] font-medium text-primary-600">
                       不動産売買特化

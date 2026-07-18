@@ -101,8 +101,8 @@ export function Ingest() {
                   <AppShot
                     base="/shot-bulk-input"
                     alt="コピーしたテキストを貼り付けるだけのAI一括入力ハブ画面"
-                    width={1600}
-                    height={900}
+                    width={1920}
+                    height={1080}
                   />
                 </a>
               </div>
@@ -120,8 +120,8 @@ export function Ingest() {
                   <AppShot
                     base="/shot-properties"
                     alt="投げ込んだ物件がカードに整理され「マッチ○名」バッジ付きで並ぶ楽マッチ AI の物件一覧画面"
-                    width={1600}
-                    height={900}
+                    width={1920}
+                    height={1080}
                   />
                 </a>
               </div>
