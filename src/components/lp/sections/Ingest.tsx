@@ -82,38 +82,12 @@ export function Ingest() {
           <div className="mx-auto mt-8 max-w-6xl">
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:items-start">
               <div>
-                <p className="mb-2 text-center text-xs font-bold text-ink-500">1. レインズの検索結果</p>
-                <a
-                  href="/bulk-step-01-reins-list.png"
-                  target="_blank"
-                  rel="noopener"
-                  className="block cursor-zoom-in"
-                  aria-label="1. レインズの検索結果（原寸画像を新しいタブで開く）"
-                >
-                  <img
-                    src="/bulk-step-01-reins-list.png"
-                    alt="レインズの売買検索結果一覧のイメージ（内容はぼかし加工）"
-                    className="block h-auto w-full rounded-xl border border-surface-200 shadow-soft"
-                    loading="lazy"
-                  />
-                </a>
+                <p className="mb-2 text-center text-xs font-bold text-ink-500">1. 物件データベースの検索結果</p>
+                <MockReinsList />
               </div>
               <div>
                 <p className="mb-2 text-center text-xs font-bold text-ink-500">2. Ctrl+Aで全選択コピー</p>
-                <a
-                  href="/bulk-step-02-reins-selected.png"
-                  target="_blank"
-                  rel="noopener"
-                  className="block cursor-zoom-in"
-                  aria-label="2. Ctrl+Aで全選択コピー（原寸画像を新しいタブで開く）"
-                >
-                  <img
-                    src="/bulk-step-02-reins-selected.png"
-                    alt="一覧をCtrl+Aで全選択した状態のイメージ（内容はぼかし加工）"
-                    className="block h-auto w-full rounded-xl border border-surface-200 shadow-soft"
-                    loading="lazy"
-                  />
-                </a>
+                <MockReinsList selected />
               </div>
               <div>
                 <p className="mb-2 text-center text-xs font-bold text-ink-500">3. 楽マッチに貼る</p>
@@ -177,10 +151,54 @@ export function Ingest() {
 
         <Reveal delay={0.1}>
           <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-ink-500">
-            ※ レインズ等のデータは各サービスの規約に沿ってご利用ください。
+            ※ 1・2の画面は架空データによる再現イメージです。レインズ等のデータは各サービスの規約に沿ってご利用ください。
           </p>
         </Reveal>
       </Container>
     </Section>
+  )
+}
+
+// 架空データの一覧再現イメージ（実在の会社・物件は含まない）。
+// 実物スクショは他社商号・電話番号が写り公開不可（目的外利用）のため、くっきり読める再現で代替。
+const MOCK_ROWS = [
+  { no: '1001-2345', type: '中古マンション', price: '3,980万円', size: '68.4㎡', addr: '青葉区みどり台1丁目 グランみどり台 3LDK' },
+  { no: '1001-2346', type: '中古マンション', price: '2,780万円', size: '55.2㎡', addr: '旭区ひかりが丘2丁目 サンハイツひかり 2LDK' },
+  { no: '1001-2347', type: '中古戸建',       price: '4,480万円', size: '92.1㎡', addr: '緑区つばき町3丁目 つばき町戸建 4LDK' },
+  { no: '1001-2348', type: '中古マンション', price: '3,180万円', size: '61.8㎡', addr: '泉区あさひ台4丁目 コート あさひ台 3LDK' },
+  { no: '1001-2349', type: '売地',           price: '2,980万円', size: '120㎡',  addr: '港南区さくら丘5丁目 建築条件なし' },
+  { no: '1001-2350', type: '中古マンション', price: '4,980万円', size: '75.6㎡', addr: '中央区はなみずき通 パークはなみずき 3LDK' },
+] as const
+
+function MockReinsList({ selected = false }: { selected?: boolean }) {
+  return (
+    <div className="overflow-hidden rounded-xl border border-surface-200 bg-white shadow-soft">
+      <div className="flex items-center justify-between bg-[#3d6b4f] px-3 py-1.5">
+        <span className="text-[0.6rem] font-bold text-white">売買検索結果一覧（在庫）</span>
+        <span className="text-[0.55rem] text-white/70">500件</span>
+      </div>
+      <div className={selected ? 'bg-[#316ac5]' : 'bg-white'}>
+        <table className="w-full border-collapse">
+          <tbody>
+            {MOCK_ROWS.map((r) => (
+              <tr key={r.no} className={`border-b ${selected ? 'border-white/20' : 'border-surface-100'}`}>
+                <td className={`px-2 py-1.5 text-[0.55rem] leading-tight ${selected ? 'text-white' : 'text-ink-700'}`}>
+                  <span className="block font-mono">{r.no}</span>
+                  <span className="block">{r.type}</span>
+                </td>
+                <td className={`px-2 py-1.5 text-right text-[0.6rem] font-bold leading-tight ${selected ? 'text-white' : 'text-ink-900'}`}>
+                  {r.price}
+                  <span className={`block text-[0.5rem] font-normal ${selected ? 'text-white/80' : 'text-ink-500'}`}>{r.size}</span>
+                </td>
+                <td className={`px-2 py-1.5 text-[0.55rem] leading-tight ${selected ? 'text-white' : 'text-ink-700'}`}>{r.addr}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className={`px-2 py-1 text-center text-[0.5rem] ${selected ? 'bg-[#316ac5] text-white/80' : 'text-ink-400'}`}>
+        {selected ? '全選択中 — Ctrl+C でコピー' : '画面は再現イメージ（架空データ）'}
+      </p>
+    </div>
   )
 }
