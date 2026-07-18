@@ -39,15 +39,16 @@ export function Hero() {
               意味のまとまり（文節）ごとに whitespace-nowrap で包み、語の途中では絶対に
               折り返さない。改行はかたまりの境界でのみ起きる。
             */}
-            <p className="mt-2.5 font-bold leading-[1.18] tracking-tight text-ink-900 [font-size:clamp(1.75rem,7vw,3.6rem)] sm:mt-3.5">
+            <p className="mt-2.5 font-bold leading-[1.18] tracking-tight text-ink-900 [font-size:clamp(1.6rem,6.2vw,3.3rem)] sm:mt-3.5">
               <span className="inline-block whitespace-nowrap">
                 <span className="text-accent-600">新人</span>でも、
               </span>
               <span className="inline-block whitespace-nowrap">
                 <span className="text-accent-600">初日</span>から
               </span>
+              <br className="hidden sm:block" />
               <span className="inline-block whitespace-nowrap">
-                <GradientText className="text-primary-700">トップ営業の動き。</GradientText>
+                <GradientText className="text-primary-700">トップ営業マンの動き</GradientText>ができる。
               </span>
             </p>
           </Reveal>
