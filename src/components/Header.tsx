@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { trackCta } from "@/lib/track";
 
 const APP_URL = "https://app.rakumatch-ai.com";
 
@@ -59,6 +62,7 @@ export default function Header() {
           </a>
           <a
             href={`${APP_URL}/try`}
+            onClick={() => trackCta("header")}
             className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary-600 hover:bg-primary-700 text-sm font-medium text-white transition-colors"
           >
             無料で試す

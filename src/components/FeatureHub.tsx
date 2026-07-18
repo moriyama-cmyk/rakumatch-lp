@@ -16,6 +16,7 @@ import {
   ClipboardPaste, Mic, ClipboardCheck, Calculator,
   ArrowLeftRight, Smartphone, Sparkles, ArrowRight,
 } from "lucide-react";
+import { trackCta } from "@/lib/track";
 
 const APP_URL = "https://app.rakumatch-ai.com";
 
@@ -166,6 +167,7 @@ export default function FeatureHub() {
         <div className="mt-12">
           <a
             href={`${APP_URL}/try`}
+            onClick={() => trackCta("feature_hub")}
             className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-7 py-3.5 text-base font-bold text-white shadow-sm transition hover:bg-primary-700 hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 motion-reduce:hover:scale-100"
           >
             無料で試す <ArrowRight className="h-4 w-4" />

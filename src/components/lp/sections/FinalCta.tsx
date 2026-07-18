@@ -1,3 +1,5 @@
+'use client'
+
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
@@ -6,6 +8,7 @@ import { GradientText } from '../ui/GradientText'
 import { Reveal } from '../ui/Reveal'
 import { SITE } from '../site'
 import { hl } from '../lib/headline'
+import { trackCta } from '@/lib/track'
 
 /** 最終 CTA（特大・全幅）。柔らかい primary-50 パネル（発光・ダークなし）。 */
 export function FinalCta() {
@@ -31,7 +34,12 @@ export function FinalCta() {
               </p>
 
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <GlowButton href={SITE.ctaTryUrl} size="lg" className="w-full sm:w-auto">
+                <GlowButton
+                  href={SITE.ctaTryUrl}
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  onClick={() => trackCta('final_cta')}
+                >
                   {SITE.ctaPrimaryLabel}
                   <ArrowRight className="h-5 w-5" />
                 </GlowButton>

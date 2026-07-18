@@ -7,6 +7,7 @@ import { Logo } from '../ui/Logo'
 import { GlowButton } from '../ui/GlowButton'
 import { NAV, SITE } from '../site'
 import { cn } from '../lib/cn'
+import { trackCta } from '@/lib/track'
 
 /** スクロールで白＋影が乗る固定ヘッダー。デスクトップはナビ表示。ライト。 */
 export function Header() {
@@ -58,7 +59,7 @@ export function Header() {
               ログイン
             </GlowButton>
           </div>
-          <GlowButton href={SITE.ctaTryUrl} size="sm">
+          <GlowButton href={SITE.ctaTryUrl} size="sm" onClick={() => trackCta('header')}>
             {SITE.ctaPrimaryLabel}
             <ArrowRight className="h-4 w-4" />
           </GlowButton>

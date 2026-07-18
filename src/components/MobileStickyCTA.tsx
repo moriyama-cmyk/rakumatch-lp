@@ -16,6 +16,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { trackCta } from "@/lib/track";
 
 const APP_URL = "https://app.rakumatch-ai.com";
 
@@ -72,6 +73,7 @@ export default function MobileStickyCTA() {
       <div className="px-4 py-3">
         <a
           href={`${APP_URL}/try`}
+          onClick={() => trackCta("mobile_sticky")}
           tabIndex={show ? 0 : -1}
           className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
         >

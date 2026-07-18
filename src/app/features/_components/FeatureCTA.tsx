@@ -1,6 +1,9 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 import FadeIn from "@/components/FadeIn";
+import { trackCta } from "@/lib/track";
 
 const APP_URL = "https://app.rakumatch-ai.com";
 
@@ -37,6 +40,7 @@ export default function FeatureCTA({
             <div className="mt-8">
               <a
                 href={ctaHref}
+                onClick={() => trackCta("feature_cta")}
                 className="inline-flex items-center gap-2 rounded-xl bg-white px-7 py-4 text-base font-semibold text-primary-700 shadow-sm transition hover:bg-surface-50 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none"
               >
                 {ctaLabel}

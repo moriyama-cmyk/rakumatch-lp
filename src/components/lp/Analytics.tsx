@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import { SITE } from './site'
 
 /**
@@ -35,6 +36,9 @@ declare global {
 }
 
 export function Analytics() {
+  const pathname = usePathname()
+  const isFirstPathname = useRef(true)
+
   useEffect(() => {
     // --- GA4 ---
     if (GA_ID && !window.gtag) {
@@ -93,6 +97,20 @@ export function Analytics() {
     document.addEventListener('click', onClick)
     return () => document.removeEventListener('click', onClick)
   }, [])
+
+  // --- LP内ページ遷移の page_view（App Router の client 遷移は自動で発火しないため手動送信） ---
+  // 初回ロード分は gtag('config', ...) の自動 page_view があるためスキップし、
+  // 2回目以降（pathname が変わった＝クライアント側遷移）だけ送る。
+  useEffect(() => {
+    if (isFirstPathname.current) {
+      isFirstPathname.current = false
+      return
+    }
+    window.gtag?.('event', 'page_view', {
+      page_path: pathname,
+      copy_variant: SITE.copyVariant,
+    })
+  }, [pathname])
 
   return null
 }

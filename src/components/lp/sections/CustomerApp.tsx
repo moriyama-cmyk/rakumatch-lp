@@ -1,3 +1,5 @@
+'use client'
+
 import { Smartphone, Check, Briefcase, Heart } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
@@ -7,6 +9,7 @@ import { GlowButton } from '../ui/GlowButton'
 import { Img } from '../ui/Img'
 import { SITE } from '../site'
 import { hlText } from '../lib/headline'
+import { trackCta } from '@/lib/track'
 
 const SALES = [
   '保存物件と条件が逆流。「何を出すか」の精度が上がる',
@@ -51,7 +54,13 @@ export function CustomerApp() {
               <p className="mt-5 text-xs text-ink-500">
                 ※ お客様はログイン不要のまま、保存・星評価・メモ・内見リクエストまで全機能使えます。
               </p>
-              <GlowButton href={SITE.ctaTryUrl} variant="ghost" size="sm" className="mt-3 -ml-2">
+              <GlowButton
+                href={SITE.ctaTryUrl}
+                variant="ghost"
+                size="sm"
+                className="mt-3 -ml-2"
+                onClick={() => trackCta('customer_app')}
+              >
                 {SITE.ctaPrimaryLabel} →
               </GlowButton>
             </Reveal>

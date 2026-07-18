@@ -1,3 +1,5 @@
+'use client'
+
 import type { ReactNode } from 'react'
 import { ArrowRight, Play } from 'lucide-react'
 import { Container } from '../ui/Container'
@@ -7,6 +9,7 @@ import { Reveal } from '../ui/Reveal'
 import { AppShot } from '../ui/AppShot'
 import { SITE } from '../site'
 import { hlText } from '../lib/headline'
+import { trackCta } from '@/lib/track'
 
 /**
  * ファーストビュー（1スクリーン縦積み）。
@@ -29,23 +32,22 @@ export function Hero() {
             </h1>
           </Reveal>
 
-          {/* 2. メインキャッチ（最大・森山さん指定）。金額を強調し、価格はここに統合。 */}
+          {/* 2. メインキャッチ（最大）。2026-07-18 コピーチーム選定（4書き手×3審査員ループ・8.7点）。
+              旧「月3,000円で、月5万円のCRMに勝つ方法があります。」→ 価格はチップへ移設。 */}
           <Reveal delay={0.05}>
             {/*
               意味のまとまり（文節）ごとに whitespace-nowrap で包み、語の途中では絶対に
-              折り返さない。「月5万円」が「月5／万円」に割れる・「勝つ方法」が割れるのを防ぐ。
-              text-balance は外す（幅が余っていても短く均してしまい「なぜここで折り返す？」に
-              見えるため）。改行は3つのかたまりの境界でのみ起きる。
+              折り返さない。改行はかたまりの境界でのみ起きる。
             */}
             <p className="mt-2.5 font-bold leading-[1.18] tracking-tight text-ink-900 [font-size:clamp(1.75rem,7vw,3.6rem)] sm:mt-3.5">
               <span className="inline-block whitespace-nowrap">
-                <span className="text-accent-600">月3,000円</span>で、
+                <span className="text-accent-600">Ctrl+A</span>、コピペ。
               </span>
               <span className="inline-block whitespace-nowrap">
-                <span className="text-accent-600">月5万円</span>のCRMに
+                物件<span className="text-accent-600">50件</span>、
               </span>
               <span className="inline-block whitespace-nowrap">
-                <GradientText className="text-primary-700">勝つ方法</GradientText>があります。
+                <GradientText className="text-primary-700">片づいた。</GradientText>
               </span>
             </p>
           </Reveal>
@@ -61,6 +63,7 @@ export function Hero() {
           {/* 4. アンカリング（チップ2）。価格は見出しに統合したので重複表示はしない。 */}
           <Reveal delay={0.13}>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2 sm:mt-6">
+              <Chip>月3,000円/人</Chip>
               <Chip>導入費 0円</Chip>
               <Chip>高額なAPI連携 0円</Chip>
             </div>
@@ -70,11 +73,22 @@ export function Hero() {
           {/* 5. CTA */}
           <Reveal delay={0.16}>
             <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:mt-7 sm:flex-row">
-              <GlowButton href={SITE.ctaTryUrl} size="lg" className="w-full sm:w-auto">
+              <GlowButton
+                href={SITE.ctaTryUrl}
+                size="lg"
+                className="w-full sm:w-auto"
+                onClick={() => trackCta('hero_primary')}
+              >
                 {SITE.ctaPrimaryLabel}
                 <ArrowRight className="h-5 w-5" />
               </GlowButton>
-              <GlowButton href="#hub" variant="secondary" size="lg" className="w-full sm:w-auto">
+              <GlowButton
+                href="#hub"
+                variant="secondary"
+                size="lg"
+                className="w-full sm:w-auto"
+                onClick={() => trackCta('hero_secondary')}
+              >
                 <Play className="h-4 w-4" />
                 {SITE.ctaSecondaryLabel}
               </GlowButton>

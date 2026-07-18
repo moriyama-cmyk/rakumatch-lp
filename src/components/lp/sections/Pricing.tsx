@@ -1,3 +1,5 @@
+'use client'
+
 import { Check, ArrowRight, Sparkles } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
@@ -8,6 +10,7 @@ import { GlowButton } from '../ui/GlowButton'
 import { SITE, PLANS } from '../site'
 import type { Plan } from '../site'
 import { hl } from '../lib/headline'
+import { trackCta } from '@/lib/track'
 
 const COMMON_FEATURES = [
   '双方マッチング・逆引き',
@@ -117,6 +120,7 @@ function PlanCard({ plan, highlight }: { plan: Plan; highlight?: boolean }) {
         href={SITE.ctaTryUrl}
         variant={highlight ? 'primary' : 'secondary'}
         className="mt-5 w-full"
+        onClick={() => trackCta(highlight ? 'pricing_premium' : 'pricing_standard')}
       >
         無料で試す
         <ArrowRight className="h-4 w-4" />

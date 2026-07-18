@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import { GlowButton } from '../ui/GlowButton'
 import { SITE } from '../site'
 import { cn } from '../lib/cn'
+import { trackCta } from '@/lib/track'
 
 /** モバイル下部固定 CTA。少しスクロールしてから出現。ライト・safe-area対応。 */
 export function StickyCta() {
@@ -34,7 +35,7 @@ export function StickyCta() {
           </p>
           <p className="truncate text-[0.7rem] text-ink-500">ログイン不要・クレカ不要で、そのまま画面が触れます</p>
         </div>
-        <GlowButton href={SITE.ctaTryUrl} size="md" className="shrink-0">
+        <GlowButton href={SITE.ctaTryUrl} size="md" className="shrink-0" onClick={() => trackCta('mobile_sticky')}>
           {SITE.ctaPrimaryLabel}
           <ArrowRight className="h-4 w-4" />
         </GlowButton>
