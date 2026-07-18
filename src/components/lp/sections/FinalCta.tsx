@@ -24,13 +24,13 @@ export function FinalCta() {
               </span>
 
               <h2 className="mt-6 text-display-xl text-ink-900">
-                {hl('今いる顧客から、')}
+                {hl('明日の営業から、')}
                 <br />
-                {hl(<GradientText>次の一手が見える。</GradientText>)}
+                {hl(<GradientText>変えられます。</GradientText>)}
               </h2>
 
               <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-700 sm:text-lg">
-                不動産売買のためのAI営業相棒、楽マッチ AI。まずは無料で、中を触ってみてください。
+                新人でも、初日からトップ営業マンの動き。まずは無料で、実際の画面を触って確かめてください。
               </p>
 
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
