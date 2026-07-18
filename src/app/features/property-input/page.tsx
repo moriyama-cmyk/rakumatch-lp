@@ -21,6 +21,7 @@ import {
   RelatedFeatures,
   FeatureDemoMedia,
   DemoVideoPoster,
+  FeatureShot,
   type FeaturePoint,
   type RequirementItem,
   type FaqItem,
@@ -300,19 +301,29 @@ export default function PropertyInputPage() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl bg-primary-50 opacity-60 blur-3xl" />
-            <Image
-              src="/feature-contract.png"
-              alt="契約フェーズ・精算・書類管理のデモ画面（イメージ）"
-              width={1376}
-              height={768}
-              sizes="(max-width: 1024px) 100vw, 600px"
-              className="w-full rounded-2xl ring-1 ring-surface-200 shadow-[0_20px_60px_rgba(5,57,43,0.12)]"
+          <div className="space-y-6">
+            <div className="relative">
+              <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl bg-primary-50 opacity-60 blur-3xl" />
+              <Image
+                src="/feature-contract.png"
+                alt="契約フェーズ・精算・書類管理のデモ画面（イメージ）"
+                width={1376}
+                height={768}
+                sizes="(max-width: 1024px) 100vw, 600px"
+                className="w-full rounded-2xl ring-1 ring-surface-200 shadow-[0_20px_60px_rgba(5,57,43,0.12)]"
+              />
+              <p className="mt-3 text-center text-sm text-ink-500">
+                デモ画面（イメージ）
+              </p>
+            </div>
+
+            <FeatureShot
+              base="/shot-contract-phase"
+              alt="事前審査から決済までの契約フェーズを6ステップの進捗バーで管理する実画面"
+              width={1600}
+              height={900}
+              caption="契約フェーズの進捗バー（実画面）"
             />
-            <p className="mt-3 text-center text-sm text-ink-500">
-              デモ画面（イメージ）
-            </p>
           </div>
         </div>
       </FeatureSection>

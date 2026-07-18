@@ -186,15 +186,14 @@ export default function CustomerAppPage() {
         ]}
         media={
           <div className="relative">
-            <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-sm rounded-full bg-primary-50 opacity-70 blur-3xl" />
-            <div className="mx-auto flex max-w-md gap-4">
+            <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-lg rounded-full bg-primary-50 opacity-70 blur-3xl" />
+            <div className="mx-auto grid max-w-2xl grid-cols-3 gap-4">
               <FeatureShot
                 base="/shot-customer-app-list"
                 alt="お客様アプリの保存物件リストと「あなたの傾向」実画面"
                 width={700}
                 height={1522}
                 priority
-                className="w-1/2"
               />
               <FeatureShot
                 base="/shot-customer-app-ai"
@@ -202,7 +201,14 @@ export default function CustomerAppPage() {
                 width={700}
                 height={1522}
                 priority
-                className="mt-8 w-1/2"
+                className="mt-8"
+              />
+              <FeatureShot
+                base="/shot-customer-app-trend"
+                alt="保存物件から見える「お客様の傾向」詳細分析の実画面"
+                width={700}
+                height={1522}
+                priority
               />
             </div>
           </div>

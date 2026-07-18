@@ -53,8 +53,8 @@ export function Hero() {
           {/* 3. サブ行 */}
           <Reveal delay={0.1}>
             <p className="mx-auto mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-ink-700 sm:mt-5 sm:text-lg">
-              {hlText('このお客様に、何を。この物件を、誰に。')}
-              <span className="whitespace-nowrap">— AIが両方から答えます。</span>
+              {hlText('誰に、何を出すか。')}
+              <span className="whitespace-nowrap">— AIが先に決めています。</span>
             </p>
           </Reveal>
 
@@ -89,10 +89,10 @@ export function Hero() {
         <Reveal delay={0.18}>
           <div className="mx-auto mt-10 max-w-5xl sm:mt-14">
             <AppShot
-              base="/shot-hero-matching"
-              alt="お客様の希望条件に100%マッチした物件をAIが提示している楽マッチ AI の画面"
+              base="/shot-top-hero"
+              alt="顧客情報・AIの潜在ニーズ提案・お客様アプリの保存物件が1画面に並ぶ楽マッチ AI の画面"
               width={1600}
-              height={713}
+              height={900}
               priority
             />
           </div>

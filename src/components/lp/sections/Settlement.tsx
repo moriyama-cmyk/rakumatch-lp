@@ -16,12 +16,26 @@ export function Settlement() {
           eyebrow="面倒を、貼るだけに"
           title={hlText('精算書は、書類を貼るだけ。')}
           visual={
-            <AppShot
-              base="/shot-settlement-form"
-              alt="固都税・管理費等の精算書がAIで自動入力される楽マッチ AI の精算計算画面"
-              width={1600}
-              height={900}
-            />
+            <div className="space-y-6">
+              <div>
+                <AppShot
+                  base="/shot-settlement-form"
+                  alt="固都税・管理費等の精算書がAIで自動入力される楽マッチ AI の精算計算画面"
+                  width={1600}
+                  height={900}
+                />
+                <p className="mt-3 text-center text-sm text-ink-500">固都税・管理費の入力画面</p>
+              </div>
+              <div>
+                <AppShot
+                  base="/shot-settlement-statement"
+                  alt="STEP1〜3で金額が積み上がっていく清算金計算書の実画面"
+                  width={1600}
+                  height={900}
+                />
+                <p className="mt-3 text-center text-sm text-ink-500">清算金計算書（STEP1〜3）</p>
+              </div>
+            </div>
           }
           note="※ 精算金額は確認のうえご利用ください（自動計算は目安です）。"
         >

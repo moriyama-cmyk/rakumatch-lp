@@ -49,7 +49,7 @@ export function SolutionCore() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-700">
-              顧客と物件を、不動産売買の実務に合わせてAIがマッチング。お客様一人ひとり・物件一件ごとに専属AIが付き、「誰に・どの物件を・どう出すか」を、その場で示します。
+              顧客一人・物件一件ごとに専属AIがつき、「誰に・どの物件を・どう出すか」を、この場で言い切ります。マッチングは、考える作業から確認する作業に変わります。
             </p>
           </Reveal>
         </div>

@@ -77,23 +77,40 @@ export function Ingest() {
           ))}
         </div>
 
-        {/* Before/After（貼るだけの投げ込み画面 → 整理された物件一覧）実画面 */}
+        {/* 実画面4コマ（レインズ一覧 → Ctrl+A全選択 → 貼るだけ → 物件カード化）。
+            レインズの2枚は他社情報・掲載物件が読めないようぼかし加工済み（規約配慮）。 */}
         <Reveal delay={0.1}>
-          <div className="mx-auto mt-8 max-w-5xl">
-            <div className="grid gap-6 sm:grid-cols-2 sm:items-start">
+          <div className="mx-auto mt-8 max-w-6xl">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:items-start">
               <div>
-                <p className="mb-2 text-center text-xs font-bold text-ink-500">Before：貼るだけ</p>
+                <p className="mb-2 text-center text-xs font-bold text-ink-500">1. レインズの検索結果</p>
+                <img
+                  src="/bulk-step-01-reins-list.png"
+                  alt="レインズの売買検索結果一覧のイメージ（内容はぼかし加工）"
+                  className="block h-auto w-full rounded-xl border border-surface-200 shadow-soft"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <p className="mb-2 text-center text-xs font-bold text-ink-500">2. Ctrl+Aで全選択コピー</p>
+                <img
+                  src="/bulk-step-02-reins-selected.png"
+                  alt="一覧をCtrl+Aで全選択した状態のイメージ（内容はぼかし加工）"
+                  className="block h-auto w-full rounded-xl border border-surface-200 shadow-soft"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <p className="mb-2 text-center text-xs font-bold text-ink-500">3. 楽マッチに貼る</p>
                 <AppShot
                   base="/shot-bulk-input"
-                  alt="レインズ等のテキストを貼り付けるだけのAI一括入力ハブ画面"
+                  alt="コピーしたテキストを貼り付けるだけのAI一括入力ハブ画面"
                   width={1600}
                   height={900}
                 />
               </div>
               <div>
-                <p className="mb-2 text-center text-xs font-bold text-ink-500">
-                  After：「マッチ」バッジ付きで並ぶ
-                </p>
+                <p className="mb-2 text-center text-xs font-bold text-ink-500">4. 「マッチ」バッジ付きで並ぶ</p>
                 <AppShot
                   base="/shot-properties"
                   alt="投げ込んだ物件がカードに整理され「マッチ」バッジ付きで並ぶ楽マッチ AI の物件一覧画面"
@@ -102,6 +119,9 @@ export function Ingest() {
                 />
               </div>
             </div>
+            <p className="mt-6 text-center text-lg font-bold text-ink-900">
+              あなたの作業は、コピペの1秒。50件以上を、AIが一気に登録。
+            </p>
           </div>
         </Reveal>
 
