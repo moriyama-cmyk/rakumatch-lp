@@ -1,9 +1,10 @@
-import { Smartphone, Check, Briefcase, Heart, Star } from 'lucide-react'
+import { Smartphone, Check, Briefcase, Heart } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GlowButton } from '../ui/GlowButton'
+import { Img } from '../ui/Img'
 import { SITE } from '../site'
 import { hlText } from '../lib/headline'
 
@@ -56,9 +57,9 @@ export function CustomerApp() {
             </Reveal>
           </div>
 
-          {/* お客様アプリ（コード製スマホモック：保存物件リスト） */}
+          {/* お客様アプリの実画面（保存物件リスト＋あなたの傾向）。スマホ枠風の細い額装。 */}
           <Reveal delay={0.1}>
-            <PhoneMock />
+            <PhoneShot />
           </Reveal>
         </div>
       </Container>
@@ -66,50 +67,19 @@ export function CustomerApp() {
   )
 }
 
-/** コード製のスマホモック（保存物件リスト3枚＝白カード＋星＋ハート）。装飾。 */
-function PhoneMock() {
+/** 実画面をスマホ枠風の細い角丸で額装（画像は隠さない）。 */
+function PhoneShot() {
   return (
-    <div className="mx-auto max-w-[290px]" aria-hidden>
-      <div className="rounded-[2.2rem] border border-surface-200 bg-ink-900/90 p-2.5 shadow-soft-lg">
-        <div className="overflow-hidden rounded-[1.7rem] bg-surface-50">
-          {/* ステータス／ヘッダー */}
-          <div className="bg-white px-4 pb-3 pt-4">
-            <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-surface-200" />
-            <div className="flex items-center gap-2">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-primary-600">
-                <Heart className="h-3.5 w-3.5 text-white" strokeWidth={2.6} />
-              </span>
-              <div className="min-w-0">
-                <div className="h-2.5 w-24 rounded bg-ink-900/80" />
-                <div className="mt-1 h-2 w-16 rounded bg-surface-200" />
-              </div>
-            </div>
-          </div>
-
-          {/* 保存物件カード×3 */}
-          <div className="space-y-2.5 px-3 py-3">
-            {[0, 1, 2].map((i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 rounded-xl border border-surface-200 bg-white p-2.5 shadow-soft"
-              >
-                {/* サムネ枠 */}
-                <div className="h-12 w-14 shrink-0 rounded-lg bg-gradient-to-br from-primary-50 to-surface-100" />
-                <div className="min-w-0 flex-1">
-                  <div className="h-2.5 w-full rounded bg-ink-900/70" />
-                  <div className="mt-1.5 h-2 w-2/3 rounded bg-surface-200" />
-                  <div className="mt-1.5 h-2 w-1/3 rounded bg-accent-500/40" />
-                </div>
-                <div className="flex flex-col items-center gap-1.5">
-                  <Star className="h-3.5 w-3.5 text-accent-500" fill="currentColor" />
-                  <Heart
-                    className={`h-3.5 w-3.5 ${i === 0 ? 'text-primary-600' : 'text-surface-200'}`}
-                    fill="currentColor"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+    <div className="mx-auto max-w-[320px]">
+      <div className="overflow-hidden rounded-[2rem] border border-surface-200 bg-white p-1.5 shadow-soft-lg">
+        <div className="overflow-hidden rounded-[1.6rem]">
+          <Img
+            base="/shot-customer-app-list"
+            alt="お客様アプリの保存物件リストと「あなたの傾向」AI分析の実画面"
+            width={700}
+            height={1522}
+            priority
+          />
         </div>
       </div>
     </div>

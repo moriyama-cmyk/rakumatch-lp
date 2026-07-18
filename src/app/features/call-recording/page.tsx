@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ScreenMockup from "@/components/ScreenMockup";
 import {
   FileText,
   Layers,
@@ -18,7 +17,7 @@ import {
   FeatureFAQ,
   FeatureCTA,
   RelatedFeatures,
-  FeatureDemoMedia,
+  FeatureShot,
   type FeaturePoint,
   type Step,
   type RequirementItem,
@@ -177,25 +176,20 @@ export default function CallRecordingPage() {
           { name: "通話録音・要約・記録", href: "/features/call-recording" },
         ]}
         media={
-          // 差し替え予定: demo-call-recording.mp4（+poster）を /public に置き video/ready を渡せば動画版に。
-          // それまでは ScreenMockup のプレースホルダを表示する。
-          <FeatureDemoMedia
-            video="/demo-call-recording.mp4"
-            poster="/demo-call-recording-poster.jpg"
-            alt="通話録音・要約のデモ画面（イメージ）"
-            ready={false}
-            fallback={
-              <div className="relative">
-                <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-md rounded-full bg-primary-50 opacity-70 blur-3xl" />
-                <div className="mx-auto max-w-md">
-                  <ScreenMockup
-                    alt="楽マッチ AI 通話録音・要約のデモ画面"
-                    label="デモ画面（イメージ）"
-                  />
-                </div>
-              </div>
-            }
-          />
+          // 通話録音の専用スクショは無いため、顧客詳細画面（電話する/録音開始が同じ行にある）を実画面として使用。
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-md rounded-full bg-primary-50 opacity-70 blur-3xl" />
+            <div className="mx-auto max-w-md">
+              <FeatureShot
+                base="/shot-customer-detail"
+                alt="顧客詳細ページ。電話する・録音開始ボタンが同じ行にある楽マッチ AI の実画面"
+                width={1600}
+                height={900}
+                priority
+                caption="顧客詳細ページの実画面（録音は「録音開始」から開始します）"
+              />
+            </div>
+          </div>
         }
       />
 

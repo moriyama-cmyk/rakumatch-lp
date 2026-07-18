@@ -94,7 +94,6 @@ export function Hero() {
               width={1600}
               height={713}
               priority
-              chrome
             />
           </div>
         </Reveal>

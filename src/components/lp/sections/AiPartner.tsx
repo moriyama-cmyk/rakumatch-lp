@@ -23,10 +23,10 @@ export function AiPartner() {
           visual={
             <figure className="overflow-hidden rounded-2xl border border-surface-200 bg-white shadow-soft-lg">
               <Img
-                base="/ai-partner"
-                alt="営業担当に寄り添うAIアシスタントのイメージ"
-                width={1586}
-                height={992}
+                base="/shot-ai-insight"
+                alt="顧客詳細ページでAIが潜在ニーズを提案している楽マッチ AI の実画面"
+                width={1600}
+                height={900}
               />
             </figure>
           }

@@ -20,6 +20,7 @@ export { default as FeatureBreadcrumb } from "./FeatureBreadcrumb";
 export { default as RelatedFeatures } from "./RelatedFeatures";
 export { default as FeatureDemoMedia } from "./FeatureDemoMedia";
 export { default as DemoVideoPoster } from "./DemoVideoPoster";
+export { default as FeatureShot } from "./FeatureShot";
 
 export type { FeatureHeroProps } from "./FeatureHero";
 export type { FeatureSectionProps } from "./FeatureSection";
@@ -32,3 +33,4 @@ export type { Crumb } from "./FeatureBreadcrumb";
 export type { RelatedFeature } from "./RelatedFeatures";
 export type { FeatureDemoMediaProps } from "./FeatureDemoMedia";
 export type { DemoVideoPosterProps } from "./DemoVideoPoster";
+export type { FeatureShotProps } from "./FeatureShot";

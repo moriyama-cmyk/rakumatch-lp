@@ -10,7 +10,11 @@ type AppShotProps = {
   className?: string
   /** ファーストビュー等は即時読込＋同期デコード */
   priority?: boolean
-  /** ブラウザ風のヘッダーを付ける */
+  /**
+   * ブラウザ風のヘッダーを付ける（信号ドット＋URLピル）。
+   * 実画面を主役にするため既定はオフ。過去の呼び出し箇所は撤去済みだが、
+   * 型として残し、必要になれば明示的に true を渡せば復活できる。
+   */
   chrome?: boolean
   chromeUrl?: string
 }

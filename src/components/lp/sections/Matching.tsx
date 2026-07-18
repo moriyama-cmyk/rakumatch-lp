@@ -2,7 +2,7 @@ import { ArrowLeftRight, Search, Users, SlidersHorizontal } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { FeatureSplit } from '../ui/FeatureSplit'
-import { MatchDiagram } from '../ui/MatchDiagram'
+import { AppShot } from '../ui/AppShot'
 import { hlText } from '../lib/headline'
 
 /** ② 双方マッチング（逆引き）。ビジュアルは左・コード製の図解。 */
@@ -21,7 +21,14 @@ export function Matching() {
               {hlText('もう探さない。')}
             </>
           }
-          visual={<MatchDiagram />}
+          visual={
+            <AppShot
+              base="/shot-customer-detail"
+              alt="顧客の希望条件と右側にマッチした物件が並ぶ楽マッチ AI の顧客詳細画面"
+              width={1600}
+              height={900}
+            />
+          }
           points={[
             { icon: Search, text: '物件を固定 → 紹介すべき顧客が並ぶ（逆引き）' },
             { icon: Users, text: '顧客を固定 → 出すべき物件が並ぶ' },

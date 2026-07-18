@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import ScreenMockup from "@/components/ScreenMockup";
 import {
   ClipboardList,
   Search,
@@ -18,7 +17,7 @@ import {
   FeatureFAQ,
   FeatureCTA,
   RelatedFeatures,
-  FeatureDemoMedia,
+  FeatureShot,
   type FeaturePoint,
   type Step,
   type RequirementItem,
@@ -186,25 +185,27 @@ export default function CustomerAppPage() {
           { name: "お客様連動アプリ", href: "/features/customer-app" },
         ]}
         media={
-          // 差し替え予定: 縦型 demo-customer-app.mp4（+poster）を /public に置き video/ready を渡せば動画版に。
-          // それまでは ScreenMockup のプレースホルダを中央寄せ・幅を取りすぎない形で表示する。
-          <FeatureDemoMedia
-            video="/demo-customer-app.mp4"
-            poster="/demo-customer-app-poster.jpg"
-            alt="お客様連動アプリのデモ画面（イメージ）"
-            ready={false}
-            fallback={
-              <div className="relative">
-                <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-sm rounded-full bg-primary-50 opacity-70 blur-3xl" />
-                <div className="mx-auto max-w-sm">
-                  <ScreenMockup
-                    alt="楽マッチ AI お客様連動アプリのデモ画面"
-                    label="デモ画面（イメージ）"
-                  />
-                </div>
-              </div>
-            }
-          />
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-sm rounded-full bg-primary-50 opacity-70 blur-3xl" />
+            <div className="mx-auto flex max-w-md gap-4">
+              <FeatureShot
+                base="/shot-customer-app-list"
+                alt="お客様アプリの保存物件リストと「あなたの傾向」実画面"
+                width={700}
+                height={1522}
+                priority
+                className="w-1/2"
+              />
+              <FeatureShot
+                base="/shot-customer-app-ai"
+                alt="保存した物件へのAIコメント（良い点・確認ポイント）実画面"
+                width={700}
+                height={1522}
+                priority
+                className="mt-8 w-1/2"
+              />
+            </div>
+          </div>
         }
       />
 

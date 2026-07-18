@@ -77,16 +77,31 @@ export function Ingest() {
           ))}
         </div>
 
-        {/* 結果（実画面：投げ込み後に物件カードが並び「マッチ1名」バッジが付く一覧） */}
+        {/* Before/After（貼るだけの投げ込み画面 → 整理された物件一覧）実画面 */}
         <Reveal delay={0.1}>
-          <div className="mx-auto mt-8 max-w-4xl">
-            <AppShot
-              base="/shot-properties"
-              alt="投げ込んだ物件がカードに整理され「マッチ1名」バッジ付きで並ぶ楽マッチ AI の物件一覧画面"
-              width={1600}
-              height={713}
-              chrome
-            />
+          <div className="mx-auto mt-8 max-w-5xl">
+            <div className="grid gap-6 sm:grid-cols-2 sm:items-start">
+              <div>
+                <p className="mb-2 text-center text-xs font-bold text-ink-500">Before：貼るだけ</p>
+                <AppShot
+                  base="/shot-bulk-input"
+                  alt="レインズ等のテキストを貼り付けるだけのAI一括入力ハブ画面"
+                  width={1600}
+                  height={900}
+                />
+              </div>
+              <div>
+                <p className="mb-2 text-center text-xs font-bold text-ink-500">
+                  After：「マッチ」バッジ付きで並ぶ
+                </p>
+                <AppShot
+                  base="/shot-properties"
+                  alt="投げ込んだ物件がカードに整理され「マッチ」バッジ付きで並ぶ楽マッチ AI の物件一覧画面"
+                  width={1600}
+                  height={900}
+                />
+              </div>
+            </div>
           </div>
         </Reveal>
 
