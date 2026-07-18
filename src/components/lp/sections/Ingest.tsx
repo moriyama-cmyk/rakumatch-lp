@@ -44,9 +44,9 @@ export function Ingest() {
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-5 text-display-lg text-ink-900">
-              {hlText('貼る・撮る・投げ込む。')}
+              {hlText('Ctrl+A、コピペ。')}
               <br className="hidden sm:block" />
-              {hl('あとはAIが', 'マッチに乗せる。')}
+              {hl('物件50件、', '片づいた。')}
             </h2>
           </Reveal>
           <Reveal delay={0.1}>

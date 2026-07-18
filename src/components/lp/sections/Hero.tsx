@@ -41,13 +41,13 @@ export function Hero() {
             */}
             <p className="mt-2.5 font-bold leading-[1.18] tracking-tight text-ink-900 [font-size:clamp(1.75rem,7vw,3.6rem)] sm:mt-3.5">
               <span className="inline-block whitespace-nowrap">
-                <span className="text-accent-600">Ctrl+A</span>、コピペ。
+                <span className="text-accent-600">新人</span>でも、
               </span>
               <span className="inline-block whitespace-nowrap">
-                物件<span className="text-accent-600">50件</span>、
+                <span className="text-accent-600">初日</span>から
               </span>
               <span className="inline-block whitespace-nowrap">
-                <GradientText className="text-primary-700">片づいた。</GradientText>
+                <GradientText className="text-primary-700">トップ営業の動き。</GradientText>
               </span>
             </p>
           </Reveal>
