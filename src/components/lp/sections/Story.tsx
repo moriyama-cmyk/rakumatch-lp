@@ -69,6 +69,19 @@ export function Story() {
             これは投資家やエンジニアが机上で作ったツールではありません。現場の不便を1つずつ潰して作った、現場のための道具です。
           </p>
         </Reveal>
+
+        {/* 正直ブロック（2026-07-18 確定コピー・盛らない） */}
+        <Reveal delay={0.14}>
+          <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-surface-200 bg-white p-8 shadow-soft sm:p-10">
+            <h3 className="text-lg font-bold text-ink-900">導入事例は、まだ載せていません。</h3>
+            <p className="mt-4 text-base leading-relaxed text-ink-700">
+              使い始めて日の浅いお客様の声を飾るより、私が自分の会社で毎日使っている実物を、そのまま触ってもらう方が早いと考えました。今日も私は、この画面で顧客対応をしています。事例より、実物で判断してください。
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-ink-700">
+              私はエンジニアではありません。難しい操作は、私が一番嫌いです。だからこのアプリの操作は“貼るだけ”にしました。
+            </p>
+          </div>
+        </Reveal>
       </Container>
     </Section>
   )

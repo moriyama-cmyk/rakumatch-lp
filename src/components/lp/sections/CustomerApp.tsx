@@ -32,10 +32,13 @@ export function CustomerApp() {
             <Reveal>
               <Badge icon={<Smartphone className="h-3.5 w-3.5" />}>最大の差別化</Badge>
               <h3 className="mt-5 text-display-md text-ink-900">
-                {hlText('お客様の“欲しい”が、')}
+                {hlText('言葉にならない“欲しい”まで、')}
                 <br className="hidden sm:block" />
-                {hlText('向こうから届く。')}
+                {hlText('営業に届く。')}
               </h3>
+              <p className="mt-3 text-sm font-bold text-primary-700 sm:text-base">
+                {hlText('——他のCRMに、この方向はありません。お客様→営業へ、情報が逆流します。')}
+              </p>
               <p className="mt-4 text-[1.0625rem] leading-[1.9] text-ink-700">
                 自分の会社のお客様に、実際に配っています。担当者が発行するリンクを、お客様が自分のアプリとして使う。SUUMOなど色々な媒体で気になった物件が1か所に集まり、その希望と保存物件が、そのままあなたに届きます。「どんな物件がお好みですか」と、もう聞かなくていい。
               </p>

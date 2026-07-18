@@ -43,6 +43,11 @@ export function Problem() {
               {hl('起きていませんか。')}
             </h2>
           </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-4 text-lg font-bold text-ink-900">
+              {hlText('売れない理由は、努力不足ではない。情報が、つながっていないだけ。')}
+            </p>
+          </Reveal>
         </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -59,8 +64,22 @@ export function Problem() {
           ))}
         </div>
 
-        <Reveal delay={0.12}>
-          <p className="mt-10 text-center text-display-md text-ink-900">
+        <Reveal delay={0.16}>
+          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-surface-200 bg-white p-7 shadow-soft sm:p-8">
+            <p className="text-base font-bold text-ink-900">
+              {hlText('いまのやり方の値段を、一度だけ計算してみてください。')}
+            </p>
+            <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-700">
+              営業が“売ること”に使えている時間は、週のわずか32%※1。メール1通の作成に、平均5分57秒※2。物件の手入力が1件20分なら、50件で16時間——あなたの時給換算で、いくらになりますか。楽マッチは、月3,000円です。
+            </p>
+            <p className="mt-3 text-xs text-ink-500">
+              ※1 Salesforce「セールス最新事情」2024（27カ国・営業職調査） ※2 日本ビジネスメール協会「ビジネスメール実態調査2024」。いずれも業界横断の調査です。
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <p className="mt-8 text-center text-display-md text-ink-900">
             {hl('その全部に、', <><GradientText>AIの相棒</GradientText>で</>, '手を打てます。')}
           </p>
         </Reveal>

@@ -59,14 +59,17 @@ export function Hero() {
               {hlText('誰に、何を出すか。')}
               <span className="whitespace-nowrap">— AIが先に決めています。</span>
             </p>
+            <p className="mt-1.5 text-sm text-ink-600">
+              {hlText('パソコンが苦手でも、大丈夫。操作は"貼るだけ"しかありません。')}
+            </p>
           </Reveal>
 
-          {/* 4. アンカリング（チップ2）。価格は見出しに統合したので重複表示はしない。 */}
+          {/* 4. アンカリング（チップ3）。価格は見出しに統合したので重複表示はしない。 */}
           <Reveal delay={0.13}>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2 sm:mt-6">
               <Chip>月3,000円/人</Chip>
+              <Chip>初月1,500円〜</Chip>
               <Chip>導入費 0円</Chip>
-              <Chip>高額なAPI連携 0円</Chip>
             </div>
             <p className="mt-2 text-xs text-ink-500">※ 料金はすべて税込・1人あたりの月額です。</p>
           </Reveal>
@@ -80,7 +83,7 @@ export function Hero() {
                 className="w-full sm:w-auto"
                 onClick={() => trackCta('hero_primary')}
               >
-                {SITE.ctaPrimaryLabel}
+                登録なしで、実物の画面を触る
                 <ArrowRight className="h-5 w-5" />
               </GlowButton>
               <GlowButton
@@ -95,8 +98,12 @@ export function Hero() {
               </GlowButton>
             </div>
 
-            {/* 6. マイクロコピー */}
-            <p className="mt-3 text-xs text-ink-500">{SITE.microCopy}</p>
+            {/* 6. マイクロコピー（3行・確定コピー） */}
+            <div className="mt-3 space-y-1 text-xs text-ink-500">
+              <p>営業電話・営業メールは一切ありません（連絡先を伺わないので、こちらから連絡できません）。</p>
+              <p>無料期間後に勝手に課金されることもありません（カード未登録のため、物理的に不可能です）。</p>
+              <p>合わなければ、ページを閉じるだけです。</p>
+            </div>
           </Reveal>
         </div>
 

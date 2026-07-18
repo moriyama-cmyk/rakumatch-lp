@@ -12,6 +12,19 @@ import type { Plan } from '../site'
 import { hl } from '../lib/headline'
 import { trackCta } from '@/lib/track'
 
+const STEPS = [
+  { step: '①', label: '触る', note: '0円（登録なし）' },
+  { step: '②', label: '7日試す', note: '0円（カード不要）' },
+  { step: '③', label: '初月', note: '1,500円（Standard）' },
+  { step: '④', label: '月3,000円/人', note: '' },
+]
+
+const PROMISES = [
+  '7日で合わなければ、そのまま終了。引き止めの電話もメールもしません。',
+  'カードをお預かりしないので、解約忘れの請求は物理的に発生しません。',
+  '契約後も、違約金・最低利用期間はありません。',
+]
+
 const COMMON_FEATURES = [
   '双方マッチング・逆引き',
   'お客様連動アプリ',
@@ -50,6 +63,39 @@ export function Pricing() {
             </p>
           </Reveal>
         </div>
+
+        {/* 4段の階段（無料〜本契約までの導線を可視化）。 */}
+        <Reveal delay={0.14}>
+          <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-2 sm:gap-3">
+            {STEPS.map((s, i) => (
+              <div key={s.label} className="flex items-center gap-2 sm:gap-3">
+                <div className="flex min-w-[7rem] flex-col items-center rounded-2xl border border-surface-200 bg-surface-50 px-4 py-3 text-center shadow-soft">
+                  <span className="text-xs font-bold text-primary-600">{s.step}</span>
+                  <span className="mt-1 text-sm font-bold text-ink-900">{s.label}</span>
+                  {s.note && <span className="mt-0.5 text-xs text-ink-500">{s.note}</span>}
+                </div>
+                {i < STEPS.length - 1 && (
+                  <ArrowRight className="h-4 w-4 shrink-0 text-ink-300" aria-hidden />
+                )}
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        {/* 私たちの約束 */}
+        <Reveal delay={0.17}>
+          <div className="mx-auto mt-6 max-w-2xl rounded-2xl border border-surface-200 bg-white p-6 shadow-soft sm:p-7">
+            <p className="text-sm font-bold text-primary-700">私たちの約束</p>
+            <ul className="mt-3 space-y-2.5">
+              {PROMISES.map((p) => (
+                <li key={p} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-700">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" strokeWidth={3} />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {PLANS.map((p, i) => (

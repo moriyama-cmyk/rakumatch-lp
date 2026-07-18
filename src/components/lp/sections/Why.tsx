@@ -180,6 +180,12 @@ export function Why() {
             <span className="text-ink-700">{hlText('法人契約も、20万円の初期費用も、いりません。')}</span>
           </p>
         </Reveal>
+
+        <Reveal delay={0.14}>
+          <p className="mt-4 text-center text-sm font-bold text-primary-700">
+            {hlText('他社は、資料請求と商談から。楽マッチは、今この場で実物が触れます。')}
+          </p>
+        </Reveal>
       </Container>
     </Section>
   )
