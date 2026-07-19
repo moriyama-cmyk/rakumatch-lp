@@ -98,25 +98,51 @@ export function Hero() {
               </GlowButton>
             </div>
 
-            {/* 6. マイクロコピー（3行・確定コピー） */}
+            {/* 6. マイクロコピー（3行）。2026-07-19 事実誤り修正: デモ(登録・カード不要)とトライアル(カード必要・7日以内解約で無料)を混同しないよう分離。 */}
             <div className="mt-3 space-y-1 text-xs text-ink-500">
-              <p>営業電話・営業メールは一切ありません（連絡先を伺わないので、こちらから連絡できません）。</p>
-              <p>無料期間後に勝手に課金されることもありません（カード未登録のため、物理的に不可能です）。</p>
-              <p>合わなければ、ページを閉じるだけです。</p>
+              <p>まずは登録なしで、実物の画面を触れます。連絡先も不要なので、営業の電話やメールが来ることもありません。</p>
+              <p>気に入って有料機能を試すときだけ登録が必要ですが、7日以内に解約すれば料金は一切かかりません。</p>
+              <p>合わなければ、そのまま離れるだけです。</p>
             </div>
           </Reveal>
         </div>
 
-        {/* 実アプリ画面（顧客に100%マッチ2件の実画面）。ファーストビュー直下。 */}
+        {/* 実アプリ画面。ファーストビュー直下。
+            最大の差別化「お客様連動アプリ」を1枚で伝えるため、営業のPC画面（主役・横長）に
+            お客様のスマホ画面（お客様連動アプリ）を右下へ重ねた合成ビジュアルにしている。
+            スマホ幅では重ね配置が破綻するので、モバイルはPCを主役に据えつつスマホを右下へ
+            小さく縦積み（overflowを出さない）。 */}
         <Reveal delay={0.18}>
-          <div className="mx-auto mt-10 max-w-5xl sm:mt-14">
+          <div className="relative mx-auto mt-10 max-w-5xl sm:mt-14">
+            {/* PC（営業の画面・主役） */}
             <AppShot
               base="/shot-top-hero"
-              alt="顧客情報・AIの潜在ニーズ提案・お客様アプリの保存物件が1画面に並ぶ楽マッチ AI の画面"
+              alt="顧客情報とAI提案が一画面に並ぶ楽マッチ AI（PC画面）"
               width={1920}
               height={1080}
               priority
+              chrome
             />
+
+            {/* スマホ（お客様連動アプリ）。モバイル=PC直下に右寄せで少し重ねて縦積み。
+                sm以上=PC画面の右下へ絶対配置で手前に重ねる。 */}
+            <div className="relative z-10 -mt-12 ml-auto mr-1 w-[40%] max-w-[168px] sm:absolute sm:bottom-1 sm:-right-2 sm:m-0 sm:w-[30%] sm:max-w-[224px]">
+              <div className="overflow-hidden rounded-[1.6rem] border-[5px] border-ink-900 bg-ink-900 shadow-soft-lg ring-1 ring-black/10">
+                <picture>
+                  <source srcSet="/shot-customer-app-list.webp" type="image/webp" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/shot-customer-app-list.opt.jpg"
+                    alt="お客様がスマホで保存した物件が営業に届く、お客様連動アプリ"
+                    width={868}
+                    height={1887}
+                    loading="eager"
+                    decoding="async"
+                    className="block h-auto w-full rounded-[1.2rem]"
+                  />
+                </picture>
+              </div>
+            </div>
           </div>
         </Reveal>
 

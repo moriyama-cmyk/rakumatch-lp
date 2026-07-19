@@ -14,15 +14,15 @@ import { trackCta } from '@/lib/track'
 
 const STEPS = [
   { step: '①', label: '触る', note: '0円（登録なし）' },
-  { step: '②', label: '7日試す', note: '0円（カード不要）' },
+  { step: '②', label: '7日試す', note: '0円（7日以内解約で無料）' },
   { step: '③', label: '初月', note: '1,500円（Standard）' },
   { step: '④', label: '月3,000円/人', note: '' },
 ]
 
 const PROMISES = [
-  '7日で合わなければ、そのまま終了。引き止めの電話もメールもしません。',
-  'カードをお預かりしないので、解約忘れの請求は物理的に発生しません。',
+  '7日以内に解約すれば、料金は一切かかりません。引き止めの電話もメールもしません。',
   '契約後も、違約金・最低利用期間はありません。',
+  '解約はいつでもStripeの管理画面から、ご自身で行えます。',
 ]
 
 const COMMON_FEATURES = [
