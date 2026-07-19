@@ -14,6 +14,7 @@ import { StickyCta } from "@/components/lp/layout/StickyCta";
 import { Hero } from "@/components/lp/sections/Hero";
 import { TrustStrip } from "@/components/lp/sections/TrustStrip";
 import { Problem } from "@/components/lp/sections/Problem";
+import { EraShift } from "@/components/lp/sections/EraShift";
 import { SolutionCore } from "@/components/lp/sections/SolutionCore";
 import { CustomerApp } from "@/components/lp/sections/CustomerApp";
 import { Matching } from "@/components/lp/sections/Matching";
@@ -45,6 +46,8 @@ export default function LandingPage() {
         <TrustStrip />
         {/* 2. PROBLEM */}
         <Problem />
+        {/* 2.5 時代の転換（価格軸→個人の武器軸へのブリッジ） */}
+        <EraShift />
         {/* 3. SOLUTION（核の宣言） */}
         <SolutionCore />
 

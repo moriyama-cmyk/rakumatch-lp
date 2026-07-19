@@ -87,6 +87,14 @@ export function SolutionCore() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={0.2}>
+          <p className="mx-auto mt-10 max-w-xl text-center text-base font-bold text-ink-900">
+            50件でも、その先でも。貼る手間は、<GradientText>一瞬</GradientText>のまま。
+            <br className="hidden sm:block" />
+            そして、その入力が初めて<GradientText>意味</GradientText>を持つ。
+          </p>
+        </Reveal>
         {/* CTAはヒーロー・料金・最終CTAに集約。中間セクションの「無料で試す」連打は撤去。 */}
       </Container>
     </Section>
