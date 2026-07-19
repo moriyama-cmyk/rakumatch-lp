@@ -1,3 +1,4 @@
+import { ArrowRight } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
@@ -26,6 +27,41 @@ export function EraShift() {
             </p>
           </Reveal>
         </div>
+
+        {/* ビフォーアフター2カラム。昔=沈んだグレー／今=ゴールド発光。優越断定語は使わない。 */}
+        <Reveal delay={0.12}>
+          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <div className="flex-1 rounded-2xl border border-surface-200 bg-surface-100 p-6 text-center">
+              <p className="text-xs font-bold tracking-wide text-ink-500">これまでのAI営業ツール</p>
+              <ul className="mt-4 space-y-2 text-sm text-ink-500">
+                <li>初期費用 数十万円〜</li>
+                <li>法人・店舗単位の契約</li>
+                <li>個人には手が届かない</li>
+              </ul>
+            </div>
+
+            <div className="flex items-center justify-center py-1 sm:py-0">
+              <ArrowRight className="h-6 w-6 rotate-90 text-primary-400 sm:h-7 sm:w-7 sm:rotate-0" aria-hidden />
+            </div>
+
+            <div className="flex-1 rounded-2xl border border-accent-500/40 bg-white p-6 text-center shadow-soft-md">
+              <p className="text-xs font-bold tracking-wide text-accent-600">楽マッチ</p>
+              <p className="mt-3">
+                <span className="text-4xl font-bold text-accent-600 sm:text-5xl">月3,000円</span>
+                <span className="ml-1 text-sm font-medium text-ink-500">/人</span>
+              </p>
+              <ul className="mt-4 space-y-2 text-sm font-medium text-ink-900">
+                <li>個人1名から契約OK</li>
+                <li>導入0円・7日間無料</li>
+              </ul>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <p className="mx-auto mt-4 max-w-xl text-center text-xs leading-relaxed text-ink-500">
+            ※ 昔の価格帯は当社調べ（2026年6月時点・各社公開情報による）。単位・条件は各社により異なります。
+          </p>
+        </Reveal>
       </Container>
     </Section>
   )

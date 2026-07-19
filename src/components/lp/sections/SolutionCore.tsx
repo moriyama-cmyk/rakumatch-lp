@@ -95,9 +95,59 @@ export function SolutionCore() {
             そして、その入力が初めて<GradientText>意味</GradientText>を持つ。
           </p>
         </Reveal>
+
+        {/* 概念図: 件数が増えるほど、手入力とのギャップが右へ開く。実測値は書かない。 */}
+        <Reveal delay={0.24}>
+          <EffortLineChart />
+        </Reveal>
         {/* CTAはヒーロー・料金・最終CTAに集約。中間セクションの「無料で試す」連打は撤去。 */}
       </Container>
     </Section>
+  )
+}
+
+/** 手入力(右肩上がり)と楽マッチ(ほぼ水平)の2本線。件数が増えるほど差が開く概念図。実測性能は書かない。 */
+function EffortLineChart() {
+  return (
+    <div className="mx-auto mt-8 max-w-md rounded-2xl border border-surface-200 bg-surface-50 p-5 sm:p-6">
+      <div className="flex items-center justify-center gap-5 text-xs font-medium text-ink-700">
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-1.5 w-5 shrink-0 rounded-full bg-[#5E6B64]" aria-hidden />
+          手入力
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-1.5 w-5 shrink-0 rounded-full bg-primary-600" aria-hidden />
+          楽マッチ
+        </span>
+      </div>
+
+      <svg
+        viewBox="0 0 300 150"
+        className="mt-3 w-full"
+        role="img"
+        aria-label="件数が増えるほど手入力の手間は比例して増える一方、楽マッチの手間はほぼ横ばいのまま。件数が増えるほど差が開くイメージ図。"
+      >
+        {/* 軸（ヘアライン・実線） */}
+        <line x1="24" y1="118" x2="278" y2="118" strokeWidth="1" className="stroke-[#E5E2DD]" />
+        <line x1="24" y1="18" x2="24" y2="118" strokeWidth="1" className="stroke-[#E5E2DD]" />
+        <text x="278" y="132" textAnchor="end" className="fill-[#898781]" style={{ fontSize: 9 }}>
+          件数 →
+        </text>
+        <text x="24" y="12" textAnchor="start" className="fill-[#898781]" style={{ fontSize: 9 }}>
+          手間
+        </text>
+
+        {/* 手入力: 件数に比例した右肩上がり */}
+        <line x1="24" y1="118" x2="256" y2="26" strokeWidth="2" strokeLinecap="round" className="stroke-[#5E6B64]" />
+        <circle cx="256" cy="26" r="4" strokeWidth="2" className="fill-[#5E6B64] stroke-[#FAFAF8]" />
+
+        {/* 楽マッチ: ほぼ水平 */}
+        <line x1="24" y1="112" x2="256" y2="100" strokeWidth="2" strokeLinecap="round" className="stroke-primary-600" />
+        <circle cx="256" cy="100" r="4" strokeWidth="2" className="fill-primary-600 stroke-[#FAFAF8]" />
+      </svg>
+
+      <p className="mt-2 text-center text-xs leading-relaxed text-ink-500">※イメージ図。手間の増え方の概念を示すものです。</p>
+    </div>
   )
 }
 

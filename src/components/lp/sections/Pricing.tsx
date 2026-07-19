@@ -64,21 +64,27 @@ export function Pricing() {
           </Reveal>
         </div>
 
-        {/* 4段の階段（無料〜本契約までの導線を可視化）。 */}
+        {/* 4段の階段。①②=0円ゾーン(緑の帯で囲む)→③→④が右肩上がりに高くなる。
+            モバイルは縦積み(崩れ防止)、sm以上でtranslate-yによる実際の段差を付ける。 */}
         <Reveal delay={0.14}>
-          <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-2 sm:gap-3">
-            {STEPS.map((s, i) => (
-              <div key={s.label} className="flex items-center gap-2 sm:gap-3">
-                <div className="flex min-w-[7rem] flex-col items-center rounded-2xl border border-surface-200 bg-surface-50 px-4 py-3 text-center shadow-soft">
-                  <span className="text-xs font-bold text-primary-600">{s.step}</span>
-                  <span className="mt-1 text-sm font-bold text-ink-900">{s.label}</span>
-                  {s.note && <span className="mt-0.5 text-xs text-ink-500">{s.note}</span>}
-                </div>
-                {i < STEPS.length - 1 && (
-                  <ArrowRight className="h-4 w-4 shrink-0 text-ink-300" aria-hidden />
-                )}
+          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 sm:flex-row sm:items-end sm:justify-center sm:gap-3">
+            <div className="flex flex-col items-center gap-2 rounded-2xl border border-primary-200 bg-primary-50 p-3">
+              <span className="text-[10px] font-bold tracking-wide text-primary-700">0円ゾーン</span>
+              <div className="flex flex-row gap-2">
+                <StepCard {...STEPS[0]} />
+                <StepCard {...STEPS[1]} />
               </div>
-            ))}
+            </div>
+
+            <StepArrow />
+            <div className="sm:-translate-y-3.5">
+              <StepCard {...STEPS[2]} />
+            </div>
+
+            <StepArrow />
+            <div className="sm:-translate-y-7">
+              <StepCard {...STEPS[3]} />
+            </div>
           </div>
         </Reveal>
 
@@ -173,4 +179,18 @@ function PlanCard({ plan, highlight }: { plan: Plan; highlight?: boolean }) {
       </GlowButton>
     </div>
   )
+}
+
+function StepCard({ step, label, note }: { step: string; label: string; note?: string }) {
+  return (
+    <div className="flex min-w-[7rem] flex-col items-center rounded-2xl border border-surface-200 bg-white px-4 py-3 text-center shadow-soft">
+      <span className="text-xs font-bold text-primary-600">{step}</span>
+      <span className="mt-1 text-sm font-bold text-ink-900">{label}</span>
+      {note && <span className="mt-0.5 text-xs text-ink-500">{note}</span>}
+    </div>
+  )
+}
+
+function StepArrow() {
+  return <ArrowRight className="h-4 w-4 shrink-0 rotate-90 text-ink-300 sm:rotate-0" aria-hidden />
 }
