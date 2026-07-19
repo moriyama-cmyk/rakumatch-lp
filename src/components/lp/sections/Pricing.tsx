@@ -64,26 +64,40 @@ export function Pricing() {
           </Reveal>
         </div>
 
-        {/* 4段の階段。①②=0円ゾーン(緑の帯で囲む)→③→④が右肩上がりに高くなる。
-            モバイルは縦積み(崩れ防止)、sm以上でtranslate-yによる実際の段差を付ける。 */}
+        {/* 4段の階段→一直線＋矢印に変更（2026-07-19 森山さん指摘: 段差だと①②が0円ゾーンの
+            枠に入っている分だけ基準線がずれて不揃いに見える）。
+            全カラムに同じ高さのラベル行を確保（0円ゾーンのみ可視・他は同サイズの不可視プレースホルダ）
+            することで、translate-y のズラしなしに4枚が同じ基準線に並ぶ。矢印で進行だけを示す。 */}
         <Reveal delay={0.14}>
-          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 sm:flex-row sm:items-stretch sm:justify-center sm:gap-3">
-            <div className="flex flex-col items-center gap-2 rounded-xl border border-primary-200 bg-primary-50 p-3">
-              <span className="text-xs font-bold tracking-wide text-primary-700">0円ゾーン</span>
-              <div className="flex flex-1 flex-row items-stretch gap-2">
+          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-stretch sm:justify-center sm:gap-3">
+            <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
+              <span className="rounded-full bg-primary-100 px-3 py-1 text-xs font-bold tracking-wide text-primary-700">
+                0円ゾーン
+              </span>
+              <div className="flex flex-1 flex-row items-stretch gap-2 rounded-xl border border-primary-200 bg-primary-50 p-3">
                 <StepCard {...STEPS[0]} />
                 <StepCard {...STEPS[1]} />
               </div>
             </div>
 
             <StepArrow />
-            <div className="flex items-center p-3 sm:-translate-y-3.5">
-              <StepCard {...STEPS[2]} />
+            <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
+              <span aria-hidden="true" className="invisible rounded-full px-3 py-1 text-xs font-bold">
+                spacer
+              </span>
+              <div className="flex flex-1 items-stretch p-3">
+                <StepCard {...STEPS[2]} />
+              </div>
             </div>
 
             <StepArrow />
-            <div className="flex items-center p-3 sm:-translate-y-7">
-              <StepCard {...STEPS[3]} />
+            <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
+              <span aria-hidden="true" className="invisible rounded-full px-3 py-1 text-xs font-bold">
+                spacer
+              </span>
+              <div className="flex flex-1 items-stretch p-3">
+                <StepCard {...STEPS[3]} />
+              </div>
             </div>
           </div>
         </Reveal>

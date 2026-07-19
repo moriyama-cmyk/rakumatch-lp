@@ -66,7 +66,9 @@ const VOICES: Voice[] = [
   },
 ]
 
-const INITIAL_COUNT = 3
+// 2026-07-19 森山さん指摘: sm:grid-cols-2 で3枚だと右下が1マス空く。
+// 初期表示を4枚（2行×2列）にして空きマスをなくす。声の文言・順序は変更しない。
+const INITIAL_COUNT = 4
 
 export function Voices() {
   const [expanded, setExpanded] = useState(false)
@@ -86,8 +88,9 @@ export function Voices() {
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
+            {/* 2026-07-19 森山さん指摘: 「まだ多くはありませんが」は売る場面での自己申告の弱点＝削除。 */}
             <p className="mt-5 text-base leading-relaxed text-ink-700 sm:mt-6">
-              まだ多くはありませんが、先に使ってくださっている方から、こんな声が届いています。
+              先に使ってくださっている方から、こんな声が届いています。
             </p>
           </Reveal>
         </div>

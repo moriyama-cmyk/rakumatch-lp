@@ -35,9 +35,12 @@ export function FeatureSplit({
   titleClassName,
 }: FeatureSplitProps) {
   return (
+    // 2026-07-19: grid の子は既定 min-width:auto のため、ビジュアル側（コード製の再現UI）が
+    // 中身の実寸を主張すると**テキスト側のトラックごと**広がり、モバイルで本文が画面外に切れた。
+    // 両カラムに min-w-0 を入れて、はみ出しを内側で吸収させる。
     <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
       {/* テキスト */}
-      <div className={cn(reverse && 'lg:order-2')}>
+      <div className={cn('min-w-0', reverse && 'lg:order-2')}>
         <Reveal>
           <Badge icon={<Icon className="h-3.5 w-3.5" />}>{eyebrow}</Badge>
           <Tag className={cn('mt-4 text-ink-900', titleClassName ?? 'text-display-md')}>{title}</Tag>
@@ -64,7 +67,7 @@ export function FeatureSplit({
       </div>
 
       {/* ビジュアル */}
-      <div className={cn(reverse && 'lg:order-1')}>
+      <div className={cn('min-w-0', reverse && 'lg:order-1')}>
         <Reveal delay={0.1}>{visual}</Reveal>
       </div>
     </div>

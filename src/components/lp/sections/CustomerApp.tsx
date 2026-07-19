@@ -6,7 +6,7 @@ import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GlowButton } from '../ui/GlowButton'
-import { Img } from '../ui/Img'
+import { PhoneApp } from '../mock'
 import { SITE } from '../site'
 import { hl, hlText } from '../lib/headline'
 import { trackCta } from '@/lib/track'
@@ -39,11 +39,14 @@ export function CustomerApp() {
                 <br className="hidden sm:block" />
                 {hlText('営業に届く。')}
               </h2>
+              {/* 2026-07-19 森山さん指摘により文言差し替え（例外的コピー変更・他は不変）。 */}
               <p className="mt-3 text-sm font-bold text-primary-700 sm:text-base">
-                {hlText('ポータルは、お客様に通知するだけ。先に動くのは、あなたにする。')}
+                {hlText('お客様が見つける前に、あなたが気づく。')}
               </p>
               <p className="mt-4 text-lg leading-[1.8] text-ink-700">
-                自分の会社のお客様に、実際に配っています。担当者が発行するリンクを、お客様が自分のアプリとして使う。SUUMOなど色々な媒体で気になった物件が1か所に集まり、その希望と保存物件が、そのままあなたに届きます。「どんな物件がお好みですか」と、もう聞かなくていい。
+                {/* 2026-07-19 事実訂正: 森山さんは会社の経営者ではなく勤務先の営業。
+                    「自分の会社」は所有者と読めるため「自分が担当している」に変更。 */}
+                自分が担当しているお客様に、実際に配っています。担当者が発行するリンクを、お客様が自分のアプリとして使う。SUUMOなど色々な媒体で気になった物件が1か所に集まり、その希望と保存物件が、そのままあなたに届きます。「どんな物件がお好みですか」と、もう聞かなくていい。
               </p>
             </Reveal>
 
@@ -82,22 +85,37 @@ export function CustomerApp() {
   )
 }
 
-/** 実画面をスマホ枠風の細い角丸で額装（画像は隠さない）。 */
+/**
+ * お客様アプリの画面。2026-07-19、スクショ（/shot-customer-app-list）から
+ * コード製の再現UI（PhoneApp）に差し替え。
+ * 森山さん指摘「画質劣化しているし疲れる／文字が読めない」への対応。
+ * 真因は画質ではなく縮小（アプリは12px前提の業務画面）。原寸で描き、
+ * 情報を減らして文字を大きくすることで解決している。
+ * 主役は「内見希望済み」バッジ＝お客様の動きが営業側に逆流している証拠。
+ */
 function PhoneShot() {
   return (
-    <div className="mx-auto max-w-[320px]">
-      <div className="overflow-hidden rounded-[2rem] border border-ink-900/8 bg-white p-1.5 shadow-soft-lg">
-        <div className="overflow-hidden rounded-[1.6rem]">
-          <Img
-            base="/shot-customer-app-list"
-            alt="お客様アプリの保存物件リストと「あなたの傾向」AI分析の実画面"
-            width={868}
-            height={1887}
-            priority
-          />
-        </div>
-      </div>
-    </div>
+    <PhoneApp
+      customerName="田中様"
+      properties={[
+        {
+          title: 'みどり坂レジデンス',
+          price: '4,780万円',
+          meta: '田園都市線・3LDK・築7年',
+          status: 'viewing',
+        },
+        {
+          title: 'ひかり町ガーデン',
+          price: '4,580万円',
+          meta: '東急目黒線・3LDK・築9年',
+        },
+        {
+          title: 'さくら丘テラス',
+          price: '4,950万円',
+          meta: '小田急線・4LDK・築12年',
+        },
+      ]}
+    />
   )
 }
 

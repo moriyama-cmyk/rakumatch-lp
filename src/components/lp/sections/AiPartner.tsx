@@ -2,7 +2,8 @@ import { Brain, Lightbulb, MessagesSquare, Wand2, Building2, Compass } from 'luc
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { FeatureSplit } from '../ui/FeatureSplit'
-import { Img } from '../ui/Img'
+import { MockFrame, AiPanel } from '../mock'
+import type { AiChatMessage } from '../mock'
 import { hlText } from '../lib/headline'
 
 const AI_POINTS = [
@@ -13,7 +14,18 @@ const AI_POINTS = [
   { icon: Building2, text: '物件側にもAI: 説明文・提案トーク・メリデメ/注意点・メモ要約' },
 ]
 
-/** ③ 専属AI（各ページに上司）。ライト・イメージ画像。 */
+// 「説明していないのに具体的な提案が出ている」の再現データ（架空）。
+// 先に発言するのはAI＝聞かれる前から、そのお客様固有の話を踏まえた提案が来ることを見せる。
+const AI_MESSAGES: AiChatMessage[] = [
+  {
+    role: 'ai',
+    content:
+      '田中様、先週のメモに「実家に近い方がいい」とありました。まだご案内していない上北沢駅徒歩6分の物件が新着です。今週のご連絡がおすすめです。',
+  },
+  { role: 'user', content: 'そこまで見てくれてるんだ' },
+]
+
+/** ③ 専属AI（各ページに上司）。暗色AIパネル部分のみコード再現（全画面化はしない）。 */
 export function AiPartner() {
   return (
     <Section id="ai" className="bg-white" spacing="md">
@@ -31,14 +43,11 @@ export function AiPartner() {
             </>
           }
           visual={
-            <figure className="overflow-hidden rounded-xl border border-ink-900/8 bg-white shadow-soft-lg">
-              <Img
-                base="/shot-ai-insight"
-                alt="顧客詳細ページでAIが潜在ニーズを提案している楽マッチ AI の実画面"
-                width={1920}
-                height={1080}
-              />
-            </figure>
+            <MockFrame variant="desktop" chromeUrl="app.rakumatch-ai.com/customers/1234">
+              <div className="bg-slate-950 p-4 sm:p-5">
+                <AiPanel messages={AI_MESSAGES} />
+              </div>
+            </MockFrame>
           }
           note="「めちゃくちゃ仕事ができる優しい上司」がついている感覚。だから、新人でも初日からある程度動けます。"
         >

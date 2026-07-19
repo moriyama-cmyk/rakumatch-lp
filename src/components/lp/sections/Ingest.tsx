@@ -12,8 +12,10 @@ import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
-import { AppShot } from '../ui/AppShot'
 import { hl, hlText } from '../lib/headline'
+import { cn } from '../lib/cn'
+import { MockFrame, PropertyCard } from '../mock'
+import type { PropertyCardAgentData } from '../mock'
 
 // ⑤一括投げ込み の手順（コード製の4ステップ）。貼る→AIが整理→物件カード化。
 const STEPS: { icon: LucideIcon; caption: string }[] = [
@@ -75,56 +77,31 @@ export function Ingest() {
         </div>
 
         {/* 実画面4コマ（レインズ一覧 → Ctrl+A全選択 → 貼るだけ → 物件カード化）。
-            レインズの2枚は他社情報・掲載物件が読めないようぼかし加工済み（規約配慮）。 */}
+            コード製の再現イメージ（実スクショではない）。UI内の文字は雰囲気でよい方針とし、
+            各コマの下に16px以上のラベルで「何が起きているか」を文字で読ませる。 */}
         <Reveal delay={0.1}>
-          <div className="mx-auto mt-16 max-w-6xl sm:mt-20">
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:items-start">
+          <div className="mx-auto mt-16 max-w-5xl sm:mt-20">
+            <div className="grid gap-8 sm:grid-cols-2">
               <div>
-                <p className="mb-2 text-center text-xs font-bold text-ink-500">1. 物件データベースの検索結果</p>
+                <p className="mb-3 text-center text-base font-bold text-ink-900">1. 物件データベースの検索結果</p>
                 <MockReinsList />
               </div>
               <div>
-                <p className="mb-2 text-center text-xs font-bold text-ink-500">2. Ctrl+Aで全選択コピー</p>
+                <p className="mb-3 text-center text-base font-bold text-ink-900">2. Ctrl+Aで全選択コピー</p>
                 <MockReinsList selected />
               </div>
               <div>
-                <p className="mb-2 text-center text-xs font-bold text-ink-500">3. 楽マッチに貼る</p>
-                <a
-                  href="/shot-bulk-input.png"
-                  target="_blank"
-                  rel="noopener"
-                  className="block cursor-zoom-in"
-                  aria-label="3. 楽マッチに貼る（原寸画像を新しいタブで開く）"
-                >
-                  <AppShot
-                    base="/shot-bulk-input"
-                    alt="コピーしたテキストを貼り付けるだけのAI一括入力ハブ画面"
-                    width={1920}
-                    height={1080}
-                  />
-                </a>
+                <p className="mb-3 text-center text-base font-bold text-ink-900">3. 楽マッチに貼る</p>
+                <BulkPasteMock />
               </div>
               <div>
-                <p className="mb-2 text-center text-xs font-bold text-ink-500">
+                <p className="mb-3 text-center text-base font-bold text-ink-900">
                   4. 全物件が「マッチ○名」バッジ付きで並ぶ
                 </p>
-                <a
-                  href="/shot-properties.png"
-                  target="_blank"
-                  rel="noopener"
-                  className="block cursor-zoom-in"
-                  aria-label="4. 全物件が「マッチ○名」バッジ付きで並ぶ（原寸画像を新しいタブで開く）"
-                >
-                  <AppShot
-                    base="/shot-properties"
-                    alt="投げ込んだ物件がカードに整理され「マッチ○名」バッジ付きで並ぶ楽マッチ AI の物件一覧画面"
-                    width={1920}
-                    height={1080}
-                  />
-                </a>
+                <PropertyGridMock />
               </div>
             </div>
-            <p className="mt-6 text-center text-lg font-bold text-ink-900">
+            <p className="mt-8 text-center text-lg font-bold text-ink-900">
               あなたの作業は、コピペの1秒。50件以上を、AIが一気に登録。
             </p>
           </div>
@@ -147,7 +124,7 @@ export function Ingest() {
 
         <Reveal delay={0.1}>
           <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-ink-500">
-            ※ 1・2の画面は架空データによる再現イメージです。レインズ等のデータは各サービスの規約に沿ってご利用ください。
+            ※ 1〜4の画面は架空データによる再現イメージです。レインズ等のデータは各サービスの規約に沿ってご利用ください。
           </p>
         </Reveal>
       </Container>
@@ -157,46 +134,90 @@ export function Ingest() {
 
 // 架空データの一覧再現イメージ（実在の会社・物件は含まない）。
 // 実物スクショは他社商号・電話番号が写り公開不可（目的外利用）のため、くっきり読める再現で代替。
+// 方針: UI内の文字は雰囲気でよい。読ませたいのはコマ下の日本語ラベルの方。
+// その代わり枠は大きく・文字は最小14px・コントラストは高めに（森山さん指摘「小さいし薄い」対応）。
 const MOCK_ROWS = [
-  { no: '1001-2345', type: '中古マンション', price: '3,980万円', size: '68.4㎡', addr: '青葉区みどり台1丁目 グランみどり台 3LDK' },
-  { no: '1001-2346', type: '中古マンション', price: '2,780万円', size: '55.2㎡', addr: '旭区ひかりが丘2丁目 サンハイツひかり 2LDK' },
-  { no: '1001-2347', type: '中古戸建',       price: '4,480万円', size: '92.1㎡', addr: '緑区つばき町3丁目 つばき町戸建 4LDK' },
-  { no: '1001-2348', type: '中古マンション', price: '3,180万円', size: '61.8㎡', addr: '泉区あさひ台4丁目 コート あさひ台 3LDK' },
-  { no: '1001-2349', type: '売地',           price: '2,980万円', size: '120㎡',  addr: '港南区さくら丘5丁目 建築条件なし' },
-  { no: '1001-2350', type: '中古マンション', price: '4,980万円', size: '75.6㎡', addr: '中央区はなみずき通 パークはなみずき 3LDK' },
+  { no: '1001-2345', type: '中古マンション・3LDK', price: '3,980万円', addr: '青葉区みどり台1丁目' },
+  { no: '1001-2346', type: '中古マンション・2LDK', price: '2,780万円', addr: '旭区ひかりが丘2丁目' },
+  { no: '1001-2347', type: '中古戸建・4LDK',       price: '4,480万円', addr: '緑区つばき町3丁目' },
+  { no: '1001-2348', type: '売地',                 price: '2,980万円', addr: '港南区さくら丘5丁目' },
 ] as const
 
 function MockReinsList({ selected = false }: { selected?: boolean }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-surface-200 bg-white shadow-none transition-shadow duration-200 hover:shadow-soft">
-      <div className="flex items-center justify-between bg-[#3d6b4f] px-3 py-1.5">
-        <span className="text-[0.72rem] font-bold text-white">売買検索結果一覧（在庫）</span>
-        {/* white/70 は #3d6b4f 上で 3.97:1（4.5:1 未達）。/85 で 4.98:1。 */}
-        <span className="text-[0.7rem] text-white/85">500件</span>
+    // 再現UI＝装飾。MockFrame を使わない唯一の再現UIなので、ここで aria-hidden を付ける
+    // （中身は div/span のみ・フォーカス可能要素は絶対に置かない）。
+    // 支援技術には、上のラベル「1. 物件データベースの検索結果」等と STEPS の文言で内容が伝わる。
+    <div
+      aria-hidden="true"
+      className="overflow-hidden rounded-2xl border-2 border-surface-200 bg-white shadow-soft-lg"
+    >
+      <div className="flex items-center justify-between bg-[#2f5b3f] px-4 py-3">
+        <span className="text-sm font-bold text-white">売買検索結果一覧（在庫）</span>
+        <span className="text-sm font-semibold text-white/90">500件</span>
       </div>
-      <div className={selected ? 'bg-[#316ac5]' : 'bg-white'}>
-        <table className="w-full border-collapse">
-          <tbody>
-            {MOCK_ROWS.map((r) => (
-              <tr key={r.no} className={`border-b ${selected ? 'border-white/20' : 'border-surface-100'}`}>
-                <td className={`px-2 py-1.5 text-[0.7rem] leading-tight ${selected ? 'text-white' : 'text-ink-700'}`}>
-                  <span className="block font-mono">{r.no}</span>
-                  <span className="block">{r.type}</span>
-                </td>
-                <td className={`px-2 py-1.5 text-right text-[0.72rem] font-bold leading-tight ${selected ? 'text-white' : 'text-ink-900'}`}>
-                  {r.price}
-                  {/* white/80 は #316ac5 上で 3.98:1（4.5:1 未達）。/95 で 4.93:1。 */}
-                  <span className={`block text-[0.68rem] font-normal ${selected ? 'text-white/95' : 'text-ink-500'}`}>{r.size}</span>
-                </td>
-                <td className={`px-2 py-1.5 text-[0.7rem] leading-tight ${selected ? 'text-white' : 'text-ink-700'}`}>{r.addr}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className={selected ? 'bg-[#2a5bb0]' : 'bg-white'}>
+        {MOCK_ROWS.map((r) => (
+          <div
+            key={r.no}
+            className={cn(
+              'flex items-center justify-between gap-3 border-b px-4 py-3.5 last:border-b-0',
+              selected ? 'border-white/25' : 'border-surface-100',
+            )}
+          >
+            <div className="min-w-0">
+              <p className={cn('truncate text-sm font-semibold leading-snug', selected ? 'text-white' : 'text-ink-800')}>
+                {r.type}
+              </p>
+              <p className={cn('truncate text-sm leading-snug', selected ? 'text-white/90' : 'text-ink-500')}>
+                {r.addr}
+              </p>
+            </div>
+            <p className={cn('shrink-0 text-base font-bold leading-snug', selected ? 'text-white' : 'text-ink-900')}>
+              {r.price}
+            </p>
+          </div>
+        ))}
       </div>
-      <p className={`px-2 py-1 text-center text-[0.68rem] ${selected ? 'bg-[#316ac5] text-white/95' : 'text-ink-500'}`}>
+      <p className={cn('px-4 py-3 text-center text-sm font-semibold', selected ? 'bg-[#2a5bb0] text-white' : 'text-ink-600')}>
         {selected ? '全選択中 — Ctrl+C でコピー' : '画面は再現イメージ（架空データ）'}
       </p>
     </div>
+  )
+}
+
+// 3. 楽マッチに貼る — 巨大な貼り付け欄（プレースホルダ文言が主役）のコード再現。
+// 顧客側パネルは持たない（森山さん指示どおり捨てる）。
+function BulkPasteMock() {
+  return (
+    <MockFrame variant="desktop" chromeUrl="app.rakumatch-ai.com" note={false}>
+      <div className="flex flex-col items-center justify-center gap-4 px-6 py-16 text-center">
+        <ClipboardPaste className="h-12 w-12 text-primary-500" strokeWidth={1.75} aria-hidden />
+        <p className="text-lg font-bold leading-snug text-ink-800">ここに貼り付けてください</p>
+        <p className="max-w-xs text-sm leading-relaxed text-ink-500">
+          SUUMO・レインズ・アットホームの画面を丸ごとコピペ。スクショやPDFもそのまま投げ込めます。
+        </p>
+      </div>
+    </MockFrame>
+  )
+}
+
+// 4. 全物件が「マッチ○名」バッジ付きで並ぶ — PropertyCard(agent)を3枚。
+// サムネイル・6項目グリッドは持たず、各カード右下の「マッチN名」バッジを主役にする。
+const MOCK_PROPERTIES: PropertyCardAgentData[] = [
+  { title: 'グランみどり台 305号室', price: '3,980万円', propertyType: '中古マンション', meta: '青葉区みどり台 / 3LDK', matchCount: 4 },
+  { title: 'つばき町戸建',           price: '4,480万円', propertyType: '中古戸建',       meta: '緑区つばき町 / 4LDK',   matchCount: 2 },
+  { title: 'さくら丘 売地',           price: '2,980万円', propertyType: '土地',           meta: '港南区さくら丘 / 120㎡', matchCount: 7 },
+]
+
+function PropertyGridMock() {
+  return (
+    <MockFrame variant="desktop" chromeUrl="app.rakumatch-ai.com/properties" note={false}>
+      <div className="flex flex-col gap-3 bg-surface-50 p-3">
+        {MOCK_PROPERTIES.map((p) => (
+          <PropertyCard key={p.title} variant="agent" data={p} />
+        ))}
+      </div>
+    </MockFrame>
   )
 }

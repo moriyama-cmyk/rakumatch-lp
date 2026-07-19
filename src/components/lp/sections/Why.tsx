@@ -94,7 +94,8 @@ export function Why() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mx-auto mt-5 max-w-xl text-base text-ink-700 sm:mt-6">
-              現役の仲介経営者が、自社で毎日使うために不動産売買専用で作りました。
+              {/* 2026-07-19 事実訂正: 「仲介経営者」は誤り（現役の不動産営業）。 */}
+              現役の不動産営業が、自分が毎日使うために不動産売買専用で作りました。
               <br className="hidden sm:block" />
               Excelは表計算。これは、不動産営業の道具です。
             </p>

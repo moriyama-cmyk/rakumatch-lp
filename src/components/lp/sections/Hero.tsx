@@ -1,7 +1,7 @@
 'use client'
 
 import type { ReactNode } from 'react'
-import { ArrowRight, Play } from 'lucide-react'
+import { ArrowRight, Play, Phone } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { GlowButton } from '../ui/GlowButton'
 import { GradientText } from '../ui/GradientText'
@@ -9,6 +9,7 @@ import { Reveal } from '../ui/Reveal'
 import { SITE } from '../site'
 import { hlText } from '../lib/headline'
 import { trackCta } from '@/lib/track'
+import { MockFrame, AppSidebar, MatchCard, AiPanel, PhoneApp } from '../mock'
 
 /**
  * ファーストビュー（1スクリーン縦積み）。
@@ -115,66 +116,142 @@ export function Hero() {
         </div>
 
         {/* 実アプリ画面。ファーストビュー直下。
-            最大の差別化「お客様連動アプリ」を1枚で伝えるため、営業のノートPC画面（主役）と
-            お客様のスマホ画面（お客様連動アプリ）を"横に並べた"デバイス・モックにしている。
-            ノートPCは CSS で本体（キーボード面/ヒンジ）を薄く足し「パソコンを開いている感じ」を、
-            スマホはノートPCの右横に立てて「同じ楽マッチをPCとスマホで＝連動」を一目で伝える。
-            sm未満（スマホ幅）は横並びが破綻するので、ノートPCを上・スマホをその下へ縦積みし、
-            横スクロールを出さない（section の overflow-x-clip と併用）。
-            2026-07-19 デザイン改修: Revealを撤去し素のdivに（ファーストビュー内・opacity-0を出さない）。 */}
-        <div className="mx-auto mt-10 flex max-w-5xl flex-col items-center gap-7 sm:mt-14 sm:flex-row sm:items-end sm:justify-center sm:gap-6">
-          {/* ノートPC（営業の画面・主役）。画面はノートPC風の暗色ベゼルで額装し、
-              その下に本体（キーボード面/ヒンジ）を思わせる薄い台形バーを CSS で追加。 */}
-          <div className="w-full max-w-[560px] sm:min-w-0 sm:flex-1">
-            {/* 画面（ディスプレイ）。ブラウザchromeは付けず、ノートPCの縁取りで額装。 */}
-            <div className="mx-[3.5%] rounded-t-[0.7rem] rounded-b-sm border-[6px] border-b-[9px] border-ink-900 bg-ink-900 shadow-soft-lg">
-              <div className="overflow-hidden rounded-[0.28rem]">
-                <picture>
-                  <source srcSet="/shot-top-hero.webp" type="image/webp" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/shot-top-hero.opt.jpg"
-                    alt="顧客情報とAI提案が一画面に並ぶ楽マッチ AI（PC画面）"
-                    width={1920}
-                    height={1080}
-                    loading="eager"
-                    decoding="async"
-                    className="block h-auto w-full"
-                  />
-                </picture>
+            2026-07-19 森山さん指摘「パソコンのほうが小さいのやだ。大きく。すまほはかぶってもいいから、右下に。」
+            を受けて全面改修: 実画面スクショの<img>を廃し、コード製の再現UI（mock/配下の共通部品）に
+            差し替えた。主役は「顧客情報とAIの提案とマッチ物件が一画面に並んでいる配置」＝
+            AppSidebar + 顧客情報カード + AIの提案(AiPanel) + マッチ物件カード(MatchCard) の2カラム構成
+            （実アプリは3カラムだがLPでは読めないため2カラムに圧縮。書類フォルダ列・詳細情報アコーディオン・
+            複数の連絡ボタン・履歴/紹介/案内済タブの中身は捨てた。連絡は「電話する」1つに集約）。
+            PC枠は親いっぱい(w-full)まで拡大。スマホ（お客様連動アプリ=PhoneApp）は sm 以上で
+            PCの右下に重ねる（かぶってよい指示のため z-10 で前面へ）。sm未満は重ねると破綻するため
+            従来どおり縦積みにフォールバックする。横スクロールは出さない（section の overflow-x-clip と併用）。
+            架空データ注記は PC/スマホ共通で1回だけ、両方の下にまとめて表示する
+            （MockFrame/PhoneApp 側の note は二重表示を避けるため両方 false にしている）。 */}
+        <div className="relative mx-auto mt-10 w-full sm:mt-14">
+          {/* ノートPC（営業の画面・主役）。コード製のデスクトップ再現。ブラウザ風の額装(MockFrame)。 */}
+          <MockFrame variant="desktop" chromeUrl="app.rakumatch-ai.com" note={false} className="w-full">
+            <div className="flex items-stretch">
+              <AppSidebar activeKey="customers" className="hidden sm:flex" />
+              <div className="flex min-w-0 flex-1 flex-col">
+                {/* ヘッダー: 顧客名＋連絡は「電話する」1つに集約 */}
+                <div className="flex items-center justify-between gap-3 border-b border-surface-200 px-4 py-3 sm:px-6 sm:py-4">
+                  <div className="min-w-0">
+                    <h3 className="truncate text-base font-bold text-ink-900 sm:text-xl">田中 様</h3>
+                    <p className="mt-0.5 truncate text-sm text-ink-500 sm:text-base">
+                      3LDK・世田谷区／目黒区・予算〜5,000万円
+                    </p>
+                  </div>
+                  <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg bg-primary-600 px-3 py-2 text-sm font-bold text-white shadow-soft sm:px-4 sm:py-2.5 sm:text-base">
+                    <Phone className="h-4 w-4" aria-hidden />
+                    電話する
+                  </span>
+                </div>
+
+                {/* 2カラム本体: 左=顧客情報+AIの提案 / 右=マッチ物件 */}
+                <div className="grid flex-1 grid-cols-1 gap-3 p-3 sm:grid-cols-2 sm:gap-5 sm:p-5">
+                  <div className="flex flex-col gap-3 sm:gap-4">
+                    <div className="rounded-2xl border border-surface-200 bg-white p-3 shadow-soft sm:p-4">
+                      <h4 className="text-sm font-bold text-ink-900 sm:text-base">お客様の希望条件</h4>
+                      <dl className="mt-2 space-y-1.5">
+                        <div className="flex items-center justify-between gap-2">
+                          <dt className="text-sm text-ink-500">エリア</dt>
+                          <dd className="truncate text-sm font-semibold text-ink-800 sm:text-base">
+                            世田谷区・目黒区
+                          </dd>
+                        </div>
+                        <div className="flex items-center justify-between gap-2">
+                          <dt className="text-sm text-ink-500">間取り</dt>
+                          <dd className="truncate text-sm font-semibold text-ink-800 sm:text-base">3LDK以上</dd>
+                        </div>
+                        <div className="flex items-center justify-between gap-2">
+                          <dt className="text-sm text-ink-500">予算</dt>
+                          <dd className="truncate text-sm font-semibold text-ink-800 sm:text-base">
+                            〜5,000万円
+                          </dd>
+                        </div>
+                      </dl>
+                    </div>
+                    <AiPanel
+                      actions={[]}
+                      messages={[
+                        { role: 'user', content: '田中様に合う物件、他にありますか？' },
+                        {
+                          role: 'ai',
+                          content:
+                            '内見履歴から「駅徒歩」より「築年数」を重視されています。新着の築8年物件が3件マッチしました。',
+                        },
+                      ]}
+                    />
+                  </div>
+
+                  {/* lg以上ではスマホを右下に重ねるため、その分だけ右に余白を作り、
+                      物件名がスマホの下に隠れないようにする（かぶってよい＝ただし内容は読める）。 */}
+                  <div className="flex flex-col gap-2 lg:pr-[150px]">
+                    <h4 className="text-sm font-bold text-ink-900 sm:text-base">
+                      マッチした物件 <span className="text-primary-600">3件</span>
+                    </h4>
+                    <MatchCard
+                      data={{
+                        rank: 1,
+                        name: 'みどり坂レジデンス',
+                        score: 92,
+                        reasons: ['間取り', 'エリア'],
+                        meta: '4,780万円・3LDK・築7年',
+                      }}
+                    />
+                    <MatchCard
+                      data={{
+                        rank: 2,
+                        name: 'ひかり町ガーデン',
+                        score: 81,
+                        reasons: ['駅徒歩', '築年数'],
+                        meta: '4,580万円・3LDK・築9年',
+                      }}
+                    />
+                    <MatchCard
+                      data={{
+                        rank: 3,
+                        name: 'さくら丘テラス',
+                        score: 68,
+                        reasons: ['エリア', '沿線'],
+                        meta: '4,950万円・4LDK・築12年',
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-            {/* 本体（キーボード面/ヒンジ）。画面より少し広い薄い台形。装飾は控えめ。 */}
-            <div
-              className="relative -mt-px h-3.5 w-full rounded-b-lg bg-gradient-to-b from-ink-700 to-ink-900 shadow-soft sm:h-4"
-              style={{ clipPath: 'polygon(3% 0, 97% 0, 100% 100%, 0 100%)' }}
-              aria-hidden="true"
-            >
-              {/* ヒンジ（中央のくぼみ） */}
-              <div className="absolute left-1/2 top-0 h-1 w-1/5 max-w-[96px] -translate-x-1/2 rounded-b-md bg-black/25" />
-            </div>
-          </div>
+          </MockFrame>
 
-          {/* スマホ（お客様連動アプリ）。sm以上=ノートPCの右横に立てて並べる（重ねない）。
-              sm未満=ノートPCの下へ中サイズで縦積み。 */}
-          <div className="w-[54%] max-w-[188px] sm:w-[200px] sm:flex-none sm:max-w-[200px]">
-            <div className="overflow-hidden rounded-[1.5rem] border-[5px] border-ink-900 bg-ink-900 shadow-soft-lg ring-1 ring-ink-900/8">
-              <picture>
-                <source srcSet="/shot-customer-app-list.webp" type="image/webp" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/shot-customer-app-list.opt.jpg"
-                  alt="お客様がスマホで保存した物件が営業に届く、お客様連動アプリ"
-                  width={868}
-                  height={1887}
-                  loading="eager"
-                  decoding="async"
-                  className="block h-auto w-full rounded-[1.1rem]"
-                />
-              </picture>
-            </div>
+          {/* スマホ（お客様連動アプリ）。sm以上=PC右下に重ねる（かぶってよい指示のためz-10で前面）。
+              sm未満=重ねると破綻するので、PCの下へ縦積みにフォールバックする。 */}
+          {/* 2026-07-19 是正: 重ねる開始点を sm → lg に上げた。sm/md ではカラムが狭く、
+              スマホを重ねるとマッチ物件の文字が完全に隠れてしまうため（実描画で確認）。
+              lg未満はPCの下に縦積みして、両方とも読める状態を保つ。 */}
+          <div className="mx-auto mt-6 w-[62%] max-w-[220px] lg:absolute lg:-bottom-6 lg:-right-6 lg:z-10 lg:mx-0 lg:mt-0 lg:w-[230px] lg:max-w-[230px] lg:drop-shadow-2xl">
+            <PhoneApp
+              customerName="田中様"
+              note={false}
+              properties={[
+                {
+                  title: 'みどり坂レジデンス',
+                  price: '4,780万円',
+                  meta: '田園都市線・3LDK・築7年',
+                  status: 'viewing',
+                },
+                {
+                  title: 'ひかり町ガーデン',
+                  price: '4,580万円',
+                  meta: '東急目黒線・3LDK・築9年',
+                },
+              ]}
+            />
           </div>
         </div>
+
+        <p className="mx-auto mt-3 max-w-3xl text-center text-xs text-ink-500">
+          ※架空データによる再現イメージ
+        </p>
 
         <Reveal delay={0.1}>
           <p className="mx-auto mt-4 max-w-3xl text-center text-xs text-ink-500">

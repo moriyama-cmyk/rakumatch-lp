@@ -2,8 +2,35 @@ import { ArrowLeftRight, Search, Users, SlidersHorizontal } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { FeatureSplit } from '../ui/FeatureSplit'
-import { AppShot } from '../ui/AppShot'
+import { MockFrame, PropertyCard, MatchCard } from '../mock'
+import type { MatchCardData } from '../mock'
 import { hlText } from '../lib/headline'
+
+// 「物件を固定 → 紹介すべき顧客が並ぶ」の再現データ（架空）。
+// スコアは降順・70%の色境界（緑/琥珀）をまたぐように92/78/61で構成。
+const MATCH_CUSTOMERS: MatchCardData[] = [
+  {
+    rank: 1,
+    name: '佐藤様',
+    score: 92,
+    reasons: ['間取り', '希望駅'],
+    meta: '予算3,500万円台・3LDK希望',
+  },
+  {
+    rank: 2,
+    name: '高橋様',
+    score: 78,
+    reasons: ['駅徒歩', '沿線'],
+    meta: '予算4,000万円台・東急東横線沿線',
+  },
+  {
+    rank: 3,
+    name: '伊藤様',
+    score: 61,
+    reasons: ['築年数'],
+    meta: '予算3,000万円台・急ぎではない',
+  },
+]
 
 /** ② 双方マッチング（逆引き）。ビジュアルは左・コード製の図解。 */
 export function Matching() {
@@ -24,12 +51,25 @@ export function Matching() {
             </>
           }
           visual={
-            <AppShot
-              base="/shot-customer-detail"
-              alt="顧客の希望条件と右側にマッチした物件が並ぶ楽マッチ AI の顧客詳細画面"
-              width={1920}
-              height={1080}
-            />
+            <MockFrame variant="desktop" chromeUrl="app.rakumatch-ai.com/properties/1234">
+              <div className="space-y-3 bg-surface-50 p-4">
+                <PropertyCard
+                  variant="agent"
+                  data={{
+                    title: 'グランみどり台 3LDK',
+                    price: '3,980万円',
+                    propertyType: 'マンション',
+                    meta: '青葉区みどり台・徒歩8分',
+                    matchCount: 3,
+                  }}
+                />
+                <div className="space-y-2">
+                  {MATCH_CUSTOMERS.map((d) => (
+                    <MatchCard key={d.rank} data={d} />
+                  ))}
+                </div>
+              </div>
+            </MockFrame>
           }
           points={[
             { icon: Search, text: '物件を固定 → 紹介すべき顧客が並ぶ（逆引き）' },

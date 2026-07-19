@@ -70,14 +70,13 @@ export function Story() {
           </p>
         </Reveal>
 
-        {/* 正直ブロック（2026-07-19 お客様の声を掲載したため矛盾解消・盛らない） */}
+        {/* 2026-07-19 森山さん指摘「こういうのいらん」で「導入事例は、まだ多くありません。」の
+            見出しと段落を削除。実績の少なさを自己申告するのは売る場面では自爆で、誠実さは
+            「現役営業が毎日使っている」という事実で十分に立っている。
+            ただし「私はエンジニアではありません／操作は"貼るだけ"」は製品の核なので残す。 */}
         <Reveal delay={0.14}>
           <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 transition-shadow duration-200 hover:shadow-soft sm:p-10">
-            <h3 className="text-lg font-bold text-ink-900">導入事例は、まだ多くありません。</h3>
-            <p className="mt-4 text-base leading-relaxed text-ink-700">
-              華やかな導入事例をずらりと並べる段階ではありません。それでも、先に使ってくださっている方から届いた声は、聞いたそのまま載せています。飾らず、盛らずに。今日も私は、この画面で自分の会社の顧客対応をしています。事例より、まず実物で判断してください。
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-ink-700">
+            <p className="text-base leading-relaxed text-ink-700">
               私はエンジニアではありません。難しい操作は、私が一番嫌いです。だからこのアプリの操作は“貼るだけ”にしました。
             </p>
           </div>

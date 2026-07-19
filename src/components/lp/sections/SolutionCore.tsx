@@ -106,47 +106,90 @@ export function SolutionCore() {
   )
 }
 
-/** 手入力(右肩上がり)と楽マッチ(ほぼ水平)の2本線。件数が増えるほど差が開く概念図。実測性能は書かない。 */
+/**
+ * 件数ごとの「手入力 と 楽マッチ の手間の差」を示すダンベル図。
+ *
+ * 2026-07-19 作り直し。旧版は折れ線グラフで、森山さんから
+ * 「クオリティ低くて何のことかわからん」と指摘された。
+ * dataviz スキル（references/choosing-a-form.md）に「2つの値を比べるときは
+ * 折れ線ではなくダンベル図か横棒」と明記されており、**形式の選択そのものが誤り**だった。
+ *
+ * ダンベル図に変えた理由: 読み手に見てほしいのは「増え方の傾き」ではなく
+ * 「同じ件数でここまで差がある」という**差の長さ**だから。棒の長さが差そのものになる。
+ *
+ * - 凡例を使わず直接ラベル（凡例と図を目で往復させない）
+ * - 文字は最小14px（旧版は9pxで読めなかった）
+ * - 実測値は書かない。位置は概念。注記の文言は従来どおり。
+ */
 function EffortLineChart() {
+  // 楽マッチは件数が増えても一定（貼るのは1回）。手入力は件数に比例して伸びる。
+  const ROWS = [
+    { label: '物件10件', manual: 26, raku: 6 },
+    { label: '物件50件', manual: 62, raku: 8 },
+    { label: '物件100件', manual: 94, raku: 9 },
+  ]
+
   return (
-    <div className="mx-auto mt-16 max-w-md rounded-xl border border-surface-200 bg-surface-50 p-5 sm:mt-20 sm:p-6">
-      <div className="flex items-center justify-center gap-5 text-xs font-medium text-ink-700">
-        <span className="inline-flex items-center gap-1.5">
-          <span className="h-1.5 w-5 shrink-0 rounded-full bg-[#5E6B64]" aria-hidden />
-          手入力
-        </span>
-        <span className="inline-flex items-center gap-1.5">
-          <span className="h-1.5 w-5 shrink-0 rounded-full bg-primary-600" aria-hidden />
-          楽マッチ
-        </span>
+    <div className="mx-auto mt-16 max-w-xl rounded-xl border border-surface-200 bg-surface-50 p-6 sm:mt-20 sm:p-8">
+      <p className="text-center text-base font-bold text-ink-900">
+        件数が増えても、貼る手間は変わらない
+      </p>
+
+      <div
+        className="mt-6 space-y-6"
+        role="img"
+        aria-label="物件10件・50件・100件のいずれでも楽マッチの手間はほぼ一定だが、手入力の手間は件数に比例して伸びる概念図。件数が増えるほど両者の差が開く。"
+      >
+        {ROWS.map((r, i) => (
+          <div key={r.label}>
+            <p className="text-sm font-bold text-ink-700">{r.label}</p>
+            {/* トラック。左端=手間ゼロ。右へ行くほど手間が大きい。 */}
+            <div className="relative mt-2.5 h-6">
+              <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-surface-200" aria-hidden />
+              {/* 差の区間（ダンベルの棒）＝この長さが「差」そのもの */}
+              <span
+                className="absolute top-1/2 h-1 -translate-y-1/2 rounded-full bg-ink-300/50"
+                style={{ left: `${r.raku}%`, width: `${r.manual - r.raku}%` }}
+                aria-hidden
+              />
+              {/* 楽マッチ（強調＝ブランド緑） */}
+              <span
+                className="absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-600 ring-2 ring-surface-50"
+                style={{ left: `${r.raku}%` }}
+                aria-hidden
+              />
+              {/* 手入力（沈める＝グレー） */}
+              <span
+                className="absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink-500 ring-2 ring-surface-50"
+                style={{ left: `${r.manual}%` }}
+                aria-hidden
+              />
+              {/* 直接ラベル（1行目だけ。凡例を使わない） */}
+              {i === 0 && (
+                <>
+                  <span
+                    className="absolute top-full mt-1 -translate-x-1/2 whitespace-nowrap text-sm font-bold text-primary-700"
+                    style={{ left: `${r.raku}%` }}
+                  >
+                    楽マッチ
+                  </span>
+                  <span
+                    className="absolute top-full mt-1 -translate-x-1/2 whitespace-nowrap text-sm font-bold text-ink-500"
+                    style={{ left: `${r.manual}%` }}
+                  >
+                    手入力
+                  </span>
+                </>
+              )}
+            </div>
+            {i === 0 && <div className="h-5" aria-hidden />}
+          </div>
+        ))}
       </div>
 
-      <svg
-        viewBox="0 0 300 150"
-        className="mt-3 w-full"
-        role="img"
-        aria-label="件数が増えるほど手入力の手間は比例して増える一方、楽マッチの手間はほぼ横ばいのまま。件数が増えるほど差が開くイメージ図。"
-      >
-        {/* 軸（ヘアライン・実線） */}
-        <line x1="24" y1="118" x2="278" y2="118" strokeWidth="1" className="stroke-[#E5E2DD]" />
-        <line x1="24" y1="18" x2="24" y2="118" strokeWidth="1" className="stroke-[#E5E2DD]" />
-        <text x="278" y="132" textAnchor="end" className="fill-[#898781]" style={{ fontSize: 9 }}>
-          件数 →
-        </text>
-        <text x="24" y="12" textAnchor="start" className="fill-[#898781]" style={{ fontSize: 9 }}>
-          手間
-        </text>
-
-        {/* 手入力: 件数に比例した右肩上がり */}
-        <line x1="24" y1="118" x2="256" y2="26" strokeWidth="2" strokeLinecap="round" className="stroke-[#5E6B64]" />
-        <circle cx="256" cy="26" r="4" strokeWidth="2" className="fill-[#5E6B64] stroke-[#FAFAF8]" />
-
-        {/* 楽マッチ: ほぼ水平 */}
-        <line x1="24" y1="112" x2="256" y2="100" strokeWidth="2" strokeLinecap="round" className="stroke-primary-600" />
-        <circle cx="256" cy="100" r="4" strokeWidth="2" className="fill-primary-600 stroke-[#FAFAF8]" />
-      </svg>
-
-      <p className="mt-2 text-center text-xs leading-relaxed text-ink-500">※イメージ図。手間の増え方の概念を示すものです。</p>
+      <p className="mt-6 text-center text-sm leading-relaxed text-ink-500">
+        ※イメージ図。手間の増え方の概念を示すものです。
+      </p>
     </div>
   )
 }
