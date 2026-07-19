@@ -6,7 +6,6 @@ import { Container } from '../ui/Container'
 import { GlowButton } from '../ui/GlowButton'
 import { GradientText } from '../ui/GradientText'
 import { Reveal } from '../ui/Reveal'
-import { AppShot } from '../ui/AppShot'
 import { SITE } from '../site'
 import { hlText } from '../lib/headline'
 import { trackCta } from '@/lib/track'
@@ -108,26 +107,50 @@ export function Hero() {
         </div>
 
         {/* 実アプリ画面。ファーストビュー直下。
-            最大の差別化「お客様連動アプリ」を1枚で伝えるため、営業のPC画面（主役・横長）に
-            お客様のスマホ画面（お客様連動アプリ）を右下へ重ねた合成ビジュアルにしている。
-            スマホ幅では重ね配置が破綻するので、モバイルはPCを主役に据えつつスマホを右下へ
-            小さく縦積み（overflowを出さない）。 */}
+            最大の差別化「お客様連動アプリ」を1枚で伝えるため、営業のノートPC画面（主役）と
+            お客様のスマホ画面（お客様連動アプリ）を"横に並べた"デバイス・モックにしている。
+            ノートPCは CSS で本体（キーボード面/ヒンジ）を薄く足し「パソコンを開いている感じ」を、
+            スマホはノートPCの右横に立てて「同じ楽マッチをPCとスマホで＝連動」を一目で伝える。
+            sm未満（スマホ幅）は横並びが破綻するので、ノートPCを上・スマホをその下へ縦積みし、
+            横スクロールを出さない（section の overflow-x-clip と併用）。 */}
         <Reveal delay={0.18}>
-          <div className="relative mx-auto mt-10 max-w-5xl sm:mt-14">
-            {/* PC（営業の画面・主役） */}
-            <AppShot
-              base="/shot-top-hero"
-              alt="顧客情報とAI提案が一画面に並ぶ楽マッチ AI（PC画面）"
-              width={1920}
-              height={1080}
-              priority
-              chrome
-            />
+          <div className="mx-auto mt-10 flex max-w-5xl flex-col items-center gap-7 sm:mt-14 sm:flex-row sm:items-end sm:justify-center sm:gap-6">
+            {/* ノートPC（営業の画面・主役）。画面はノートPC風の暗色ベゼルで額装し、
+                その下に本体（キーボード面/ヒンジ）を思わせる薄い台形バーを CSS で追加。 */}
+            <div className="w-full max-w-[560px] sm:min-w-0 sm:flex-1">
+              {/* 画面（ディスプレイ）。ブラウザchromeは付けず、ノートPCの縁取りで額装。 */}
+              <div className="mx-[3.5%] rounded-t-[0.7rem] rounded-b-sm border-[6px] border-b-[9px] border-ink-900 bg-ink-900 shadow-soft-lg">
+                <div className="overflow-hidden rounded-[0.28rem]">
+                  <picture>
+                    <source srcSet="/shot-top-hero.webp" type="image/webp" />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/shot-top-hero.opt.jpg"
+                      alt="顧客情報とAI提案が一画面に並ぶ楽マッチ AI（PC画面）"
+                      width={1920}
+                      height={1080}
+                      loading="eager"
+                      decoding="async"
+                      className="block h-auto w-full"
+                    />
+                  </picture>
+                </div>
+              </div>
+              {/* 本体（キーボード面/ヒンジ）。画面より少し広い薄い台形。装飾は控えめ。 */}
+              <div
+                className="relative -mt-px h-3.5 w-full rounded-b-lg bg-gradient-to-b from-ink-700 to-ink-900 shadow-soft sm:h-4"
+                style={{ clipPath: 'polygon(3% 0, 97% 0, 100% 100%, 0 100%)' }}
+                aria-hidden="true"
+              >
+                {/* ヒンジ（中央のくぼみ） */}
+                <div className="absolute left-1/2 top-0 h-1 w-1/5 max-w-[96px] -translate-x-1/2 rounded-b-md bg-black/25" />
+              </div>
+            </div>
 
-            {/* スマホ（お客様連動アプリ）。モバイル=PC直下に右寄せで少し重ねて縦積み。
-                sm以上=PC画面の右下へ絶対配置で手前に重ねる。 */}
-            <div className="relative z-10 -mt-12 ml-auto mr-1 w-[40%] max-w-[168px] sm:absolute sm:bottom-1 sm:-right-2 sm:m-0 sm:w-[30%] sm:max-w-[224px]">
-              <div className="overflow-hidden rounded-[1.6rem] border-[5px] border-ink-900 bg-ink-900 shadow-soft-lg ring-1 ring-black/10">
+            {/* スマホ（お客様連動アプリ）。sm以上=ノートPCの右横に立てて並べる（重ねない）。
+                sm未満=ノートPCの下へ中サイズで縦積み。 */}
+            <div className="w-[54%] max-w-[188px] sm:w-[200px] sm:flex-none sm:max-w-[200px]">
+              <div className="overflow-hidden rounded-[1.5rem] border-[5px] border-ink-900 bg-ink-900 shadow-soft-lg ring-1 ring-black/10">
                 <picture>
                   <source srcSet="/shot-customer-app-list.webp" type="image/webp" />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -138,7 +161,7 @@ export function Hero() {
                     height={1887}
                     loading="eager"
                     decoding="async"
-                    className="block h-auto w-full rounded-[1.2rem]"
+                    className="block h-auto w-full rounded-[1.1rem]"
                   />
                 </picture>
               </div>
