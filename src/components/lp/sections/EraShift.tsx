@@ -32,8 +32,8 @@ export function EraShift() {
         <Reveal delay={0.12}>
           <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
             <div className="flex-1 rounded-2xl border border-surface-200 bg-surface-100 p-6 text-center">
-              <p className="text-xs font-bold tracking-wide text-ink-500">これまでのAI営業ツール</p>
-              <ul className="mt-4 space-y-2 text-sm text-ink-500">
+              <p className="text-xs font-bold tracking-wide text-ink-600">これまでのAI営業ツール</p>
+              <ul className="mt-4 space-y-2 text-sm font-medium text-ink-700">
                 <li>初期費用 数十万円〜</li>
                 <li>法人・店舗単位の契約</li>
                 <li>個人には手が届かない</li>

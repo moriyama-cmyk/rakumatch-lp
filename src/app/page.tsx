@@ -23,6 +23,7 @@ import { AiPartner } from "@/components/lp/sections/AiPartner";
 import { FeatureDigest } from "@/components/lp/sections/FeatureDigest";
 import { Why } from "@/components/lp/sections/Why";
 import { Story } from "@/components/lp/sections/Story";
+import { Voices } from "@/components/lp/sections/Voices";
 import { Security } from "@/components/lp/sections/Security";
 import { Pricing } from "@/components/lp/sections/Pricing";
 import { Faq } from "@/components/lp/sections/Faq";
@@ -65,6 +66,8 @@ export default function LandingPage() {
         <Why />
         {/* 9.3 開発者の声（WHY TRUST US ストーリー） */}
         <Story />
+        {/* 9.4 お客様・営業の声（実際に聞いた声・アコーディオン） */}
+        <Voices />
         {/* 9.5 セキュリティ／インフラの信頼 */}
         <Security />
         {/* 10. 料金 */}

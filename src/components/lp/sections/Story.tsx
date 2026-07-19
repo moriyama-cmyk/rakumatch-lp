@@ -70,12 +70,12 @@ export function Story() {
           </p>
         </Reveal>
 
-        {/* 正直ブロック（2026-07-18 確定コピー・盛らない） */}
+        {/* 正直ブロック（2026-07-19 お客様の声を掲載したため矛盾解消・盛らない） */}
         <Reveal delay={0.14}>
           <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-surface-200 bg-white p-8 shadow-soft sm:p-10">
-            <h3 className="text-lg font-bold text-ink-900">導入事例は、まだ載せていません。</h3>
+            <h3 className="text-lg font-bold text-ink-900">導入事例は、まだ多くありません。</h3>
             <p className="mt-4 text-base leading-relaxed text-ink-700">
-              使い始めて日の浅いお客様の声を飾るより、私が自分の会社で毎日使っている実物を、そのまま触ってもらう方が早いと考えました。今日も私は、この画面で顧客対応をしています。事例より、実物で判断してください。
+              華やかな導入事例をずらりと並べる段階ではありません。それでも、先に使ってくださっている方から届いた声は、聞いたそのまま載せています。飾らず、盛らずに。今日も私は、この画面で自分の会社の顧客対応をしています。事例より、まず実物で判断してください。
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink-700">
               私はエンジニアではありません。難しい操作は、私が一番嫌いです。だからこのアプリの操作は“貼るだけ”にしました。
