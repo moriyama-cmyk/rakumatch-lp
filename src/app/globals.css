@@ -25,6 +25,9 @@ body {
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* 和文の字間（デジタル庁デザインシステム基準）。見出しは fontSize トークン側の
+     letterSpacing が個別に勝つため、ここでの指定は本文にのみ効く。 */
+  letter-spacing: 0.02em;
   /* スマホでの横スクロール防止。装飾のぼかし円や下部固定CTAバーが
      ビューポート幅を超えても横スクロールを生まないようにする。
      overflow-x: clip はスクロールコンテナを作らないので、Header の

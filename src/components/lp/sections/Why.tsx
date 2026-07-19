@@ -1,6 +1,3 @@
-'use client'
-
-import { useEffect, useRef } from 'react'
 import { Check } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
@@ -81,34 +78,22 @@ const COLS = [
 
 /** WHY（対立軸の比較表・実データ版）。スマホは先頭列sticky＋表内のみ横スクロール。 */
 export function Why() {
-  const scrollRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    // モバイル幅は初期表示のままだと勝ち列（楽マッチ AI・表の右端）が画面外になるため、
-    // 初期スクロール位置を右端に寄せる（PC/タブレット幅では触らない＝最小差分）。
-    const el = scrollRef.current
-    if (!el) return
-    if (window.innerWidth < 640) {
-      el.scrollLeft = el.scrollWidth
-    }
-  }, [])
-
   return (
-    <Section id="why" className="bg-white" spacing="lg">
+    <Section id="why" className="bg-white border-t-2 border-primary-600/20" spacing="xl">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>選ばれる理由</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-5 text-display-lg text-ink-900">
+            <h2 className="mt-4 text-display-lg text-ink-900">
               {hl(<><GradientText>“合わせる”CRM</GradientText>から、</>)}
               <br className="hidden sm:block" />
               {hl('“効く”CRMへ。')}
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mx-auto mt-4 max-w-xl text-base text-ink-700">
+            <p className="mx-auto mt-5 max-w-xl text-base text-ink-700 sm:mt-6">
               現役の仲介経営者が、自社で毎日使うために不動産売買専用で作りました。
               <br className="hidden sm:block" />
               Excelは表計算。これは、不動産営業の道具です。
@@ -117,47 +102,56 @@ export function Why() {
         </div>
 
         <Reveal delay={0.12}>
-          <div ref={scrollRef} className="mt-12 -mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
-            <table className="w-full min-w-[860px] border-separate border-spacing-0 overflow-hidden rounded-2xl border border-surface-200 text-left">
-              <thead>
-                <tr>
-                  <th className="sticky left-0 z-10 w-[8.5rem] bg-surface-100 p-4 sm:w-44" />
-                  {COLS.map((c) => (
-                    <th key={c.key} className="bg-surface-100 p-4 align-top">
-                      <span className="block text-sm font-bold text-ink-700">{c.head}</span>
-                      <span className="mt-0.5 block whitespace-nowrap text-[0.7rem] font-medium text-ink-500">
-                        （{c.sub}）
+          <div className="relative mt-12 sm:mt-16 after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-20 after:w-10 after:bg-gradient-to-l after:from-white after:to-transparent sm:after:hidden">
+            <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+              <table className="w-full min-w-[860px] border-separate border-spacing-0 overflow-hidden rounded-xl border border-surface-200 text-left">
+                <thead>
+                  <tr>
+                    <th className="sticky left-0 z-10 w-[8.5rem] border-r border-surface-200 bg-surface-100 p-4 sm:w-44" />
+                    <th className="border-r border-surface-200 bg-primary-50 p-4 align-top">
+                      <span className="block text-sm font-bold text-primary-700">楽マッチ AI</span>
+                      <span className="mt-0.5 block text-xs font-medium text-primary-600">
+                        不動産売買特化
                       </span>
                     </th>
-                  ))}
-                  <th className="bg-primary-50 p-4 align-top">
-                    <span className="block text-sm font-bold text-primary-700">楽マッチ AI</span>
-                    <span className="mt-0.5 block text-[0.7rem] font-medium text-primary-600">
-                      不動産売買特化
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {ROWS.map((r) => (
-                  <tr key={r.label}>
-                    <th
-                      scope="row"
-                      className="sticky left-0 z-10 border-t border-surface-200 bg-surface-100 p-4 text-sm font-bold text-ink-900"
-                    >
-                      {r.label}
-                    </th>
                     {COLS.map((c) => (
-                      <Td key={c.key}>{protect(r[c.key])}</Td>
+                      <th key={c.key} className="border-r border-surface-200 bg-surface-100 p-4 align-top">
+                        <span className="block text-sm font-bold text-ink-700">{c.head}</span>
+                        <span className="mt-0.5 block whitespace-nowrap text-xs font-medium text-ink-500">
+                          （{c.sub}）
+                        </span>
+                      </th>
                     ))}
-                    <Td highlight>
-                      <Check className="mr-1 inline h-3.5 w-3.5 text-primary-600" strokeWidth={3} />
-                      <span className="font-bold">{protect(r.raku)}</span>
-                    </Td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {ROWS.map((r) => {
+                    const numeric = r.label === '月額の目安' || r.label === '初期費用'
+                    return (
+                      <tr key={r.label}>
+                        <th
+                          scope="row"
+                          className="sticky left-0 z-10 border-t border-r border-surface-200 bg-surface-100 p-4 text-sm font-bold text-ink-900"
+                        >
+                          {r.label}
+                        </th>
+                        <Td highlight numeric={numeric}>
+                          <Check className="mr-1 inline h-3.5 w-3.5 text-primary-600" strokeWidth={3} />
+                          <span className="font-bold">{protect(r.raku)}</span>
+                        </Td>
+                        {COLS.map((c) => (
+                          <Td key={c.key} numeric={numeric}>{protect(r[c.key])}</Td>
+                        ))}
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white sm:hidden"
+              aria-hidden
+            />
           </div>
         </Reveal>
 
@@ -170,7 +164,7 @@ export function Why() {
 
         {/* 締めコピー（COMPARISON_DATA §4） */}
         <Reveal delay={0.12}>
-          <p className="mt-8 text-center text-display-md text-ink-900">
+          <p className="mt-12 text-center text-display-md text-ink-900 sm:mt-16">
             {hl(
               <>初期費用<GradientText variant="gold">0円</GradientText>・</>,
               <>1人 月<GradientText variant="gold">3,000円</GradientText></>,
@@ -194,15 +188,17 @@ export function Why() {
 function Td({
   children,
   highlight,
+  numeric,
 }: {
   children: React.ReactNode
   highlight?: boolean
+  numeric?: boolean
 }) {
   return (
     <td
-      className={`border-t border-surface-200 p-4 align-top text-[0.85rem] leading-relaxed ${
-        highlight ? 'bg-primary-50/60 text-ink-900' : 'text-ink-500'
-      }`}
+      className={`border-t border-r border-surface-200 p-4 align-top text-sm leading-relaxed ${
+        numeric ? 'tabular-nums' : ''
+      } ${highlight ? 'bg-primary-50/60 text-ink-900' : 'text-ink-500'}`}
     >
       {children}
     </td>

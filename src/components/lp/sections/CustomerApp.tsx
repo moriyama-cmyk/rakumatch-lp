@@ -8,7 +8,7 @@ import { Badge } from '../ui/Badge'
 import { GlowButton } from '../ui/GlowButton'
 import { Img } from '../ui/Img'
 import { SITE } from '../site'
-import { hlText } from '../lib/headline'
+import { hl, hlText } from '../lib/headline'
 import { trackCta } from '@/lib/track'
 
 const SALES = [
@@ -25,21 +25,24 @@ const CUSTOMER = [
 /** ① お客様連動アプリ（最大の差別化＝堀・主役）。ライト・実画面。 */
 export function CustomerApp() {
   return (
-    <Section id="customer-app" className="bg-surface-50" spacing="lg">
+    <Section id="customer-app" className="bg-surface-100" spacing="lg">
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <Reveal>
               <Badge icon={<Smartphone className="h-3.5 w-3.5" />}>最大の差別化</Badge>
-              <h3 className="mt-5 text-display-md text-ink-900">
-                {hlText('言葉にならない“欲しい”まで、')}
+              <h2 className="mt-4 text-display-lg text-ink-900">
+                {/* hlText は句読点でしか割らないため「言葉にならない“欲しい”まで、」が
+                    14字の1チャンクになり、2カラム時のカラム幅(≈526px)を超えて見切れた。
+                    headline.tsx の「1チャンク全角9字以内」に従い hl() で手動分割する（文言は不変）。 */}
+                {hl('言葉にならない', '“欲しい”まで、')}
                 <br className="hidden sm:block" />
                 {hlText('営業に届く。')}
-              </h3>
+              </h2>
               <p className="mt-3 text-sm font-bold text-primary-700 sm:text-base">
                 {hlText('ポータルは、お客様に通知するだけ。先に動くのは、あなたにする。')}
               </p>
-              <p className="mt-4 text-[1.0625rem] leading-[1.9] text-ink-700">
+              <p className="mt-4 text-lg leading-[1.8] text-ink-700">
                 自分の会社のお客様に、実際に配っています。担当者が発行するリンクを、お客様が自分のアプリとして使う。SUUMOなど色々な媒体で気になった物件が1か所に集まり、その希望と保存物件が、そのままあなたに届きます。「どんな物件がお好みですか」と、もう聞かなくていい。
               </p>
             </Reveal>
@@ -83,7 +86,7 @@ export function CustomerApp() {
 function PhoneShot() {
   return (
     <div className="mx-auto max-w-[320px]">
-      <div className="overflow-hidden rounded-[2rem] border border-surface-200 bg-white p-1.5 shadow-soft-lg">
+      <div className="overflow-hidden rounded-[2rem] border border-ink-900/8 bg-white p-1.5 shadow-soft-lg">
         <div className="overflow-hidden rounded-[1.6rem]">
           <Img
             base="/shot-customer-app-list"
@@ -108,14 +111,14 @@ function SubList({
   items: string[]
 }) {
   return (
-    <div className="rounded-2xl border border-surface-200 bg-white p-5 shadow-soft">
+    <div className="rounded-xl border border-surface-200 bg-white p-5 shadow-none transition-shadow duration-200 hover:shadow-soft">
       <p className="flex items-center gap-2 text-sm font-bold text-primary-700">
         <Icon className="h-4 w-4" strokeWidth={2.4} />
         {title}
       </p>
       <ul className="mt-3 space-y-2.5">
         {items.map((it) => (
-          <li key={it} className="flex items-start gap-2 text-[0.85rem] leading-relaxed text-ink-700">
+          <li key={it} className="flex items-start gap-2 text-sm leading-[1.7] text-ink-700">
             <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary-600" strokeWidth={3} />
             {it}
           </li>

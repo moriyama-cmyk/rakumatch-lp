@@ -30,21 +30,21 @@ const PAINS: Pain[] = [
 /** 課題提起。個人/企業に共通する痛みで「これ、うちだ」と刺す。 */
 export function Problem() {
   return (
-    <Section id="problem" className="bg-surface-50">
+    <Section id="problem" className="bg-surface-150 border-t-2 border-primary-600/20" spacing="xl">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>こんな現場、ありませんか</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-5 text-display-lg text-ink-900">
+            <h2 className="mt-4 text-display-lg text-ink-900">
               {hl(<>こんな<GradientText>“もったいない”</GradientText>、</>)}
               <br className="hidden sm:block" />
               {hl('起きていませんか。')}
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mt-4 text-lg font-bold text-ink-900">
+            <p className="mt-5 text-lg font-bold text-ink-900 sm:mt-6">
               {hlText('売れない理由は、努力不足ではない。情報が、つながっていないだけ。')}
             </p>
           </Reveal>
@@ -53,19 +53,19 @@ export function Problem() {
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {PAINS.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
-              <div className="flex h-full flex-col rounded-2xl border border-surface-200 bg-white p-7 shadow-soft">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-surface-100 text-primary-600">
-                  <p.icon className="h-5 w-5" strokeWidth={2.2} aria-hidden />
+              <div className="flex h-full flex-col rounded-xl border border-surface-200 bg-white p-7 transition-shadow duration-200 hover:shadow-soft">
+                <span className="inline-flex h-11 w-11 items-center justify-center text-primary-600">
+                  <p.icon className="h-5 w-5" strokeWidth={2} aria-hidden />
                 </span>
-                <h3 className="mt-5 text-lg font-bold text-ink-900">{hlText(p.title)}</h3>
-                <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-700">{p.body}</p>
+                <h3 className="mt-4 text-lg font-bold text-ink-900">{hlText(p.title)}</h3>
+                <p className="mt-2.5 text-sm leading-[1.7] text-ink-700">{p.body}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
         <Reveal delay={0.16}>
-          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-surface-200 bg-white p-7 shadow-soft sm:p-8">
+          <div className="mx-auto mt-10 max-w-3xl rounded-xl border border-surface-200 bg-white p-7 transition-shadow duration-200 hover:shadow-soft sm:p-8">
             <p className="text-base font-bold text-ink-900">
               {hlText('いまのやり方の値段を、一度だけ計算してみてください。')}
             </p>
@@ -77,11 +77,11 @@ export function Problem() {
                 <div className="mt-4 flex w-full flex-col gap-1.5 text-left text-xs text-ink-700">
                   <span className="inline-flex items-center gap-2">
                     <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-primary-600" aria-hidden />
-                    営業活動に使える時間 — <b className="text-ink-900">32%</b>
+                    営業活動に使える時間 — <b className="text-ink-900 tabular-nums">32%</b>
                   </span>
                   <span className="inline-flex items-center gap-2">
                     <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-surface-200" aria-hidden />
-                    それ以外の業務 — 68%
+                    それ以外の業務 — <span className="tabular-nums">68%</span>
                   </span>
                 </div>
                 <p className="mt-3 text-xs leading-relaxed text-ink-500">
@@ -90,10 +90,10 @@ export function Problem() {
               </div>
 
               <div className="flex flex-col items-center justify-center rounded-xl bg-surface-50 p-5 text-center">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white text-primary-600 shadow-soft">
-                  <Mail className="h-5 w-5" strokeWidth={2.2} aria-hidden />
+                <span className="inline-flex h-11 w-11 items-center justify-center text-primary-600">
+                  <Mail className="h-5 w-5" strokeWidth={2} aria-hidden />
                 </span>
-                <p className="mt-3 text-4xl font-bold text-ink-900">
+                <p className="mt-3 text-4xl font-bold tabular-nums text-ink-900">
                   5<span className="text-lg font-medium">分</span>57<span className="text-lg font-medium">秒</span>
                 </p>
                 <p className="mt-1 text-sm text-ink-700">メール1通の作成にかかる平均時間</p>
@@ -103,14 +103,14 @@ export function Problem() {
               </div>
             </div>
 
-            <p className="mt-6 text-[0.95rem] leading-relaxed text-ink-700">
+            <p className="mt-6 text-sm leading-[1.7] text-ink-700">
               物件の手入力が1件20分なら、50件で16時間——あなたの時給換算で、いくらになりますか。楽マッチは、月3,000円です。
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={0.2}>
-          <p className="mt-8 text-center text-display-md text-ink-900">
+          <p className="mt-16 text-center text-display-md text-ink-900 sm:mt-20">
             {hl('その全部に、', <><GradientText>AIの相棒</GradientText>で</>, '手を打てます。')}
           </p>
         </Reveal>
@@ -154,7 +154,7 @@ function WeeklyTimeDonut() {
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-3xl font-bold text-ink-900">32%</span>
+        <span className="text-3xl font-bold tabular-nums text-ink-900">32%</span>
         <span className="text-[11px] font-medium text-ink-500">が営業活動</span>
       </div>
     </div>

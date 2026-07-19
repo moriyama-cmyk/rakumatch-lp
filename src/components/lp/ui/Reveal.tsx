@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, createElement, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, createElement, type ReactNode } from 'react'
 import { cn } from '../lib/cn'
 
 type RevealProps = {
@@ -23,6 +23,14 @@ type RevealProps = {
 export function Reveal({ children, className, delay = 0, as = 'div' }: RevealProps) {
   const ref = useRef<HTMLElement>(null)
   const [shown, setShown] = useState(false)
+  // SSR は常に可視（mounted===false）。クライアントでマウントされて初めて
+  // 「まだ shown でなければ隠す」ゲートが有効になる。これにより SSR/初回描画の
+  // HTML には opacity-0 が一切出力されない（ビルド済HTMLの検証条件を満たす）。
+  const [mounted, setMounted] = useState(false)
+
+  useLayoutEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const prefersReduced =
@@ -74,15 +82,17 @@ export function Reveal({ children, className, delay = 0, as = 'div' }: RevealPro
     }
   }, [])
 
+  const hidden = mounted && !shown
+
   return createElement(
     as,
     {
       ref,
       className: cn(
         'motion-safe:transition-[opacity,transform] motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]',
-        shown
-          ? 'opacity-100 translate-y-0'
-          : 'opacity-0 translate-y-[10px] motion-reduce:opacity-100 motion-reduce:translate-y-0',
+        hidden
+          ? 'opacity-0 translate-y-[10px] motion-reduce:opacity-100 motion-reduce:translate-y-0'
+          : 'opacity-100 translate-y-0',
         className,
       ),
       style: shown && delay ? { transitionDelay: `${delay}s` } : undefined,

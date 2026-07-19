@@ -8,21 +8,21 @@ import { hl } from '../lib/headline'
 /** PROBLEM と SOLUTION の間のブリッジ。「時代の転換」で訴求を価格軸から個人の武器軸へ寄せる。 */
 export function EraShift() {
   return (
-    <Section id="era-shift" className="bg-surface-50" spacing="sm">
+    <Section id="era-shift" className="bg-surface-150 border-t border-surface-200" spacing="sm">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>時代の転換</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-5 text-display-lg text-ink-900">
+            <h2 className="mt-4 text-display-lg text-ink-900">
               {hl('大企業の武器だったAIが、')}
               <br className="hidden sm:block" />
               {hl('あなた一人の手に。')}
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-ink-700">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-700 sm:mt-6">
               これまで数十万円と法人契約が要ったAI営業が、個人1名から持てる時代になりました。楽マッチは、その最初の1本。これが、これからのスタンダードになります。
             </p>
           </Reveal>
@@ -31,7 +31,9 @@ export function EraShift() {
         {/* ビフォーアフター2カラム。昔=沈んだグレー／今=ゴールド発光。優越断定語は使わない。 */}
         <Reveal delay={0.12}>
           <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <div className="flex-1 rounded-2xl border border-surface-200 bg-surface-100 p-6 text-center">
+            <div className="flex-1 rounded-xl border border-surface-200 bg-surface-100 p-6 text-center opacity-[0.85]">
+              {/* 親カードの opacity-[0.85] が乗るため、ink-500 だと 12px で 3.76:1 まで落ちる。
+                  ink-600 なら合成後も 4.80:1 で 4.5:1 を満たす（沈んだ見えは opacity 側で担保）。 */}
               <p className="text-xs font-bold tracking-wide text-ink-600">これまでのAI営業ツール</p>
               <ul className="mt-4 space-y-2 text-sm font-medium text-ink-700">
                 <li>初期費用 数十万円〜</li>
@@ -44,10 +46,10 @@ export function EraShift() {
               <ArrowRight className="h-6 w-6 rotate-90 text-primary-400 sm:h-7 sm:w-7 sm:rotate-0" aria-hidden />
             </div>
 
-            <div className="flex-1 rounded-2xl border border-accent-500/40 bg-white p-6 text-center shadow-soft-md">
-              <p className="text-xs font-bold tracking-wide text-accent-600">楽マッチ</p>
+            <div className="flex-1 rounded-xl border border-accent-500/40 bg-white p-6 text-center transition-shadow duration-200 hover:shadow-soft-md">
+              <p className="text-xs font-bold tracking-wide text-accent-700">楽マッチ</p>
               <p className="mt-3">
-                <span className="text-4xl font-bold text-accent-600 sm:text-5xl">月3,000円</span>
+                <span className="text-4xl font-bold text-primary-700 sm:text-5xl">月3,000円</span>
                 <span className="ml-1 text-sm font-medium text-ink-500">/人</span>
               </p>
               <ul className="mt-4 space-y-2 text-sm font-medium text-ink-900">

@@ -175,7 +175,7 @@ function MatchingFlowDiagram() {
       {/* 背後の淡い primary-50 ぼかし円（白地に浮かせる・彩度は最小） */}
       <div className="pointer-events-none absolute inset-0 -z-10 mx-auto max-w-md rounded-full bg-primary-50 opacity-70 blur-3xl" />
 
-      <div className="mx-auto max-w-md rounded-2xl border border-surface-200 bg-white p-6 shadow-[0_20px_60px_rgba(5,57,43,0.10)] ring-1 ring-surface-200 sm:p-8">
+      <div className="mx-auto max-w-md rounded-xl border border-surface-200 bg-white p-6 shadow-soft-lg ring-1 ring-surface-200 sm:p-8">
         <p className="text-center text-xs font-semibold tracking-wider text-primary-600">
           双方向マッチング
         </p>

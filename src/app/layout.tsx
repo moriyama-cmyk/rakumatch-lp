@@ -8,7 +8,7 @@ import { Analytics } from "../components/lp/Analytics";
 // CJK は容量が大きく preload は無駄が多いため preload:false。display:swap で FOIT を回避。
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-sans",
   preload: false,

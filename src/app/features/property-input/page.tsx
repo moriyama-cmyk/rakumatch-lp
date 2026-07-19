@@ -310,7 +310,7 @@ export default function PropertyInputPage() {
                 width={1376}
                 height={768}
                 sizes="(max-width: 1024px) 100vw, 600px"
-                className="w-full rounded-2xl ring-1 ring-surface-200 shadow-[0_20px_60px_rgba(5,57,43,0.12)]"
+                className="w-full rounded-xl ring-1 ring-surface-200 shadow-soft-lg"
               />
               <p className="mt-3 text-center text-sm text-ink-500">
                 デモ画面（イメージ）
@@ -335,7 +335,7 @@ export default function PropertyInputPage() {
         title="契約も設定もいらない。だから今日から。"
         lead="物件情報を貼り付ける営業の登録は、外部サービスとのAPI契約も連携設定も不要です。月額のコンバーターを別途契約しなくても、低単価で導入したその日から使い始められます。"
       >
-        <div className="flex items-start gap-4 rounded-2xl border border-surface-200 bg-surface-50 p-6 lg:p-8">
+        <div className="flex items-start gap-4 rounded-xl border border-surface-200 bg-surface-50 p-6 lg:p-8">
           <FileText
             className="mt-0.5 h-6 w-6 shrink-0 text-primary-600"
             aria-hidden="true"

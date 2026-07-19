@@ -20,7 +20,7 @@ export default function RelatedFeatures({ items }: { items: RelatedFeature[] }) 
         <FadeIn key={item.href} className="h-full">
           <Link
             href={item.href}
-            className="group flex h-full flex-col rounded-2xl border border-surface-200 bg-white p-6 transition hover:border-primary-200 hover:shadow-[0_8px_30px_rgba(13,124,102,0.06)] motion-reduce:transition-none lg:p-8"
+            className="group flex h-full flex-col rounded-xl border border-surface-200 bg-white p-6 transition hover:border-primary-200 hover:shadow-soft motion-reduce:transition-none lg:p-8"
           >
             <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-primary-50 text-primary-600">
               <item.icon className="h-6 w-6" aria-hidden="true" />

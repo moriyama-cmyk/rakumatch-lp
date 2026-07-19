@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Quote, Briefcase, User } from 'lucide-react'
+import { Briefcase, User } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
@@ -74,19 +74,19 @@ export function Voices() {
   const rest = VOICES.length - INITIAL_COUNT
 
   return (
-    <Section id="voices" className="bg-white" spacing="lg">
+    <Section id="voices" className="bg-surface-150 border-t border-surface-200" spacing="md">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>お客様・営業の声</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-5 text-display-lg text-ink-900">
+            <h2 className="mt-4 text-display-lg text-ink-900">
               使ってくださっている方の、<GradientText>声</GradientText>
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mt-4 text-base leading-relaxed text-ink-700">
+            <p className="mt-5 text-base leading-relaxed text-ink-700 sm:mt-6">
               まだ多くはありませんが、先に使ってくださっている方から、こんな声が届いています。
             </p>
           </Reveal>
@@ -95,12 +95,9 @@ export function Voices() {
         <div className="mx-auto mt-12 grid max-w-4xl gap-5 sm:grid-cols-2">
           {shown.map((v, i) => (
             <Reveal key={v.attr + i} delay={Math.min((i % INITIAL_COUNT) * 0.06, 0.18)}>
-              <figure className="flex h-full flex-col rounded-2xl border border-surface-200 bg-white p-6 shadow-soft sm:p-7">
-                <div className="flex items-center justify-between">
-                  <VoiceLabel kind={v.kind} />
-                  <Quote className="h-5 w-5 shrink-0 text-surface-200" aria-hidden />
-                </div>
-                <blockquote className="mt-4 flex-1 text-[0.95rem] leading-relaxed text-ink-700">
+              <figure className="flex h-full flex-col rounded-xl border border-surface-200 bg-white p-6 transition-shadow duration-200 hover:shadow-soft sm:p-7">
+                <VoiceLabel kind={v.kind} />
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-ink-700">
                   {v.body}
                 </blockquote>
                 <figcaption className="mt-4 text-xs text-ink-500">— {v.attr}</figcaption>
@@ -115,7 +112,7 @@ export function Voices() {
               type="button"
               onClick={() => setExpanded((v) => !v)}
               aria-expanded={expanded}
-              className="inline-flex items-center gap-2 rounded-full border border-surface-200 bg-white px-5 py-2.5 text-sm font-bold text-ink-700 shadow-soft transition-colors hover:bg-surface-50"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-surface-200 bg-white px-5 py-2.5 text-sm font-bold text-ink-700 transition-colors hover:bg-surface-100"
             >
               {expanded ? '閉じる' : `もっと見る（あと${rest}件）`}
             </button>
@@ -130,14 +127,14 @@ export function Voices() {
 function VoiceLabel({ kind }: { kind: Voice['kind'] }) {
   if (kind === 'sales') {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-50 px-2.5 py-1 text-[0.7rem] font-bold text-primary-700">
+      <span className="inline-flex items-center gap-1.5 rounded-md bg-primary-50 px-2.5 py-1 text-xs font-bold text-primary-700">
         <Briefcase className="h-3.5 w-3.5" strokeWidth={2.2} aria-hidden />
         営業の声
       </span>
     )
   }
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-50 px-2.5 py-1 text-[0.7rem] font-bold text-accent-600">
+    <span className="inline-flex items-center gap-1.5 rounded-md bg-accent-50 px-2.5 py-1 text-xs font-bold text-accent-700">
       <User className="h-3.5 w-3.5" strokeWidth={2.2} aria-hidden />
       お客様の声
     </span>

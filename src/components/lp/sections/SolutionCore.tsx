@@ -56,11 +56,11 @@ export function SolutionCore() {
 
         {/* 双方向フロー図 */}
         <Reveal delay={0.12}>
-          <div className="mx-auto mt-12 flex max-w-3xl items-center justify-center gap-3 sm:gap-6">
+          <div className="mx-auto mt-16 flex max-w-3xl items-center justify-center gap-3 sm:mt-20 sm:gap-6">
             <FlowNode icon={User} label="顧客" />
             <Connector />
             <div className="flex flex-col items-center">
-              <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-600 text-white shadow-soft-md sm:h-20 sm:w-20">
+              <span className="inline-flex h-16 w-16 items-center justify-center rounded-xl bg-primary-600 text-white sm:h-20 sm:w-20">
                 <Bot className="h-8 w-8 sm:h-10 sm:w-10" strokeWidth={2} />
               </span>
               <span className="mt-2 text-xs font-bold text-ink-900">楽マッチ AI</span>
@@ -71,18 +71,18 @@ export function SolutionCore() {
         </Reveal>
 
         {/* 3ステップ */}
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        <div className="mt-16 grid gap-5 sm:mt-20 md:grid-cols-3">
           {STEPS.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.08}>
-              <div className="relative h-full rounded-2xl border border-surface-200 bg-surface-50 p-7 shadow-soft">
+              <div className="relative h-full rounded-xl border border-surface-200 bg-surface-50 p-7 transition-shadow duration-200 hover:shadow-soft">
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-600">
-                    <s.icon className="h-6 w-6" strokeWidth={2.2} aria-hidden />
+                  <span className="inline-flex h-12 w-12 items-center justify-center text-primary-600">
+                    <s.icon className="h-6 w-6" strokeWidth={2} aria-hidden />
                   </span>
                   <span className="text-3xl font-bold text-surface-200">{s.n}</span>
                 </div>
-                <h3 className="mt-5 text-xl font-bold text-ink-900">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-700">{protect(s.body)}</p>
+                <h3 className="mt-4 text-xl font-bold text-ink-900">{s.title}</h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-ink-700">{protect(s.body)}</p>
               </div>
             </Reveal>
           ))}
@@ -109,7 +109,7 @@ export function SolutionCore() {
 /** 手入力(右肩上がり)と楽マッチ(ほぼ水平)の2本線。件数が増えるほど差が開く概念図。実測性能は書かない。 */
 function EffortLineChart() {
   return (
-    <div className="mx-auto mt-8 max-w-md rounded-2xl border border-surface-200 bg-surface-50 p-5 sm:p-6">
+    <div className="mx-auto mt-16 max-w-md rounded-xl border border-surface-200 bg-surface-50 p-5 sm:mt-20 sm:p-6">
       <div className="flex items-center justify-center gap-5 text-xs font-medium text-ink-700">
         <span className="inline-flex items-center gap-1.5">
           <span className="h-1.5 w-5 shrink-0 rounded-full bg-[#5E6B64]" aria-hidden />
@@ -154,7 +154,7 @@ function EffortLineChart() {
 function FlowNode({ icon: Icon, label }: { icon: LucideIcon; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-surface-200 bg-white text-primary-600 shadow-soft sm:h-16 sm:w-16">
+      <span className="inline-flex h-14 w-14 items-center justify-center rounded-xl border border-surface-200 bg-white text-primary-600 sm:h-16 sm:w-16">
         <Icon className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={2} />
       </span>
       <span className="mt-2 text-xs font-medium text-ink-700">{label}</span>

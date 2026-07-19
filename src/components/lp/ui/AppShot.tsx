@@ -33,7 +33,7 @@ export function AppShot({
   return (
     <figure
       className={cn(
-        'overflow-hidden rounded-2xl border border-surface-200 bg-white shadow-soft-lg',
+        'overflow-hidden rounded-xl border border-ink-900/8 bg-white shadow-soft-lg',
         className,
       )}
     >

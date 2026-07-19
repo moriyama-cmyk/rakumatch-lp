@@ -21,7 +21,7 @@ export default function RequirementCard({
   note?: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-surface-200 bg-white p-6 lg:p-8">
+    <div className="rounded-xl border border-surface-200 bg-white p-6 lg:p-8">
       <ul className="space-y-5">
         {items.map((item) => (
           <li key={item.label} className="flex items-start gap-3">

@@ -46,14 +46,14 @@ export default function DemoVideoPoster({
           autoPlay
           playsInline
           aria-label={alt}
-          className="aspect-[16/10] w-full rounded-2xl object-cover ring-1 ring-surface-200 shadow-[0_20px_60px_rgba(5,57,43,0.12)]"
+          className="aspect-[16/10] w-full rounded-xl object-cover ring-1 ring-surface-200 shadow-soft-lg"
         />
       ) : (
         <button
           type="button"
           onClick={() => setPlaying(true)}
           aria-label={`${alt}を再生`}
-          className="group relative block w-full overflow-hidden rounded-2xl ring-1 ring-surface-200 shadow-[0_20px_60px_rgba(5,57,43,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+          className="group relative block w-full overflow-hidden rounded-xl ring-1 ring-surface-200 shadow-soft-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
         >
           <Image
             src={poster}

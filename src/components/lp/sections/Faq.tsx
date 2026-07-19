@@ -51,30 +51,30 @@ const QA: { q: string; a: string }[] = [
 /** FAQ（少数）。native details で開閉・アクセシブル。ライト。 */
 export function Faq() {
   return (
-    <Section id="faq" className="bg-surface-50" spacing="lg">
+    <Section id="faq" className="bg-surface-50" spacing="md">
       <Container narrow>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>よくある質問</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-5 text-display-lg text-ink-900">
+            <h2 className="mt-4 text-display-lg text-ink-900">
               よくある<GradientText>質問</GradientText>
             </h2>
           </Reveal>
         </div>
 
-        <div className="mt-12 space-y-3">
+        <div className="mt-12 space-y-2">
           {QA.map((item, i) => (
             <Reveal key={item.q} delay={Math.min(i * 0.05, 0.2)}>
-              <details className="group rounded-2xl border border-surface-200 bg-white shadow-soft [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-left">
-                  <span className="text-[0.95rem] font-bold text-ink-900">{item.q}</span>
-                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600 transition-transform duration-300 group-open:rotate-45">
+              <details className="group rounded-lg border border-surface-200 bg-white [&_summary::-webkit-details-marker]:hidden">
+                <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-4 p-5 text-left">
+                  <span className="text-sm font-bold text-ink-900">{item.q}</span>
+                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600 transition-transform duration-200 ease-out group-open:rotate-45">
                     <Plus className="h-4 w-4" />
                   </span>
                 </summary>
-                <div className="px-5 pb-5 text-[0.9rem] leading-relaxed text-ink-700">{item.a}</div>
+                <div className="px-5 pb-5 text-sm leading-relaxed text-ink-700">{item.a}</div>
               </details>
             </Reveal>
           ))}

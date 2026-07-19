@@ -37,35 +37,33 @@ const ITEMS: DigestItem[] = [
  */
 export function FeatureDigest() {
   return (
-    <Section id="hub" className="bg-surface-50" spacing="lg">
+    <Section id="hub" className="bg-surface-100" spacing="md">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>ALL-IN-ONE</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-5 text-display-lg text-ink-900">{hlText('提案の前も、契約の後も。')}</h2>
+            <h2 className="mt-4 text-display-lg text-ink-900">{hlText('提案の前も、契約の後も。')}</h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mt-4 text-lg font-bold text-ink-900">
+            <p className="mt-5 text-lg font-bold text-ink-900 sm:mt-6">
               {hlText('営業を止める“雑務”まで、ひとつに。')}
             </p>
           </Reveal>
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 divide-y divide-surface-200 border-y border-surface-200 sm:mt-16 md:grid-cols-3 md:divide-x md:divide-y-0 md:border">
           {ITEMS.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.08}>
-              <div className="flex h-full flex-col rounded-2xl border border-surface-200 bg-white p-7 shadow-soft">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-surface-100 text-primary-600">
-                  <item.icon className="h-5 w-5" strokeWidth={2.2} aria-hidden />
-                </span>
-                <h3 className="mt-5 text-lg font-bold text-ink-900">{hlText(item.title)}</h3>
-                <p className="mt-2 flex-1 text-[0.95rem] leading-relaxed text-ink-700">{item.body}</p>
+              <div className="flex h-full flex-col p-6">
+                <item.icon className="h-5 w-5 text-primary-600" strokeWidth={2} aria-hidden />
+                <h3 className="mt-4 text-lg font-bold text-ink-900">{hlText(item.title)}</h3>
+                <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink-700">{item.body}</p>
                 {item.href ? (
                   <a
                     href={item.href}
-                    className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-primary-700 transition-colors hover:text-primary-800"
+                    className="mt-4 inline-flex min-h-[44px] items-center gap-1 text-sm font-bold text-primary-700 transition-colors hover:text-primary-800"
                   >
                     詳しく見る
                     <ArrowRight className="h-4 w-4" aria-hidden />

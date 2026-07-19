@@ -23,33 +23,33 @@ const TRUST: Trust[] = [
  */
 export function Security() {
   return (
-    <Section id="security" className="bg-white" spacing="lg">
+    <Section id="security" className="bg-surface-100" spacing="sm">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge icon={<Shield className="h-3.5 w-3.5" />}>セキュリティ</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-5 text-display-lg text-ink-900">
+            <h2 className="mt-4 text-display-lg text-ink-900">
               {hl('データは、', '大手テック企業の', 'インフラで守る。')}
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-ink-700">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-700 sm:mt-6">
               {protect('自社で大手企業レベルのセキュリティを実現するのは、ほぼ不可能です。楽マッチAIは、Google・Amazon・Stripeという世界最大級のインフラ上で稼働。お客様のデータや決済情報を弊社サーバーで保持することはありません。')}
             </p>
           </Reveal>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid divide-y divide-surface-200 sm:mt-16 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
           {TRUST.map((t, i) => (
             <Reveal key={t.title} delay={i * 0.06}>
-              <div className="h-full rounded-2xl border border-surface-200 bg-surface-50 p-6 text-center shadow-soft">
-                <span className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-100 text-ink-700">
-                  <t.icon className="h-6 w-6" strokeWidth={2} aria-hidden />
-                </span>
-                <p className="text-sm font-bold text-ink-900">{t.title}</p>
-                <p className="mt-1 text-sm leading-relaxed text-ink-500">{t.desc}</p>
+              <div className="flex h-full items-start gap-3 py-4 sm:p-4">
+                <t.icon className="mt-0.5 h-6 w-6 shrink-0 text-ink-700" strokeWidth={2} aria-hidden />
+                <div>
+                  <p className="text-sm font-bold text-ink-900">{t.title}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-500">{t.desc}</p>
+                </div>
               </div>
             </Reveal>
           ))}

@@ -31,31 +31,42 @@ const config: Config = {
           DEFAULT: '#0D9B76',
         },
         surface: {
+          0: '#FFFFFF', // 明示用（bg-white と等価。章区切りコードの可読性のため）
           50: '#FAFAF8',
           100: '#F5F3EF',
-          200: '#E5E2DD',
+          150: '#EFECE6', // 背景の3段目。痛み章・人の章に使う
+          200: '#E5E2DD', // 罫線
+          900: '#0F1A16', // FinalCta のダーク面のみ
         },
         // アクセント（上品ゴールド）: 数値強調・実績バッジ・極細ラインのみ。面塗り禁止。
         accent: {
           50: '#FBF7EE',
           500: '#C8A24A',
-          600: '#A8842F',
+          600: '#A8842F', // 24px以上のboldのみ（3:1をクリア）
+          700: '#7A5F1F', // 24px未満のテキストは必ずこちら（白地6.03:1 / accent-50地5.64:1）
         },
         // インク（黒に緑を一滴）: 純黒を避け本文を上品に。
         ink: {
-          500: '#5E6B64',
-          700: '#36433D',
-          900: '#0F1A16',
+          300: '#9BA5A0', // 装飾専用（矢印/罫）。テキスト禁止
+          400: '#7C8880', // 装飾専用（白地3.69:1）。テキスト禁止
+          500: '#5E6B64', // 注記（5.46:1）
+          600: '#4A5751', // テキスト可（7.57:1）
+          700: '#36433D', // 本文
+          800: '#22302A', // テキスト可
+          900: '#0F1A16', // 見出し
         },
+      },
+      letterSpacing: {
+        jp: '0.02em',
       },
       // 以下、トップページ新デザイン（lp-bold 版）で用いるトークン。
       // 既存トークンは変更せず追記のみ（DESIGN_MODERN_LIGHT 準拠・Vite版と同値）。
       fontSize: {
         // clamp ベースの大きな見出し（型は大胆・質感はクリーン）
-        'display-2xl': ['clamp(2.25rem, 5.2vw, 3.75rem)', { lineHeight: '1.12', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'display-xl': ['clamp(2rem, 4.6vw, 3.25rem)', { lineHeight: '1.14', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'display-lg': ['clamp(1.75rem, 3.8vw, 2.75rem)', { lineHeight: '1.2', letterSpacing: '-0.015em', fontWeight: '700' }],
-        'display-md': ['clamp(1.5rem, 3vw, 2.1rem)', { lineHeight: '1.28', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'display-2xl': ['clamp(2.125rem, 6.4vw, 4rem)', { lineHeight: '1.16', letterSpacing: '-0.005em', fontWeight: '700' }],
+        'display-xl': ['clamp(1.75rem, 4.4vw, 3rem)', { lineHeight: '1.24', letterSpacing: '-0.005em', fontWeight: '700' }],
+        'display-lg': ['clamp(1.5rem, 3.6vw, 2.5rem)', { lineHeight: '1.32', letterSpacing: '-0.005em', fontWeight: '600' }],
+        'display-md': ['clamp(1.25rem, 2.6vw, 1.625rem)', { lineHeight: '1.45', letterSpacing: '0', fontWeight: '600' }],
       },
       maxWidth: {
         container: '1180px',

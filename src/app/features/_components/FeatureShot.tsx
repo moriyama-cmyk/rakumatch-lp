@@ -27,7 +27,7 @@ export default function FeatureShot({
 }: FeatureShotProps) {
   return (
     <div className={className}>
-      <figure className="overflow-hidden rounded-2xl border border-surface-200 bg-white shadow-[0_20px_60px_rgba(5,57,43,0.12)]">
+      <figure className="overflow-hidden rounded-xl border border-surface-200 bg-white shadow-soft-lg">
         <picture>
           <source srcSet={`${base}.webp`} type="image/webp" />
           {/* eslint-disable-next-line @next/next/no-img-element */}

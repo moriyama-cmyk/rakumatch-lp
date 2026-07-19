@@ -66,7 +66,7 @@ export default function FeatureDemoMedia({
             muted
             loop
             playsInline
-            className="w-full rounded-2xl ring-1 ring-surface-200 shadow-[0_20px_60px_rgba(5,57,43,0.12)]"
+            className="w-full rounded-xl ring-1 ring-surface-200 shadow-soft-lg"
           />
           <p className="mt-3 text-center text-sm text-ink-500">{caption}</p>
         </>

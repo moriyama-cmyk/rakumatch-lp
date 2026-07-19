@@ -13,7 +13,7 @@ const ITEMS = [
 /** Hero下の静かな信頼バー（流れない・上品）。Gemini 搭載を明示。 */
 export function TrustStrip() {
   return (
-    <div className="border-y border-surface-200 bg-white py-6">
+    <div className="border-y border-surface-200 bg-white py-5 sm:py-6">
       <Container>
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:gap-x-10">
           <span className="inline-flex items-center gap-2 text-sm font-semibold text-ink-700">
@@ -22,7 +22,7 @@ export function TrustStrip() {
               alt=""
               width={20}
               height={20}
-              className="h-5 w-5"
+              className="h-5 w-5 opacity-90 grayscale-[0.15]"
               aria-hidden
             />
             Gemini AI 搭載

@@ -10,7 +10,8 @@ type EmphasisProps = {
 }
 
 const variantMap = {
-  primary: 'text-primary-600',
+  // primary-600ではなくprimary-700。本文中の強調を確実に読ませるため一段濃くする。
+  primary: 'text-primary-700',
   gold: 'text-accent-600',
 } as const
 

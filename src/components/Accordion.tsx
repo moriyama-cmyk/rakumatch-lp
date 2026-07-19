@@ -7,13 +7,13 @@ export default function Accordion({ items }: { items: { q: string; a: string }[]
   return (
     <div className="space-y-3">
       {items.map((item, i) => (
-        <div key={i} className="border border-surface-200 rounded-xl overflow-hidden">
+        <div key={i} className="border border-surface-200 rounded-lg overflow-hidden">
           <button
             onClick={() => setOpen(open === i ? null : i)}
             aria-expanded={open === i}
             aria-controls={`accordion-panel-${i}`}
             id={`accordion-button-${i}`}
-            className="w-full flex items-center justify-between gap-3 px-6 py-4 text-left font-semibold text-ink-900 hover:bg-surface-50 transition-colors"
+            className="w-full flex items-center justify-between gap-3 px-6 py-4 text-left font-semibold text-ink-900 hover:bg-surface-100 transition-colors"
           >
             <span className="min-w-0 break-words max-sm:text-pretty max-sm:[word-break:auto-phrase]">{item.q}</span>
             <ChevronDown aria-hidden="true" className={`w-5 h-5 shrink-0 text-ink-500 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`} />

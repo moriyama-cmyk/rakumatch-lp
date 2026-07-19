@@ -5,14 +5,24 @@ import { FeatureSplit } from '../ui/FeatureSplit'
 import { Img } from '../ui/Img'
 import { hlText } from '../lib/headline'
 
+const AI_POINTS = [
+  { icon: Compass, text: '今後のアプローチ提案・ヒアリングの聞き方提案' },
+  { icon: Lightbulb, text: '自分では気づけない潜在ニーズの提示' },
+  { icon: MessagesSquare, text: '壁打ち・相談（このお客様について、その場で）' },
+  { icon: Wand2, text: '聞いた内容を雑にメモ → AIが適切な項目へ振り分け（備考も）' },
+  { icon: Building2, text: '物件側にもAI: 説明文・提案トーク・メリデメ/注意点・メモ要約' },
+]
+
 /** ③ 専属AI（各ページに上司）。ライト・イメージ画像。 */
 export function AiPartner() {
   return (
-    <Section id="ai" className="bg-surface-50" spacing="lg">
+    <Section id="ai" className="bg-white" spacing="md">
       <Container>
         <FeatureSplit
           icon={Brain}
           eyebrow="一人ひとり・一件ごとにAI"
+          as="h2"
+          titleClassName="text-display-lg"
           title={
             <>
               {hlText('ページを開けば、')}
@@ -21,7 +31,7 @@ export function AiPartner() {
             </>
           }
           visual={
-            <figure className="overflow-hidden rounded-2xl border border-surface-200 bg-white shadow-soft-lg">
+            <figure className="overflow-hidden rounded-xl border border-ink-900/8 bg-white shadow-soft-lg">
               <Img
                 base="/shot-ai-insight"
                 alt="顧客詳細ページでAIが潜在ニーズを提案している楽マッチ AI の実画面"
@@ -30,16 +40,19 @@ export function AiPartner() {
               />
             </figure>
           }
-          points={[
-            { icon: Compass, text: '今後のアプローチ提案・ヒアリングの聞き方提案' },
-            { icon: Lightbulb, text: '自分では気づけない潜在ニーズの提示' },
-            { icon: MessagesSquare, text: '壁打ち・相談（このお客様について、その場で）' },
-            { icon: Wand2, text: '聞いた内容を雑にメモ → AIが適切な項目へ振り分け（備考も）' },
-            { icon: Building2, text: '物件側にもAI: 説明文・提案トーク・メリデメ/注意点・メモ要約' },
-          ]}
           note="「めちゃくちゃ仕事ができる優しい上司」がついている感覚。だから、新人でも初日からある程度動けます。"
         >
-          普通のAIは「こんな客がいて…」と毎回説明が要ります。楽マッチのAIは、その顧客ページの中身（連絡先・資金・条件・これまでの活動履歴・未完了のやること）を把握済み。だから、説明なしでスムーズに、的確に。
+          <>
+            普通のAIは「こんな客がいて…」と毎回説明が要ります。楽マッチのAIは、その顧客ページの中身（連絡先・資金・条件・これまでの活動履歴・未完了のやること）を把握済み。だから、説明なしでスムーズに、的確に。
+            <ul className="mt-6 divide-y divide-surface-200">
+              {AI_POINTS.map((p, i) => (
+                <li key={i} className="flex items-start gap-3 py-3">
+                  <p.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary-600" strokeWidth={2} aria-hidden />
+                  <span className="text-sm leading-[1.7] text-ink-700">{p.text}</span>
+                </li>
+              ))}
+            </ul>
+          </>
         </FeatureSplit>
       </Container>
     </Section>

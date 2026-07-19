@@ -8,12 +8,14 @@ import { hlText } from '../lib/headline'
 /** ② 双方マッチング（逆引き）。ビジュアルは左・コード製の図解。 */
 export function Matching() {
   return (
-    <Section id="matching" className="bg-white" spacing="lg">
+    <Section id="matching" className="bg-white" spacing="md">
       <Container>
         <FeatureSplit
           reverse
           icon={ArrowLeftRight}
           eyebrow="双方向マッチング"
+          as="h2"
+          titleClassName="text-display-lg"
           title={
             <>
               {hlText('この物件、誰に出す？')}
