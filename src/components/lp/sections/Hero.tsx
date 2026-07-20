@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { ArrowRight, ArrowUpRight, Bot, Database, Download, Smartphone } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Bot, CreditCard, Database, Download, Smartphone } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { GlowButton } from '../ui/GlowButton'
 import { SITE } from '../site'
@@ -24,14 +24,14 @@ const FEATURES = [
  */
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-x-clip bg-fade-primary pb-16 pt-24 sm:pb-24 sm:pt-32">
+    <section id="top" aria-labelledby="hero-heading" className="relative overflow-x-clip bg-fade-primary pb-16 pt-24 sm:pb-24 sm:pt-32">
       <Container>
         <div className="mx-auto max-w-4xl text-center">
           <p className="inline-flex items-center rounded-full border border-primary-200 bg-white px-3 py-1.5 text-sm font-bold tracking-wide text-primary-700 shadow-sm">
             不動産売買仲介の営業担当者へ
           </p>
 
-          <h1 className="mt-5 font-bold leading-[1.18] tracking-[-0.035em] text-ink-900 [font-size:clamp(1.75rem,5.3vw,4.25rem)] sm:mt-6">
+          <h1 id="hero-heading" className="mt-5 font-bold leading-[1.18] tracking-[-0.035em] text-ink-900 [font-size:clamp(1.75rem,5.3vw,4.25rem)] sm:mt-6">
             {hl('月額3,000円/人', 'から。', '顧客管理も、', '「次に出す物件」も。')}
           </h1>
 
@@ -61,32 +61,27 @@ export function Hero() {
               href={SITE.ctaTryUrl}
               size="lg"
               className="w-full sm:w-auto"
-              onClick={() => trackCta('demo', 'hero')}
+              onClick={() => trackCta('demo', 'hero', SITE.ctaTryUrl)}
             >
               {SITE.ctaPrimaryLabel}
               <ArrowRight className="h-5 w-5" aria-hidden="true" />
             </GlowButton>
-            <div className="flex min-h-11 flex-wrap items-center justify-center gap-x-1 text-sm font-bold text-primary-700">
-              <a
-                href="#features"
-                onClick={() => trackCta('anchor', 'hero_features')}
-                className="inline-flex min-h-11 items-center justify-center rounded-lg px-3 underline decoration-primary-300 underline-offset-4 transition-colors hover:text-primary-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-              >
-                5つの機能
-              </a>
-              <span aria-hidden="true" className="text-surface-200">／</span>
-              <a
-                href="#pricing"
-                onClick={() => trackCta('anchor', 'hero_pricing')}
-                className="inline-flex min-h-11 items-center justify-center gap-1 rounded-lg px-3 underline decoration-primary-300 underline-offset-4 transition-colors hover:text-primary-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-              >
-                料金・試し方
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-            </div>
+            <GlowButton
+              href={SITE.ctaTrialUrl}
+              size="lg"
+              variant="secondary"
+              className="w-full sm:w-auto"
+              onClick={() => trackCta('trial', 'hero_trial', SITE.ctaTrialUrl)}
+            >
+              <CreditCard className="h-5 w-5" aria-hidden="true" />
+              {SITE.ctaTrialLabel}
+            </GlowButton>
           </div>
 
-          <p className="mt-3 text-sm text-ink-600">登録なしデモは、ログイン不要・連絡先不要・クレカ不要</p>
+          <div className="mt-3 flex flex-col items-center justify-center gap-1 text-sm leading-relaxed text-ink-600">
+            <p>登録なしデモ：ログイン・連絡先・カード不要</p>
+            <p>7日間トライアル：カード登録あり・7日以内の解約は料金なし・8日目から課金</p>
+          </div>
         </div>
 
         <figure className="mx-auto mt-8 max-w-6xl sm:mt-14">

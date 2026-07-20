@@ -29,14 +29,14 @@ const SUPPORT_SCOPE = [
 /** 料金と始め方。匿名デモとカード登録を伴うトライアルを明確に分ける。 */
 export function Pricing() {
   return (
-    <Section id="pricing" className="border-t-2 border-primary-600/20 bg-white" spacing="xl">
+    <Section id="pricing" labelledBy="pricing-heading" className="border-t-2 border-primary-600/20 bg-white" spacing="xl">
       <Container narrow>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>料金</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-4 text-display-lg text-ink-900">
+            <h2 id="pricing-heading" className="mt-4 text-display-lg text-ink-900">
               {hl('1名から、', <GradientText variant="gold">月額3,000円</GradientText>, 'で始められます。')}
             </h2>
           </Reveal>
@@ -69,7 +69,7 @@ export function Pricing() {
                 href={SITE.ctaTryUrl}
                 variant="secondary"
                 className="w-full shrink-0 sm:w-auto"
-                onClick={() => trackCta('demo', 'pricing_demo')}
+                onClick={() => trackCta('demo', 'pricing_demo', SITE.ctaTryUrl)}
               >
                 <MonitorPlay className="h-4 w-4" />
                 {SITE.ctaPrimaryLabel}
@@ -137,7 +137,7 @@ function PlanCard({ plan, featured }: { plan: Plan; featured: boolean }) {
       <p className="text-lg font-bold text-ink-900">{plan.name}</p>
       <p className="mt-1 text-sm text-ink-600">{plan.tagline}</p>
       <div className="mt-5 border-b border-surface-200 pb-5">
-        <p className="flex items-end gap-1.5">
+        <p className="flex flex-wrap items-end gap-x-1.5 gap-y-1">
           <span className="text-5xl font-bold tracking-[-0.03em] tabular-nums text-accent-600 sm:text-6xl">{plan.price}</span>
           <span className="mb-1.5 text-sm font-medium text-ink-600">{plan.unit}</span>
         </p>
@@ -171,7 +171,7 @@ function PlanCard({ plan, featured }: { plan: Plan; featured: boolean }) {
         href={SITE.ctaTrialUrl}
         variant={featured ? 'primary' : 'secondary'}
         className="mt-4 w-full"
-        onClick={() => trackCta('trial', location)}
+        onClick={() => trackCta('trial', location, SITE.ctaTrialUrl)}
       >
         {SITE.ctaTrialLabel}
         <ArrowRight className="h-4 w-4" />

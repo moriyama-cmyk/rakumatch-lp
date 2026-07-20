@@ -30,7 +30,6 @@ export default function FeatureShot({
       <figure className="overflow-hidden rounded-xl border border-surface-200 bg-white shadow-soft-lg">
         <picture>
           <source srcSet={`${base}.webp`} type="image/webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`${base}.opt.jpg`}
             alt={alt}

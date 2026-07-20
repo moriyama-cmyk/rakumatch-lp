@@ -12,14 +12,15 @@ import { trackCta } from '@/lib/track'
  * ライト・safe-area対応。
  */
 export function StickyCta() {
-  const [pastHeroCta, setPastHeroCta] = useState(false)
+  const [pastHero, setPastHero] = useState(false)
   const [nearFinalCta, setNearFinalCta] = useState(false)
 
   useEffect(() => {
-    // 実際のHero CTAを基準にし、コピー変更でHeroの高さが変わっても追従する。
+    // Hero全体（実画面と2つの開始方法を含む）を読み終えてから表示する。
+    // CTA片方だけを基準にすると、もう片方が画面内にある間に固定CTAが重なるため。
     const onScroll = () => {
-      const heroCta = document.getElementById('hero-primary-cta')
-      setPastHeroCta(heroCta ? heroCta.getBoundingClientRect().bottom < 0 : false)
+      const hero = document.getElementById('top')
+      setPastHero(hero ? hero.getBoundingClientRect().bottom < 0 : false)
       const target = document.getElementById('cta')
       if (target) {
         const rect = target.getBoundingClientRect()
@@ -37,7 +38,7 @@ export function StickyCta() {
     }
   }, [])
 
-  const show = pastHeroCta && !nearFinalCta
+  const show = pastHero && !nearFinalCta
 
   // 非表示中のリンクをTabキーや読み上げの移動先に残さない。
   if (!show) return null
@@ -47,7 +48,7 @@ export function StickyCta() {
       <div className="flex items-center gap-3">
         <a
           href="#pricing"
-          onClick={() => trackCta('anchor', 'mobile_sticky_pricing')}
+          onClick={() => trackCta('anchor', 'mobile_sticky_pricing', '#pricing')}
           className="min-w-0 flex-1 rounded-lg py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
           aria-label="料金と試し方を見る"
         >

@@ -39,12 +39,12 @@ const QA: { q: string; a: string }[] = [
 /** 購入直前の疑問にだけ答えるFAQ。native detailsでキーボード操作にも対応。 */
 export function Faq() {
   return (
-    <Section id="faq" className="bg-surface-50" spacing="md">
+    <Section id="faq" labelledBy="faq-heading" className="bg-surface-50" spacing="md">
       <Container narrow>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal><Badge>よくある質問</Badge></Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-4 text-display-lg text-ink-900">{hl('始める前の', <GradientText>確認事項</GradientText>)}</h2>
+            <h2 id="faq-heading" className="mt-4 text-display-lg text-ink-900">{hl('始める前の', <GradientText>確認事項</GradientText>)}</h2>
           </Reveal>
         </div>
 
@@ -67,7 +67,7 @@ export function Faq() {
         <div className="mt-8 text-center">
           <a
             href="#pricing"
-            onClick={() => trackCta('anchor', 'faq_pricing')}
+            onClick={() => trackCta('anchor', 'faq_pricing', '#pricing')}
             className="inline-flex min-h-11 items-center justify-center rounded-lg px-4 text-sm font-bold text-primary-700 underline decoration-primary-300 underline-offset-4 hover:text-primary-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
           >
             料金・試し方をもう一度見る

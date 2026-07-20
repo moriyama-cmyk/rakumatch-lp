@@ -29,14 +29,14 @@ const PAINS: Pain[] = [
 /** 個人〜少人数の営業担当者が日々感じる、提案前の情報の分断を言語化する。 */
 export function Problem() {
   return (
-    <Section id="problem" spacing="md" className="border-y border-primary-100 bg-surface-150">
+    <Section id="problem" labelledBy="problem-heading" spacing="md" className="border-y border-primary-100 bg-surface-150">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <Badge>こんな状態になっていませんか</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-5 font-bold leading-[1.28] tracking-[-0.025em] text-ink-900 [font-size:clamp(1.8rem,4.6vw,3.5rem)]">
+            <h2 id="problem-heading" className="mt-5 font-bold leading-[1.28] tracking-[-0.025em] text-ink-900 [font-size:clamp(1.8rem,4.6vw,3.5rem)]">
               {hl('顧客と物件の情報が、', '提案につながっていますか。')}
             </h2>
           </Reveal>

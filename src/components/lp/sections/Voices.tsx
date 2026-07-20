@@ -21,7 +21,7 @@ type Voice = {
  * お客様/営業の声。発注者が本人から実際に聞いた声を、体験の描写に留めて掲載。
  * - 断定的な成果数値（「2倍」等）・最上級・機能タグ・「構成した」等のメタ文は載せない。
  * - 属性は実在の人とのズレを防ぐため粗い粒度に匿名化。
- * 代表3件を最初から表示し、残りは「もっと見る」で開く。
+ * 代表2件を最初から表示し、残りは「もっと見る」で開く。
  */
 const VOICES: Voice[] = [
   {
@@ -75,14 +75,14 @@ export function Voices() {
   const rest = VOICES.length - INITIAL_COUNT
 
   return (
-    <Section id="voices" className="bg-surface-150 border-t border-surface-200" spacing="md">
+    <Section id="voices" labelledBy="voices-heading" className="bg-surface-150 border-t border-surface-200" spacing="md">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>実際に伺った声</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-4 text-display-lg text-ink-900">
+            <h2 id="voices-heading" className="mt-4 text-display-lg text-ink-900">
               営業・お客様から伺った、<GradientText>声</GradientText>
             </h2>
           </Reveal>

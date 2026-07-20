@@ -49,7 +49,6 @@ export function AppShot({
       )}
       <picture>
         <source srcSet={`${base}.webp`} type="image/webp" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`${base}.opt.jpg`}
           alt={alt}

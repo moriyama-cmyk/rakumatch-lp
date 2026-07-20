@@ -5,9 +5,6 @@ import {
   Bot,
   ClipboardList,
   FileInput,
-  MessageSquareText,
-  PhoneCall,
-  ReceiptText,
   Repeat2,
   Smartphone,
 } from 'lucide-react'
@@ -34,12 +31,6 @@ const CAPABILITIES: Capability[] = [
   { icon: Smartphone, title: 'お客様アプリ', body: 'お客様が保存した物件や希望を受け取る。', href: '/features/customer-app' },
 ]
 
-const SUPPORTING = [
-  { icon: PhoneCall, title: '通話録音・AI要約', href: '/features/call-recording' },
-  { icon: MessageSquareText, title: '契約フェーズ管理' },
-  { icon: ReceiptText, title: '固都税・精算金の自動計算' },
-]
-
 const INGEST_STEPS = [
   '物件一覧を全選択してコピー',
   '楽マッチ AIに貼り付ける',
@@ -51,14 +42,14 @@ const INGEST_STEPS = [
 /** 営業の一連の流れとして、主機能と周辺業務をひとまとめに提示する。 */
 export function CapabilitySuite() {
   return (
-    <Section id="features" className="bg-white" spacing="lg">
+    <Section id="features" labelledBy="features-heading" className="bg-white" spacing="lg">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <Badge>5つの主機能</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-4 text-display-lg text-ink-900">
+            <h2 id="features-heading" className="mt-4 text-display-lg text-ink-900">
               {hl('入力から', '次の提案まで、', '営業の流れを', '一つに。')}
             </h2>
           </Reveal>
@@ -98,40 +89,6 @@ export function CapabilitySuite() {
             )
           })}
         </div>
-
-        <Reveal delay={0.12}>
-          <div className="mt-6 rounded-2xl border border-surface-200 bg-white p-5 sm:p-6">
-            <p className="text-sm font-bold text-ink-900">提案の前後も、同じ場所で。</p>
-            <ul className="mt-4 grid gap-3 md:grid-cols-3">
-              {SUPPORTING.map((item) => {
-                const Icon = item.icon
-                const content = (
-                  <>
-                    <Icon className="h-4 w-4 shrink-0 text-primary-600" strokeWidth={2} aria-hidden />
-                    <span>{protect(item.title)}</span>
-                    {item.href ? <ArrowRight className="ml-auto h-4 w-4 shrink-0" aria-hidden /> : null}
-                  </>
-                )
-                return (
-                  <li key={item.title} className="min-w-0">
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-bold text-ink-700 transition-colors hover:bg-surface-100 hover:text-primary-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-                      >
-                        {content}
-                      </a>
-                    ) : (
-                      <div className="flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-bold text-ink-700">
-                        {content}
-                      </div>
-                    )}
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </Reveal>
 
         <Reveal delay={0.08}>
           <figure className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl border border-surface-200 bg-surface-100 shadow-soft-md">

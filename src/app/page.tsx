@@ -6,6 +6,7 @@ import { Problem } from "@/components/lp/sections/Problem";
 import { CapabilitySuite } from "@/components/lp/sections/CapabilitySuite";
 import { SignalFlow } from "@/components/lp/sections/SignalFlow";
 import { Story } from "@/components/lp/sections/Story";
+import { Why } from "@/components/lp/sections/Why";
 import { Voices } from "@/components/lp/sections/Voices";
 import { Security } from "@/components/lp/sections/Security";
 import { Pricing } from "@/components/lp/sections/Pricing";
@@ -27,10 +28,11 @@ export default function LandingPage() {
       <main id="main-content">
         <Hero />
         <Problem />
-        <CapabilitySuite />
         <SignalFlow />
+        <CapabilitySuite />
         <Story />
         <Pricing />
+        <Why />
         <Voices />
         <Security />
         <Faq />

@@ -44,6 +44,7 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
+              onClick={() => trackCta('anchor', `header_${item.href.slice(1).replace('-', '_')}`, item.href)}
               className="rounded-md px-1 py-3 text-sm font-medium text-ink-700 transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               {item.label}
@@ -55,14 +56,14 @@ export function Header() {
           <nav className="hidden items-center gap-1 md:flex lg:hidden" aria-label="タブレット向けナビゲーション">
             <a
               href="#pricing"
-              onClick={() => trackCta('anchor', 'header_pricing')}
+              onClick={() => trackCta('anchor', 'header_pricing', '#pricing')}
               className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-bold text-ink-700 transition-colors hover:bg-primary-50 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               料金
             </a>
             <a
               href="#faq"
-              onClick={() => trackCta('anchor', 'header_faq')}
+              onClick={() => trackCta('anchor', 'header_faq', '#faq')}
               className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-bold text-ink-700 transition-colors hover:bg-primary-50 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               FAQ

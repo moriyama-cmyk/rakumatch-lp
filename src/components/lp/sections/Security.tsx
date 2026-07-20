@@ -30,12 +30,12 @@ const FACTS: Fact[] = [
 /** 外部企業の規模ではなく、利用前に確認できる運用上の事実だけを示す。 */
 export function Security() {
   return (
-    <Section id="trust" className="bg-surface-50" spacing="sm">
+    <Section id="trust" labelledBy="trust-heading" className="bg-surface-50" spacing="sm">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge icon={<ShieldCheck className="h-3.5 w-3.5" aria-hidden />}>安心して始めるために</Badge>
-            <h2 className="mt-4 text-display-lg text-ink-900">
+            <h2 id="trust-heading" className="mt-4 text-display-lg text-ink-900">
               {hl('料金だけでなく、', '扱いも明確に。')}
             </h2>
           </Reveal>

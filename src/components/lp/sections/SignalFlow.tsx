@@ -35,14 +35,14 @@ const STEPS = [
 /** お客様の行動が担当者へ届く流れを、実画面とともに示す。 */
 export function SignalFlow() {
   return (
-    <Section id="customer-app" className="bg-surface-100" spacing="lg">
+    <Section id="customer-app" labelledBy="customer-app-heading" className="bg-surface-100" spacing="lg">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <Badge icon={<Smartphone className="h-3.5 w-3.5" aria-hidden />}>お客様アプリ</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-4 text-display-lg text-ink-900">
+            <h2 id="customer-app-heading" className="mt-4 text-display-lg text-ink-900">
               {hl('お客様が見つけた', '「気になる」が、', '担当者に届く。')}
             </h2>
           </Reveal>

@@ -87,6 +87,35 @@ export function Analytics() {
 
   }, [])
 
+  // Hero・お客様アプリ・料金まで実際に読まれたかを、CTAクリックと分けて記録する。
+  useEffect(() => {
+    const sectionIds = ['top', 'customer-app', 'pricing'] as const
+    const viewed = new Set<string>()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting || viewed.has(entry.target.id)) continue
+          viewed.add(entry.target.id)
+          window.gtag?.('event', 'section_view', {
+            section_id: entry.target.id,
+            copy_variant: SITE.copyVariant,
+          })
+          window.clarity?.('set', 'section_id', entry.target.id)
+          window.clarity?.('event', 'section_view')
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.3 },
+    )
+
+    for (const id of sectionIds) {
+      const section = document.getElementById(id)
+      if (section) observer.observe(section)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
   // --- LP内ページ遷移の page_view（App Router の client 遷移は自動で発火しないため手動送信） ---
   // 初回ロード分は gtag('config', ...) の自動 page_view があるためスキップし、
   // 2回目以降（pathname が変わった＝クライアント側遷移）だけ送る。
