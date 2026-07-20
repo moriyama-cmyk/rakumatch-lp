@@ -1,6 +1,6 @@
 'use client'
 
-import { Check, ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight, Check, CircleHelp, CreditCard, MonitorPlay } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
@@ -12,31 +12,24 @@ import type { Plan } from '../site'
 import { hl } from '../lib/headline'
 import { trackCta } from '@/lib/track'
 
-const STEPS = [
-  { step: '①', label: '触る', note: '0円（登録なし）' },
-  { step: '②', label: '7日試す', note: '0円（7日以内解約で無料）' },
-  { step: '③', label: '初月', note: '1,500円（Standard）' },
-  { step: '④', label: '月3,000円/人', note: '' },
-]
-
-const PROMISES = [
-  '7日以内に解約すれば、料金は一切かかりません。引き止めの電話もメールもしません。',
-  '契約後も、違約金・最低利用期間はありません。',
-  '解約はいつでもStripeの管理画面から、ご自身で行えます。',
-]
-
 const COMMON_FEATURES = [
-  '双方マッチング・逆引き',
-  'お客様連動アプリ',
-  '顧客・物件の専属AI',
+  '顧客・物件をまとめて管理',
+  'お客様・物件の双方向マッチング',
+  'お客様アプリで検討状況を共有',
+  '顧客・物件ごとの専属AI',
   '通話録音・文字起こし・要約',
-  'TODO・契約・ダッシュボード・精算',
 ]
 
-/** 料金（CTA中心。実額表示＋AI利用枠で差を示す）。ライト。 */
+const SUPPORT_SCOPE = [
+  '初期設定',
+  '最初の顧客・物件の登録',
+  'お客様アプリの初回共有',
+]
+
+/** 料金と始め方。匿名デモとカード登録を伴うトライアルを明確に分ける。 */
 export function Pricing() {
   return (
-    <Section id="pricing" className="bg-white border-t-2 border-primary-600/20" spacing="xl">
+    <Section id="pricing" className="border-t-2 border-primary-600/20 bg-white" spacing="xl">
       <Container narrow>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
@@ -44,95 +37,75 @@ export function Pricing() {
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
-              {hl(<GradientText variant="gold">月々たったの3,000円</GradientText>, 'から。')}
+              {hl('1名から、', <GradientText variant="gold">月額3,000円</GradientText>, 'で始められます。')}
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mt-2 text-sm font-bold text-ink-700">（税込）/ 人・月　※個人でも会社でも同じ料金</p>
+            <p className="mt-3 text-sm font-bold text-ink-700">税込・スタンダードプラン / 人・月</p>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mx-auto mt-5 max-w-xl text-base text-ink-700 sm:mt-6">
-              2プランの人数課金・初月割引あり。プランの違いはAIの利用枠です（AIの品質はどちらも同じ）。まずは無料で、中身を触ってから選べます。
-            </p>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <p className="mx-auto mt-3 inline-flex flex-wrap items-center justify-center gap-x-1.5 text-sm font-bold text-primary-700">
-              <span className="whitespace-nowrap">1週間の無料トライアル付き</span>・
-              <span className="whitespace-nowrap">初月割引あり</span>・
-              <span className="whitespace-nowrap">いつでも解約可能。</span>
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-700 sm:text-lg">
+              個人でも、1〜3名の営業チームでも。初期費用は0円、最低利用期間・違約金はありません。
             </p>
           </Reveal>
         </div>
 
-        {/* 4段の階段→一直線＋矢印に変更（2026-07-19 森山さん指摘: 段差だと①②が0円ゾーンの
-            枠に入っている分だけ基準線がずれて不揃いに見える）。
-            全カラムに同じ高さのラベル行を確保（0円ゾーンのみ可視・他は同サイズの不可視プレースホルダ）
-            することで、translate-y のズラしなしに4枚が同じ基準線に並ぶ。矢印で進行だけを示す。 */}
-        <Reveal delay={0.14}>
-          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-stretch sm:justify-center sm:gap-3">
-            <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
-              <span className="rounded-full bg-primary-100 px-3 py-1 text-xs font-bold tracking-wide text-primary-700">
-                0円ゾーン
-              </span>
-              <div className="flex flex-1 flex-row items-stretch gap-2 rounded-xl border border-primary-200 bg-primary-50 p-3">
-                <StepCard {...STEPS[0]} />
-                <StepCard {...STEPS[1]} />
-              </div>
-            </div>
+        <Reveal delay={0.13}>
+          <div className="mx-auto mt-9 grid max-w-3xl gap-3 sm:grid-cols-3">
+            <Fact label="利用開始" value="1名から" />
+            <Fact label="初期費用" value="0円" />
+            <Fact label="共通機能" value="5つ" />
+          </div>
+        </Reveal>
 
-            <StepArrow />
-            <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
-              <span aria-hidden="true" className="invisible rounded-full px-3 py-1 text-xs font-bold">
-                spacer
-              </span>
-              <div className="flex flex-1 items-stretch p-3">
-                <StepCard {...STEPS[2]} />
+        <Reveal delay={0.16}>
+          <div className="mx-auto mt-6 max-w-3xl rounded-xl border border-primary-200 bg-primary-50 p-5 sm:p-6">
+            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+              <div>
+                <p className="text-sm font-bold text-primary-800">まずは登録なしで、画面を確認できます</p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-700">クレジットカードも連絡先の入力も不要です。</p>
               </div>
-            </div>
-
-            <StepArrow />
-            <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
-              <span aria-hidden="true" className="invisible rounded-full px-3 py-1 text-xs font-bold">
-                spacer
-              </span>
-              <div className="flex flex-1 items-stretch p-3">
-                <StepCard {...STEPS[3]} />
-              </div>
+              <GlowButton
+                href={SITE.ctaTryUrl}
+                variant="secondary"
+                className="w-full shrink-0 sm:w-auto"
+                onClick={() => trackCta('demo', 'pricing_demo')}
+              >
+                <MonitorPlay className="h-4 w-4" />
+                {SITE.ctaPrimaryLabel}
+              </GlowButton>
             </div>
           </div>
         </Reveal>
 
-        {/* 私たちの約束 */}
-        <Reveal delay={0.17}>
-          <div className="mx-auto mt-6 max-w-2xl rounded-xl border border-surface-200 bg-white p-6 sm:p-7">
-            <p className="text-sm font-bold text-primary-700">私たちの約束</p>
-            <ul className="mt-3 space-y-2.5">
-              {PROMISES.map((p) => (
-                <li key={p} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-700">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" strokeWidth={3} />
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
-
-        <div className="mt-16 grid gap-5 sm:mt-20 sm:grid-cols-2">
-          {PLANS.map((p, i) => (
-            <Reveal key={p.name} delay={i * 0.08}>
-              <PlanCard plan={p} highlight={i === 1} />
+        <div className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2">
+          {PLANS.map((plan, index) => (
+            <Reveal key={plan.name} delay={0.05 * index}>
+              <PlanCard plan={plan} featured={index === 0} />
             </Reveal>
           ))}
         </div>
 
-        {/* 各プランカードに「無料で試す」があるため、直後の重複ボタンは撤去。マイクロコピーのみ残す。 */}
         <Reveal delay={0.1}>
-          <p className="mt-8 text-center text-xs text-ink-500">{SITE.microCopy}</p>
+          <div className="mx-auto mt-6 max-w-3xl rounded-xl border border-surface-200 bg-surface-50 p-5 sm:p-6">
+            <div className="flex items-start gap-3">
+              <CircleHelp className="mt-0.5 h-5 w-5 shrink-0 text-primary-600" aria-hidden />
+              <div>
+                <p className="text-sm font-bold text-ink-900">新規契約の先着5アカウントに、初回のオンライン相談</p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-700">
+                  開発者本人が30分・1回、オンラインでご相談を受けます。対象は{SUPPORT_SCOPE.join('、')}です。契約後、登録メールアドレスへ日程調整をご案内します。
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-ink-500">
+                  入力代行、個別の営業判断、法務相談は対象外です。
+                </p>
+              </div>
+            </div>
+          </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <p className="mt-6 text-center text-xs leading-relaxed text-ink-500">
-            ※ 料金は税込・人数課金です（初月割引あり）。詳細は特定商取引法に基づく表記をご確認ください。
+        <Reveal delay={0.12}>
+          <p className="mx-auto mt-6 max-w-3xl text-center text-xs leading-relaxed text-ink-500">
+            料金は税込・1人あたり月額です。お支払い方法や解約後の扱いは、特定商取引法に基づく表記をご確認ください。
           </p>
         </Reveal>
       </Container>
@@ -140,71 +113,54 @@ export function Pricing() {
   )
 }
 
-function PlanCard({ plan, highlight }: { plan: Plan; highlight?: boolean }) {
+function Fact({ label, value }: { label: string; value: string }) {
   return (
-    <div
-      className={`relative flex h-full flex-col rounded-xl border p-7 sm:p-8 ${
-        highlight ? 'border-primary-600 bg-primary-50' : 'border-surface-200 bg-surface-50'
-      }`}
-    >
-      {highlight && (
-        <span className="absolute right-6 top-6 rounded-md bg-primary-600 px-3 py-1 text-xs font-bold text-white">
-          たっぷり
-        </span>
-      )}
-      <p className="text-lg font-bold text-ink-900">{plan.name}</p>
-      <p className="mt-1 text-sm text-ink-500">{plan.tagline}</p>
+    <div className="rounded-lg border border-surface-200 bg-surface-50 px-4 py-4 text-center">
+      <p className="text-xs font-medium text-ink-500">{label}</p>
+      <p className="mt-1 text-lg font-bold text-ink-900">{value}</p>
+    </div>
+  )
+}
 
-      {/* 実額を大きく（ゴールド）＋単位。AI利用枠は補助チップで併記 */}
-      <div className="mt-5">
+function PlanCard({ plan, featured }: { plan: Plan; featured: boolean }) {
+  const location = plan.name === 'スタンダード' ? 'pricing_standard' : 'pricing_premium'
+
+  return (
+    <div className={`relative flex h-full flex-col rounded-xl border p-6 sm:p-8 ${featured ? 'border-primary-600 bg-white shadow-soft' : 'border-surface-200 bg-surface-50'}`}>
+      {featured && <span className="absolute right-5 top-5 rounded-md bg-primary-600 px-2.5 py-1 text-xs font-bold text-white">基本プラン</span>}
+      <p className="text-lg font-bold text-ink-900">{plan.name}</p>
+      <p className="mt-1 text-sm text-ink-600">{plan.tagline}</p>
+      <div className="mt-5 border-b border-surface-200 pb-5">
         <p className="flex items-end gap-1.5">
-          <span className="text-5xl font-bold tracking-[-0.01em] tabular-nums text-accent-600 sm:text-6xl">
-            {plan.price}
-          </span>
-          <span className="mb-1.5 text-sm font-medium text-ink-500">{plan.unit}</span>
+          <span className="text-5xl font-bold tracking-[-0.03em] tabular-nums text-accent-600 sm:text-6xl">{plan.price}</span>
+          <span className="mb-1.5 text-sm font-medium text-ink-600">{plan.unit}</span>
         </p>
-        <span className="mt-3 inline-flex items-center gap-1.5 rounded-md border border-surface-200 bg-white px-3 py-1 text-xs font-medium text-ink-700">
-          <Sparkles className="h-3.5 w-3.5 text-primary-600" />
-          AI利用枠：{plan.quota}
-        </span>
+        <p className="mt-2 text-xs text-ink-500">AI利用枠：{plan.quota}</p>
       </div>
 
-      <ul className="mt-6 flex-1 space-y-2.5">
-        {COMMON_FEATURES.map((f) => (
-          <li key={f} className="flex items-start gap-2.5">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" strokeWidth={3} />
-            <span className="text-sm text-ink-700">{f}</span>
+      <p className="mt-5 text-sm font-bold text-ink-900">どちらのプランにも含まれる5機能</p>
+      <ul className="mt-3 flex-1 space-y-2.5">
+        {COMMON_FEATURES.map((feature) => (
+          <li key={feature} className="flex items-start gap-2 text-sm leading-relaxed text-ink-700">
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" strokeWidth={3} aria-hidden />
+            {feature}
           </li>
         ))}
       </ul>
 
-      <p className="mt-5 text-xs leading-relaxed text-ink-500">
-        税込・1人あたり月額。人数課金・初月割引あり。
-      </p>
-
+      <div className="mt-6 rounded-lg border border-surface-200 bg-white p-3.5">
+        <p className="flex items-center gap-2 text-sm font-bold text-ink-900"><CreditCard className="h-4 w-4 text-primary-600" aria-hidden />カード登録後、7日間試せます</p>
+        <p className="mt-1 text-xs leading-relaxed text-ink-600">7日以内に解約すれば料金はかかりません。</p>
+      </div>
       <GlowButton
-        href={SITE.ctaTryUrl}
-        variant={highlight ? 'primary' : 'secondary'}
-        className="mt-5 w-full"
-        onClick={() => trackCta(highlight ? 'pricing_premium' : 'pricing_standard')}
+        href={SITE.ctaTrialUrl}
+        variant={featured ? 'primary' : 'secondary'}
+        className="mt-4 w-full"
+        onClick={() => trackCta('trial', location)}
       >
-        無料で試す
+        {SITE.ctaTrialLabel}
         <ArrowRight className="h-4 w-4" />
       </GlowButton>
     </div>
   )
-}
-
-function StepCard({ step, label, note }: { step: string; label: string; note?: string }) {
-  return (
-    <div className="flex min-h-[92px] min-w-[7rem] flex-col items-center justify-center rounded-xl border border-surface-200 bg-white px-4 py-3 text-center hover:shadow-soft transition-shadow duration-200">
-      <span className="text-xs font-bold text-primary-600">{step}</span>
-      <span className="mt-1 text-sm font-bold text-ink-900">{label}</span>
-      {note && <span className="mt-0.5 text-xs text-ink-500">{note}</span>}
-    </div>
-  )
-}
-
-function StepArrow() {
-  return <ArrowRight className="h-4 w-4 shrink-0 self-center rotate-90 text-ink-300 sm:rotate-0" aria-hidden />
 }

@@ -29,9 +29,14 @@ export function Header() {
           : 'border-b border-transparent bg-transparent',
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-4 sm:h-18">
-        <a href="#top" aria-label={`${SITE.brand} トップ`} className="shrink-0">
-          <Logo />
+      <Container className="flex h-16 items-center justify-between gap-3 sm:h-18">
+        <a
+          href="#top"
+          aria-label={`${SITE.brand} トップ`}
+          className="shrink-0 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          <span className="sm:hidden"><Logo withWordmark={false} /></span>
+          <span className="hidden sm:inline-flex"><Logo /></span>
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="主要ナビゲーション">
@@ -39,7 +44,7 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-ink-700 transition-colors hover:text-primary-700"
+              className="rounded-md px-1 py-3 text-sm font-medium text-ink-700 transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               {item.label}
             </a>
@@ -59,9 +64,14 @@ export function Header() {
               ログイン
             </GlowButton>
           </div>
-          <GlowButton href={SITE.ctaTryUrl} size="sm" onClick={() => trackCta('header')}>
+          <GlowButton
+            href={SITE.ctaTryUrl}
+            size="sm"
+            className="px-3 text-xs sm:px-5 sm:text-sm"
+            onClick={() => trackCta('demo', 'header', SITE.ctaTryUrl)}
+          >
             {SITE.ctaPrimaryLabel}
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="hidden h-4 w-4 sm:block" aria-hidden />
           </GlowButton>
         </div>
       </Container>

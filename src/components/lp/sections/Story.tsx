@@ -1,84 +1,55 @@
-import { Section } from '../ui/Section'
+import Image from 'next/image'
+import { Badge } from '../ui/Badge'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
-import { Badge } from '../ui/Badge'
+import { Section } from '../ui/Section'
 import { hl } from '../lib/headline'
 
-/**
- * WHY TRUST US（開発者の声・ストーリー）。WHY比較表の後・セキュリティ節の前に配置。
- * 文言は本番現行LPのまま（オーナー指定・盛らない/削らない）。
- * スタイルは新トークン（白カード・左ボーダー引用・発光なし）。
- */
+/** 実名・写真・現役営業という一次情報を、料金判断より前に提示する。 */
 export function Story() {
   return (
-    <Section id="story" className="bg-surface-150" spacing="md">
+    <Section id="story" className="border-y border-surface-200 bg-surface-150" spacing="md">
       <Container>
-        <div className="mx-auto max-w-2xl text-center">
-          <Reveal>
-            <Badge>WHY TRUST US</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h2 className="mt-4 text-display-lg text-ink-900">
-              {hl('現役の', '不動産営業マンが、')}
-              <br className="hidden sm:block" />
-              {hl('自分のために', '作りました。')}
-            </h2>
-          </Reveal>
-        </div>
-
-        <Reveal delay={0.1}>
-          <div className="mx-auto mt-12 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 transition-shadow duration-200 hover:shadow-soft sm:p-10">
-            {/* 開発者の顔（主役・大きめ中央）。「誰が作ったか」を最初に見せる。 */}
-            <div className="flex flex-col items-center text-center">
-              <span className="relative block h-32 w-32 overflow-hidden rounded-full bg-primary-50 shadow-soft-md ring-1 ring-ink-900/8 sm:h-44 sm:w-44">
-                <picture>
-                  <source srcSet="/founder.webp" type="image/webp" />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/founder.png"
-                    alt="楽マッチ AI 開発者 森山 幸弘"
-                    loading="lazy"
-                    decoding="async"
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                </picture>
-              </span>
+        <Reveal>
+          <div className="grid items-center gap-9 rounded-2xl border border-surface-200 bg-white p-6 shadow-soft sm:p-9 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12 lg:p-12">
+            <div className="mx-auto w-full max-w-[250px] text-center">
+              <div className="relative mx-auto aspect-square w-44 overflow-hidden rounded-2xl bg-primary-50 ring-1 ring-ink-900/10 sm:w-52">
+                <Image
+                  src="/founder.webp"
+                  alt="楽マッチ AI 開発者 森山 幸弘"
+                  fill
+                  sizes="(max-width: 1023px) 208px, 250px"
+                  className="object-cover"
+                />
+              </div>
               <p className="mt-5 text-lg font-bold text-ink-900">森山 幸弘</p>
-              <p className="mt-1 text-sm text-ink-500">現役不動産営業 ／ 楽マッチ AI 開発者</p>
-            </div>
-
-            <div className="mt-8 border-l-2 border-primary-600 pl-5">
-              <p className="text-base leading-relaxed text-ink-700">
-                東京で不動産売買をやっている、現役の営業マンです。
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-ink-700">
-                「もっと楽に、もっとわかりやすく、誰がやってもできるツール」を追い求めて作りました。
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-ink-700">
-                説明は不要です。使えば直感的にわかります。必要最低限を、ぎゅっと詰め込みました。
-              </p>
-              <p className="mt-4 text-base font-bold leading-relaxed text-primary-700">
-                AIが進化するたびに、このアプリも進化します。あなたの営業トークも、提案も、一緒に進化し続けます。
+              <p className="mt-1 text-sm leading-relaxed text-ink-500">
+                現役不動産営業
+                <br />
+                楽マッチ AI 開発者
               </p>
             </div>
-          </div>
-        </Reveal>
 
-        <Reveal delay={0.1}>
-          <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-ink-500">
-            これは投資家やエンジニアが机上で作ったツールではありません。現場の不便を1つずつ潰して作った、現場のための道具です。
-          </p>
-        </Reveal>
-
-        {/* 2026-07-19 森山さん指摘「こういうのいらん」で「導入事例は、まだ多くありません。」の
-            見出しと段落を削除。実績の少なさを自己申告するのは売る場面では自爆で、誠実さは
-            「現役営業が毎日使っている」という事実で十分に立っている。
-            ただし「私はエンジニアではありません／操作は"貼るだけ"」は製品の核なので残す。 */}
-        <Reveal delay={0.14}>
-          <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 transition-shadow duration-200 hover:shadow-soft sm:p-10">
-            <p className="text-base leading-relaxed text-ink-700">
-              私はエンジニアではありません。難しい操作は、私が一番嫌いです。だからこのアプリの操作は“貼るだけ”にしました。
-            </p>
+            <div className="min-w-0">
+              <Badge>開発者について</Badge>
+              <h2 className="mt-4 text-display-lg text-ink-900">
+                {hl('現役の不動産営業が、', '毎日使うために', '作っています。')}
+              </h2>
+              <div className="mt-6 border-l-2 border-primary-600 pl-5 sm:pl-7">
+                <p className="text-base leading-relaxed text-ink-700 sm:text-lg">
+                  東京で不動産売買をやっている、現役の営業マンです。
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-ink-700 sm:text-lg">
+                  「もっと楽に、もっとわかりやすく、誰がやってもできるツール」を追い求めて作りました。
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-ink-700 sm:text-lg">
+                  私はエンジニアではありません。難しい操作は、私が一番嫌いです。だからこのアプリの操作は“貼るだけ”にしました。
+                </p>
+              </div>
+              <p className="mt-6 text-sm font-bold leading-relaxed text-primary-700">
+                現場で使いながら、機能改善を続けています。
+              </p>
+            </div>
           </div>
         </Reveal>
       </Container>

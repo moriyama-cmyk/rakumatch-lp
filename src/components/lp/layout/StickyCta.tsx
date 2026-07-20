@@ -55,11 +55,16 @@ export function StickyCta() {
           <p className="truncate text-sm font-bold text-ink-900">
             月々<span className="text-accent-700">3,000円</span>（税込）/人〜
           </p>
-          <p className="truncate text-xs text-ink-500">ログイン不要・クレカ不要で、そのまま画面が触れます</p>
+          <p className="truncate text-xs text-ink-500">登録・連絡先・カード不要</p>
         </div>
-        <GlowButton href={SITE.ctaTryUrl} size="md" className="shrink-0" onClick={() => trackCta('mobile_sticky')}>
+        <GlowButton
+          href={SITE.ctaTryUrl}
+          size="md"
+          className="shrink-0 px-4 text-xs sm:text-sm"
+          onClick={() => trackCta('demo', 'mobile_sticky', SITE.ctaTryUrl)}
+        >
           {SITE.ctaPrimaryLabel}
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="hidden h-4 w-4 sm:block" aria-hidden />
         </GlowButton>
       </div>
     </div>

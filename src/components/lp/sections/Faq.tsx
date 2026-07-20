@@ -4,79 +4,58 @@ import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GradientText } from '../ui/GradientText'
+import { hl } from '../lib/headline'
 
 const QA: { q: string; a: string }[] = [
   {
-    q: '導入や初期設定は大変ですか？',
-    a: '無料でログイン前から中を触れます。物件や顧客は、画面を貼る・スクショ・PDFを投げ込むだけでAIが整理します。媒体とのAPI連携は不要です。',
+    q: '1人から使えますか？料金はいくらですか？',
+    a: 'はい、1名からご利用いただけます。スタンダードは月額3,000円、プレミアムは月額5,000円です。いずれも税込・1人あたり月額で、初期費用はかかりません。',
   },
   {
-    q: '1人でも、会社でも使えますか？料金は？',
-    a: 'はい。個人の営業の方も会社でも使えます。料金は同じ¥3,000/人（税込・スタンダード）。プレミアムは¥5,000/人（税込）でAI利用枠が拡大します。人数課金・初月割引あり。',
+    q: '初期設定は相談できますか？',
+    a: '新規契約の先着5アカウントには、開発者本人による初回30分・1回のオンライン相談があります。初期設定、最初の顧客・物件登録、お客様アプリの初回共有が対象です。契約後、登録メールアドレスへ日程調整をご案内します。入力代行、個別の営業判断、法務相談は対象外です。',
   },
   {
-    q: 'お客様連動アプリは、お客様にアプリのインストールが必要ですか？',
-    a: 'インストールもログインも不要です。リンクを開くだけで、すべての機能が使えます — SUUMO等で気になった物件の保存（共有ボタンから1タップ）、星評価、メモ、「内見したい」の送信まで。その内容はそのまま担当者に届きます。',
+    q: 'お客様アプリは、お客様にもアプリのインストールが必要ですか？',
+    a: '不要です。お客様は共有されたリンクを開くだけで、物件の保存、星評価、メモ、「内見したい」の送信ができます。保存や希望は担当者に届きます。',
   },
   {
-    q: '通話録音は特別な機材がいりますか？',
-    a: '選んだマイクに入る音を録る方式なので、携帯でも固定電話でも対面でも使えます。高額な電話システムは不要です。接続のしかたやマイクの選び方は、アプリ内の「通話録音のヒント」で画面を見ながら確認でき、録音前のマイクテストもできます（録音はお相手の同意のうえで）。',
+    q: '登録なしのデモと、7日間トライアルの違いは何ですか？',
+    a: '登録なしのデモは、連絡先やクレジットカードを入力せずに画面を試せます。7日間トライアルはカード登録が必要で、有料機能を7日間お試しいただけます。',
   },
   {
-    q: '賃貸でも使えますか？',
-    a: '賃貸でも、顧客・物件の管理、コピペ登録、マッチング、お客様連動アプリはそのまま使えます。売買専用の機能（精算・契約フェーズ管理など）を使わない形になります。',
+    q: 'いつから課金されますか？解約はできますか？',
+    a: '7日間トライアルを継続した場合、8日目以降に月額課金が始まります。7日以内に解約すれば料金はかかりません。最低利用期間・違約金はなく、解約はいつでもStripeの管理画面から行えます。',
   },
   {
-    q: '今、Excelで管理している顧客データは移せますか？',
-    a: 'ExcelやPDF、画面のコピペをそのまま投げ込めば、AIが顧客ごと・物件ごとに整理して取り込みます。手入力での作り直しは不要です。',
-  },
-  {
-    q: '解約したらデータはどうなりますか？',
-    a: '解約はいつでもでき、違約金・最低利用期間はありません。解約後のデータは30日で完全に削除します。お客様の情報を残したり、人質に取ったりしません。',
-  },
-  {
-    q: '営業電話がかかってきませんか？',
-    a: 'ログイン不要のデモでは連絡先を伺わないため、こちらから連絡する手段がそもそもありません。有料機能を7日間お試しになる場合はメールアドレス等の登録が必要になりますが、そちらでも営業電話をすることはありません。',
-  },
-  {
-    q: '無料期間が終わったら、勝手に課金されませんか？',
-    a: '7日間の無料トライアルを始めるには、Stripe経由でのカード登録が必要です。ただし7日以内に解約すれば料金は一切かかりません。8日目以降も利用を続けた場合にのみ課金が始まります。解約はいつでもご自身でStripeの管理画面から行えます。',
-  },
-  {
-    q: '個人開発とのことですが、サービスは続きますか？',
-    // 2026-07-19 事実訂正: 森山さんは不動産仲介会社の経営者ではない（現役の不動産営業）。
-    // Story節の自己紹介「東京で不動産売買をやっている、現役の営業マンです」に表記を統一。
-    a: '開発者自身が東京で不動産売買をやっている現役の営業マンで、このアプリで毎日業務をしています。自分が日々の仕事で使っている道具なので、止める動機がありません。機能改善もほぼ毎週続けています。',
+    q: '解約後のデータはどうなりますか？',
+    a: '解約後30日間はデータを保持し、その間に再開すれば復元できます。30日経過後、登録データは自動的かつ復元できない形で削除されます。解約前にはアプリ内の設定ページからCSV形式でエクスポートできます。',
   },
 ]
 
-/** FAQ（少数）。native details で開閉・アクセシブル。ライト。 */
+/** 購入直前の疑問にだけ答えるFAQ。native detailsでキーボード操作にも対応。 */
 export function Faq() {
   return (
     <Section id="faq" className="bg-surface-50" spacing="md">
       <Container narrow>
         <div className="mx-auto max-w-2xl text-center">
-          <Reveal>
-            <Badge>よくある質問</Badge>
-          </Reveal>
+          <Reveal><Badge>よくある質問</Badge></Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-4 text-display-lg text-ink-900">
-              よくある<GradientText>質問</GradientText>
-            </h2>
+            <h2 className="mt-4 text-display-lg text-ink-900">{hl('始める前の', <GradientText>確認事項</GradientText>)}</h2>
           </Reveal>
         </div>
 
-        <div className="mt-12 space-y-2">
-          {QA.map((item, i) => (
-            <Reveal key={item.q} delay={Math.min(i * 0.05, 0.2)}>
+        <div className="mt-10 space-y-2 sm:mt-12">
+          {QA.map((item, index) => (
+            <Reveal key={item.q} delay={Math.min(index * 0.05, 0.2)}>
               <details className="group rounded-lg border border-surface-200 bg-white [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-4 p-5 text-left">
-                  <span className="text-sm font-bold text-ink-900">{item.q}</span>
-                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600 transition-transform duration-200 ease-out group-open:rotate-45">
-                    <Plus className="h-4 w-4" />
+                <summary className="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 p-4 text-left sm:p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500">
+                  <span className="text-sm font-bold leading-relaxed text-ink-900">{item.q}</span>
+                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600 transition-transform duration-200 ease-out motion-reduce:transition-none group-open:rotate-45">
+                    <Plus className="h-4 w-4" aria-hidden />
                   </span>
                 </summary>
-                <div className="px-5 pb-5 text-sm leading-relaxed text-ink-700">{item.a}</div>
+                <div className="px-4 pb-5 text-sm leading-relaxed text-ink-700 sm:px-5">{item.a}</div>
               </details>
             </Reveal>
           ))}

@@ -1,102 +1,21 @@
-'use client'
-
-import { useEffect, useLayoutEffect, useRef, useState, createElement, type ReactNode } from 'react'
+import { createElement, type ReactNode } from 'react'
 import { cn } from '../lib/cn'
 
 type RevealProps = {
   children: ReactNode
   className?: string
-  /** 遅延（秒）。連続要素の軽いスタッガーに */
+  /** 既存呼び出しとの互換用。静的表示では視認性を優先し、遅延は適用しない。 */
   delay?: number
   as?: 'div' | 'li' | 'span'
 }
 
 /**
- * スクロールで一度だけ静かに出現（opacity + translateY 10px / 0.5s）。
+ * コンテンツを常に可視で描画する軽量ラッパー。
  *
- * 設計方針（重要）: コンテンツが「永久に不可視」になる事故を防ぐため、
- * - IntersectionObserver で可視化し、
- * - 監視が発火しない環境でも mount 後の failsafe タイマーで必ず可視化し、
- * - reduced-motion / 非対応環境では即可視化する。
- * framer-motion の whileInView は使わない（発火漏れで空白化するリスクを回避）。
+ * 旧実装は各要素に IntersectionObserver と state を持たせていたため、React 19.2 の
+ * ref安全性ルールに抵触し、画面外要素が一時的に空白になる余地もあった。LPでは
+ * 読めることと初期表示速度を優先し、装飾的な出現演出を外してServer Component化する。
  */
-export function Reveal({ children, className, delay = 0, as = 'div' }: RevealProps) {
-  const ref = useRef<HTMLElement>(null)
-  const [shown, setShown] = useState(false)
-  // SSR は常に可視（mounted===false）。クライアントでマウントされて初めて
-  // 「まだ shown でなければ隠す」ゲートが有効になる。これにより SSR/初回描画の
-  // HTML には opacity-0 が一切出力されない（ビルド済HTMLの検証条件を満たす）。
-  const [mounted, setMounted] = useState(false)
-
-  useLayoutEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    const prefersReduced =
-      typeof window !== 'undefined' &&
-      typeof window.matchMedia === 'function' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReduced) {
-      setShown(true)
-      return
-    }
-
-    const el = ref.current
-    if (!el || typeof IntersectionObserver === 'undefined') {
-      setShown(true)
-      return
-    }
-
-    let done = false
-    const reveal = () => {
-      if (done) return
-      done = true
-      setShown(true)
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            reveal()
-            io.disconnect()
-            break
-          }
-        }
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
-    )
-    io.observe(el)
-
-    // 既に画面内ならすぐ可視化（初期表示の取りこぼし防止）
-    const rect = el.getBoundingClientRect()
-    if (rect.top < window.innerHeight && rect.bottom > 0) reveal()
-
-    // failsafe: 監視が発火しなくても必ず可視化（空白事故の根絶）
-    const failsafe = window.setTimeout(reveal, 1500)
-
-    return () => {
-      io.disconnect()
-      window.clearTimeout(failsafe)
-    }
-  }, [])
-
-  const hidden = mounted && !shown
-
-  return createElement(
-    as,
-    {
-      ref,
-      className: cn(
-        'motion-safe:transition-[opacity,transform] motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)]',
-        hidden
-          ? 'opacity-0 translate-y-[10px] motion-reduce:opacity-100 motion-reduce:translate-y-0'
-          : 'opacity-100 translate-y-0',
-        className,
-      ),
-      style: shown && delay ? { transitionDelay: `${delay}s` } : undefined,
-    },
-    children,
-  )
+export function Reveal({ children, className, as = 'div' }: RevealProps) {
+  return createElement(as, { className: cn('min-w-0', className) }, children)
 }

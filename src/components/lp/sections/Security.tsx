@@ -1,65 +1,76 @@
-import { Brain, Database, CreditCard, Shield } from 'lucide-react'
+import { BrainCircuit, CreditCard, Database, ShieldCheck } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import { Section } from '../ui/Section'
+import { Badge } from '../ui/Badge'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
-import { Badge } from '../ui/Badge'
-import { protect } from '../lib/protect'
+import { Section } from '../ui/Section'
 import { hl } from '../lib/headline'
 
-type Trust = { icon: LucideIcon; title: string; desc: string }
+type Fact = { icon: LucideIcon; title: string; body: string; href?: string }
 
-// 文言は本番現行LPのまま（オーナー指定・盛らない/削らない）。
-const TRUST: Trust[] = [
-  { icon: Brain, title: 'Google AI（Gemini）搭載', desc: '世界最先端のAIエンジン' },
-  { icon: Database, title: 'Amazon Web Services', desc: '世界最大級のクラウド基盤' },
-  { icon: CreditCard, title: 'Stripe決済', desc: '世界135カ国以上で利用される決済インフラ' },
-  { icon: Shield, title: '通信・データは暗号化', desc: '決済情報を弊社サーバーで保持しません' },
+const FACTS: Fact[] = [
+  {
+    icon: CreditCard,
+    title: 'カード情報はStripeで管理',
+    body: '決済はStripe経由です。カード情報を楽マッチ AIのサーバーでは保持しません。',
+  },
+  {
+    icon: Database,
+    title: '解約後のデータ方針を明記',
+    body: '解約後は30日間保持し、その後は自動的かつ不可逆的に削除します。',
+    href: '/terms',
+  },
+  {
+    icon: BrainCircuit,
+    title: 'AIの提案は判断の補助',
+    body: 'マッチングの点数やAIの分析は目安です。最終判断は営業担当者が行います。',
+  },
 ]
 
-/**
- * セキュリティ／インフラの信頼。WHY比較表の後・FOR WHOM の前に配置し、
- * 「比較 → 安全 → 誰のため」の流れを作る。スタイルは新トークン（白カード・発光なし）。
- */
+/** 外部企業の規模ではなく、利用前に確認できる運用上の事実だけを示す。 */
 export function Security() {
   return (
-    <Section id="security" className="bg-surface-100" spacing="sm">
+    <Section id="trust" className="bg-surface-50" spacing="sm">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <Badge icon={<Shield className="h-3.5 w-3.5" />}>セキュリティ</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
+            <Badge icon={<ShieldCheck className="h-3.5 w-3.5" aria-hidden />}>安心して始めるために</Badge>
             <h2 className="mt-4 text-display-lg text-ink-900">
-              {hl('データは、', '大手テック企業の', 'インフラで守る。')}
+              {hl('料金だけでなく、', '扱いも明確に。')}
             </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-700 sm:mt-6">
-              {protect('自社で大手企業レベルのセキュリティを実現するのは、ほぼ不可能です。楽マッチAIは、Google・Amazon・Stripeという世界最大級のインフラ上で稼働。お客様のデータや決済情報を弊社サーバーで保持することはありません。')}
-            </p>
           </Reveal>
         </div>
 
-        <div className="mt-12 grid divide-y divide-surface-200 sm:mt-16 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
-          {TRUST.map((t, i) => (
-            <Reveal key={t.title} delay={i * 0.06}>
-              <div className="flex h-full items-start gap-3 py-4 sm:p-4">
-                <t.icon className="mt-0.5 h-6 w-6 shrink-0 text-ink-700" strokeWidth={2} aria-hidden />
-                <div>
-                  <p className="text-sm font-bold text-ink-900">{t.title}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-ink-500">{t.desc}</p>
-                </div>
-              </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {FACTS.map((fact, index) => (
+            <Reveal key={fact.title} delay={index * 0.06}>
+              <article className="flex h-full flex-col rounded-xl border border-surface-200 bg-white p-6">
+                <fact.icon className="h-6 w-6 text-primary-700" aria-hidden />
+                <h3 className="mt-4 text-base font-bold text-ink-900">{fact.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-700">{fact.body}</p>
+                {fact.href ? (
+                  <a
+                    href={fact.href}
+                    className="mt-4 inline-flex min-h-11 items-center self-start rounded-md text-sm font-bold text-primary-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  >
+                    利用規約で確認する →
+                  </a>
+                ) : null}
+              </article>
             </Reveal>
           ))}
         </div>
 
-        <Reveal delay={0.1}>
-          <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-ink-700">
-            個人なら自分の顧客を自分で管理。会社なら全体を見ながら、担当者ごとに分けて運用できます。
-          </p>
-        </Reveal>
+        <p className="mt-5 text-center text-sm leading-relaxed text-ink-500">
+          個人情報の取り扱いと利用中の解析サービスは、
+          <a
+            href="/privacy"
+            className="inline-flex min-h-11 items-center rounded-md font-bold text-primary-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+          >
+            プライバシーポリシー
+          </a>
+          で確認できます。
+        </p>
       </Container>
     </Section>
   )

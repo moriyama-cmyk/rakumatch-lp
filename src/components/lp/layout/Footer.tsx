@@ -28,12 +28,12 @@ export function Footer() {
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-ink-500">
-              不動産営業専門の顧客・物件管理AI。月々3,000円（税込・スタンダード）/人〜
+              1名から始められる、不動産売買仲介のための顧客・物件管理AI。月額3,000円（税込・スタンダード）/人から。
             </p>
             {/* スマホのヘッダーからログインを外したため、ここに既存ユーザー向けの導線を置く。 */}
             <a
               href={`${SITE.appUrl}/login`}
-              className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary-700 transition-colors hover:text-primary-800 hover:underline"
+              className="mt-4 inline-flex min-h-11 items-center gap-1 rounded-md text-sm font-medium text-primary-700 transition-colors hover:text-primary-800 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               既存アカウントでログイン
               <span aria-hidden>→</span>
@@ -47,7 +47,7 @@ export function Footer() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-sm text-ink-700 transition-colors hover:text-primary-700"
+                    className="inline-flex min-h-11 items-center rounded-md text-sm text-ink-700 transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 >
                   {item.label}
                 </a>
@@ -60,7 +60,7 @@ export function Footer() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-sm text-ink-700 transition-colors hover:text-primary-700"
+                    className="inline-flex min-h-11 items-center rounded-md text-sm text-ink-700 transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 >
                   {item.label}
                 </a>
@@ -73,7 +73,7 @@ export function Footer() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-sm text-ink-700 transition-colors hover:text-primary-700"
+                    className="inline-flex min-h-11 items-center rounded-md text-sm text-ink-700 transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 >
                   {item.label}
                 </a>

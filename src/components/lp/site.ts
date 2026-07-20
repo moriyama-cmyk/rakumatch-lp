@@ -3,32 +3,29 @@
 
 export const SITE = {
   brand: '楽マッチ AI',
-  tagline: '不動産売買のための AI 営業相棒',
-  // カテゴリ（森山さん指定・大々的に表示）
+  tagline: '不動産売買仲介のための AI 営業相棒',
   category: '不動産営業専門の顧客・物件管理システムAI',
   categoryShort: '不動産営業専門',
-  // Hero のカテゴリ行・キャッチ（後から一行で差し替えられるよう定数化）
-  categoryLine: '不動産営業専門',
-  catchMain: '月3,000円で、月5万円のCRMに勝つ方法があります。',
-  catchSub: 'このお客様に、何を。この物件を、誰に。— AIが両方から答えます。',
-  // 計測用バリアントID。上の catchMain / catchSub を差し替えるたびに必ずここも更新する。
-  // この値が GA4 のユーザープロパティ／Clarity のタグに送られ、コピー別に成果を比較できる。
-  // 命名: v<連番>-<訴求軸>。例: v1-baseline-sales → v2-price-vs-5man → ...
-  copyVariant: 'v2-price-vs-5man',
+  categoryLine: '不動産売買仲介の営業担当者へ',
+  catchMain: '月額3,000円/人（税込・スタンダード）から、顧客管理も「次に出す物件」も。',
+  catchSub: '1名から始められる、不動産営業のための顧客・物件管理AIです。',
+  // 実表示中の Hero コピーと必ず同時に更新する。
+  copyVariant: 'v3-individual-five-functions',
   // 価格（森山さん指定・本番LP/特商法と同一表記）
   priceLead: '月々たったの3,000円（税込）/人',
   priceShort: '月3,000円/人（税込）',
   standardPrice: '¥3,000',
   premiumPrice: '¥5,000',
   priceUnit: '/ 人・月（税込）',
-  // 主CTA着地（ゲスト体験＝匿名サインインで中を触れる）
+  // 匿名デモと、カード登録を伴う7日間トライアルは混同しない。
   ctaTryUrl: 'https://app.rakumatch-ai.com/try',
+  ctaTrialUrl: 'https://app.rakumatch-ai.com/signup',
   appUrl: 'https://app.rakumatch-ai.com',
-  ctaPrimaryLabel: '無料で試す',
-  ctaSecondaryLabel: '機能を見る',
-  // CTA 下のマイクロコピー（景表法配慮の安全文言）
-  microCopy: 'ログイン不要・クレカ不要・そのまま画面が触れます',
-  microCopyShort: 'クレカ不要',
+  ctaPrimaryLabel: '登録なしで画面を試す',
+  ctaTrialLabel: '7日間トライアルを始める',
+  ctaSecondaryLabel: '5つの機能を見る',
+  microCopy: 'ログイン不要・連絡先不要・クレジットカード不要',
+  microCopyShort: '登録・カード不要',
 } as const
 
 // Hero 用エイリアス（ブリーフ準拠の命名で参照できるように）
@@ -40,8 +37,8 @@ export type NavItem = { label: string; href: string }
 
 // ブループリント【1】ヘッダー: 機能 / 選ばれる理由 / 料金 / よくある質問
 export const NAV: NavItem[] = [
-  { label: '機能', href: '#hub' },
-  { label: '選ばれる理由', href: '#why' },
+  { label: '5つの機能', href: '#features' },
+  { label: 'お客様アプリ', href: '#customer-app' },
   { label: '料金', href: '#pricing' },
   { label: 'よくある質問', href: '#faq' },
 ]

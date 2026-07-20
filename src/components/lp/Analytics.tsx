@@ -12,7 +12,8 @@ import { SITE } from './site'
  *   空文字や 'off' を入れれば個別に無効化できる。
  * - 表示中のキャッチコピー識別子 SITE.copyVariant を GA4 のユーザープロパティと
  *   Clarity のタグに送る → 「どのコピーの時に何が起きたか」をコピー別に集計・録画フィルタできる。
- * - 主CTA（/try への遷移）クリックを cta_try_click イベントとして送る。
+ * CTAイベントは src/lib/track.ts から明示的に送る。
+ * 匿名デモ、カード登録付きトライアル、ページ内アンカーを混同しない。
  *
  * バージョン非依存にするため next/script は使わず、標準DOMでスクリプトを注入する。
  */
@@ -84,18 +85,6 @@ export function Analytics() {
       window.clarity('set', 'copy_variant', SITE.copyVariant)
     }
 
-    // --- 主CTA（無料で試す＝/try 遷移）クリック計測 ---
-    const onClick = (e: MouseEvent) => {
-      const anchor = (e.target as HTMLElement | null)?.closest('a') as HTMLAnchorElement | null
-      if (!anchor?.href || !anchor.href.includes('/try')) return
-      window.gtag?.('event', 'cta_try_click', {
-        copy_variant: SITE.copyVariant,
-        link_url: anchor.href,
-      })
-      window.clarity?.('event', 'cta_try_click')
-    }
-    document.addEventListener('click', onClick)
-    return () => document.removeEventListener('click', onClick)
   }, [])
 
   // --- LP内ページ遷移の page_view（App Router の client 遷移は自動で発火しないため手動送信） ---

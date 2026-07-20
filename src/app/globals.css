@@ -2,6 +2,7 @@
 @config "../../tailwind.config.ts";
 
 html {
+  --font-sans: "Noto Sans JP", "Yu Gothic UI", "Hiragino Sans", "Meiryo", system-ui, sans-serif;
   scroll-behavior: smooth;
   /* 固定ヘッダー分のアンカーオフセット（#hub 等へのジャンプが見出しの下に隠れない） */
   scroll-padding-top: 5rem;

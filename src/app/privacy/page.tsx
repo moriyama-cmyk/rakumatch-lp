@@ -96,7 +96,10 @@ export default function PrivacyPage() {
                   <strong>Vercel</strong> — ホスティング・配信
                 </li>
                 <li>
-                  <strong>Google Analytics</strong> — アクセス解析（将来導入の可能性があります）。Cookieを使用してユーザーの利用状況を匿名で収集します。Google Analyticsのデータ取り扱いについては、Googleのプライバシーポリシーをご確認ください。
+                  <strong>Google Analytics 4</strong> — アクセス状況および本サービス内の利用状況を分析するために利用しています。Cookie等を用いて情報を収集します。Googleにおける情報の取り扱いについては、<a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer" className="text-primary-600 hover:underline">Googleのプライバシーポリシー</a>をご確認ください。
+                </li>
+                <li>
+                  <strong>Microsoft Clarity</strong> — ページ上の操作を含む利用状況を分析し、本サービスの改善に役立てるために利用しています。Microsoftにおける情報の取り扱いについては、<a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noreferrer" className="text-primary-600 hover:underline">Microsoftのプライバシーに関する声明</a>をご確認ください。
                 </li>
               </ul>
             </section>
