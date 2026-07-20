@@ -62,6 +62,8 @@ const config: Config = {
       // 以下、トップページ新デザイン（lp-bold 版）で用いるトークン。
       // 既存トークンは変更せず追記のみ（DESIGN_MODERN_LIGHT 準拠・Vite版と同値）。
       fontSize: {
+        // LPの受入条件: 注記・ラベルを含め、可読文字は14px未満にしない。
+        xs: ['0.875rem', { lineHeight: '1.55' }],
         // clamp ベースの大きな見出し（型は大胆・質感はクリーン）
         'display-2xl': ['clamp(2.125rem, 6.4vw, 4rem)', { lineHeight: '1.16', letterSpacing: '-0.005em', fontWeight: '700' }],
         'display-xl': ['clamp(1.75rem, 4.4vw, 3rem)', { lineHeight: '1.24', letterSpacing: '-0.005em', fontWeight: '700' }],

@@ -30,9 +30,9 @@ export default function LandingPage() {
         <CapabilitySuite />
         <SignalFlow />
         <Story />
+        <Pricing />
         <Voices />
         <Security />
-        <Pricing />
         <Faq />
         <FinalCta />
       </main>

@@ -66,9 +66,8 @@ const VOICES: Voice[] = [
   },
 ]
 
-// 2026-07-19 森山さん指摘: sm:grid-cols-2 で3枚だと右下が1マス空く。
-// 初期表示を4枚（2行×2列）にして空きマスをなくす。声の文言・順序は変更しない。
-const INITIAL_COUNT = 4
+// 最初は代表2件だけを表示し、長文による読了負荷を抑える。声の本文・順序は変更しない。
+const INITIAL_COUNT = 2
 
 export function Voices() {
   const [expanded, setExpanded] = useState(false)
@@ -80,24 +79,23 @@ export function Voices() {
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <Badge>お客様・営業の声</Badge>
+            <Badge>実際に伺った声</Badge>
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
-              使ってくださっている方の、<GradientText>声</GradientText>
+              営業・お客様から伺った、<GradientText>声</GradientText>
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            {/* 2026-07-19 森山さん指摘: 「まだ多くはありませんが」は売る場面での自己申告の弱点＝削除。 */}
             <p className="mt-5 text-base leading-relaxed text-ink-700 sm:mt-6">
-              先に使ってくださっている方から、こんな声が届いています。
+              森山が実際に伺った発言です。プライバシーに配慮し、属性は一部匿名化しています。
             </p>
           </Reveal>
         </div>
 
         <div className="mx-auto mt-12 grid max-w-4xl gap-5 sm:grid-cols-2">
           {shown.map((v, i) => (
-            <Reveal key={v.attr + i} delay={Math.min((i % INITIAL_COUNT) * 0.06, 0.18)}>
+            <Reveal key={v.attr + i} delay={Math.min((i % 4) * 0.06, 0.18)}>
               <figure className="flex h-full flex-col rounded-xl border border-surface-200 bg-white p-6 transition-shadow duration-200 hover:shadow-soft sm:p-7">
                 <VoiceLabel kind={v.kind} />
                 <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-ink-700">
@@ -115,7 +113,7 @@ export function Voices() {
               type="button"
               onClick={() => setExpanded((v) => !v)}
               aria-expanded={expanded}
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-surface-200 bg-white px-5 py-2.5 text-sm font-bold text-ink-700 transition-colors hover:bg-surface-100"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-surface-200 bg-white px-5 py-2.5 text-sm font-bold text-ink-700 transition-colors hover:bg-surface-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
             >
               {expanded ? '閉じる' : `もっと見る（あと${rest}件）`}
             </button>

@@ -48,6 +48,13 @@ src/components/lp/sections/SignalFlow.tsx
 ### ★重要: この状態は一度も検証されていない
 `npm run build` を通していない。**壊れている可能性が高い。まずビルドを通すところから。**
 
+### ★★最優先の確認事項: `Voices.tsx` が変更されている
+中断直前に `src/components/lp/sections/Voices.tsx` に変更が入った。ここは**実在する8件の発言**が入っており、
+**本文の書き換え・成果や数値の追加は禁止**（配置・デザインの変更のみ可）。
+**再開したら真っ先に `git diff` で発言本文が改変されていないか確認し、改変されていたら元に戻すこと。**
+確認コマンド: `git diff HEAD~2 -- src/components/lp/sections/Voices.tsx`
+（ステマ規制・景表法に直結する。ここだけは絶対に妥協しない）
+
 ---
 
 ## 3. 残作業

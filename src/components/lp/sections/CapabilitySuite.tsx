@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import {
   ArrowRight,
+  Check,
   Bot,
   ClipboardList,
   FileInput,
@@ -39,11 +40,13 @@ const SUPPORTING = [
   { icon: ReceiptText, title: '固都税・精算金の自動計算' },
 ]
 
-const SHOTS = [
-  { src: '/shot-bulk-input.webp', alt: '物件情報を取り込む実画面', width: 1920, height: 1080, title: '物件を取り込む' },
-  { src: '/shot-hero-matching.webp', alt: '物件と顧客を照らし合わせる実画面', width: 1600, height: 713, title: '提案先を見つける' },
-  { src: '/shot-ai-insight.webp', alt: 'AIの提案内容を確認する実画面', width: 1920, height: 1080, title: '次の一手を考える' },
-]
+const INGEST_STEPS = [
+  '物件一覧を全選択してコピー',
+  '楽マッチ AIに貼り付ける',
+  'AIが物件ごとに下書き',
+  '内容を確認して登録',
+  'マッチング候補に入る',
+] as const
 
 /** 営業の一連の流れとして、主機能と周辺業務をひとまとめに提示する。 */
 export function CapabilitySuite() {
@@ -66,14 +69,14 @@ export function CapabilitySuite() {
           </Reveal>
         </div>
 
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:mt-14 lg:grid-cols-5">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-6 lg:mt-14 lg:grid-cols-5">
           {CAPABILITIES.map((capability, index) => {
             const Icon = capability.icon
             return (
               <Reveal
                 key={capability.title}
                 delay={index * 0.05}
-                className="min-w-0 last:sm:col-span-2 last:sm:mx-auto last:sm:w-[calc(50%-0.375rem)] last:lg:col-span-1 last:lg:mx-0 last:lg:w-auto"
+                className={`min-w-0 sm:col-span-2 lg:col-span-1 ${index === 3 ? 'sm:col-start-2 lg:col-start-auto' : ''} ${index === 4 ? 'col-span-2 sm:col-span-2 lg:col-span-1' : ''}`}
               >
                 <div className="flex h-full min-w-0 flex-col rounded-2xl border border-surface-200 bg-surface-100/50 p-5 shadow-soft transition-shadow hover:shadow-soft-md">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
@@ -130,26 +133,56 @@ export function CapabilitySuite() {
           </div>
         </Reveal>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          {SHOTS.map((shot, index) => (
-            <Reveal key={shot.src} delay={index * 0.06} className="min-w-0">
-              <figure className="overflow-hidden rounded-2xl border border-surface-200 bg-surface-100 shadow-soft">
-                <Image
-                  src={shot.src}
-                  alt={shot.alt}
-                  width={shot.width}
-                  height={shot.height}
-                  sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  className="h-auto w-full"
-                />
-                <figcaption className="flex items-center justify-between gap-3 px-4 py-3 text-sm">
-                  <span className="font-bold text-ink-800">{shot.title}</span>
-                  <span className="shrink-0 text-xs text-ink-500">実画面・デモデータ</span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={0.08}>
+          <figure className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl border border-surface-200 bg-surface-100 shadow-soft-md">
+            <Image
+              src="/shot-bulk-input.webp"
+              alt="物件情報を取り込む楽マッチ AIの実画面"
+              width={1920}
+              height={1080}
+              sizes="(max-width: 899px) calc(100vw - 40px), 860px"
+              className="h-auto w-full"
+            />
+            <figcaption className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-sm sm:px-5">
+              <span className="font-bold text-ink-800">物件情報を取り込み、内容を確認する画面</span>
+              <span className="text-xs text-ink-500">実画面・デモデータ</span>
+            </figcaption>
+          </figure>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="mt-7 rounded-2xl border border-primary-100 bg-primary-50/60 p-5 sm:p-7">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-bold tracking-[0.12em] text-primary-700">物件一括取り込みの流れ</p>
+                <h3 className="mt-2 text-lg font-bold leading-relaxed text-ink-900 sm:text-xl">
+                  コピーした物件情報を、提案候補までつなげます。
+                </h3>
+              </div>
+              <a
+                href="/features/property-input"
+                className="inline-flex min-h-11 shrink-0 items-center gap-1 self-start rounded-lg text-sm font-bold text-primary-700 underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+              >
+                詳しい入力方法
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </a>
+            </div>
+            <ol className="mt-5 grid gap-2 sm:grid-cols-5">
+              {INGEST_STEPS.map((step, index) => (
+                <li key={step} className="flex min-w-0 items-start gap-2 rounded-xl border border-primary-100 bg-white px-3.5 py-3 text-sm font-bold leading-relaxed text-ink-800 sm:flex-col">
+                  <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-primary-600 text-xs tabular-nums text-white">
+                    {index + 1}
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-4 flex items-start gap-2 text-sm leading-relaxed text-ink-600">
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" strokeWidth={3} aria-hidden />
+              AIの抽出結果は下書きです。内容を確認してから登録します。
+            </p>
+          </div>
+        </Reveal>
       </Container>
     </Section>
   )

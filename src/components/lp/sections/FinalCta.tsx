@@ -22,7 +22,7 @@ export function FinalCta() {
               <p className="text-sm font-bold tracking-wide text-primary-200">楽マッチ AI を試す</p>
               <h2 className="mt-4 text-display-xl text-white">{hl('まずは、', '画面で', '確かめて', 'ください。')}</h2>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
-                匿名で画面を試すか、カード登録後に7日間トライアルを始めるか。ご都合に合う方法を選べます。
+                登録なしで画面を試すか、カード登録後に7日間トライアルを始めるか。ご都合に合う方法を選べます。
               </p>
 
               <div className="mx-auto mt-8 grid max-w-xl gap-3 text-left sm:grid-cols-2">
@@ -46,7 +46,7 @@ export function FinalCta() {
                   <span className="text-xs font-medium text-white/75">カード登録あり・7日間</span>
                 </GlowButton>
               </div>
-              <p className="mt-4 text-xs leading-relaxed text-white/60">トライアルは7日以内に解約すれば料金はかかりません。最低利用期間・違約金はありません。</p>
+              <p className="mt-4 text-xs leading-relaxed text-white/75">トライアルは7日以内に解約すれば料金はかかりません。最低利用期間・違約金はありません。</p>
             </div>
           </div>
         </Reveal>

@@ -7,10 +7,10 @@ export const SITE = {
   category: '不動産営業専門の顧客・物件管理システムAI',
   categoryShort: '不動産営業専門',
   categoryLine: '不動産売買仲介の営業担当者へ',
-  catchMain: '月額3,000円/人（税込・スタンダード）から、顧客管理も「次に出す物件」も。',
+  catchMain: '月額3,000円/人から。顧客管理も「次に出す物件」も。',
   catchSub: '1名から始められる、不動産営業のための顧客・物件管理AIです。',
   // 実表示中の Hero コピーと必ず同時に更新する。
-  copyVariant: 'v3-individual-five-functions',
+  copyVariant: 'v4-density-signal-proof',
   // 価格（森山さん指定・本番LP/特商法と同一表記）
   priceLead: '月々たったの3,000円（税込）/人',
   priceShort: '月3,000円/人（税込）',
@@ -49,6 +49,7 @@ export type Plan = {
   name: string
   tagline: string
   quota: string
+  storage: string
   price: string
   unit: string
 }
@@ -57,14 +58,16 @@ export const PLANS: Plan[] = [
   {
     name: 'スタンダード',
     tagline: '一人ひとりの営業に。',
-    quota: '標準',
+    quota: '標準利用枠',
+    storage: '250GB',
     price: SITE.standardPrice,
     unit: SITE.priceUnit,
   },
   {
     name: 'プレミアム',
-    tagline: 'AIをたっぷり使うチームに。',
-    quota: '拡大',
+    tagline: 'AI利用枠と保存容量を広げたいチームに。',
+    quota: '拡大利用枠',
+    storage: '500GB',
     price: SITE.premiumPrice,
     unit: SITE.priceUnit,
   },

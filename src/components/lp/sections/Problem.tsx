@@ -29,7 +29,7 @@ const PAINS: Pain[] = [
 /** 個人〜少人数の営業担当者が日々感じる、提案前の情報の分断を言語化する。 */
 export function Problem() {
   return (
-    <Section id="problem" spacing="xl" className="border-y border-primary-100 bg-surface-150">
+    <Section id="problem" spacing="md" className="border-y border-primary-100 bg-surface-150">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>

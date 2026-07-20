@@ -33,7 +33,7 @@ export function Header() {
         <a
           href="#top"
           aria-label={`${SITE.brand} トップ`}
-          className="shrink-0 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
         >
           <span className="sm:hidden"><Logo withWordmark={false} /></span>
           <span className="hidden sm:inline-flex"><Logo /></span>
@@ -52,6 +52,22 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2.5">
+          <nav className="hidden items-center gap-1 md:flex lg:hidden" aria-label="タブレット向けナビゲーション">
+            <a
+              href="#pricing"
+              onClick={() => trackCta('anchor', 'header_pricing')}
+              className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-bold text-ink-700 transition-colors hover:bg-primary-50 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            >
+              料金
+            </a>
+            <a
+              href="#faq"
+              onClick={() => trackCta('anchor', 'header_faq')}
+              className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-bold text-ink-700 transition-colors hover:bg-primary-50 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            >
+              FAQ
+            </a>
+          </nav>
           {/*
             ログインは sm 以上のみ表示。スマホのヘッダーは主要CTA 1 つに集約し、
             「ログイン」と「無料で試す」が詰まって 2 行に折り返す不具合を根治する。
@@ -59,7 +75,7 @@ export function Header() {
             　 CSS の出力順で打ち消されない。確実に隠すため、表示ユーティリティだけを持つ
             　 div でラップする。スマホのログインはフッターの導線から。
           */}
-          <div className="hidden sm:block">
+          <div className="hidden lg:block">
             <GlowButton href={`${SITE.appUrl}/login`} variant="ghost" size="sm">
               ログイン
             </GlowButton>

@@ -1,3 +1,5 @@
+'use client'
+
 import { Plus } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
@@ -5,6 +7,7 @@ import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GradientText } from '../ui/GradientText'
 import { hl } from '../lib/headline'
+import { trackCta } from '@/lib/track'
 
 const QA: { q: string; a: string }[] = [
   {
@@ -51,7 +54,7 @@ export function Faq() {
               <details className="group rounded-lg border border-surface-200 bg-white [&_summary::-webkit-details-marker]:hidden">
                 <summary className="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 p-4 text-left sm:p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500">
                   <span className="text-sm font-bold leading-relaxed text-ink-900">{item.q}</span>
-                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600 transition-transform duration-200 ease-out motion-reduce:transition-none group-open:rotate-45">
+                  <span aria-hidden="true" className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600 transition-transform duration-200 ease-out motion-reduce:transition-none group-open:rotate-45">
                     <Plus className="h-4 w-4" aria-hidden />
                   </span>
                 </summary>
@@ -59,6 +62,16 @@ export function Faq() {
               </details>
             </Reveal>
           ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <a
+            href="#pricing"
+            onClick={() => trackCta('anchor', 'faq_pricing')}
+            className="inline-flex min-h-11 items-center justify-center rounded-lg px-4 text-sm font-bold text-primary-700 underline decoration-primary-300 underline-offset-4 hover:text-primary-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          >
+            料金・試し方をもう一度見る
+          </a>
         </div>
       </Container>
     </Section>

@@ -13,11 +13,11 @@ import { hl } from '../lib/headline'
 import { trackCta } from '@/lib/track'
 
 const COMMON_FEATURES = [
-  '顧客・物件をまとめて管理',
-  'お客様・物件の双方向マッチング',
-  'お客様アプリで検討状況を共有',
-  '顧客・物件ごとの専属AI',
-  '通話録音・文字起こし・要約',
+  '顧客管理',
+  '物件一括取り込み',
+  '双方向マッチング',
+  '専属AI',
+  'お客様アプリ',
 ]
 
 const SUPPORT_SCOPE = [
@@ -86,12 +86,18 @@ export function Pricing() {
           ))}
         </div>
 
+        <Reveal delay={0.08}>
+          <p className="mx-auto mt-5 max-w-2xl text-center text-sm leading-relaxed text-ink-600">
+            使えるAI機能とAIの性能は両プラン共通です。違いはAI利用枠と保存容量です。
+          </p>
+        </Reveal>
+
         <Reveal delay={0.1}>
           <div className="mx-auto mt-6 max-w-3xl rounded-xl border border-surface-200 bg-surface-50 p-5 sm:p-6">
             <div className="flex items-start gap-3">
               <CircleHelp className="mt-0.5 h-5 w-5 shrink-0 text-primary-600" aria-hidden />
               <div>
-                <p className="text-sm font-bold text-ink-900">新規契約の先着5アカウントに、初回のオンライン相談</p>
+                <p className="text-sm font-bold text-ink-900">本ページ公開後の新規契約・先着5アカウントに、初回のオンライン相談</p>
                 <p className="mt-1 text-sm leading-relaxed text-ink-700">
                   開発者本人が30分・1回、オンラインでご相談を受けます。対象は{SUPPORT_SCOPE.join('、')}です。契約後、登録メールアドレスへ日程調整をご案内します。
                 </p>
@@ -135,7 +141,16 @@ function PlanCard({ plan, featured }: { plan: Plan; featured: boolean }) {
           <span className="text-5xl font-bold tracking-[-0.03em] tabular-nums text-accent-600 sm:text-6xl">{plan.price}</span>
           <span className="mb-1.5 text-sm font-medium text-ink-600">{plan.unit}</span>
         </p>
-        <p className="mt-2 text-xs text-ink-500">AI利用枠：{plan.quota}</p>
+        <dl className="mt-3 grid grid-cols-2 gap-2 text-xs text-ink-600">
+          <div className="rounded-lg bg-surface-50 px-3 py-2">
+            <dt>AI利用枠</dt>
+            <dd className="mt-0.5 font-bold text-ink-900">{plan.quota}</dd>
+          </div>
+          <div className="rounded-lg bg-surface-50 px-3 py-2">
+            <dt>保存容量</dt>
+            <dd className="mt-0.5 font-bold text-ink-900">{plan.storage}</dd>
+          </div>
+        </dl>
       </div>
 
       <p className="mt-5 text-sm font-bold text-ink-900">どちらのプランにも含まれる5機能</p>

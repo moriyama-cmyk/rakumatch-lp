@@ -1,10 +1,15 @@
+'use client'
+
 import Image from 'next/image'
-import { ArrowDown, BellRing, BookmarkCheck, Send, Smartphone } from 'lucide-react'
+import { ArrowDown, ArrowRight, BellRing, BookmarkCheck, Send, Smartphone } from 'lucide-react'
 import { Badge } from '../ui/Badge'
 import { Container } from '../ui/Container'
 import { Reveal } from '../ui/Reveal'
 import { Section } from '../ui/Section'
 import { hl } from '../lib/headline'
+import { GlowButton } from '../ui/GlowButton'
+import { SITE } from '../site'
+import { trackCta } from '@/lib/track'
 
 const STEPS = [
   {
@@ -16,8 +21,8 @@ const STEPS = [
   {
     icon: BellRing,
     label: '楽マッチ AI',
-    title: '保存・星評価・メモ・内見希望が届く',
-    body: 'お客様の反応を、担当者が確認できます。',
+    title: '反応が担当者に届く',
+    body: '保存・星評価・メモ・内見希望を確認できます。',
   },
   {
     icon: Send,
@@ -50,11 +55,11 @@ export function SignalFlow() {
 
         <div className="mt-10 grid items-center gap-8 lg:mt-14 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14">
           <Reveal className="min-w-0">
-            <ol className="grid min-w-0 gap-3 md:grid-cols-[minmax(0,1fr)_28px_minmax(0,1fr)_28px_minmax(0,1fr)] md:items-stretch md:gap-2">
+            <ol className="grid min-w-0 gap-3 md:grid-cols-3 md:items-stretch md:gap-10">
               {STEPS.map((step, index) => {
                 const Icon = step.icon
                 return (
-                  <li key={step.title} className="contents">
+                  <li key={step.title} className="relative min-w-0">
                     <div className="min-w-0 rounded-2xl border border-surface-200 bg-white p-5 shadow-soft sm:p-6">
                       <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
                         <Icon className="h-5 w-5" strokeWidth={2} aria-hidden />
@@ -64,8 +69,8 @@ export function SignalFlow() {
                       <p className="mt-2 text-sm leading-relaxed text-ink-700">{step.body}</p>
                     </div>
                     {index < STEPS.length - 1 ? (
-                      <div className="flex h-7 items-center justify-center text-primary-500 md:h-auto">
-                        <ArrowDown className="h-5 w-5 md:rotate-[-90deg]" aria-hidden />
+                      <div className="flex h-7 items-center justify-center text-primary-500 md:absolute md:-right-8 md:top-1/2 md:h-auto md:-translate-y-1/2" aria-hidden="true">
+                        <ArrowDown className="h-5 w-5 md:rotate-[-90deg]" />
                       </div>
                     ) : null}
                   </li>
@@ -75,6 +80,14 @@ export function SignalFlow() {
             <p className="mt-5 rounded-xl border border-primary-100 bg-primary-50/70 px-4 py-3 text-sm leading-relaxed text-primary-800">
               お客様は担当者から届くリンクで使えます。インストールもログインも不要です。
             </p>
+            <GlowButton
+              href={SITE.ctaTryUrl}
+              className="mt-5 w-full sm:w-auto"
+              onClick={() => trackCta('demo', 'customer_app_demo', SITE.ctaTryUrl)}
+            >
+              {SITE.ctaPrimaryLabel}
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </GlowButton>
           </Reveal>
 
           <Reveal delay={0.12} className="min-w-0">

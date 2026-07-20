@@ -22,7 +22,7 @@ const FEATURES: { label: string; href: string }[] = [
 export function Footer() {
   const year = new Date().getFullYear()
   return (
-    <footer className="border-t border-surface-200 bg-surface-100 py-14 pb-32 lg:pb-14">
+    <footer className="border-t border-surface-200 bg-surface-100 py-14 pb-32 md:pb-14">
       <Container>
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
