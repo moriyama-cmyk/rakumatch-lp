@@ -1,4 +1,4 @@
-import { Inbox, Eye, Rocket, User, Home, Bot } from 'lucide-react'
+import { Inbox, Eye, Rocket, User, Home, Bot, ArrowLeftRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
@@ -54,27 +54,32 @@ export function SolutionCore() {
           </Reveal>
         </div>
 
-        {/* 双方向フロー図 */}
+        {/* 双方向フロー図。
+            2026-07-24 Phase3（森山さん指摘「隙間空きすぎ・文字小さい・意味わからない」対応）:
+            ①余白圧縮(mt-16→mt-10) ②ラベルをxs→sm/boldへ拡大 ③点だけだった接続線を
+            双方向矢印(ArrowLeftRight)に差し替え、「顧客からも物件からも逆引きできる」という
+            図の意味そのものを可視化 ④矢印の下に一言ラベルを添えて図を自己説明にする。 */}
         <Reveal delay={0.12}>
-          <div className="mx-auto mt-16 flex max-w-3xl items-center justify-center gap-3 sm:mt-20 sm:gap-6">
+          <div className="mx-auto mt-10 flex max-w-2xl items-center justify-center gap-3 sm:mt-12 sm:gap-5">
             <FlowNode icon={User} label="顧客" />
-            <Connector />
+            <Connector label="誰に出すか" />
             <div className="flex flex-col items-center">
               <span className="inline-flex h-16 w-16 items-center justify-center rounded-xl bg-primary-600 text-white sm:h-20 sm:w-20">
                 <Bot className="h-8 w-8 sm:h-10 sm:w-10" strokeWidth={2} />
               </span>
-              <span className="mt-2 text-xs font-bold text-ink-900">楽マッチ AI</span>
+              <span className="mt-2 text-sm font-bold text-ink-900">楽マッチ AI</span>
             </div>
-            <Connector reverse />
+            <Connector label="何を出すか" />
             <FlowNode icon={Home} label="物件" />
           </div>
         </Reveal>
 
-        {/* 3ステップ */}
-        <div className="mt-16 grid gap-5 sm:mt-20 md:grid-cols-3">
+        {/* 3ステップ。2026-07-24 Phase3: 余白圧縮(mt-16→mt-10)・本文をsm→baseへ拡大（森山さん指摘「文字小さい」）・
+            surface-100地に載るためカード面はwhiteへ（Phase2の背景2値ルール準拠）。 */}
+        <div className="mt-10 grid gap-5 sm:mt-14 md:grid-cols-3">
           {STEPS.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.08}>
-              <div className="relative h-full rounded-xl border border-surface-200 bg-surface-50 p-7">
+              <div className="relative h-full rounded-xl border border-surface-200 bg-white p-7">
                 <div className="flex items-center justify-between">
                   <span className="inline-flex h-12 w-12 items-center justify-center text-primary-600">
                     <s.icon className="h-6 w-6" strokeWidth={2} aria-hidden />
@@ -83,115 +88,26 @@ export function SolutionCore() {
                   <span className="text-3xl font-bold text-surface-200" aria-hidden="true">{s.n}</span>
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-ink-900">{s.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink-700">{protect(s.body)}</p>
+                <p className="mt-2.5 text-base leading-relaxed text-ink-700">{protect(s.body)}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
+        {/* 2026-07-24 Phase3: 締め文の緑ハイライト（一瞬/意味＝普通名詞）は情報ゼロの装飾のため撤去
+            （GradientTextは数値・固有名詞限定の運用へ・Fable F3-3）。
+            ダンベル図(EffortLineChart)は森山さん判定「何を伝えたいか全く意味が分からない」につき削除。
+            同じ主張（件数が増えても貼る手間は一定）は直後のIngestセクションが実演で伝える。 */}
         <Reveal delay={0.2}>
           <p className="mx-auto mt-10 max-w-xl text-center text-base font-bold text-ink-900">
-            50件でも、その先でも。貼る手間は、<GradientText>一瞬</GradientText>のまま。
+            50件でも、その先でも。貼る手間は、一瞬のまま。
             <br className="hidden sm:block" />
-            そして、その入力が初めて<GradientText>意味</GradientText>を持つ。
+            そして、その入力が初めて意味を持つ。
           </p>
-        </Reveal>
-
-        {/* 概念図: 件数が増えるほど、手入力とのギャップが右へ開く。実測値は書かない。 */}
-        <Reveal delay={0.24}>
-          <EffortLineChart />
         </Reveal>
         {/* CTAはヒーロー・料金・最終CTAに集約。中間セクションの「無料で試す」連打は撤去。 */}
       </Container>
     </Section>
-  )
-}
-
-/**
- * 件数ごとの「手入力 と 楽マッチ の手間の差」を示すダンベル図。
- *
- * 2026-07-19 作り直し。旧版は折れ線グラフで、森山さんから
- * 「クオリティ低くて何のことかわからん」と指摘された。
- * dataviz スキル（references/choosing-a-form.md）に「2つの値を比べるときは
- * 折れ線ではなくダンベル図か横棒」と明記されており、**形式の選択そのものが誤り**だった。
- *
- * ダンベル図に変えた理由: 読み手に見てほしいのは「増え方の傾き」ではなく
- * 「同じ件数でここまで差がある」という**差の長さ**だから。棒の長さが差そのものになる。
- *
- * - 凡例を使わず直接ラベル（凡例と図を目で往復させない）
- * - 文字は最小14px（旧版は9pxで読めなかった）
- * - 実測値は書かない。位置は概念。注記の文言は従来どおり。
- */
-function EffortLineChart() {
-  // 楽マッチは件数が増えても一定（貼るのは1回）。手入力は件数に比例して伸びる。
-  const ROWS = [
-    { label: '物件10件', manual: 26, raku: 6 },
-    { label: '物件50件', manual: 62, raku: 8 },
-    { label: '物件100件', manual: 94, raku: 9 },
-  ]
-
-  return (
-    <div className="mx-auto mt-16 max-w-xl rounded-xl border border-surface-200 bg-surface-50 p-6 sm:mt-20 sm:p-8">
-      <p className="text-center text-base font-bold text-ink-900">
-        件数が増えても、貼る手間は変わらない
-      </p>
-
-      <div
-        className="mt-6 space-y-6"
-        role="img"
-        aria-label="物件10件・50件・100件のいずれでも楽マッチの手間はほぼ一定だが、手入力の手間は件数に比例して伸びる概念図。件数が増えるほど両者の差が開く。"
-      >
-        {ROWS.map((r, i) => (
-          <div key={r.label}>
-            <p className="text-sm font-bold text-ink-700">{r.label}</p>
-            {/* トラック。左端=手間ゼロ。右へ行くほど手間が大きい。 */}
-            <div className="relative mt-2.5 h-6">
-              <span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-surface-200" aria-hidden />
-              {/* 差の区間（ダンベルの棒）＝この長さが「差」そのもの */}
-              <span
-                className="absolute top-1/2 h-1 -translate-y-1/2 rounded-full bg-ink-300/50"
-                style={{ left: `${r.raku}%`, width: `${r.manual - r.raku}%` }}
-                aria-hidden
-              />
-              {/* 楽マッチ（強調＝ブランド緑） */}
-              <span
-                className="absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-600 ring-2 ring-surface-50"
-                style={{ left: `${r.raku}%` }}
-                aria-hidden
-              />
-              {/* 手入力（沈める＝グレー） */}
-              <span
-                className="absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink-500 ring-2 ring-surface-50"
-                style={{ left: `${r.manual}%` }}
-                aria-hidden
-              />
-              {/* 直接ラベル（1行目だけ。凡例を使わない） */}
-              {i === 0 && (
-                <>
-                  <span
-                    className="absolute top-full mt-1 -translate-x-1/2 whitespace-nowrap text-sm font-bold text-primary-700"
-                    style={{ left: `${r.raku}%` }}
-                  >
-                    楽マッチ
-                  </span>
-                  <span
-                    className="absolute top-full mt-1 -translate-x-1/2 whitespace-nowrap text-sm font-bold text-ink-500"
-                    style={{ left: `${r.manual}%` }}
-                  >
-                    手入力
-                  </span>
-                </>
-              )}
-            </div>
-            {i === 0 && <div className="h-5" aria-hidden />}
-          </div>
-        ))}
-      </div>
-
-      <p className="mt-6 text-center text-sm leading-relaxed text-ink-500">
-        ※イメージ図。手間の増え方の概念を示すものです。
-      </p>
-    </div>
   )
 }
 
@@ -201,17 +117,21 @@ function FlowNode({ icon: Icon, label }: { icon: LucideIcon; label: string }) {
       <span className="inline-flex h-14 w-14 items-center justify-center rounded-xl border border-surface-200 bg-white text-primary-600 sm:h-16 sm:w-16">
         <Icon className="h-6 w-6 sm:h-7 sm:w-7" strokeWidth={2} />
       </span>
-      <span className="mt-2 text-xs font-medium text-ink-700">{label}</span>
+      <span className="mt-2 text-sm font-bold text-ink-900">{label}</span>
     </div>
   )
 }
 
-function Connector({ reverse }: { reverse?: boolean }) {
+/** 双方向の接続。線＋⇄アイコン＋一言ラベルで「両方向から引ける」ことを図自身に語らせる。 */
+function Connector({ label }: { label: string }) {
   return (
-    <div className="relative h-px flex-1 bg-surface-200">
-      <span
-        className={`absolute top-1/2 ${reverse ? 'left-0' : 'right-0'} h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-primary-400`}
-      />
+    <div className="flex flex-1 flex-col items-center gap-1">
+      <div className="flex w-full items-center gap-1">
+        <span className="h-px flex-1 bg-primary-300" aria-hidden />
+        <ArrowLeftRight className="h-4 w-4 shrink-0 text-primary-600 sm:h-5 sm:w-5" aria-hidden />
+        <span className="h-px flex-1 bg-primary-300" aria-hidden />
+      </div>
+      <span className="whitespace-nowrap text-xs font-medium text-ink-700 sm:text-sm">{label}</span>
     </div>
   )
 }
