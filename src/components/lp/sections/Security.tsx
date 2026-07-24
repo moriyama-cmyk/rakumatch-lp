@@ -55,11 +55,8 @@ export function Security() {
           ))}
         </div>
 
-        <Reveal delay={0.1}>
-          <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-ink-700">
-            個人なら自分の顧客を自分で管理。会社なら全体を見ながら、担当者ごとに分けて運用できます。
-          </p>
-        </Reveal>
+        {/* 2026-07-24 Phase3: 末尾の運用形態の段落（個人/会社の使い分け）はセキュリティと無関係の
+            孤児段落だったため削除（Fable F3-3）。同内容はFAQ「1人でも、会社でも使えますか？」が担う。 */}
       </Container>
     </Section>
   )

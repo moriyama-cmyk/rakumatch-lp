@@ -25,12 +25,14 @@ export function Hero() {
     >
       <Container className="relative">
         <div className="mx-auto max-w-3xl text-center">
-          {/* 1. カテゴリ行（H1でSEOキーワードを保持しつつ、エヤブロウとして小さめに）。
-              2026-07-19 デザイン改修: ファーストビューのLCP要素のためRevealのopacity-0/transformを撤去し素のdivに。 */}
+          {/* 1. カテゴリ行（エヤブロウ）。
+              2026-07-19 デザイン改修: ファーストビューのLCP要素のためRevealのopacity-0/transformを撤去し素のdivに。
+              2026-07-24 Phase3: h1をメインキャッチ側へ移動（視覚上の主役と文書構造の一致・Sol指摘）。
+              カテゴリ行は視覚そのままpに降格。SEOキーワードはtitle/メタとメインキャッチが担う。 */}
           <div>
-            <h1 className="font-bold tracking-tight text-primary-700 [font-size:clamp(0.95rem,3.6vw,1.45rem)]">
+            <p className="font-bold tracking-tight text-primary-700 [font-size:clamp(0.95rem,3.6vw,1.45rem)]">
               {SITE.categoryLine}
-            </h1>
+            </p>
           </div>
 
           {/* 2. メインキャッチ（最大）。2026-07-18 コピーチーム選定（4書き手×3審査員ループ・8.7点）。
@@ -45,7 +47,7 @@ export function Hero() {
                 375px 幅で「トップ営業マンの動きができる。」(13字)を1つの nowrap で包んでいたため
                 右端で見切れた。下限を 1.9rem(≈30.4px・最長かたまり10字=304px<343px)に戻し、
                 かたまりを「〜の動き」「ができる。」の2つに割って折り返せるようにする。 */}
-            <p className="mt-2.5 font-bold leading-[1.16] tracking-[-0.005em] text-ink-900 [font-size:clamp(1.9rem,6.4vw,4rem)] sm:mt-3.5">
+            <h1 className="mt-2.5 font-bold leading-[1.16] tracking-[-0.005em] text-ink-900 [font-size:clamp(1.9rem,6.4vw,4rem)] sm:mt-3.5">
               {/* 2026-07-24 デザイン改修: 自社ルール「accent(金)は数値強調・実績バッジ限定」に準拠し、
                   強調を3箇所から「トップ営業マンの動き」1箇所へ整理。 */}
               <span className="inline-block whitespace-nowrap">
@@ -59,7 +61,7 @@ export function Hero() {
                 <GradientText className="text-primary-700">トップ営業マンの動き</GradientText>
               </span>
               <span className="inline-block whitespace-nowrap">ができる。</span>
-            </p>
+            </h1>
           </div>
 
           {/* 3. サブ行 */}
@@ -253,15 +255,10 @@ export function Hero() {
           </div>
         </div>
 
+        {/* 2026-07-24 Phase3: 免責2行を1行に統合（最重要ビュー直下の灰色の小声を1段へ・Fable F0-4）。 */}
         <p className="mx-auto mt-3 max-w-3xl text-center text-xs text-ink-500">
-          ※架空データによる再現イメージ
+          ※ 画面は架空データによる再現イメージ。マッチングの点数や各種試算は、営業判断を助けるための目安です。
         </p>
-
-        <Reveal delay={0.1}>
-          <p className="mx-auto mt-4 max-w-3xl text-center text-xs text-ink-500">
-            ※ マッチングの点数や各種試算は、営業判断を助けるための目安です。
-          </p>
-        </Reveal>
       </Container>
     </section>
   )
