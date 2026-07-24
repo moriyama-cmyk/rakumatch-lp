@@ -52,8 +52,10 @@ export default function LandingPage() {
         {/* 3. SOLUTION（核の宣言） */}
         <SolutionCore />
 
-        {/* 4〜7. 主要機能（差別化を前倒し・厳選4本。#features は機能群の先頭アンカー） */}
-        <div id="features" className="scroll-mt-20" aria-hidden />
+        {/* 4〜7. 主要機能（差別化を前倒し・厳選4本。#features は機能群の先頭アンカー）。
+            2026-07-24 修正: アンカー着地点の空divなので aria-hidden は不要かつ有害
+            （スクリーンリーダーのランドマーク探索を阻害するため撤去）。 */}
+        <div id="features" className="scroll-mt-20" />
         <CustomerApp />
         <Matching />
         <Ingest />

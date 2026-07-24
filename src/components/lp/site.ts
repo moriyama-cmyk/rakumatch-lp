@@ -39,8 +39,10 @@ export const CATCH_SUB = SITE.catchSub
 export type NavItem = { label: string; href: string }
 
 // ブループリント【1】ヘッダー: 機能 / 選ばれる理由 / 料金 / よくある質問
+// 2026-07-24 修正: href が #hub（機能ダイジェスト）を指しており、主要4機能
+// （CustomerApp/Matching/Ingest/AiPartner）を飛ばして着地する事故だったため #features へ修正。
 export const NAV: NavItem[] = [
-  { label: '機能', href: '#hub' },
+  { label: '機能', href: '#features' },
   { label: '選ばれる理由', href: '#why' },
   { label: '料金', href: '#pricing' },
   { label: 'よくある質問', href: '#faq' },

@@ -93,8 +93,10 @@ export function Hero() {
                 登録なしで、実物の画面を触る
                 <ArrowRight className="h-5 w-5" />
               </GlowButton>
+              {/* 2026-07-24 修正: #hub（機能ダイジェスト）ではなく #features（主要4機能の先頭）へ着地させる。
+                  「機能を見る」が主要4機能を飛ばしてダイジェストに着地していた事故の修正。 */}
               <GlowButton
-                href="#hub"
+                href="#features"
                 variant="secondary"
                 size="lg"
                 className="w-full sm:w-auto"
