@@ -1,4 +1,5 @@
 import {
+  ArrowDown,
   ClipboardPaste,
   Layers,
   PackageOpen,
@@ -47,13 +48,77 @@ export function Ingest() {
               <br className="hidden sm:block" />
               {hl('物件50件、', '片づいた。')}
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-700 sm:mt-6">
-              ポイントは“入力を時短すること”ではありません。
-              <strong className="font-bold text-ink-900">高いお金を払って媒体とAPI連携しなくても、物件情報を楽マッチに入れるのが超かんたん</strong>
-              、ということ。SUUMO/レインズ/アットホームの画面を丸ごと貼る、スクショ、PDF。それを投げ込めば、AIが物件ごと・顧客ごとに整理してページ化し、そのまま双方マッチングに乗ります。
-            </p>
           </Reveal>
         </div>
+
+        {/* 2026-07-24 森山さん指示の物語ブロック（旧・抽象リード文を置き換え）:
+            「新規物件500件→何もしない/自分で見る/高額ツール」の3択と、楽マッチの3つの数字を
+            1対1で対比させる。視覚文法はProblem/EraShiftと同じ「沈む灰→勝つ緑」。
+            ※数字の扱い（景表法配慮）: 500件は市況の例示（モックの在庫表示と整合）。
+            「500件を数秒で登録」という処理性能の断定はせず、「あなたの作業はコピペ1秒/画面」
+            という作業量の事実だけを主張する。 */}
+        <Reveal delay={0.08}>
+          <div className="mx-auto mt-10 max-w-3xl">
+            <p className="text-center text-lg font-bold text-ink-900 sm:text-xl">
+              新規物件、500件。あなたなら、どうしますか。
+            </p>
+
+            {/* これまでの3つの選択肢（沈む灰） */}
+            <div className="mt-6 rounded-xl bg-surface-100 p-6 opacity-[0.85] sm:p-7">
+              <p className="text-sm font-bold tracking-wide text-ink-600">これまでの選択肢は、3つ</p>
+              <ul className="mt-3 space-y-2.5 text-base leading-relaxed text-ink-600">
+                <li>
+                  <span className="font-bold text-ink-700">何もしない</span> — 見きれないから。お客様に合う物件が、埋もれたまま流れていく。
+                </li>
+                <li>
+                  <span className="font-bold text-ink-700">自分で全部見る</span> — お客様一人ひとりに、頭の中で当てはめる。時間が足りない。
+                </li>
+                <li>
+                  <span className="font-bold text-ink-700">高額なツールを入れる</span> — マッチングは自動になるが、媒体との有料連携や設定が前提で、面倒。
+                </li>
+              </ul>
+            </div>
+
+            <div className="flex items-center justify-center py-2">
+              <ArrowDown className="h-6 w-6 text-primary-400" aria-hidden />
+            </div>
+
+            {/* 楽マッチの答え（勝つ緑・3つの数字）。
+                「手作業は数秒」は森山さん確認済みの製品事実（バッチ機能で500件もまとめて投入可・
+                人間の作業はクリック/ドラッグ/コピペのみ）。処理完了時間ではなく手作業の量を主張する。 */}
+            <div className="rounded-xl border border-primary-600/40 bg-primary-50 p-6 sm:p-7">
+              <p className="text-sm font-bold tracking-wide text-primary-700">楽マッチなら</p>
+              <div className="mt-4 grid gap-4 text-center sm:grid-cols-3">
+                <div>
+                  <p className="text-2xl font-bold text-primary-700 sm:text-3xl">手作業は数秒</p>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-900">
+                    クリックとコピペだけ。<br className="hidden sm:block" />
+                    500件も、まとめて投げ込めます。
+                  </p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-primary-700 sm:text-3xl">自動マッチ</p>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-900">
+                    全物件に「マッチ○名」が付き、<br className="hidden sm:block" />
+                    誰に出すかまで並ぶ。
+                  </p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-primary-700 sm:text-3xl">月3,000円</p>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-900">
+                    税込/人。<br className="hidden sm:block" />
+                    媒体連携は0円。
+                  </p>
+                </div>
+              </div>
+              <p className="mt-5 border-t border-primary-600/20 pt-4 text-center text-base leading-relaxed text-ink-900">
+                入れ方も、選びません。<strong className="font-bold">画面コピペでも、図面のPDFでも、スクショでも</strong>——投げ込めば、AIが1件ずつ物件カードに整理します。
+                <br className="hidden sm:block" />
+                <strong className="font-bold text-primary-700">物件入力の“ステージ”が、変わりました。</strong>
+              </p>
+            </div>
+          </div>
+        </Reveal>
 
         {/* 4ステップ（コード製・番号＋アイコン＋一行） */}
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
