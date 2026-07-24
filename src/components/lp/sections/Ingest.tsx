@@ -37,7 +37,7 @@ const POINTS: { icon: LucideIcon; text: string }[] = [
  */
 export function Ingest() {
   return (
-    <Section id="ingest" className="bg-surface-100" spacing="lg">
+    <Section id="ingest" className="bg-white" spacing="lg">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
@@ -63,7 +63,7 @@ export function Ingest() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s, i) => (
             <Reveal key={s.caption} delay={i * 0.06}>
-              <div className="flex h-full items-start gap-3 rounded-xl border border-surface-200 bg-white p-5 shadow-none transition-shadow duration-200 hover:shadow-soft">
+              <div className="flex h-full items-start gap-3 rounded-xl border border-surface-200 bg-white p-5 shadow-none">
                 <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-600 text-sm font-bold text-white">
                   {i + 1}
                 </span>
@@ -118,7 +118,7 @@ export function Ingest() {
             {POINTS.map((p) => (
               <li
                 key={p.text}
-                className="flex items-start gap-3 rounded-xl border border-surface-200 bg-white p-5 shadow-none transition-shadow duration-200 hover:shadow-soft"
+                className="flex items-start gap-3 rounded-xl border border-surface-200 bg-white p-5 shadow-none"
               >
                 <p.icon className="mt-0.5 h-5 w-5 shrink-0 text-primary-600" strokeWidth={2} aria-hidden />
                 <span className="text-sm leading-[1.7] text-ink-700">{p.text}</span>

@@ -33,7 +33,7 @@ const STEPS: Step[] = [
 /** SOLUTION（核の宣言）。楽マッチが何者かを1画面で言い切る。ライト。 */
 export function SolutionCore() {
   return (
-    <Section id="solution" className="bg-white" spacing="lg">
+    <Section id="solution" className="bg-surface-100" spacing="lg">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
@@ -74,7 +74,7 @@ export function SolutionCore() {
         <div className="mt-16 grid gap-5 sm:mt-20 md:grid-cols-3">
           {STEPS.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.08}>
-              <div className="relative h-full rounded-xl border border-surface-200 bg-surface-50 p-7 transition-shadow duration-200 hover:shadow-soft">
+              <div className="relative h-full rounded-xl border border-surface-200 bg-surface-50 p-7">
                 <div className="flex items-center justify-between">
                   <span className="inline-flex h-12 w-12 items-center justify-center text-primary-600">
                     <s.icon className="h-6 w-6" strokeWidth={2} aria-hidden />

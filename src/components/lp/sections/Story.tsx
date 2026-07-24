@@ -11,7 +11,7 @@ import { hl } from '../lib/headline'
  */
 export function Story() {
   return (
-    <Section id="story" className="bg-surface-150" spacing="md">
+    <Section id="story" className="bg-white" spacing="md">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
@@ -27,7 +27,7 @@ export function Story() {
         </div>
 
         <Reveal delay={0.1}>
-          <div className="mx-auto mt-12 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 transition-shadow duration-200 hover:shadow-soft sm:p-10">
+          <div className="mx-auto mt-12 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 sm:p-10">
             {/* 開発者の顔（主役・大きめ中央）。「誰が作ったか」を最初に見せる。 */}
             <div className="flex flex-col items-center text-center">
               <span className="relative block h-32 w-32 overflow-hidden rounded-full bg-primary-50 shadow-soft-md ring-1 ring-ink-900/8 sm:h-44 sm:w-44">
@@ -75,7 +75,7 @@ export function Story() {
             「現役営業が毎日使っている」という事実で十分に立っている。
             ただし「私はエンジニアではありません／操作は"貼るだけ"」は製品の核なので残す。 */}
         <Reveal delay={0.14}>
-          <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 transition-shadow duration-200 hover:shadow-soft sm:p-10">
+          <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 sm:p-10">
             <p className="text-base leading-relaxed text-ink-700">
               私はエンジニアではありません。難しい操作は、私が一番嫌いです。だからこのアプリの操作は“貼るだけ”にしました。
             </p>

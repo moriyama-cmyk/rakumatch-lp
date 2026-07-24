@@ -76,7 +76,7 @@ export function Voices() {
   const rest = VOICES.length - INITIAL_COUNT
 
   return (
-    <Section id="voices" className="bg-surface-150 border-t border-surface-200" spacing="md">
+    <Section id="voices" className="bg-surface-100" spacing="md">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
@@ -98,7 +98,7 @@ export function Voices() {
         <div className="mx-auto mt-12 grid max-w-4xl gap-5 sm:grid-cols-2">
           {shown.map((v, i) => (
             <Reveal key={v.attr + i} delay={Math.min((i % INITIAL_COUNT) * 0.06, 0.18)}>
-              <figure className="flex h-full flex-col rounded-xl border border-surface-200 bg-white p-6 transition-shadow duration-200 hover:shadow-soft sm:p-7">
+              <figure className="flex h-full flex-col rounded-xl border border-surface-200 bg-white p-6 sm:p-7">
                 <VoiceLabel kind={v.kind} />
                 <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-ink-700">
                   {v.body}

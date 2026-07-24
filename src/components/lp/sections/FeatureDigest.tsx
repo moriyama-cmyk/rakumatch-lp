@@ -37,7 +37,7 @@ const ITEMS: DigestItem[] = [
  */
 export function FeatureDigest() {
   return (
-    <Section id="hub" className="bg-surface-100" spacing="md">
+    <Section id="hub" className="bg-white" spacing="md">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>

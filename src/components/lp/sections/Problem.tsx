@@ -30,7 +30,7 @@ const PAINS: Pain[] = [
 /** 課題提起。個人/企業に共通する痛みで「これ、うちだ」と刺す。 */
 export function Problem() {
   return (
-    <Section id="problem" className="bg-surface-150 border-t-2 border-primary-600/20" spacing="xl">
+    <Section id="problem" className="bg-surface-100 border-t-2 border-primary-600/20" spacing="xl">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
@@ -53,7 +53,7 @@ export function Problem() {
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {PAINS.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
-              <div className="flex h-full flex-col rounded-xl border border-surface-200 bg-white p-7 transition-shadow duration-200 hover:shadow-soft">
+              <div className="flex h-full flex-col rounded-xl border border-surface-200 bg-white p-7">
                 <span className="inline-flex h-11 w-11 items-center justify-center text-primary-600">
                   <p.icon className="h-5 w-5" strokeWidth={2} aria-hidden />
                 </span>
@@ -65,7 +65,7 @@ export function Problem() {
         </div>
 
         <Reveal delay={0.16}>
-          <div className="mx-auto mt-10 max-w-3xl rounded-xl border border-surface-200 bg-white p-7 transition-shadow duration-200 hover:shadow-soft sm:p-8">
+          <div className="mx-auto mt-10 max-w-3xl rounded-xl border border-surface-200 bg-white p-7 sm:p-8">
             <p className="text-base font-bold text-ink-900">
               {hlText('いまのやり方の値段を、一度だけ計算してみてください。')}
             </p>

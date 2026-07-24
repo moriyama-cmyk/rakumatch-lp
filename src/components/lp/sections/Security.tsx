@@ -23,7 +23,7 @@ const TRUST: Trust[] = [
  */
 export function Security() {
   return (
-    <Section id="security" className="bg-surface-100" spacing="sm">
+    <Section id="security" className="bg-white" spacing="sm">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>

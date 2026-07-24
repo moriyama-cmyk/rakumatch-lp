@@ -53,7 +53,7 @@ const QA: { q: string; a: string }[] = [
 /** FAQ（少数）。native details で開閉・アクセシブル。ライト。 */
 export function Faq() {
   return (
-    <Section id="faq" className="bg-surface-50" spacing="md">
+    <Section id="faq" className="bg-white" spacing="md">
       <Container narrow>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>

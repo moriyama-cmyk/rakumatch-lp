@@ -31,7 +31,7 @@ import { FinalCta } from "@/components/lp/sections/FinalCta";
 
 export default function LandingPage() {
   return (
-    <div className="relative min-h-screen overflow-x-clip bg-surface-50">
+    <div className="relative min-h-screen overflow-x-clip bg-white">
       <a
         href="#top"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-primary-600 focus:px-4 focus:py-2 focus:text-sm focus:text-white"

@@ -8,7 +8,7 @@ import { hl } from '../lib/headline'
 /** PROBLEM と SOLUTION の間のブリッジ。「時代の転換」で訴求を価格軸から個人の武器軸へ寄せる。 */
 export function EraShift() {
   return (
-    <Section id="era-shift" className="bg-surface-150 border-t border-surface-200" spacing="sm">
+    <Section id="era-shift" className="bg-white" spacing="sm">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
@@ -46,7 +46,7 @@ export function EraShift() {
               <ArrowRight className="h-6 w-6 rotate-90 text-primary-400 sm:h-7 sm:w-7 sm:rotate-0" aria-hidden />
             </div>
 
-            <div className="flex-1 rounded-xl border border-primary-600/40 bg-primary-50 p-6 text-center transition-shadow duration-200 hover:shadow-soft-md">
+            <div className="flex-1 rounded-xl border border-primary-600/40 bg-primary-50 p-6 text-center">
               <p className="text-xs font-bold tracking-wide text-accent-700">楽マッチ</p>
               <p className="mt-3">
                 <span className="text-4xl font-bold text-primary-700 sm:text-5xl">月3,000円</span>

@@ -36,7 +36,7 @@ const COMMON_FEATURES = [
 /** 料金（CTA中心。実額表示＋AI利用枠で差を示す）。ライト。 */
 export function Pricing() {
   return (
-    <Section id="pricing" className="bg-white border-t-2 border-primary-600/20" spacing="xl">
+    <Section id="pricing" className="bg-surface-100 border-t-2 border-primary-600/20" spacing="xl">
       <Container narrow>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
@@ -194,7 +194,7 @@ function PlanCard({ plan, location }: { plan: Plan; location: 'pricing_standard'
 
 function StepCard({ step, label, note }: { step: string; label: string; note?: string }) {
   return (
-    <div className="flex min-h-[92px] min-w-[7rem] flex-col items-center justify-center rounded-xl border border-surface-200 bg-white px-4 py-3 text-center hover:shadow-soft transition-shadow duration-200">
+    <div className="flex min-h-[92px] min-w-[7rem] flex-col items-center justify-center rounded-xl border border-surface-200 bg-white px-4 py-3 text-center">
       <span className="text-xs font-bold text-primary-600">{step}</span>
       <span className="mt-1 text-sm font-bold text-ink-900">{label}</span>
       {note && <span className="mt-0.5 text-xs text-ink-500">{note}</span>}

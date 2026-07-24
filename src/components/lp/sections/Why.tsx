@@ -79,7 +79,7 @@ const COLS = [
 /** WHY（対立軸の比較表・実データ版）。スマホは先頭列sticky＋表内のみ横スクロール。 */
 export function Why() {
   return (
-    <Section id="why" className="bg-white border-t-2 border-primary-600/20" spacing="xl">
+    <Section id="why" className="bg-surface-100 border-t-2 border-primary-600/20" spacing="xl">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>

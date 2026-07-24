@@ -25,7 +25,7 @@ const CUSTOMER = [
 /** ① お客様連動アプリ（最大の差別化＝堀・主役）。ライト・実画面。 */
 export function CustomerApp() {
   return (
-    <Section id="customer-app" className="bg-surface-100" spacing="lg">
+    <Section id="customer-app" className="bg-white border-t-2 border-primary-600/20" spacing="lg">
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
@@ -129,7 +129,7 @@ function SubList({
   items: string[]
 }) {
   return (
-    <div className="rounded-xl border border-surface-200 bg-white p-5 shadow-none transition-shadow duration-200 hover:shadow-soft">
+    <div className="rounded-xl border border-surface-200 bg-white p-5 shadow-none">
       <p className="flex items-center gap-2 text-sm font-bold text-primary-700">
         <Icon className="h-4 w-4" strokeWidth={2.4} />
         {title}

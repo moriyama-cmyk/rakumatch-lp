@@ -35,7 +35,7 @@ const MATCH_CUSTOMERS: MatchCardData[] = [
 /** ② 双方マッチング（逆引き）。ビジュアルは左・コード製の図解。 */
 export function Matching() {
   return (
-    <Section id="matching" className="bg-white" spacing="md">
+    <Section id="matching" className="bg-surface-100" spacing="md">
       <Container>
         <FeatureSplit
           reverse

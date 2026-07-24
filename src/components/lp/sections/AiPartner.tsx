@@ -28,7 +28,7 @@ const AI_MESSAGES: AiChatMessage[] = [
 /** ③ 専属AI（各ページに上司）。暗色AIパネル部分のみコード再現（全画面化はしない）。 */
 export function AiPartner() {
   return (
-    <Section id="ai" className="bg-white" spacing="md">
+    <Section id="ai" className="bg-surface-100" spacing="md">
       <Container>
         <FeatureSplit
           icon={Brain}
