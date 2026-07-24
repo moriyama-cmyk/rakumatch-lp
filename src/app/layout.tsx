@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { Noto_Sans_JP, Shippori_Mincho, Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
+import "./lpv2.css";
 import { Analytics } from "../components/lp/Analytics";
 
 // 日本語フォントを next/font でセルフホストし、CSS変数 --font-sans を実定義する。
@@ -11,6 +12,25 @@ const notoSansJP = Noto_Sans_JP({
   weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-sans",
+  preload: false,
+});
+
+// LP v2（AB案）専用フォント。夜パート（明朝の見出し）と朝パートのゴシックUI文字。
+// 既存 --font-sans（Noto Sans JP）とは独立した CSS 変数として定義し、lpv2.css の
+// `.lpv2` スコープ内でのみ参照する（既存ページの見た目には影響しない）。
+const shipporiMincho = Shippori_Mincho({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+  variable: "--font-shippori-mincho",
+  preload: false,
+});
+
+const zenKakuGothicNew = Zen_Kaku_Gothic_New({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+  variable: "--font-zen-kaku-gothic-new",
   preload: false,
 });
 
@@ -53,7 +73,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${notoSansJP.variable} h-full antialiased`}>
+    <html
+      lang="ja"
+      className={`${notoSansJP.variable} ${shipporiMincho.variable} ${zenKakuGothicNew.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col bg-surface-50 text-ink-900">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",

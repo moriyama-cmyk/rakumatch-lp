@@ -1,0 +1,1680 @@
+/* ==========================================================
+   LP v2（AB案）専用スタイル。
+   _lp_v2_design/direction-ab.html の <style> ブロックを移植したもの。
+   すべて `.lpv2` の子孫セレクタとしてスコープし、既存 globals.css・
+   既存ページ（/terms /privacy /tokusho /features/* /blog/*・現行トップ）
+   と一切干渉しないようにしている。
+   命名の変更点（PORT_SPECにはない実装判断・詳細は docs/lpv2-implementation-notes.md）:
+   - html.reduced          -> .lpv2.lpv2-reduced（<html>ではなくラッパーdivにクラス付与）
+   - .reveal / .in-view    -> .lpv2-reveal / .lpv2-in-view（他コンポーネントの汎用クラス名と衝突させないため）
+   - @keyframes pd-*       -> @keyframes lpv2-pd-*（グローバル名前空間の衝突防止）
+   - --mono                -> Inter を読み込まずシステム等幅スタックに変更
+     （PORT_SPECのフォント指定はShippori Mincho/Zen Kaku Gothic New/Noto Sans JPの3書体のみのため）
+   ========================================================== */
+
+.lpv2 *,
+.lpv2 *::before,
+.lpv2 *::after {
+  box-sizing: border-box;
+}
+.lpv2 {
+  -webkit-text-size-adjust: 100%;
+}
+.lpv2 img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.lpv2 div,
+.lpv2 figure,
+.lpv2 article,
+.lpv2 section,
+.lpv2 ul,
+.lpv2 li,
+.lpv2 p,
+.lpv2 table {
+  min-width: 0;
+}
+.lpv2 a {
+  color: inherit;
+  text-decoration: none;
+}
+.lpv2 button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.lpv2 ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lpv2 h1,
+.lpv2 h2,
+.lpv2 h3 {
+  margin: 0;
+}
+.lpv2 p {
+  margin: 0;
+}
+.lpv2 table {
+  border-collapse: collapse;
+}
+
+.lpv2 {
+  --serif: var(--font-shippori-mincho), 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  --sans-ui: var(--font-zen-kaku-gothic-new), 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  --day-body: var(--font-sans), 'Hiragino Kaku Gothic ProN', sans-serif;
+  --mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --amber-deep: #c9793d;
+  --paper: #fbfaf7;
+  --phase-bg: rgb(10, 14, 24);
+  --phase-bg-rgb: 10, 14, 24;
+  --phase-fg: rgb(244, 238, 226);
+  --glow-color: rgba(224, 164, 92, 0.5);
+  --stars-opacity: 0.5;
+
+  --ink-900: #0f172a;
+  --surface: #ffffff;
+  --line: rgba(15, 23, 42, 0.1);
+  --line-strong: rgba(15, 23, 42, 0.22);
+  --indigo-700: #5b3fce;
+  --indigo-600: #6d4fe0;
+  --indigo-500: #8567ee;
+  --indigo-100: #efeafe;
+  --emerald-700: #086e4d;
+  --emerald-500: #12c08a;
+  --emerald-100: #e3f9ef;
+  --text-900: #0d1428;
+  --text-700: #333c52;
+  --text-500: #6b7284;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --maxw: 1200px;
+  --shadow-1: 0 2px 10px rgba(13, 20, 40, 0.06);
+  --shadow-2: 0 30px 60px -24px rgba(13, 20, 40, 0.32), 0 4px 14px rgba(13, 20, 40, 0.1);
+}
+
+.lpv2 {
+  font-family: var(--day-body);
+  color: var(--text-700);
+  background: var(--paper);
+  font-size: 16px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* 実装ノート: オリジナルのAB案は `.ambient`（fixed・z-index:-2）を <body> の直接の子として
+     置いていたため、bodyの背景がキャンバス背景へ伝播する特殊規則（CSS Backgrounds §body-background）
+     により自動的に .ambient の後ろに回っていた。本移植では全体を `.lpv2` という普通のdivで
+     ラップしているため、この伝播規則が働かず、.lpv2 自身の背景（var(--paper)）が
+     通常の描画レイヤーで .ambient（負のz-index）の上に乗ってしまい、夜セクションが
+     ペーパー色に潰れる不具合が発生した。`isolation:isolate` で `.lpv2` 自身に新しい
+     スタッキングコンテキストを作り、.ambient の z-index:-2 をこのコンテキスト内に閉じ込める
+     ことで、意図した重なり順（lpv2背景 → ambient → header/コンテンツ）を再現している。 */
+  isolation: isolate;
+}
+.lpv2 h1,
+.lpv2 h2,
+.lpv2 h3 {
+  color: var(--text-900);
+  letter-spacing: -0.01em;
+}
+.lpv2 .num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+.lpv2 :focus-visible {
+  outline: 3px solid var(--indigo-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.lpv2 ::selection {
+  background: var(--indigo-100);
+  color: var(--ink-900);
+}
+.lpv2 .wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4.4vw, 56px);
+}
+.lpv2 section {
+  position: relative;
+}
+.lpv2 .nowrap {
+  white-space: nowrap;
+}
+.lpv2 .center {
+  text-align: center;
+}
+.lpv2 .mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lpv2 .skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 200;
+  background: #111;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 0 0 8px 0;
+}
+.lpv2 .skip-link:focus {
+  left: 0;
+}
+
+/* ==========================================================
+   1. AMBIENT BACKDROP — signature element, night → day
+   ========================================================== */
+.lpv2 .ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: var(--phase-bg);
+}
+.lpv2 .ambient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 55% at 16% 86%, var(--glow-color) 0%, transparent 62%);
+}
+.lpv2 .ambient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: var(--stars-opacity);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.95) 1px, transparent 1.6px),
+    radial-gradient(rgba(255, 255, 255, 0.55) 1px, transparent 1.6px);
+  background-size: 170px 170px, 260px 260px;
+  background-position: 0 0, 90px 120px;
+}
+.lpv2.lpv2-reduced .ambient {
+  display: none;
+}
+
+/* ==========================================================
+   2. HEADER (phase-driven — stays through night and day)
+   ========================================================== */
+.lpv2 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: rgba(var(--phase-bg-rgb), 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.lpv2.lpv2-reduced .site-header {
+  background: rgba(14, 17, 26, 0.62);
+  border-bottom-color: rgba(255, 255, 255, 0.09);
+}
+.lpv2 .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px clamp(20px, 4.4vw, 56px);
+  color: var(--phase-fg);
+}
+.lpv2.lpv2-reduced .header-inner {
+  color: #f3ede0;
+}
+.lpv2 .logo {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.lpv2 .logo span {
+  opacity: 0.65;
+  font-size: 0.82em;
+  margin-left: 0.2em;
+}
+.lpv2 .header-cta {
+  font-family: var(--sans-ui);
+  font-size: 0.78rem;
+  border: 1px solid currentColor;
+  padding: 9px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s;
+}
+.lpv2 .header-cta:hover {
+  opacity: 0.65;
+}
+
+/* ==========================================================
+   3. EYEBROW — shared micro-motif across night and day
+   ========================================================== */
+.lpv2 .eyebrow {
+  font-family: var(--sans-ui);
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0 0 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+.lpv2 .eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+  display: inline-block;
+  flex: none;
+}
+.lpv2 .day .eyebrow {
+  color: var(--indigo-600);
+  opacity: 1;
+  font-weight: 700;
+}
+.lpv2 .day .eyebrow::before {
+  background: var(--indigo-600);
+  opacity: 1;
+}
+
+/* ==========================================================
+   4. NIGHT — story (hero / turn / dawnbreak)
+   ========================================================== */
+.lpv2 .story {
+  position: relative;
+  z-index: 1;
+  font-family: var(--sans-ui);
+}
+.lpv2 .story .sec {
+  background: transparent;
+  color: var(--phase-fg);
+  position: relative;
+  z-index: 1;
+}
+.lpv2.lpv2-reduced .story .sec {
+  background: #10141f;
+  color: #f3ede0;
+}
+.lpv2 .story h1,
+.lpv2 .story h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: inherit;
+}
+
+.lpv2 .sec {
+  padding: clamp(64px, 10vw, 128px) 0;
+}
+@media (max-width: 700px) {
+  .lpv2 .sec {
+    padding: clamp(48px, 12vw, 76px) 0;
+  }
+}
+
+.lpv2 .hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 150px;
+  padding-bottom: 90px;
+}
+.lpv2 .hero h1 {
+  font-size: clamp(2rem, 5.6vw, 3.7rem);
+  line-height: 1.6;
+}
+.lpv2 .hero .sub {
+  margin-top: 34px;
+  max-width: 44ch;
+  font-size: 1.02rem;
+  line-height: 2.05;
+  opacity: 0.9;
+}
+.lpv2 .hero .turn {
+  margin-top: 30px;
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  opacity: 0.92;
+  letter-spacing: 0.02em;
+}
+.lpv2 .scrollcue {
+  margin-top: 68px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+}
+.lpv2 .scrollcue .line {
+  width: 1px;
+  height: 46px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.lpv2 .lpv2-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+}
+.lpv2 .lpv2-reveal.lpv2-in-view {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lpv2 .lpv2-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.lpv2 .turnsec {
+  min-height: 56vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.lpv2 .turnsec h2 {
+  font-size: clamp(1.7rem, 4.6vw, 2.6rem);
+  line-height: 1.6;
+}
+.lpv2 .name-wordmark {
+  margin-top: 30px;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(2.3rem, 7.4vw, 4.3rem);
+  letter-spacing: 0.07em;
+  text-shadow: 0 0 46px var(--glow-color);
+}
+.lpv2 .turn-words {
+  margin-top: 28px;
+  font-family: var(--sans-ui);
+  font-size: 0.9rem;
+  letter-spacing: 0.22em;
+  opacity: 0.72;
+}
+.lpv2 .turn-note {
+  margin-top: 16px;
+  font-size: 0.86rem;
+  opacity: 0.5;
+}
+
+.lpv2 .dawnbreak {
+  min-height: 64vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.lpv2 .dawnbreak h2 {
+  font-size: clamp(1.9rem, 5.2vw, 3.1rem);
+}
+.lpv2 .dawnbreak .sub {
+  margin-top: 18px;
+  opacity: 0.82;
+  font-size: 1rem;
+}
+.lpv2 .horizon {
+  width: min(560px, 78%);
+  height: 2px;
+  margin: 44px auto 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+}
+.lpv2.lpv2-reduced .dawnbreak {
+  background: linear-gradient(180deg, #10141f 0%, var(--paper) 100%);
+  color: #3a3040;
+}
+
+/* ==========================================================
+   5. DAY — base
+   ========================================================== */
+.lpv2 .day {
+  background: var(--paper);
+  color: var(--text-700);
+  position: relative;
+  z-index: 1;
+  font-family: var(--day-body);
+}
+.lpv2 .day h2,
+.lpv2 .day h3 {
+  font-family: var(--sans-ui);
+  color: var(--text-900);
+  letter-spacing: -0.01em;
+}
+.lpv2 .section-pad {
+  padding-block: clamp(64px, 9vw, 132px);
+}
+.lpv2 .section-head {
+  max-width: 720px;
+  margin-bottom: clamp(2.2rem, 5vw, 3.4rem);
+}
+.lpv2 .section-head h2 {
+  font-size: clamp(1.7rem, calc(2.6vw + 1rem), 2.7rem);
+  line-height: 1.32;
+  font-weight: 700;
+}
+.lpv2 .section-head .lead {
+  margin-top: 1.1rem;
+  font-size: 1.02rem;
+  line-height: 1.9;
+  color: var(--text-500);
+  max-width: 58ch;
+}
+
+.lpv2 .fig-caption {
+  margin-top: 0.85rem;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  color: var(--text-500);
+}
+.lpv2 .fig-note {
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--text-500);
+  line-height: 1.75;
+}
+
+.lpv2 .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--day-body);
+  font-weight: 700;
+  font-size: 0.98rem;
+  padding: 0.95em 1.7em;
+  border-radius: var(--radius-sm);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  white-space: nowrap;
+}
+.lpv2 .btn-primary {
+  background: var(--ink-900);
+  color: #fff;
+  box-shadow: var(--shadow-1);
+}
+.lpv2 .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+  background: #182238;
+}
+.lpv2 .btn-primary .arrow {
+  transition: transform 0.18s ease;
+}
+.lpv2 .btn-primary:hover .arrow {
+  transform: translateX(3px);
+}
+.lpv2 .btn-ghost {
+  background: transparent;
+  color: var(--text-900);
+  border: 1.5px solid var(--line-strong);
+}
+.lpv2 .btn-ghost:hover {
+  border-color: var(--ink-900);
+  background: rgba(15, 23, 42, 0.03);
+}
+
+/* ==========================================================
+   6. BLUEPRINT GRID — day's echo of the night's stars
+   ========================================================== */
+.lpv2 .blueprint-zone {
+  position: relative;
+}
+.lpv2 .blueprint-zone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  background-size: 42px 42px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 82%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ==========================================================
+   7. FIGURE FRAMES (browser / phone / callouts)
+   ========================================================== */
+.lpv2 .fig {
+  position: relative;
+  padding: clamp(6px, 1.6vw, 28px);
+}
+.lpv2 .browser-frame {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--ink-900);
+  box-shadow: var(--shadow-2);
+}
+.lpv2 .browser-frame__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 13px;
+  background: var(--ink-900);
+}
+.lpv2 .browser-frame__dots {
+  display: flex;
+  gap: 5px;
+  flex: none;
+}
+.lpv2 .browser-frame__dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: block;
+}
+.lpv2 .browser-frame__url {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.07);
+  padding: 4px 11px;
+  border-radius: 6px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lpv2 .browser-frame__pips {
+  margin-left: auto;
+  display: none;
+  gap: 6px;
+  flex: none;
+}
+.lpv2 .browser-frame__pips i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  display: block;
+  font-style: normal;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.lpv2 .browser-frame__pips i.is-active {
+  background: var(--indigo-500);
+  transform: scale(1.25);
+}
+.lpv2 .browser-frame__body {
+  position: relative;
+  background: #fff;
+  aspect-ratio: 16 / 9;
+}
+.lpv2 .browser-frame__body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.lpv2 .phone-frame {
+  border: 9px solid var(--ink-900);
+  border-radius: 32px;
+  overflow: hidden;
+  background: var(--ink-900);
+  box-shadow: var(--shadow-2);
+  max-width: 230px;
+  margin-inline: auto;
+}
+.lpv2 .phone-frame img {
+  aspect-ratio: 750 / 1630;
+  object-fit: cover;
+}
+
+/* 番号ピン＋外出しリスト方式（PORT_SPEC「スクショ注釈の作り直し」）。
+   AB案オリジナルの黒ラベル被せ（.callout系）はここでは使わない。
+   画面上には小さな番号ピンだけを置き、説明文は figure の外（.pin-list）に出す。 */
+.lpv2 .pin-dot {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--indigo-600);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(10, 15, 30, 0.35), 0 0 0 3px rgba(255, 255, 255, 0.92);
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  pointer-events: none;
+  line-height: 1;
+}
+.lpv2 .pin-list {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.lpv2 .pin-list li {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  font-size: 0.86rem;
+  color: var(--text-700);
+  line-height: 1.7;
+}
+.lpv2 .detail-crop {
+  margin-top: 1.3rem;
+  max-width: 320px;
+}
+.lpv2 .detail-crop img {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-1);
+}
+.lpv2 .detail-crop figcaption {
+  margin-top: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-500);
+}
+.lpv2 .pin-list .pin-num {
+  flex: none;
+  margin-top: 0.1rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--indigo-600);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================
+   8. SIGNATURE LOOP (§ 核ループ)
+   ========================================================== */
+.lpv2 .loop-sec {
+  padding-top: clamp(56px, 8vw, 110px);
+  padding-bottom: clamp(64px, 9vw, 132px);
+}
+.lpv2 .loop-scroller {
+  display: block;
+}
+.lpv2 .loop-rail {
+  display: block;
+}
+.lpv2 .loop-frame-wrap {
+  display: none;
+}
+.lpv2 .loop-step {
+  padding-block: clamp(40px, 6vw, 64px);
+  border-top: 1px solid var(--line);
+}
+.lpv2 .loop-step:first-child {
+  border-top: none;
+}
+.lpv2 .loop-step__label {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--indigo-600);
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+.lpv2 .loop-step__label::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: var(--indigo-600);
+  display: inline-block;
+}
+.lpv2 .loop-step h3 {
+  margin-top: 0.9rem;
+  font-size: clamp(1.5rem, calc(1.6vw + 1rem), 2.05rem);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.lpv2 .loop-step p.desc {
+  margin-top: 1rem;
+  color: var(--text-700);
+  font-size: 0.98rem;
+  max-width: 62ch;
+}
+.lpv2 .loop-step .loop-step__figure {
+  margin-top: 1.8rem;
+  max-width: 720px;
+}
+
+@media (min-width: 900px) {
+  .lpv2 .loop-sec.is-enhanced .loop-scroller {
+    display: grid;
+    grid-template-columns: minmax(300px, 400px) 1fr;
+    gap: 60px;
+  }
+  .lpv2 .loop-sec.is-enhanced .loop-rail {
+    display: block;
+  }
+  .lpv2 .loop-sec.is-enhanced .loop-step {
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-top: none;
+    padding-block: 2rem;
+    opacity: 0.38;
+    transition: opacity 0.4s ease;
+  }
+  .lpv2 .loop-sec.is-enhanced .loop-step.is-active {
+    opacity: 1;
+  }
+  .lpv2 .loop-sec.is-enhanced .loop-step [data-fallback-figure] {
+    display: none;
+  }
+  .lpv2 .loop-sec.is-enhanced .loop-frame-wrap {
+    display: block;
+  }
+  .lpv2 .loop-frame {
+    position: sticky;
+    top: 92px;
+  }
+  .lpv2 .loop-frame__body {
+    position: relative;
+  }
+  .lpv2 .loop-frame__body img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    opacity: 0;
+    transition: opacity 0.55s ease;
+  }
+  .lpv2 .loop-frame__body img.is-active {
+    opacity: 1;
+  }
+  .lpv2 .loop-sec.is-enhanced .browser-frame__pips {
+    display: flex;
+  }
+}
+
+/* ---- parse-demo: the STEP1 showcase (raw paste → property card) ---- */
+.lpv2 .parse-demo {
+  margin-top: 1.8rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: center;
+  max-width: 700px;
+}
+@media (min-width: 640px) and (max-width: 899.98px) {
+  .lpv2 .parse-demo {
+    grid-template-columns: 1.15fr auto 1fr;
+  }
+  .lpv2 .parse-demo__arrow {
+    font-size: 1.5rem;
+  }
+  .lpv2 .parse-demo__done {
+    transform: none;
+  }
+}
+.lpv2 .parse-demo__done {
+  display: inline-block;
+  transform: rotate(90deg);
+}
+
+.lpv2 .parse-demo__raw {
+  position: relative;
+  background: var(--ink-900);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1.2rem;
+  overflow: hidden;
+}
+.lpv2 .parse-demo__raw .tag {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+.lpv2 .parse-demo__raw pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.84);
+}
+.lpv2 .parse-demo__more {
+  opacity: 0.42;
+}
+.lpv2 .parse-demo__raw::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, var(--ink-900));
+  pointer-events: none;
+}
+.lpv2 .parse-demo__raw .tok {
+  border-radius: 3px;
+  padding: 0 0.12em;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+.lpv2 .parse-demo.is-parsed .parse-demo__raw .tok {
+  background: rgba(133, 103, 238, 0.3);
+  color: #ede7fd;
+}
+.lpv2 .parse-demo__cursor {
+  display: inline-block;
+  width: 0.48em;
+  height: 1em;
+  background: rgba(255, 255, 255, 0.55);
+  vertical-align: text-bottom;
+  margin-left: 1px;
+  animation: lpv2-pd-blink 1s step-end infinite;
+}
+.lpv2 .parse-demo.is-parsed .parse-demo__cursor {
+  display: none;
+}
+@keyframes lpv2-pd-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.lpv2 .parse-demo__arrow {
+  position: relative;
+  text-align: center;
+  min-height: 1.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lpv2 .parse-demo__scanning {
+  display: none;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--indigo-600);
+  transition: opacity 0.4s ease;
+}
+.lpv2 .parse-demo__scanning i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--indigo-500);
+  display: inline-block;
+  animation: lpv2-pd-pulse 1.1s ease-in-out infinite;
+}
+.lpv2 .parse-demo__scanning i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.lpv2 .parse-demo__scanning i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes lpv2-pd-pulse {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.lpv2 .parse-demo__done {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--indigo-600);
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.lpv2 .parse-demo.js-animate .parse-demo__scanning {
+  display: inline-flex;
+}
+.lpv2 .parse-demo.js-animate .parse-demo__done {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition-delay: 0.15s;
+}
+.lpv2 .parse-demo.js-animate.is-parsed .parse-demo__scanning {
+  opacity: 0;
+}
+.lpv2 .parse-demo.js-animate.is-parsed .parse-demo__done {
+  opacity: 1;
+}
+
+.lpv2 .parse-demo__card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.3rem 1.3rem;
+  box-shadow: var(--shadow-1);
+}
+.lpv2 .parse-demo__card-field {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.lpv2 .parse-demo.js-animate .parse-demo__card-field {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.lpv2 .parse-demo.js-animate.is-parsed .parse-demo__card-field {
+  opacity: 1;
+  transform: none;
+}
+.lpv2 .parse-demo__card-cat {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-700);
+  background: rgba(15, 23, 42, 0.055);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.lpv2 .parse-demo__card-title {
+  margin-top: 0.75rem;
+  font-weight: 700;
+  color: var(--text-900);
+  font-size: 1.04rem;
+}
+.lpv2 .parse-demo__card-price {
+  margin-top: 0.4rem;
+  font-size: 1.32rem;
+  font-weight: 800;
+  color: var(--text-900);
+  white-space: nowrap;
+}
+.lpv2 .parse-demo__card-price small {
+  margin-left: 0.5em;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-500);
+}
+.lpv2 .parse-demo__card-meta {
+  margin-top: 0.42rem;
+  font-size: 0.82rem;
+  color: var(--text-500);
+}
+.lpv2 .parse-demo__card-specs {
+  display: flex;
+  gap: 1.1rem;
+  margin-top: 0.42rem;
+  font-size: 0.82rem;
+  color: var(--text-500);
+}
+.lpv2 .parse-demo__card-bottom {
+  margin-top: 0.9rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+.lpv2 .parse-demo__date {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-500);
+}
+.lpv2 .parse-demo__badge {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--indigo-700);
+  background: var(--indigo-100);
+  border: 1px solid rgba(109, 79, 224, 0.35);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.lpv2 .parse-demo__card-field--match {
+  transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.lpv2 .parse-demo.js-animate .parse-demo__card-field--match {
+  opacity: 0;
+  transform: scale(0.78);
+}
+.lpv2 .parse-demo.js-animate.is-parsed .parse-demo__card-field--match {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ==========================================================
+   9. FEATURES DIGEST
+   ========================================================== */
+.lpv2 .digest-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+}
+@media (min-width: 700px) {
+  .lpv2 .digest-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.lpv2 .digest-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.lpv2 .digest-card__frame {
+  background: var(--ink-900);
+}
+.lpv2 .digest-card__bar {
+  display: flex;
+  gap: 5px;
+  padding: 8px 10px;
+}
+.lpv2 .digest-card__bar span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  display: block;
+}
+.lpv2 .digest-card__img {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.lpv2 .digest-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.lpv2 .digest-card__body {
+  padding: 1.1rem 1.25rem 1.3rem;
+}
+.lpv2 .digest-card__tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-500);
+}
+.lpv2 .digest-card h3 {
+  margin-top: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.lpv2 .digest-card p {
+  margin-top: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-500);
+  line-height: 1.8;
+}
+
+/* ==========================================================
+   10. CUSTOMER APP
+   ========================================================== */
+.lpv2 .app-phones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(20px, 3vw, 34px);
+  margin-top: clamp(2.4rem, 4vw, 3.4rem);
+  align-items: start;
+}
+.lpv2 .app-phone__num {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--indigo-600);
+  margin-bottom: 0.9rem;
+  text-align: center;
+}
+.lpv2 .app-phone__caption {
+  margin-top: 0.9rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-700);
+  font-weight: 600;
+}
+.lpv2 .app-back-note {
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+  padding: 1.4rem 1.6rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  color: var(--text-500);
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+.lpv2 .app-back-note strong {
+  color: var(--text-900);
+}
+
+/* ==========================================================
+   11. COMPARE TABLE
+   ========================================================== */
+.lpv2 .table-scroll {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  /* 768px未満はカード表示（.compare-cards）に譲り、表自体は描画しない。
+     min-width:720pxの表をスマホでoverflow-x:autoに任せると横スクロールが発生し、
+     PORT_SPECの「比較表がスマホで読める」品質ゲートに反するため。 */
+  display: none;
+}
+@media (min-width: 768px) {
+  .lpv2 .table-scroll {
+    display: block;
+  }
+}
+.lpv2 .compare-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: var(--surface);
+}
+.lpv2 .compare-table th,
+.lpv2 .compare-table td {
+  text-align: left;
+  padding: 1rem 1.15rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.lpv2 .compare-table thead th {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--text-500);
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.02);
+}
+.lpv2 .compare-table tbody th {
+  color: var(--text-900);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.lpv2 .compare-table td.win {
+  color: var(--text-900);
+  font-weight: 600;
+  border-left: 3px solid var(--emerald-500);
+  background: var(--emerald-100);
+}
+.lpv2 .compare-table tbody tr:last-child th,
+.lpv2 .compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* モバイル用カード表示（横スクロール表の代わり）。PORT_SPEC要件：はみ出し不可。 */
+.lpv2 .compare-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+@media (min-width: 768px) {
+  .lpv2 .compare-cards {
+    display: none;
+  }
+}
+.lpv2 .compare-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: 1.1rem 1.2rem 1.2rem;
+}
+.lpv2 .compare-card__title {
+  font-weight: 700;
+  color: var(--text-900);
+  font-size: 0.96rem;
+}
+.lpv2 .compare-card__rows {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.lpv2 .compare-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.8rem;
+  font-size: 0.86rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+}
+.lpv2 .compare-card__row-label {
+  color: var(--text-500);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  flex: none;
+}
+.lpv2 .compare-card__row-value {
+  text-align: right;
+  color: var(--text-700);
+}
+.lpv2 .compare-card__row--win {
+  background: var(--emerald-100);
+  border-left: 3px solid var(--emerald-500);
+}
+.lpv2 .compare-card__row--win .compare-card__row-value {
+  color: var(--text-900);
+  font-weight: 700;
+}
+
+/* ==========================================================
+   12. VOICES
+   ========================================================== */
+.lpv2 .voice-frame {
+  margin: 0 auto;
+  max-width: 640px;
+  text-align: center;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-lg);
+  padding: clamp(40px, 6vw, 56px) 32px;
+}
+.lpv2 .voice-frame .badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: var(--indigo-100);
+  color: var(--indigo-700);
+  margin-bottom: 20px;
+}
+.lpv2 .voice-frame p {
+  font-size: 0.95rem;
+  line-height: 2;
+  color: var(--text-500);
+  max-width: 42ch;
+  margin: 0 auto;
+}
+
+.lpv2 .voice-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .lpv2 .voice-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.lpv2 .voice-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: 1.5rem 1.6rem;
+  text-align: left;
+  box-shadow: var(--shadow-1);
+}
+.lpv2 .voice-card__label {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.lpv2 .voice-card__label--sales {
+  color: var(--emerald-700);
+  background: var(--emerald-100);
+}
+.lpv2 .voice-card__label--customer {
+  color: var(--amber-deep);
+  background: rgba(201, 121, 61, 0.12);
+}
+.lpv2 .voice-card blockquote {
+  margin-top: 0.9rem;
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.9;
+  color: var(--text-700);
+}
+.lpv2 .voice-card figcaption {
+  margin-top: 0.9rem;
+  font-size: 0.76rem;
+  color: var(--text-500);
+}
+.lpv2 .voice-more-btn {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.5em;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 0.6em 1.3em;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-900);
+  background: var(--surface);
+  transition: background 0.18s ease;
+}
+.lpv2 .voice-more-btn:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+.lpv2 .voice-note {
+  margin-top: 1.4rem;
+  font-size: 0.8rem;
+  color: var(--text-500);
+  line-height: 1.8;
+}
+
+/* ==========================================================
+   13. PRICING
+   ========================================================== */
+.lpv2 .pricing-sec {
+  background: linear-gradient(180deg, rgba(224, 164, 92, 0.16), var(--paper) 62%);
+}
+.lpv2 .pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  margin-top: clamp(2rem, 3vw, 2.8rem);
+}
+@media (min-width: 780px) {
+  .lpv2 .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.lpv2 .price-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(28px, 3vw, 36px);
+}
+.lpv2 .price-card--hi {
+  border-color: var(--ink-900);
+  box-shadow: var(--shadow-2);
+  position: relative;
+}
+.lpv2 .price-card__name {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-500);
+}
+.lpv2 .price-card__price {
+  margin-top: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+.lpv2 .price-card__price .num {
+  font-size: clamp(2.4rem, calc(3vw + 1rem), 3.1rem);
+  font-weight: 800;
+  color: var(--text-900);
+  line-height: 1;
+}
+.lpv2 .price-card__price .unit {
+  font-size: 0.92rem;
+  color: var(--text-500);
+  font-weight: 600;
+}
+.lpv2 .price-card__list {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.lpv2 .price-card__list li {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--text-700);
+}
+.lpv2 .price-card__list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-top: 0.55em;
+  border-radius: 50%;
+  background: var(--emerald-500);
+  flex: none;
+}
+.lpv2 .pricing-note {
+  margin-top: 1.6rem;
+  font-size: 0.86rem;
+  color: var(--text-500);
+}
+.lpv2 .pricing-inline-link,
+.lpv2 .inline-link {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: var(--indigo-600);
+  font-size: 0.94rem;
+  transition: opacity 0.2s ease;
+}
+.lpv2 .inline-link:hover,
+.lpv2 .pricing-inline-link:hover {
+  opacity: 0.7;
+}
+
+/* ==========================================================
+   13.5 DEVELOPER STORY（WHY TRUST US・spec追加挿入）
+   ========================================================== */
+.lpv2 .story-card {
+  max-width: 760px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: clamp(28px, 4vw, 44px);
+}
+.lpv2 .story-card__avatar {
+  position: relative;
+  display: block;
+  width: 112px;
+  height: 112px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--indigo-100);
+  box-shadow: var(--shadow-1);
+}
+.lpv2 .story-card__avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lpv2 .story-card__name {
+  margin-top: 1.1rem;
+  text-align: center;
+  font-weight: 700;
+  color: var(--text-900);
+  font-size: 1.05rem;
+}
+.lpv2 .story-card__role {
+  margin-top: 0.2rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-500);
+}
+.lpv2 .story-card__quote {
+  margin-top: 1.8rem;
+  padding-left: 1.2rem;
+  border-left: 2px solid var(--indigo-600);
+}
+.lpv2 .story-card__quote p {
+  font-size: 0.95rem;
+  line-height: 1.95;
+  color: var(--text-700);
+}
+.lpv2 .story-card__quote p + p {
+  margin-top: 0.9rem;
+}
+.lpv2 .story-card__quote .accent {
+  font-weight: 700;
+  color: var(--indigo-700);
+}
+.lpv2 .story-note {
+  max-width: 640px;
+  margin: 1.4rem auto 0;
+  text-align: center;
+  font-size: 0.86rem;
+  color: var(--text-500);
+  line-height: 1.85;
+}
+
+/* ==========================================================
+   14. FINAL CTA — quiet strength in the white of morning
+   ========================================================== */
+.lpv2 .cta-sec {
+  background: var(--surface);
+  text-align: center;
+}
+.lpv2 .cta-sec .wrap {
+  max-width: 640px;
+}
+.lpv2 .cta-sec h2 {
+  font-size: clamp(1.9rem, 5vw, 3.1rem);
+  line-height: 1.4;
+}
+.lpv2 .cta-sec .sub {
+  margin: 20px auto 0;
+  max-width: 38ch;
+  color: var(--text-500);
+  font-size: 1.02rem;
+  line-height: 1.9;
+}
+.lpv2 .cta-sec .btn-primary {
+  margin-top: 36px;
+  padding: 1.05em 2.1em;
+  font-size: 1.02rem;
+}
+.lpv2 .cta-sec .fine {
+  margin-top: 20px;
+  font-size: 0.84rem;
+  color: var(--text-500);
+}
+
+/* ==========================================================
+   15. FOOTER
+   ========================================================== */
+.lpv2 .site-footer {
+  background: #20242c;
+  color: rgba(255, 255, 255, 0.72);
+  padding: 52px 0;
+  padding-bottom: calc(52px + env(safe-area-inset-bottom));
+  font-size: 0.85rem;
+}
+.lpv2 .footer-logo {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: #fff;
+}
+.lpv2 .footer-links {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.lpv2 .footer-links a {
+  color: rgba(255, 255, 255, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 2px;
+}
+.lpv2 .footer-links a:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.lpv2 .footer-copy {
+  margin-top: 26px;
+  opacity: 0.5;
+  font-size: 0.78rem;
+}
+
+/* ==========================================================
+   16. MOBILE STICKY CTA（PORT_SPEC #14・既存StickyCtaのAB配色版）
+   ========================================================== */
+.lpv2 .sticky-cta {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  transition: transform 0.3s ease;
+}
+.lpv2 .sticky-cta[data-hidden='true'] {
+  transform: translateY(100%);
+}
+.lpv2 .sticky-cta__text {
+  min-width: 0;
+  flex: 1;
+}
+.lpv2 .sticky-cta__price {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #fff;
+}
+.lpv2 .sticky-cta__price .num {
+  color: var(--amber-deep);
+}
+.lpv2 .sticky-cta__note {
+  margin-top: 2px;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lpv2 .sticky-cta .btn-primary {
+  flex: none;
+  padding: 0.75em 1.3em;
+  font-size: 0.86rem;
+}
+
+/* 16.5 モバイル比較テーブル/スティッキーCTA分の余白調整 */
+@media (min-width: 1024px) {
+  .lpv2 .sticky-cta {
+    display: none;
+  }
+}
