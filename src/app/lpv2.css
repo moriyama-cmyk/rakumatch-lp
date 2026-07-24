@@ -667,6 +667,16 @@
   color: var(--text-700);
   line-height: 1.7;
 }
+/* 2026-07-24 森山さん指示: 画像上の番号ピンを廃止。注記は番号なしのダッシュ付きで画像の外に置く */
+.lpv2 .pin-list--plain {
+  list-style: none;
+  padding-left: 0;
+}
+.lpv2 .pin-list--plain li::before {
+  content: "—";
+  flex: none;
+  color: var(--text-500);
+}
 .lpv2 .detail-crop {
   margin-top: 1.3rem;
   max-width: 320px;

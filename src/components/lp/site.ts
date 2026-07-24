@@ -39,11 +39,12 @@ export const CATCH_SUB = SITE.catchSub
 export type NavItem = { label: string; href: string }
 
 // ブループリント【1】ヘッダー: 機能 / 選ばれる理由 / 料金 / よくある質問
+// LP v2（2026-07-24〜）のセクションIDに合わせたアンカー。Header/Footer共用。
 export const NAV: NavItem[] = [
   { label: '機能', href: '#hub' },
-  { label: '選ばれる理由', href: '#why' },
+  { label: '比較', href: '#compare' },
   { label: '料金', href: '#pricing' },
-  { label: 'よくある質問', href: '#faq' },
+  { label: '導入者の声', href: '#voices' },
 ]
 
 // 料金プラン定数（森山さん指定で実額表示・本番LP/特商法と同一表記）。

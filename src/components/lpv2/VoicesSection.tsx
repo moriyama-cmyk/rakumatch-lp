@@ -63,7 +63,7 @@ export function VoicesSection() {
   const rest = VOICES.length - INITIAL_COUNT
 
   return (
-    <section className="sec day section-pad">
+    <section className="sec day section-pad" id="voices">
       <div className="wrap center">
         <div className="section-head mx-auto" style={{ textAlign: 'center' }}>
           <p className="eyebrow" style={{ justifyContent: 'center' }}>

@@ -175,7 +175,7 @@ export function CoreLoopSection() {
     return () => io.disconnect()
   }, [isEnhanced])
 
-  const activeDef = STEPS.find((s) => s.step === activeStep) ?? STEPS[0]
+  // activeDef は番号ピン表示（2026-07-24 廃止）で使っていた。復活させる場合はここで STEPS から引く。
 
   return (
     <div className="blueprint-zone">
@@ -265,16 +265,7 @@ export function CoreLoopSection() {
                         alt={s.image.alt}
                       />
                     ))}
-                    {activeDef.pins.map((p) => (
-                      <span
-                        key={p.n}
-                        className="pin-dot"
-                        style={{ top: p.top, left: p.left, right: p.right }}
-                        aria-hidden="true"
-                      >
-                        {p.n}
-                      </span>
-                    ))}
+                    {/* 2026-07-24 森山さん指示: 画像上の番号ピンは表示しない（注記はレール側の外出しリストのみ） */}
                   </div>
                 </div>
                 <figcaption className="fig-caption">

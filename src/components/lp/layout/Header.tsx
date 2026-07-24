@@ -9,8 +9,9 @@ import { NAV, SITE } from '../site'
 import { cn } from '../lib/cn'
 import { trackCta } from '@/lib/track'
 
-/** スクロールで白＋影が乗る固定ヘッダー。デスクトップはナビ表示。ライト。 */
-export function Header() {
+/** スクロールで白＋影が乗る固定ヘッダー。デスクトップはナビ表示。ライト。
+ *  solid: 常に白背景（LP v2 のように暗い背景の上でも最上部から明るく見せる用途）。 */
+export function Header({ solid = false }: { solid?: boolean } = {}) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export function Header() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-        scrolled
+        solid || scrolled
           ? 'border-b border-surface-200 bg-white/85 backdrop-blur-xl'
           : 'border-b border-transparent bg-transparent',
       )}

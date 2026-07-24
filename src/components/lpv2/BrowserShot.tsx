@@ -1,7 +1,7 @@
-// ブラウザ枠付きスクリーンショット + 番号ピン＋外出しリスト方式の注釈。
-// PORT_SPEC「スクショ注釈（テロップ）の作り直し」対応: 黒ラベルをスクショに
-// 被せる旧方式（AB案オリジナル）は廃止し、①②の小さな円ピンを画像上に置き、
-// 説明文は画像の外（<ol class="pin-list">）に番号付きで並べる。
+// ブラウザ枠付きスクリーンショット + 外出し注記方式の注釈。
+// 黒ラベルをスクショに被せる旧方式（AB案オリジナル）は廃止。
+// 2026-07-24 森山さん指示で画像上の番号ピンも廃止し、スクショには何も重ねず、
+// 説明文だけを画像の外（.pin-list）に置く。pins プロップは互換のため受け取るが未使用。
 export type Pin = {
   n: number
   /** 画像内でのおおよその位置（%）。left/right どちらか一方を指定。 */
@@ -41,7 +41,6 @@ export function BrowserShot({
   height,
   alt,
   caption,
-  pins = [],
   list = [],
   className,
   fallback,
@@ -64,30 +63,17 @@ export function BrowserShot({
         <div className="browser-frame__body">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={src} width={width} height={height} loading="lazy" alt={alt} />
-          {pins.map((p) => (
-            <span
-              key={p.n}
-              className="pin-dot"
-              style={{ top: p.top, left: p.left, right: p.right }}
-              aria-hidden="true"
-            >
-              {p.n}
-            </span>
-          ))}
         </div>
       </div>
       <figcaption className="fig-caption">{caption}</figcaption>
       {list.length > 0 && (
-        <ol className="pin-list">
+        <ul className="pin-list pin-list--plain">
           {list.map((text, i) => (
             <li key={i}>
-              <span className="pin-num" aria-hidden="true">
-                {i + 1}
-              </span>
               <span>{text}</span>
             </li>
           ))}
-        </ol>
+        </ul>
       )}
       {detail && (
         <div className="detail-crop">

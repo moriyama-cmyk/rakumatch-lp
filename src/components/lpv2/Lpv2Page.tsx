@@ -3,7 +3,10 @@
 // 7.お客様アプリ 8.詳細比較表 9.料金 10.開発者ストーリー 11.声 12.締めCTA
 // 13.フッター 14.モバイル固定CTA
 import { Lpv2Root } from './Lpv2Root'
-import { Lpv2Header } from './Lpv2Header'
+// 2026-07-24 森山さん指示: ヘッダーは「今までの明るいもの（アイコン付き）」を使う。
+// フッターも下層ページと共通のものに統一（Lpv2Header/Lpv2Footer はロールバック用に残置）。
+import { Header } from '../lp/layout/Header'
+import { Footer } from '../lp/layout/Footer'
 import { NightStory } from './NightStory'
 import { CoreLoopSection } from './CoreLoopSection'
 import { FeatureDigestSection } from './FeatureDigestSection'
@@ -13,13 +16,12 @@ import { PricingSection } from './PricingSection'
 import { DeveloperStorySection } from './DeveloperStorySection'
 import { VoicesSection } from './VoicesSection'
 import { FinalCtaSection } from './FinalCtaSection'
-import { Lpv2Footer } from './Lpv2Footer'
 import { StickyMobileCta } from './StickyMobileCta'
 
 export function Lpv2Page() {
   return (
     <Lpv2Root
-      header={<Lpv2Header />}
+      header={<Header solid />}
       story={<NightStory />}
       day={
         <>
@@ -33,7 +35,7 @@ export function Lpv2Page() {
           <FinalCtaSection />
         </>
       }
-      footer={<Lpv2Footer />}
+      footer={<Footer />}
       stickyCta={<StickyMobileCta />}
     />
   )

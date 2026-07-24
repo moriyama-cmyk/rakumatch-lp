@@ -29,7 +29,7 @@ const ROWS: Row[] = [
 
 export function CompareTableSection() {
   return (
-    <section className="sec day section-pad">
+    <section className="sec day section-pad" id="compare">
       <div className="wrap">
         <div className="section-head">
           <p className="eyebrow">現場でのくらべかた</p>
