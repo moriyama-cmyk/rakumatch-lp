@@ -1,10 +1,10 @@
 'use client'
 
-import type { ReactNode } from 'react'
 import { ArrowRight, Play, Phone } from 'lucide-react'
 import { Container } from '../ui/Container'
 import { GlowButton } from '../ui/GlowButton'
 import { GradientText } from '../ui/GradientText'
+import { Badge } from '../ui/Badge'
 import { Reveal } from '../ui/Reveal'
 import { SITE } from '../site'
 import { hlText } from '../lib/headline'
@@ -76,9 +76,9 @@ export function Hero() {
           {/* 4. アンカリング（チップ3）。価格は見出しに統合したので重複表示はしない。 */}
           <Reveal delay={0.13}>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2 sm:mt-6">
-              <Chip>月3,000円/人</Chip>
-              <Chip>初月1,500円〜</Chip>
-              <Chip>導入費 0円</Chip>
+              <Badge variant="chip">月3,000円/人</Badge>
+              <Badge variant="chip">初月1,500円〜</Badge>
+              <Badge variant="chip">導入費 0円</Badge>
             </div>
             <p className="mt-2 text-xs text-ink-500">※ 料金はすべて税込・1人あたりの月額です。</p>
           </Reveal>
@@ -264,14 +264,5 @@ export function Hero() {
         </Reveal>
       </Container>
     </section>
-  )
-}
-
-/** アンカリング用の小チップ（白地・緑枠）。 */
-function Chip({ children }: { children: ReactNode }) {
-  return (
-    <span className="inline-flex items-center gap-1 rounded-md border border-primary-200 bg-white px-3 py-1 text-xs font-bold text-primary-700 sm:text-sm">
-      {children}
-    </span>
   )
 }

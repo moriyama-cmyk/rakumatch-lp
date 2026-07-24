@@ -130,16 +130,22 @@ export function Voices() {
 function VoiceLabel({ kind }: { kind: Voice['kind'] }) {
   if (kind === 'sales') {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-md bg-primary-50 px-2.5 py-1 text-xs font-bold text-primary-700">
-        <Briefcase className="h-3.5 w-3.5" strokeWidth={2.2} aria-hidden />
+      <Badge
+        variant="tag"
+        icon={<Briefcase className="h-3.5 w-3.5" strokeWidth={2.2} aria-hidden />}
+        className="rounded-md bg-primary-50 px-2.5 py-1 font-bold text-primary-700"
+      >
         営業の声
-      </span>
+      </Badge>
     )
   }
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-md bg-accent-50 px-2.5 py-1 text-xs font-bold text-accent-700">
-      <User className="h-3.5 w-3.5" strokeWidth={2.2} aria-hidden />
+    <Badge
+      variant="tag"
+      icon={<User className="h-3.5 w-3.5" strokeWidth={2.2} aria-hidden />}
+      className="rounded-md bg-accent-50 px-2.5 py-1 font-bold text-accent-700"
+    >
       お客様の声
-    </span>
+    </Badge>
   )
 }

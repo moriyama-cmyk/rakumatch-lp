@@ -71,9 +71,12 @@ export function Pricing() {
         <Reveal delay={0.14}>
           <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-stretch sm:justify-center sm:gap-3">
             <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
-              <span className="rounded-full bg-primary-100 px-3 py-1 text-xs font-bold tracking-wide text-primary-700">
+              <Badge
+                variant="tag"
+                className="rounded-full bg-primary-100 px-3 py-1 font-bold tracking-wide text-primary-700"
+              >
                 0円ゾーン
-              </span>
+              </Badge>
               <div className="flex flex-1 flex-row items-stretch gap-2 rounded-xl border border-primary-200 bg-primary-50 p-3">
                 <StepCard {...STEPS[0]} />
                 <StepCard {...STEPS[1]} />
@@ -160,10 +163,13 @@ function PlanCard({ plan, location }: { plan: Plan; location: 'pricing_standard'
           </span>
           <span className="mb-1.5 text-sm font-medium text-ink-500">{plan.unit}</span>
         </p>
-        <span className="mt-3 inline-flex items-center gap-1.5 rounded-md border border-surface-200 bg-white px-3 py-1 text-xs font-medium text-ink-700">
-          <Sparkles className="h-3.5 w-3.5 text-primary-600" />
+        <Badge
+          variant="tag"
+          icon={<Sparkles className="h-3.5 w-3.5 text-primary-600" />}
+          className="mt-3 rounded-md border border-surface-200 bg-white px-3 py-1 font-medium text-ink-700"
+        >
           AI利用枠：{plan.quota}
-        </span>
+        </Badge>
       </div>
 
       <ul className="mt-6 flex-1 space-y-2.5">

@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { GlowButton } from '../ui/GlowButton'
+import { Badge } from '../ui/Badge'
 import { Reveal } from '../ui/Reveal'
 import { SITE } from '../site'
 import { hl } from '../lib/headline'
@@ -36,10 +37,9 @@ export function FinalCta() {
             />
 
             <div className="relative mx-auto max-w-2xl">
-              <span className="inline-flex items-center gap-1.5 rounded-md border border-primary-200 bg-white px-4 py-1.5 text-xs font-bold text-primary-700">
-                <Sparkles className="h-3.5 w-3.5" />
+              <Badge variant="onDark" icon={<Sparkles className="h-3.5 w-3.5" />}>
                 登録なしで、今すぐ
-              </span>
+              </Badge>
 
               <h2 className="mt-5 text-display-xl text-white">
                 {hl('明日の営業から、')}
