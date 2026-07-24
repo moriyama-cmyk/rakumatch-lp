@@ -164,9 +164,11 @@ export function Why() {
         {/* 締めコピー（COMPARISON_DATA §4） */}
         <Reveal delay={0.12}>
           <p className="mt-12 text-center text-display-md text-ink-900 sm:mt-16">
+            {/* 2026-07-24 修正: variant="gold"(accent-600)は白地で3.5:1しかなくコントラスト不足のため、
+                accent-700(白地6.03:1)をclassNameで上書き。 */}
             {hl(
-              <>初期費用<GradientText variant="gold">0円</GradientText>・</>,
-              <>1人 月<GradientText variant="gold">3,000円</GradientText></>,
+              <>初期費用<GradientText variant="gold" className="text-accent-700">0円</GradientText>・</>,
+              <>1人 月<GradientText variant="gold" className="text-accent-700">3,000円</GradientText></>,
               '（税込）から。',
             )}
             <br className="hidden sm:block" />

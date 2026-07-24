@@ -79,7 +79,8 @@ export function SolutionCore() {
                   <span className="inline-flex h-12 w-12 items-center justify-center text-primary-600">
                     <s.icon className="h-6 w-6" strokeWidth={2} aria-hidden />
                   </span>
-                  <span className="text-3xl font-bold text-surface-200">{s.n}</span>
+                  {/* 装飾番号（1.24:1・視覚的な飾りのみ）。読み上げ不要のためaria-hiddenで除外。 */}
+                  <span className="text-3xl font-bold text-surface-200" aria-hidden="true">{s.n}</span>
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-ink-900">{s.title}</h3>
                 <p className="mt-2.5 text-sm leading-relaxed text-ink-700">{protect(s.body)}</p>

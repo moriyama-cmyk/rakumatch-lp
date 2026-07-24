@@ -81,21 +81,26 @@ export function Ingest() {
             各コマの下に16px以上のラベルで「何が起きているか」を文字で読ませる。 */}
         <Reveal delay={0.1}>
           <div className="mx-auto mt-16 max-w-5xl sm:mt-20">
+            {/* 2026-07-24 修正: 各グリッド子要素はデフォルトの min-width:auto により、
+                キャプション文（word-break: auto-phrase がフレーズを分割できず1行分の実寸を
+                要求）の分だけトラックが広がり、375px幅で355px(320px超)まで膨らんで
+                overflow-x: clip に隠される横はみ出しになっていた。min-w-0 でこの床を外し、
+                break-words で長いキャプションが折り返せるようにして解消する。 */}
             <div className="grid gap-8 sm:grid-cols-2">
-              <div>
-                <p className="mb-3 text-center text-base font-bold text-ink-900">1. 物件データベースの検索結果</p>
+              <div className="min-w-0">
+                <p className="mb-3 text-center text-base font-bold text-ink-900 break-words">1. 物件データベースの検索結果</p>
                 <MockReinsList />
               </div>
-              <div>
-                <p className="mb-3 text-center text-base font-bold text-ink-900">2. Ctrl+Aで全選択コピー</p>
+              <div className="min-w-0">
+                <p className="mb-3 text-center text-base font-bold text-ink-900 break-words">2. Ctrl+Aで全選択コピー</p>
                 <MockReinsList selected />
               </div>
-              <div>
-                <p className="mb-3 text-center text-base font-bold text-ink-900">3. 楽マッチに貼る</p>
+              <div className="min-w-0">
+                <p className="mb-3 text-center text-base font-bold text-ink-900 break-words">3. 楽マッチに貼る</p>
                 <BulkPasteMock />
               </div>
-              <div>
-                <p className="mb-3 text-center text-base font-bold text-ink-900">
+              <div className="min-w-0">
+                <p className="mb-3 text-center text-base font-bold text-ink-900 break-words">
                   4. 全物件が「マッチ○名」バッジ付きで並ぶ
                 </p>
                 <PropertyGridMock />

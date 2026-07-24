@@ -70,7 +70,7 @@ export function Faq() {
           {QA.map((item, i) => (
             <Reveal key={item.q} delay={Math.min(i * 0.05, 0.2)}>
               <details className="group rounded-lg border border-surface-200 bg-white [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-4 p-5 text-left">
+                <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-4 p-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
                   <span className="text-sm font-bold text-ink-900">{item.q}</span>
                   <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600 transition-transform duration-200 ease-out group-open:rotate-45">
                     <Plus className="h-4 w-4" />

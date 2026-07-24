@@ -115,7 +115,7 @@ export function Voices() {
               type="button"
               onClick={() => setExpanded((v) => !v)}
               aria-expanded={expanded}
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-surface-200 bg-white px-5 py-2.5 text-sm font-bold text-ink-700 transition-colors hover:bg-surface-100"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-surface-200 bg-white px-5 py-2.5 text-sm font-bold text-ink-700 transition-colors hover:bg-surface-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
             >
               {expanded ? '閉じる' : `もっと見る（あと${rest}件）`}
             </button>
