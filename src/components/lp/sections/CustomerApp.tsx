@@ -68,7 +68,7 @@ export function CustomerApp() {
                 variant="ghost"
                 size="sm"
                 className="mt-3 -ml-2"
-                onClick={() => trackCta('customer_app')}
+                onClick={() => trackCta('customer_app', SITE.ctaTryUrl)}
               >
                 {SITE.ctaPrimaryLabel} →
               </GlowButton>

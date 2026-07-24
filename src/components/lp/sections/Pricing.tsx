@@ -192,7 +192,7 @@ function PlanCard({ plan, highlight }: { plan: Plan; highlight?: boolean }) {
         href={SITE.ctaTryUrl}
         variant={highlight ? 'primary' : 'secondary'}
         className="mt-5 w-full"
-        onClick={() => trackCta(highlight ? 'pricing_premium' : 'pricing_standard')}
+        onClick={() => trackCta(highlight ? 'pricing_premium' : 'pricing_standard', SITE.ctaTryUrl)}
       >
         無料で試す
         <ArrowRight className="h-4 w-4" />

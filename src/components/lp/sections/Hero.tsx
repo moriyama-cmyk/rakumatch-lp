@@ -8,7 +8,7 @@ import { GradientText } from '../ui/GradientText'
 import { Reveal } from '../ui/Reveal'
 import { SITE } from '../site'
 import { hlText } from '../lib/headline'
-import { trackCta } from '@/lib/track'
+import { trackCta, trackNav } from '@/lib/track'
 import { MockFrame, AppSidebar, MatchCard, AiPanel, PhoneApp } from '../mock'
 
 /**
@@ -88,7 +88,7 @@ export function Hero() {
                 href={SITE.ctaTryUrl}
                 size="lg"
                 className="w-full sm:w-auto"
-                onClick={() => trackCta('hero_primary')}
+                onClick={() => trackCta('hero_primary', SITE.ctaTryUrl)}
               >
                 登録なしで、実物の画面を触る
                 <ArrowRight className="h-5 w-5" />
@@ -100,7 +100,7 @@ export function Hero() {
                 variant="secondary"
                 size="lg"
                 className="w-full sm:w-auto"
-                onClick={() => trackCta('hero_secondary')}
+                onClick={() => trackNav('hero_secondary')}
               >
                 <Play className="h-4 w-4" />
                 {SITE.ctaSecondaryLabel}

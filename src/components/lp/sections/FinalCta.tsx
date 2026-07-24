@@ -56,7 +56,7 @@ export function FinalCta() {
                   href={SITE.ctaTryUrl}
                   size="lg"
                   className="w-full min-w-[260px] !shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_22px_55px_-14px_rgba(13,124,102,0.75)] ring-1 ring-white/10 text-lg sm:w-auto"
-                  onClick={() => trackCta('final_cta')}
+                  onClick={() => trackCta('final_cta', SITE.ctaTryUrl)}
                 >
                   {SITE.ctaPrimaryLabel}
                   <ArrowRight className="h-5 w-5" />

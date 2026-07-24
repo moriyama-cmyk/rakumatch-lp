@@ -57,7 +57,7 @@ export function StickyCta() {
           </p>
           <p className="truncate text-xs text-ink-500">ログイン不要・クレカ不要で、そのまま画面が触れます</p>
         </div>
-        <GlowButton href={SITE.ctaTryUrl} size="md" className="shrink-0" onClick={() => trackCta('mobile_sticky')}>
+        <GlowButton href={SITE.ctaTryUrl} size="md" className="shrink-0" onClick={() => trackCta('mobile_sticky', SITE.ctaTryUrl)}>
           {SITE.ctaPrimaryLabel}
           <ArrowRight className="h-4 w-4" />
         </GlowButton>

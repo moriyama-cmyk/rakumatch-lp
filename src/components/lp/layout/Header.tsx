@@ -59,7 +59,7 @@ export function Header() {
               ログイン
             </GlowButton>
           </div>
-          <GlowButton href={SITE.ctaTryUrl} size="sm" onClick={() => trackCta('header')}>
+          <GlowButton href={SITE.ctaTryUrl} size="sm" onClick={() => trackCta('header', SITE.ctaTryUrl)}>
             {SITE.ctaPrimaryLabel}
             <ArrowRight className="h-4 w-4" />
           </GlowButton>
