@@ -8,6 +8,13 @@
 > コードを書く前に必ず `node_modules/next/dist/docs/` の該当ガイドを読むこと（`AGENTS.md` 準拠）。
 > Tailwind は v4。トークンは `tailwind.config.ts` の `primary`（緑）/ `surface`（オフ白）を正とする。
 
+> **2026-07-24 実装準拠に改訂**: §3(タイポスケール)／§4(余白・セクションリズム)／§5(コンポーネントパターン) を
+> `tailwind.config.ts` と `src/components/lp/ui/` 配下の実コードに合わせて全面更新した（旧版はLP刷新前の初期構想メモで、
+> `rounded-xl`ボタン・`rounded-full`バッジ・`accent`/`ink`が「追加提案」のままになっているなど実装と乖離していた＝死文化）。
+> ボタンの角丸(`rounded-xl`→実際は`rounded-lg`)・バッジの角丸(`rounded-full`→実際は`rounded-md`)のように、
+> 食い違いは**実装側の値で上書き**した。§1(参照ギャラリー)／§2(カラー原則)／§6(モーション原則)／§8(画像方針)は
+> 引き続き思想として有効なため変更していない（§2のトークン値は現行`tailwind.config.ts`とも整合している）。
+
 ---
 
 ## 1. 参照ギャラリー（盗むべき要素）
@@ -70,73 +77,116 @@ ink: {
 
 ---
 
-## 3. タイポスケール
+## 3. タイポスケール（実装準拠）
 
-日本語可読性を最優先（SmartHR流）。見出しは contrast を効かせ、本文は行間広め。
+実装は `tailwind.config.ts` の `fontSize` 拡張（`display-2xl`〜`display-md`・clampベース）と、
+素の Tailwind サイズユーティリティ（`text-lg`/`text-xl`等）の併用。本文の `leading-relaxed` は
+Tailwind既定(1.625)ではなく **`1.85`に上書き済み**（`lineHeight.relaxed`。日本語の長文向け）。
 
-| 役割 | Tailwind クラス | 用途 |
-|------|----------------|------|
-| H1（Hero） | `text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-ink-900` | ページ最上位の主張。1ページ1回。 |
-| H2（セクション見出し） | `text-3xl sm:text-4xl font-bold tracking-tight leading-snug text-ink-900` | 各セクションの主題。 |
-| H3（小見出し/カード見出し） | `text-xl sm:text-2xl font-semibold leading-snug text-ink-900` | 機能名・カードタイトル。 |
-| エヤブロウ（小ラベル） | `text-sm font-semibold tracking-widest uppercase text-primary-600` | H2 の上に置く区分ラベル（例: FEATURES）。日本語なら `tracking-wider` 程度。 |
-| Lead（リード文） | `text-lg sm:text-xl leading-relaxed text-ink-700` | Hero 直下・セクション導入の説明。 |
-| Body | `text-base leading-relaxed text-ink-700` | 標準本文。日本語は `leading-relaxed`（1.625）以上を死守。 |
-| Caption | `text-sm leading-relaxed text-ink-500` | 補足・注記・「※自社試算」等。 |
-| 統計の数値 | `text-5xl sm:text-6xl font-bold tracking-tight text-primary-600`（差し色は `text-accent-600`） | `CountUp` と併用。 |
+| 役割 | 実クラス | 備考 |
+|---|---|---|
+| 見出しトークン `display-2xl` | `text-display-2xl` | clamp(2.125rem,6.4vw,4rem)・leading 1.16・-0.005em・700。**現状どのセクションからも呼ばれていない予約枠**（Hero見出しは下記の理由で独自clampを使用）。 |
+| 見出しトークン `display-xl` | `text-display-xl` | clamp(1.75rem,4.4vw,3rem)・leading 1.24・700。核心宣言セクションのみ（`SolutionCore`「楽マッチAIが、やること。」／`FinalCta`見出し）。 |
+| 見出しトークン `display-lg` | `text-display-lg` | clamp(1.5rem,3.6vw,2.5rem)・leading 1.32・600。**H2の既定**。大半のセクション見出しがこれ。 |
+| 見出しトークン `display-md` | `text-display-md` | clamp(1.25rem,2.6vw,1.625rem)・leading 1.45・600。H2ではなく「セクション締めの一文」の強調（`Problem`/`Why`末尾）に使用。 |
+| Hero のH1 | 独自clamp `[font-size:clamp(1.9rem,6.4vw,4rem)]`（メインコピー）／エヤブロウ行 `[font-size:clamp(0.95rem,3.6vw,1.45rem)]` | `display-2xl`を使わずベタ書きclamp。理由=LCP要素につき375px幅での折返しかたまり長を1字単位で調整した実測値が必要だったため（`Hero.tsx`のコメント参照）。**トークン化されていない既知の逸脱**。新規に真似しない。 |
+| H3（カード見出し・小見出し） | `text-lg font-bold text-ink-900` または `text-xl font-bold text-ink-900` | 専用トークンなし。プレーンなTailwindサイズ＋`font-bold`の組み合わせが実質のH3規約。 |
+| セクション頭のラベル（旧エヤブロウ） | `<Badge>`コンポーネント（`ui/Badge.tsx`） | クラス文字列を手書きしない。§5参照。 |
+| Lead / 本文 | `text-base leading-relaxed text-ink-700`（`leading-relaxed`=1.85） | セクション導入文・本文標準。 |
+| 本文（やや広め） | `text-lg leading-[1.8] text-ink-700` | `ui/FeatureSplit.tsx`の説明本文で使用。 |
+| カード本文 | `text-sm leading-[1.7] text-ink-700` | カード内の短い説明文で頻出（`Problem`/`Ingest`/`AiPartner`/`CustomerApp`等）。 |
+| Caption/注記 | `text-xs text-ink-500` または `text-sm text-ink-500` | 「※」注記・出典。 |
+| 統計の数値 | `text-5xl font-bold text-accent-600`（Pricingのプラン価格）／`text-3xl font-bold text-ink-900`（ドーナツ図中央値等） | ゴールドは金額など「際立たせたい数値」限定。`tabular-nums`併用。共通の`CountUp`コンポーネントは無い（都度コード製）。 |
+
+`ink`色の使い分け（`tailwind.config.ts`のコメントを正とする）:
+`ink-900`見出し／`ink-800`・`ink-700`本文（`ink-700`が既定）／`ink-600`テキスト可（7.57:1）／
+`ink-500`注記（5.46:1）／`ink-400`・`ink-300`は装飾専用でテキスト使用禁止（コントラスト不足）。
 
 ルール:
-- 日本語本文は1行 **38〜42字** で折り返す（`max-w-prose` 相当、または `max-w-2xl`）。長い行は信頼感を損なう。
-- `font-bold` は H1/H2/数値のみ。乱用しない。本文の強調は `font-semibold` + `text-ink-900` で十分。
-- `tracking-tight` は見出し・数値だけ。本文に詰め文字は使わない（日本語が窮屈に見える）。
+- 見出しは `display-*` トークンを優先する。H3以下を新規に作る場合も、既存の `text-lg`/`text-xl font-bold text-ink-900` パターンに合わせ、独自クラスを増やさない。
+- 本文の行間を詰めない。`leading-[1.7]`/`leading-[1.8]`のカスタム値は既存パターンを流用し、新しい微調整値を増やさない。
+- `accent`(ゴールド)は24px以上の太字テキストか`accent-700`(24px未満)のみ。面塗りは禁止（`tailwind.config.ts`のコメント参照）。
 
 ---
 
-## 4. 余白・セクションリズム
+## 4. 余白・セクションリズム（実装準拠）
 
-「余白を贅沢に」が上品さの最大要因。詰め込まない。
+実装は `ui/Section.tsx` の `spacing` 4段階に統一されている。新規セクションもこの4値以外を使わない。
 
-- **セクション縦パディング**: `py-20 sm:py-28 lg:py-32`（重要セクションは `lg:py-40`）。隣接セクションが同色なら境界に `border-t border-surface-200`。
-- **最大幅**: コンテンツ `max-w-6xl mx-auto px-6 sm:px-8`。テキスト主体の段落は `max-w-2xl`、Hero コピーは `max-w-3xl`。
-- **グリッド**: 機能3カラム `grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8`。2カラム（テキスト＋画像）`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center`。
-- **セクション内リズム**: エヤブロウ→H2→Lead の縦間隔は `space-y-4`、見出しブロックと本体は `mt-12 lg:mt-16`。
-- **背景の交互**: 奇数セクション `bg-white` / 偶数 `bg-surface-50`。CTA直前に `bg-primary-900` の濃色を1回だけ。
+| `spacing`値 | 実クラス | 用途 |
+|---|---|---|
+| `sm` | `py-10 sm:py-14` | つなぎ（帯として通過させるセクション）。`EraShift`/`Security`等。 |
+| `md`（既定） | `py-16 sm:py-24` | 通常。 |
+| `lg` | `py-20 sm:py-28` | 通常（強）。`CustomerApp`/`Ingest`等。 |
+| `xl` | `py-28 sm:py-40 lg:py-52` | 山場。ページ内で `#problem`/`#why`/`#pricing`/`#cta` の4箇所のみ使用。 |
+
+最大幅は `ui/Container.tsx` が正:
+- 既定 `max-w-container`(1180px)、`narrow` prop指定時 `max-w-container-narrow`(860px)。横paddingは `px-5 sm:px-6 lg:px-8` で固定。
+- テキスト主体の見出しブロックは `mx-auto max-w-2xl`（セクション導入部）、Hero本文は `max-w-3xl`。
+
+**背景とセクション境界**（2026-07-24 Phase2で確定。以後この方式のみ）:
+- 背景は `bg-white` と `bg-surface-100` の**2値を交互**に割り当てる（隣接セクションは必ず異なる色になるようにpage.tsxの並び順で確認する）。旧版にあった`surface-50`/`surface-150`を交えた3値運用・`border-t border-surface-200`単体の区切りは廃止した。
+- 章の区切りは「章の先頭セクションにのみ `border-t-2 border-primary-600/20` を付ける」の1方式のみ。現在の章頭は `Problem`(課題章)／`CustomerApp`(機能章)／`Why`(証拠章)／`Pricing`(料金章)の4箇所。
+- Hero の `bg-fade-primary` と `FinalCta` 内側のダーク面(`bg-surface-900`)はこの2値ルールの対象外（例外として維持）。
+
+グリッド: 機能カード3列は `grid gap-5 md:grid-cols-3`。2カラム（テキスト＋ビジュアル）は独自実装せず `ui/FeatureSplit.tsx` を使う（`grid items-center gap-10 lg:grid-cols-2 lg:gap-16`、両カラムに`min-w-0`必須＝コンテンツ実寸によるはみ出し防止）。
 
 ---
 
-## 5. コンポーネントパターン（推奨 Tailwind クラス）
+## 5. コンポーネントパターン（実装準拠。クラス文字列を手書きせず既存コンポーネントを使う）
 
-### ボタン（CTA）
-- Primary: `inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-primary-600 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500`
-- Secondary（ゴースト）: `inline-flex items-center gap-2 rounded-xl border border-surface-200 bg-white px-6 py-3.5 text-base font-semibold text-ink-900 transition hover:border-primary-300 hover:text-primary-600`
-- 角丸は `rounded-xl` で統一（`rounded-full` は使わない＝堅実さ）。影は `shadow-sm`→hover `shadow-md` の微増のみ。
+### ボタン — `ui/GlowButton.tsx`
+- 角丸は **`rounded-lg`**（旧版記載の`rounded-xl`ではない）。
+- `variant`: `primary`(既定・`bg-primary-600`＋`shadow-cta`) / `secondary`(白地＋枠線) / `ghost`(テキストのみ) / `onDark`(FinalCta専用・白系半透明の縁取り)。
+- `size`: `sm`(h-10) / `md`(h-12・既定) / `lg`(h-14)。
+- **「GlowButton」という名前だが発光(グロー)効果は無い**（歴史的命名）。実装は単色＋柔らかい影のみで、発光演出はクリーン路線への転換で撤去済み。新規に光らせる実装を足さない。
+
+### 強調テキスト — `ui/GradientText.tsx`
+- **「GradientText」という名前だがグラデーションはかかっていない**（歴史的命名）。実装は単色の`text-primary-700`(既定)または`text-accent-600`(`variant="gold"`)。ネオン/グラデ演出はクリーン路線への転換で廃止済み。
+
+### バッジ／チップ／タグ — `ui/Badge.tsx`（2026-07-24 Phase2で4 variant に統合）
+インライン実装（呼び出し側で`<span className="...">`を都度書くこと）は禁止。必ず`Badge`を使う。
+
+| `variant` | 見た目 | 色 | 用途 |
+|---|---|---|---|
+| `eyebrow`（既定） | `rounded-md`・淡緑地・枠あり | 色まで完結 | セクション先頭のラベル。ほぼ全セクションで使用。 |
+| `chip` | `rounded-md`・白地・緑枠 | 色まで完結 | Hero のアンカリングチップ（価格等）。 |
+| `tag` | 形（`inline-flex items-center gap-1.5 text-xs`）のみ。**色・角丸・余白・太さは持たない** | `className`で都度指定 | `Voices`の営業/お客様ラベル、`Pricing`の「0円ゾーン」「AI利用枠」など、形は同じで色/角丸/余白が違うタグ全般。 |
+| `onDark` | `rounded-md`・白地・緑枠（やや大きめ） | 色まで完結 | `FinalCta`のダーク面専用。 |
+
+`tag`は`cn`（tailwind-merge非対応の単純連結。`lib/cn.ts`）が既存クラスと衝突しないよう、
+意図的に色・角丸・余白のユーティリティを一切持たない設計にしてある。新しい色/形のタグが要る場合は
+`tag`＋`className`で組む（新variantを増やす前にまず`tag`で足りないか検討する）。
 
 ### カード（機能/価値）
-`group rounded-2xl border border-surface-200 bg-white p-6 lg:p-8 transition hover:border-primary-200 hover:shadow-[0_8px_30px_rgba(13,124,102,0.06)]`
-- アイコンは `size-12 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mb-5`。
-- ホバーで「微浮上＋緑の極薄シャドウ」＝Attio流。派手な変化は禁止。
-
-### バッジ
-- 標準: `inline-flex items-center gap-1.5 rounded-full bg-primary-50 px-3 py-1 text-sm font-medium text-primary-700`
-- 実績/受賞（差し色）: `... bg-accent-50 text-accent-600`（ゴールドはここだけ）
+- 標準形: `rounded-xl border border-surface-200 bg-white p-*`。角丸は`rounded-xl`（旧版と一致）。
+- **hoverは実際にクリックできるカード（`href`を持つ）だけに付ける**（2026-07-24 Phase2で確定）。`hover:shadow-soft`/`hover:shadow-soft-md`＋`transition-shadow duration-200`は、内部にリンクを持つカードのみに使う（例: `FeatureDigest`の「詳しく見る」リンク付きカード、`FeatureHub`のアンカーカード）。クリックできない箱にホバー影を付けない。
+- 影のトークンは`tailwind.config.ts`の`boxShadow`: `soft`(通常のカード浮き) / `soft-md`(ホバー時・やや強め) / `soft-lg`(モック枠等の強調) / `cta`(GlowButton primaryのみ)。
 
 ### セクションヘッダ（共通）
+```tsx
+<Reveal>
+  <Badge>ラベル</Badge>
+</Reveal>
+<Reveal delay={0.05}>
+  <h2 className="mt-4 text-display-lg text-ink-900">見出し</h2>
+</Reveal>
+<Reveal delay={0.1}>
+  <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-700 sm:mt-6">
+    リード文。
+  </p>
+</Reveal>
 ```
-<div class="max-w-2xl">
-  <p class="text-sm font-semibold tracking-wider text-primary-600">FEATURES</p>
-  <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-ink-900">見出し</h2>
-  <p class="mt-4 text-lg leading-relaxed text-ink-700">リード文。</p>
-</div>
-```
-中央寄せにする場合は `mx-auto text-center` を付与（多用しない。左寄せの方が読みやすく信頼的）。
+親divに`mx-auto max-w-2xl text-center`を付けて中央寄せするのが既定。`Reveal`の`delay`は0.05刻みで積み上げる。
 
 ### 統計ブロック
-`grid sm:grid-cols-3 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-surface-200` 内に
-`<dt class="text-5xl font-bold tracking-tight text-primary-600"><CountUp/></dt>` + `<dd class="mt-2 text-sm text-ink-500">ラベル ※自社試算</dd>`。
-注記（※自社試算）は必ず caption で添える（法務地雷回避）。
+`Problem.tsx`のドーナツ図・`Pricing`のプラン価格のように、統計/数値は個々にコード製で実装（共通の
+`CountUp`/`Stat`コンポーネントは存在しない）。数値には必ずcaption(`text-xs text-ink-500`)で
+出典・「※イメージ図」等を添える（法務地雷回避、既存パターンを踏襲する）。
 
-### CTA セクション（濃色フィナーレ）
-`bg-primary-900 text-white rounded-3xl px-8 py-16 sm:px-16 sm:py-20 text-center`、H2 を白、ボタンは白地 `bg-white text-primary-700 hover:bg-surface-50`。1ページに1回。
+### CTAセクション（濃色フィナーレ）
+`FinalCta.tsx`のみに存在する専用実装。`Section`の外側は`bg-white border-t-2 border-primary-600/20`、
+内側の`bg-surface-900`の角丸ボックスが唯一の濃色面。新規に濃色セクションを増やさない（1ページ1回を維持）。
 
 ---
 
