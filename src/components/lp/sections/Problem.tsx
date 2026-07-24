@@ -4,7 +4,7 @@ import { Reveal } from '../ui/Reveal'
 import { Badge } from '../ui/Badge'
 import { GradientText } from '../ui/GradientText'
 import { hl, hlText } from '../lib/headline'
-import { HelpCircle, NotebookPen, GraduationCap, Mail } from 'lucide-react'
+import { HelpCircle, NotebookPen, GraduationCap, Mail, ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 type Pain = { icon: LucideIcon; title: string; body: string }
@@ -66,11 +66,41 @@ export function Problem() {
 
         <Reveal delay={0.16}>
           <div className="mx-auto mt-10 max-w-3xl rounded-xl border border-surface-200 bg-white p-7 sm:p-8">
-            <p className="text-base font-bold text-ink-900">
+            <p className="text-base font-bold text-ink-900 sm:text-lg">
               {hlText('いまのやり方の値段を、一度だけ計算してみてください。')}
             </p>
 
-            {/* 2つの統計を別グラフ/別statとして併記（因果を装う矢印なし・「これが現状」で止める） */}
+            {/* 2026-07-24 Phase3（森山さん指摘「比較がないから、どう変わるかわからない」対応）:
+                末尾に埋もれていた本当の比較（1件20分×50件=16時間 vs コピペ1秒）を、
+                EraShiftと同じ視覚文法（沈む灰 → 勝つ緑）の対比ストリップとして主役化。
+                数字は「1件20分なら」という条件付きの算数のみ（優良誤認を避ける・実測値は主張しない）。 */}
+            <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-stretch">
+              <div className="flex-1 rounded-xl bg-surface-100 p-5 text-center opacity-[0.85]">
+                <p className="text-sm font-bold tracking-wide text-ink-600">手入力のままだと</p>
+                <p className="mt-2">
+                  <span className="text-3xl font-bold tabular-nums text-ink-700 sm:text-4xl">約16時間</span>
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-ink-600">
+                  物件50件（1件20分の場合）。<br className="hidden sm:block" />
+                  あなたの時給換算で、いくらですか。
+                </p>
+              </div>
+              <div className="flex items-center justify-center py-1 sm:py-0">
+                <ArrowRight className="h-6 w-6 rotate-90 text-primary-400 sm:h-7 sm:w-7 sm:rotate-0" aria-hidden />
+              </div>
+              <div className="flex-1 rounded-xl border border-primary-600/40 bg-primary-50 p-5 text-center">
+                <p className="text-sm font-bold tracking-wide text-primary-700">楽マッチなら</p>
+                <p className="mt-2">
+                  <span className="text-3xl font-bold text-primary-700 sm:text-4xl">コピペ1秒</span>
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-ink-900">
+                  50件まとめて貼るだけ。<br className="hidden sm:block" />
+                  それで月3,000円（税込）/人です。
+                </p>
+              </div>
+            </div>
+
+            {/* 2つの統計は「現状の裏付け」として対比の下に併記（因果を装う矢印なし・「これが現状」で止める） */}
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               <div className="flex flex-col items-center rounded-xl bg-surface-50 p-5 text-center">
                 <WeeklyTimeDonut />
@@ -103,9 +133,6 @@ export function Problem() {
               </div>
             </div>
 
-            <p className="mt-6 text-sm leading-[1.7] text-ink-700">
-              物件の手入力が1件20分なら、50件で16時間——あなたの時給換算で、いくらになりますか。楽マッチは、月3,000円です。
-            </p>
           </div>
         </Reveal>
 
