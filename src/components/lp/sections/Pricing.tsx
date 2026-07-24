@@ -12,11 +12,19 @@ import type { Plan } from '../site'
 import { hl } from '../lib/headline'
 import { trackCta } from '@/lib/track'
 
-const STEPS = [
-  { step: '①', label: '触る', note: '0円（登録なし）' },
-  { step: '②', label: '7日試す', note: '0円（7日以内解約で無料）' },
-  { step: '③', label: '初月', note: '1,500円（Standard）' },
-  { step: '④', label: '月3,000円/人', note: '' },
+// 2026-07-24 Phase3（森山さん指摘「わかりづらすぎ」対応）: ①〜④の抽象ステップを
+// 「きょう→初月→2か月目〜」の時間軸3段に組み替え。読み手の疑問は「結局いつ・いくら払うのか」
+// なので、段の名前を時間、段の主役を金額にする。デモ(登録なし)とトライアル(7日以内解約で0円)の
+// 法的に大事な区別は、きょう欄の注記2行で正確に保つ。
+const STAGES = [
+  {
+    stage: 'きょう',
+    price: '0円',
+    notes: ['登録なしで、実物の画面を触れる', '7日間トライアルも、期間内解約なら0円'],
+    highlight: true,
+  },
+  { stage: '初月', price: '1,500円', notes: ['スタンダードの初月割引'], highlight: false },
+  { stage: '2か月目〜', price: '月3,000円/人', notes: ['税込・いつでも解約できます'], highlight: false },
 ]
 
 const PROMISES = [
@@ -64,50 +72,40 @@ export function Pricing() {
           </Reveal>
         </div>
 
-        {/* 4段の階段→一直線＋矢印に変更（2026-07-19 森山さん指摘: 段差だと①②が0円ゾーンの
-            枠に入っている分だけ基準線がずれて不揃いに見える）。
-            全カラムに同じ高さのラベル行を確保（0円ゾーンのみ可視・他は同サイズの不可視プレースホルダ）
-            することで、translate-y のズラしなしに4枚が同じ基準線に並ぶ。矢印で進行だけを示す。 */}
+        {/* 時間軸3段（きょう→初月→2か月目〜）。0円ゾーンの括り枠・spacerハックは全廃し、
+            3枚を素直に等高で並べる。強調は「きょう=0円」の1枚だけ（緑地）。 */}
         <Reveal delay={0.14}>
-          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-stretch sm:justify-center sm:gap-3">
-            <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
-              <Badge
-                variant="tag"
-                className="rounded-full bg-primary-100 px-3 py-1 font-bold tracking-wide text-primary-700"
-              >
-                0円ゾーン
-              </Badge>
-              <div className="flex flex-1 flex-row items-stretch gap-2 rounded-xl border border-primary-200 bg-primary-50 p-3">
-                <StepCard {...STEPS[0]} />
-                <StepCard {...STEPS[1]} />
+          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-stretch">
+            {STAGES.map((s, i) => (
+              <div key={s.stage} className="contents">
+                {i > 0 && <StepArrow />}
+                <div
+                  className={`flex flex-1 flex-col items-center rounded-xl border p-5 text-center ${
+                    s.highlight ? 'border-primary-600/40 bg-primary-50' : 'border-surface-200 bg-white'
+                  }`}
+                >
+                  <span
+                    className={`text-sm font-bold tracking-wide ${
+                      s.highlight ? 'text-primary-700' : 'text-ink-600'
+                    }`}
+                  >
+                    {s.stage}
+                  </span>
+                  <span
+                    className={`mt-1.5 text-3xl font-bold tabular-nums ${
+                      s.highlight ? 'text-primary-700' : 'text-ink-900'
+                    }`}
+                  >
+                    {s.price}
+                  </span>
+                  <ul className="mt-2 space-y-0.5 text-xs leading-relaxed text-ink-600">
+                    {s.notes.map((n) => (
+                      <li key={n}>{n}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-
-            <StepArrow />
-            <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
-              {/* 2026-07-24 修正: invisible要素はモバイル縦積みでも高さを占有し約28pxの
-                  幽霊余白になっていた。sm未満はhiddenで高さごと消し、sm以上のみinvisibleで
-                  基準線合わせ（0円ゾーンのラベル行と高さを揃える）を有効にする。 */}
-              <span aria-hidden="true" className="hidden rounded-full px-3 py-1 text-xs font-bold sm:invisible sm:block">
-                spacer
-              </span>
-              <div className="flex flex-1 items-stretch p-3">
-                <StepCard {...STEPS[2]} />
-              </div>
-            </div>
-
-            <StepArrow />
-            <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
-              {/* 2026-07-24 修正: invisible要素はモバイル縦積みでも高さを占有し約28pxの
-                  幽霊余白になっていた。sm未満はhiddenで高さごと消し、sm以上のみinvisibleで
-                  基準線合わせ（0円ゾーンのラベル行と高さを揃える）を有効にする。 */}
-              <span aria-hidden="true" className="hidden rounded-full px-3 py-1 text-xs font-bold sm:invisible sm:block">
-                spacer
-              </span>
-              <div className="flex flex-1 items-stretch p-3">
-                <StepCard {...STEPS[3]} />
-              </div>
-            </div>
+            ))}
           </div>
         </Reveal>
 
@@ -194,16 +192,6 @@ function PlanCard({ plan, location }: { plan: Plan; location: 'pricing_standard'
         無料で試す
         <ArrowRight className="h-4 w-4" />
       </GlowButton>
-    </div>
-  )
-}
-
-function StepCard({ step, label, note }: { step: string; label: string; note?: string }) {
-  return (
-    <div className="flex min-h-[92px] min-w-[7rem] flex-col items-center justify-center rounded-xl border border-surface-200 bg-white px-4 py-3 text-center">
-      <span className="text-xs font-bold text-primary-600">{step}</span>
-      <span className="mt-1 text-sm font-bold text-ink-900">{label}</span>
-      {note && <span className="mt-0.5 text-xs text-ink-500">{note}</span>}
     </div>
   )
 }
