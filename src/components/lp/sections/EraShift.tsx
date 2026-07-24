@@ -13,15 +13,11 @@ export function EraShift() {
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>時代の転換</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
               {hl('大企業の武器だったAIが、')}
               <br className="hidden sm:block" />
               {hl('あなた一人の手に。')}
             </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-700 sm:mt-6">
               これまで数十万円と法人契約が要ったAI営業が、個人1名から持てる時代になりました。楽マッチは、その最初の1本。これが、これからのスタンダードになります。
             </p>
@@ -59,11 +55,9 @@ export function EraShift() {
             </div>
           </div>
         </Reveal>
-        <Reveal delay={0.15}>
-          <p className="mx-auto mt-4 max-w-xl text-center text-xs leading-relaxed text-ink-500">
-            ※ 昔の価格帯は当社調べ（2026年6月時点・各社公開情報による）。単位・条件は各社により異なります。
-          </p>
-        </Reveal>
+        <p className="mx-auto mt-4 max-w-xl text-center text-xs leading-relaxed text-ink-500">
+          ※ 昔の価格帯は当社調べ（2026年6月時点・各社公開情報による）。単位・条件は各社により異なります。
+        </p>
       </Container>
     </Section>
   )

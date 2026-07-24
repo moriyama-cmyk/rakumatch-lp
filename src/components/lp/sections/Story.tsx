@@ -16,8 +16,6 @@ export function Story() {
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>WHY TRUST US</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
               {hl('現役の', '不動産営業マンが、')}
               <br className="hidden sm:block" />
@@ -64,23 +62,19 @@ export function Story() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
-          <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-ink-500">
-            これは投資家やエンジニアが机上で作ったツールではありません。現場の不便を1つずつ潰して作った、現場のための道具です。
-          </p>
-        </Reveal>
+        <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-ink-500">
+          これは投資家やエンジニアが机上で作ったツールではありません。現場の不便を1つずつ潰して作った、現場のための道具です。
+        </p>
 
         {/* 2026-07-19 森山さん指摘「こういうのいらん」で「導入事例は、まだ多くありません。」の
             見出しと段落を削除。実績の少なさを自己申告するのは売る場面では自爆で、誠実さは
             「現役営業が毎日使っている」という事実で十分に立っている。
             ただし「私はエンジニアではありません／操作は"貼るだけ"」は製品の核なので残す。 */}
-        <Reveal delay={0.14}>
-          <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 sm:p-10">
-            <p className="text-base leading-relaxed text-ink-700">
-              私はエンジニアではありません。難しい操作は、私が一番嫌いです。だからこのアプリの操作は“貼るだけ”にしました。
-            </p>
-          </div>
-        </Reveal>
+        <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 sm:p-10">
+          <p className="text-base leading-relaxed text-ink-700">
+            私はエンジニアではありません。難しい操作は、私が一番嫌いです。だからこのアプリの操作は“貼るだけ”にしました。
+          </p>
+        </div>
       </Container>
     </Section>
   )

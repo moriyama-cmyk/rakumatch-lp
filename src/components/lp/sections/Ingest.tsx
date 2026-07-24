@@ -42,15 +42,11 @@ export function Ingest() {
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <Badge icon={<ClipboardPaste className="h-3.5 w-3.5" />}>媒体連携 0円</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
               {hlText('Ctrl+A、コピペ。')}
               <br className="hidden sm:block" />
               {hl('物件50件、', '片づいた。')}
             </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-700 sm:mt-6">
               ポイントは“入力を時短すること”ではありません。
               <strong className="font-bold text-ink-900">高いお金を払って媒体とAPI連携しなくても、物件情報を楽マッチに入れるのが超かんたん</strong>
@@ -79,8 +75,7 @@ export function Ingest() {
         {/* 実画面4コマ（レインズ一覧 → Ctrl+A全選択 → 貼るだけ → 物件カード化）。
             コード製の再現イメージ（実スクショではない）。UI内の文字は雰囲気でよい方針とし、
             各コマの下に16px以上のラベルで「何が起きているか」を文字で読ませる。 */}
-        <Reveal delay={0.1}>
-          <div className="mx-auto mt-16 max-w-5xl sm:mt-20">
+        <div className="mx-auto mt-16 max-w-5xl sm:mt-20">
             {/* 2026-07-24 修正: 各グリッド子要素はデフォルトの min-width:auto により、
                 キャプション文（word-break: auto-phrase がフレーズを分割できず1行分の実寸を
                 要求）の分だけトラックが広がり、375px幅で355px(320px超)まで膨らんで
@@ -109,12 +104,10 @@ export function Ingest() {
             <p className="mt-8 text-center text-lg font-bold text-ink-900">
               あなたの作業は、コピペの1秒。50件以上を、AIが一気に登録。
             </p>
-          </div>
-        </Reveal>
+        </div>
 
         {/* 要点 */}
-        <Reveal delay={0.1}>
-          <ul className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
+        <ul className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
             {POINTS.map((p) => (
               <li
                 key={p.text}
@@ -124,14 +117,11 @@ export function Ingest() {
                 <span className="text-sm leading-[1.7] text-ink-700">{p.text}</span>
               </li>
             ))}
-          </ul>
-        </Reveal>
+        </ul>
 
-        <Reveal delay={0.1}>
-          <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-ink-500">
-            ※ 1〜4の画面は架空データによる再現イメージです。レインズ等のデータは各サービスの規約に沿ってご利用ください。
-          </p>
-        </Reveal>
+        <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-ink-500">
+          ※ 1〜4の画面は架空データによる再現イメージです。レインズ等のデータは各サービスの規約に沿ってご利用ください。
+        </p>
       </Container>
     </Section>
   )

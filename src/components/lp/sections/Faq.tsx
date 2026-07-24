@@ -58,8 +58,6 @@ export function Faq() {
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>よくある質問</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
               よくある<GradientText>質問</GradientText>
             </h2>

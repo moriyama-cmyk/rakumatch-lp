@@ -84,15 +84,11 @@ export function Why() {
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>選ばれる理由</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
               {hl(<><GradientText>“合わせる”CRM</GradientText>から、</>)}
               <br className="hidden sm:block" />
               {hl('“効く”CRMへ。')}
             </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
             <p className="mx-auto mt-5 max-w-xl text-base text-ink-700 sm:mt-6">
               {/* 2026-07-19 事実訂正: 「仲介経営者」は誤り（現役の不動産営業）。 */}
               現役の不動産営業が、自分が毎日使うために不動産売買専用で作りました。
@@ -155,15 +151,12 @@ export function Why() {
         </Reveal>
 
         {/* 注記（必須・COMPARISON_DATA §2 のまま） */}
-        <Reveal delay={0.1}>
-          <p className="mt-5 text-xs leading-relaxed text-ink-500">
-            ※当社調べ（2026年6月時点・各社公開情報による）。料金・仕様は各社の最新情報をご確認ください。料金は代表的なプラン例で、税表記・条件は各社により異なります。
-          </p>
-        </Reveal>
+        <p className="mt-5 text-xs leading-relaxed text-ink-500">
+          ※当社調べ（2026年6月時点・各社公開情報による）。料金・仕様は各社の最新情報をご確認ください。料金は代表的なプラン例で、税表記・条件は各社により異なります。
+        </p>
 
         {/* 締めコピー（COMPARISON_DATA §4） */}
-        <Reveal delay={0.12}>
-          <p className="mt-12 text-center text-display-md text-ink-900 sm:mt-16">
+        <p className="mt-12 text-center text-display-md text-ink-900 sm:mt-16">
             {/* 2026-07-24 修正: variant="gold"(accent-600)は白地で3.5:1しかなくコントラスト不足のため、
                 accent-700(白地6.03:1)をclassNameで上書き。 */}
             {hl(
@@ -173,14 +166,11 @@ export function Why() {
             )}
             <br className="hidden sm:block" />
             <span className="text-ink-700">{hlText('法人契約も、20万円の初期費用も、いりません。')}</span>
-          </p>
-        </Reveal>
+        </p>
 
-        <Reveal delay={0.14}>
-          <p className="mt-4 text-center text-sm font-bold text-primary-700">
-            {hlText('他社は、資料請求と商談から。楽マッチは、今この場で実物が触れます。')}
-          </p>
-        </Reveal>
+        <p className="mt-4 text-center text-sm font-bold text-primary-700">
+          {hlText('他社は、資料請求と商談から。楽マッチは、今この場で実物が触れます。')}
+        </p>
       </Container>
     </Section>
   )

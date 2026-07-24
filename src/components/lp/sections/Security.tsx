@@ -28,13 +28,9 @@ export function Security() {
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge icon={<Shield className="h-3.5 w-3.5" />}>セキュリティ</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
               {hl('データは、', '大手テック企業の', 'インフラで守る。')}
             </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-700 sm:mt-6">
               {protect('自社で大手企業レベルのセキュリティを実現するのは、ほぼ不可能です。楽マッチAIは、Google・Amazon・Stripeという世界最大級のインフラ上で稼働。お客様のデータや決済情報を弊社サーバーで保持することはありません。')}
             </p>

@@ -35,15 +35,11 @@ export function Problem() {
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>こんな現場、ありませんか</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
               {hl(<>こんな<GradientText>“もったいない”</GradientText>、</>)}
               <br className="hidden sm:block" />
               {hl('起きていませんか。')}
             </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
             <p className="mt-5 text-lg font-bold text-ink-900 sm:mt-6">
               {hlText('売れない理由は、努力不足ではない。情報が、つながっていないだけ。')}
             </p>
@@ -64,8 +60,7 @@ export function Problem() {
           ))}
         </div>
 
-        <Reveal delay={0.16}>
-          <div className="mx-auto mt-10 max-w-3xl rounded-xl border border-surface-200 bg-white p-7 sm:p-8">
+        <div className="mx-auto mt-10 max-w-3xl rounded-xl border border-surface-200 bg-white p-7 sm:p-8">
             <p className="text-base font-bold text-ink-900 sm:text-lg">
               {hlText('いまのやり方の値段を、一度だけ計算してみてください。')}
             </p>
@@ -133,14 +128,11 @@ export function Problem() {
               </div>
             </div>
 
-          </div>
-        </Reveal>
+        </div>
 
-        <Reveal delay={0.2}>
-          <p className="mt-16 text-center text-display-md text-ink-900 sm:mt-20">
-            {hl('その全部に、', <><GradientText>AIの相棒</GradientText>で</>, '手を打てます。')}
-          </p>
-        </Reveal>
+        <p className="mt-16 text-center text-display-md text-ink-900 sm:mt-20">
+          {hl('その全部に、', <><GradientText>AIの相棒</GradientText>で</>, '手を打てます。')}
+        </p>
       </Container>
     </Section>
   )

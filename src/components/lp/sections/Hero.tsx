@@ -73,20 +73,14 @@ export function Hero() {
             <p className="mt-1.5 text-sm text-ink-500">
               {hlText('パソコンが苦手でも、大丈夫。操作は"貼るだけ"しかありません。')}
             </p>
-          </Reveal>
-
           {/* 4. アンカリング（チップ3）。価格は見出しに統合したので重複表示はしない。 */}
-          <Reveal delay={0.13}>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2 sm:mt-6">
               <Badge variant="chip">月3,000円/人</Badge>
               <Badge variant="chip">初月1,500円〜</Badge>
               <Badge variant="chip">導入費 0円</Badge>
             </div>
             <p className="mt-2 text-xs text-ink-500">※ 料金はすべて税込・1人あたりの月額です。</p>
-          </Reveal>
-
           {/* 5. CTA */}
-          <Reveal delay={0.16}>
             <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:mt-7 sm:flex-row">
               <GlowButton
                 href={SITE.ctaTryUrl}

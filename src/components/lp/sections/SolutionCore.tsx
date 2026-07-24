@@ -38,16 +38,12 @@ export function SolutionCore() {
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>楽マッチ AI が、やること</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-5 text-display-xl text-ink-900">
               <span className="whitespace-nowrap">
                 <GradientText>楽マッチ AI</GradientText>
               </span>{' '}
               <span className="whitespace-nowrap">が、やること。</span>
             </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-700">
               顧客一人・物件一件ごとに専属AIがつき、「誰に・どの物件を・どう出すか」を、この場で言い切ります。マッチングは、考える作業から確認する作業に変わります。
             </p>
@@ -59,8 +55,7 @@ export function SolutionCore() {
             ①余白圧縮(mt-16→mt-10) ②ラベルをxs→sm/boldへ拡大 ③点だけだった接続線を
             双方向矢印(ArrowLeftRight)に差し替え、「顧客からも物件からも逆引きできる」という
             図の意味そのものを可視化 ④矢印の下に一言ラベルを添えて図を自己説明にする。 */}
-        <Reveal delay={0.12}>
-          <div className="mx-auto mt-10 flex max-w-2xl items-center justify-center gap-3 sm:mt-12 sm:gap-5">
+        <div className="mx-auto mt-10 flex max-w-2xl items-center justify-center gap-3 sm:mt-12 sm:gap-5">
             <FlowNode icon={User} label="顧客" />
             <Connector label="誰に出すか" />
             <div className="flex flex-col items-center">
@@ -71,8 +66,7 @@ export function SolutionCore() {
             </div>
             <Connector label="何を出すか" />
             <FlowNode icon={Home} label="物件" />
-          </div>
-        </Reveal>
+        </div>
 
         {/* 3ステップ。2026-07-24 Phase3: 余白圧縮(mt-16→mt-10)・本文をsm→baseへ拡大（森山さん指摘「文字小さい」）・
             surface-100地に載るためカード面はwhiteへ（Phase2の背景2値ルール準拠）。 */}
@@ -98,13 +92,11 @@ export function SolutionCore() {
             （GradientTextは数値・固有名詞限定の運用へ・Fable F3-3）。
             ダンベル図(EffortLineChart)は森山さん判定「何を伝えたいか全く意味が分からない」につき削除。
             同じ主張（件数が増えても貼る手間は一定）は直後のIngestセクションが実演で伝える。 */}
-        <Reveal delay={0.2}>
-          <p className="mx-auto mt-10 max-w-xl text-center text-base font-bold text-ink-900">
-            50件でも、その先でも。貼る手間は、一瞬のまま。
-            <br className="hidden sm:block" />
-            そして、その入力が初めて意味を持つ。
-          </p>
-        </Reveal>
+        <p className="mx-auto mt-10 max-w-xl text-center text-base font-bold text-ink-900">
+          50件でも、その先でも。貼る手間は、一瞬のまま。
+          <br className="hidden sm:block" />
+          そして、その入力が初めて意味を持つ。
+        </p>
         {/* CTAはヒーロー・料金・最終CTAに集約。中間セクションの「無料で試す」連打は撤去。 */}
       </Container>
     </Section>

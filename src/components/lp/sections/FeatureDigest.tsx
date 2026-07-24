@@ -42,11 +42,7 @@ export function FeatureDigest() {
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>ALL-IN-ONE</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">{hlText('提案の前も、契約の後も。')}</h2>
-          </Reveal>
-          <Reveal delay={0.08}>
             <p className="mt-5 text-lg font-bold text-ink-900 sm:mt-6">
               {hlText('営業を止める“雑務”まで、ひとつに。')}
             </p>

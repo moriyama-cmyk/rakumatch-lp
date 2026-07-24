@@ -49,21 +49,13 @@ export function Pricing() {
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>料金</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
               {hl(<GradientText variant="gold">月々たったの3,000円</GradientText>, 'から。')}
             </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
             <p className="mt-2 text-sm font-bold text-ink-700">（税込）/ 人・月　※個人でも会社でも同じ料金</p>
-          </Reveal>
-          <Reveal delay={0.1}>
             <p className="mx-auto mt-5 max-w-xl text-base text-ink-700 sm:mt-6">
               2プランの人数課金・初月割引あり。プランの違いはAIの利用枠です（AIの品質はどちらも同じ）。まずは無料で、中身を触ってから選べます。
             </p>
-          </Reveal>
-          <Reveal delay={0.12}>
             <p className="mx-auto mt-3 inline-flex flex-wrap items-center justify-center gap-x-1.5 text-sm font-bold text-primary-700">
               <span className="whitespace-nowrap">1週間の無料トライアル付き</span>・
               <span className="whitespace-nowrap">初月割引あり</span>・
@@ -74,8 +66,7 @@ export function Pricing() {
 
         {/* 時間軸3段（きょう→初月→2か月目〜）。0円ゾーンの括り枠・spacerハックは全廃し、
             3枚を素直に等高で並べる。強調は「きょう=0円」の1枚だけ（緑地）。 */}
-        <Reveal delay={0.14}>
-          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-stretch">
+        <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-stretch">
             {STAGES.map((s, i) => (
               <div key={s.stage} className="contents">
                 {i > 0 && <StepArrow />}
@@ -106,12 +97,10 @@ export function Pricing() {
                 </div>
               </div>
             ))}
-          </div>
-        </Reveal>
+        </div>
 
         {/* 私たちの約束 */}
-        <Reveal delay={0.17}>
-          <div className="mx-auto mt-6 max-w-2xl rounded-xl border border-surface-200 bg-white p-6 sm:p-7">
+        <div className="mx-auto mt-6 max-w-2xl rounded-xl border border-surface-200 bg-white p-6 sm:p-7">
             <p className="text-sm font-bold text-primary-700">私たちの約束</p>
             <ul className="mt-3 space-y-2.5">
               {PROMISES.map((p) => (
@@ -121,8 +110,7 @@ export function Pricing() {
                 </li>
               ))}
             </ul>
-          </div>
-        </Reveal>
+        </div>
 
         <div className="mt-16 grid gap-5 sm:mt-20 sm:grid-cols-2">
           {PLANS.map((p, i) => (
@@ -133,15 +121,11 @@ export function Pricing() {
         </div>
 
         {/* 各プランカードに「無料で試す」があるため、直後の重複ボタンは撤去。マイクロコピーのみ残す。 */}
-        <Reveal delay={0.1}>
-          <p className="mt-8 text-center text-xs text-ink-500">{SITE.microCopy}</p>
-        </Reveal>
+        <p className="mt-8 text-center text-xs text-ink-500">{SITE.microCopy}</p>
 
-        <Reveal delay={0.1}>
-          <p className="mt-6 text-center text-xs leading-relaxed text-ink-500">
-            ※ 料金は税込・人数課金です（初月割引あり）。詳細は特定商取引法に基づく表記をご確認ください。
-          </p>
-        </Reveal>
+        <p className="mt-6 text-center text-xs leading-relaxed text-ink-500">
+          ※ 料金は税込・人数課金です（初月割引あり）。詳細は特定商取引法に基づく表記をご確認ください。
+        </p>
       </Container>
     </Section>
   )

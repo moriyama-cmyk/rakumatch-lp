@@ -81,13 +81,9 @@ export function Voices() {
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <Badge>お客様・営業の声</Badge>
-          </Reveal>
-          <Reveal delay={0.05}>
             <h2 className="mt-4 text-display-lg text-ink-900">
               使ってくださっている方の、<GradientText>声</GradientText>
             </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
             {/* 2026-07-19 森山さん指摘: 「まだ多くはありませんが」は売る場面での自己申告の弱点＝削除。 */}
             <p className="mt-5 text-base leading-relaxed text-ink-700 sm:mt-6">
               先に使ってくださっている方から、こんな声が届いています。

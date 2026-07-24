@@ -59,26 +59,22 @@ export function CustomerApp() {
               </Reveal>
             </div>
 
-            <Reveal delay={0.1}>
-              <p className="mt-5 text-xs text-ink-500">
-                ※ お客様はログイン不要のまま、保存・星評価・メモ・内見リクエストまで全機能使えます。
-              </p>
-              <GlowButton
-                href={SITE.ctaTryUrl}
-                variant="ghost"
-                size="sm"
-                className="mt-3 -ml-2"
-                onClick={() => trackCta('customer_app', SITE.ctaTryUrl)}
-              >
-                {SITE.ctaPrimaryLabel} →
-              </GlowButton>
-            </Reveal>
+            <p className="mt-5 text-xs text-ink-500">
+              ※ お客様はログイン不要のまま、保存・星評価・メモ・内見リクエストまで全機能使えます。
+            </p>
+            <GlowButton
+              href={SITE.ctaTryUrl}
+              variant="ghost"
+              size="sm"
+              className="mt-3 -ml-2"
+              onClick={() => trackCta('customer_app', SITE.ctaTryUrl)}
+            >
+              {SITE.ctaPrimaryLabel} →
+            </GlowButton>
           </div>
 
           {/* お客様アプリの実画面（保存物件リスト＋あなたの傾向）。スマホ枠風の細い額装。 */}
-          <Reveal delay={0.1}>
-            <PhoneShot />
-          </Reveal>
+          <PhoneShot />
         </div>
       </Container>
     </Section>

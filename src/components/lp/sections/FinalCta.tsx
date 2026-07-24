@@ -5,7 +5,6 @@ import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 import { GlowButton } from '../ui/GlowButton'
 import { Badge } from '../ui/Badge'
-import { Reveal } from '../ui/Reveal'
 import { SITE } from '../site'
 import { hl } from '../lib/headline'
 import { trackCta } from '@/lib/track'
@@ -20,8 +19,7 @@ export function FinalCta() {
   return (
     <Section id="cta" className="bg-white border-t-2 border-primary-600/20" spacing="xl">
       <Container>
-        <Reveal>
-          <div className="relative overflow-hidden rounded-xl bg-surface-900 px-6 py-14 text-center ring-1 ring-white/5 sm:px-14 sm:py-20">
+        <div className="relative overflow-hidden rounded-xl bg-surface-900 px-6 py-14 text-center ring-1 ring-white/5 sm:px-14 sm:py-20">
             {/* 装飾のみ（操作・テキストなし）。暗色面の質感づけ。 */}
             <div
               aria-hidden="true"
@@ -72,8 +70,7 @@ export function FinalCta() {
               </div>
               <p className="mt-3 text-xs text-white/60">{SITE.microCopy}</p>
             </div>
-          </div>
-        </Reveal>
+        </div>
       </Container>
     </Section>
   )
