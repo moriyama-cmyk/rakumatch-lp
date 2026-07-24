@@ -40,7 +40,7 @@ export default function Footer() {
                 <li key={f.href}>
                   <Link
                     href={f.href}
-                    className="text-sm text-ink-500 hover:text-ink-700 transition-colors"
+                    className="inline-flex min-h-11 items-center rounded-md text-sm text-ink-500 transition-colors hover:text-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                   >
                     {f.label}
                   </Link>
@@ -57,7 +57,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-ink-500 hover:text-ink-700 transition-colors"
+                    className="inline-flex min-h-11 items-center rounded-md text-sm text-ink-500 transition-colors hover:text-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                   >
                     {link.label}
                   </Link>

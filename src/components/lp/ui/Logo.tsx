@@ -16,7 +16,6 @@ export function Logo({ className, withWordmark = true }: LogoProps) {
         width={36}
         height={36}
         className="h-9 w-9 rounded-xl"
-        priority
       />
       {withWordmark && (
         <span className="text-lg font-bold tracking-tight text-ink-900">

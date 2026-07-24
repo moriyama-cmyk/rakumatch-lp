@@ -88,7 +88,7 @@ export function Voices() {
           </Reveal>
           <Reveal delay={0.08}>
             <p className="mt-5 text-base leading-relaxed text-ink-700 sm:mt-6">
-              森山が実際に伺った発言です。プライバシーに配慮し、属性は一部匿名化しています。
+              森山が実際に伺った内容を、読みやすさと匿名性に配慮して掲載しています。
             </p>
           </Reveal>
         </div>

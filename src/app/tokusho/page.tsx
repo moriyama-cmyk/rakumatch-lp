@@ -77,7 +77,7 @@ export default function TokushoPage() {
                 </tr>
                 <tr>
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">役務の提供時期</th>
-                  <td className="px-6 py-4">決済完了後、即時ご利用いただけます。</td>
+                  <td className="px-6 py-4">利用登録とカード情報の登録完了後、無料トライアル期間中から即時ご利用いただけます。</td>
                 </tr>
                 <tr>
                   <th className="text-left font-semibold bg-surface-50 px-6 py-4 w-1/3 align-top">返品・キャンセル</th>

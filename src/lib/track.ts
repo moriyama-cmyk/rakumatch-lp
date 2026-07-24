@@ -1,4 +1,4 @@
-import { SITE } from "@/components/lp/site";
+import { copyVariantForPathname } from "@/components/lp/site";
 
 type Gtag = (...args: unknown[]) => void;
 
@@ -24,9 +24,12 @@ export function trackCta(kindOrLocation: CtaKind | string, location?: string, li
   const resolvedLocation = location ?? kindOrLocation;
   const eventName = EVENT_BY_KIND[kind];
   const gtag = getGtag();
+  const copyVariant = typeof window === "undefined"
+    ? "non-top-page"
+    : copyVariantForPathname(window.location.pathname);
   gtag?.("event", eventName, {
     cta_location: resolvedLocation,
-    copy_variant: SITE.copyVariant,
+    copy_variant: copyVariant,
     link_url: linkUrl,
   });
 

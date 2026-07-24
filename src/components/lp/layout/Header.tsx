@@ -76,7 +76,7 @@ export function Header() {
             　 CSS の出力順で打ち消されない。確実に隠すため、表示ユーティリティだけを持つ
             　 div でラップする。スマホのログインはフッターの導線から。
           */}
-          <div className="hidden lg:block">
+          <div className="hidden md:block">
             <GlowButton href={`${SITE.appUrl}/login`} variant="ghost" size="sm">
               ログイン
             </GlowButton>

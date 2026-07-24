@@ -28,6 +28,11 @@ export const SITE = {
   microCopyShort: '登録・カード不要',
 } as const
 
+/** トップLP以外のイベントを、表示していないLPコピーの成果に混ぜない。 */
+export function copyVariantForPathname(pathname: string): string {
+  return pathname === '/' ? SITE.copyVariant : 'non-top-page'
+}
+
 // Hero 用エイリアス（ブリーフ準拠の命名で参照できるように）
 export const CATEGORY_LINE = SITE.categoryLine
 export const CATCH_MAIN = SITE.catchMain

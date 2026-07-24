@@ -4,6 +4,7 @@ import { NAV, SITE } from '../site'
 
 // 情報（規約・特商法・問い合わせ）。本番サイトの各ページへ内部リンク。
 const LEGAL: { label: string; href: string }[] = [
+  { label: 'ブログ', href: '/blog' },
   { label: '利用規約', href: '/terms' },
   { label: 'プライバシーポリシー', href: '/privacy' },
   { label: '特定商取引法に基づく表記', href: '/tokusho' },

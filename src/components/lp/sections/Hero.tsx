@@ -6,6 +6,7 @@ import { Container } from '../ui/Container'
 import { GlowButton } from '../ui/GlowButton'
 import { SITE } from '../site'
 import { hl } from '../lib/headline'
+import { protect } from '../lib/protect'
 import { trackCta } from '@/lib/track'
 
 const FEATURES = [
@@ -42,15 +43,35 @@ export function Hero() {
           <p className="mx-auto mt-5 max-w-2xl text-base leading-[1.8] text-ink-700 sm:mt-6 sm:text-lg">
             顧客と物件の情報をつなげて、提案のきっかけを一つの画面へ。1名から始められる、不動産売買仲介の営業支援サービスです。
           </p>
+        </div>
 
-          <div className="mx-auto mt-6 grid max-w-3xl grid-cols-2 gap-2 text-left sm:mt-8 sm:grid-cols-5 sm:gap-2.5" aria-label="楽マッチ AIの5つの機能">
-            {FEATURES.map(({ label, icon: Icon }) => (
+        <figure className="mx-auto mt-7 max-w-6xl sm:mt-10">
+          <div className="mx-auto max-w-md overflow-hidden rounded-2xl border border-surface-200 bg-white p-1.5 shadow-[0_24px_70px_rgba(20,54,48,0.16)] sm:rounded-3xl sm:p-2 md:max-w-none">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[0.7rem] sm:rounded-[1.1rem] md:aspect-video">
+              <Image
+                src="/shot-top-hero.webp"
+                alt="顧客情報をもとにAIの提案を表示する楽マッチ AIの製品画面"
+                fill
+                preload
+                sizes="(max-width: 767px) 896px, 1152px"
+                className="object-cover object-center md:object-contain"
+              />
+            </div>
+          </div>
+          <figcaption className="mt-3 text-center text-sm text-ink-600">
+            デモデータを表示した実際の製品画面（幅に合わせて一部を拡大表示）
+          </figcaption>
+        </figure>
+
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="mx-auto mt-6 grid max-w-5xl grid-cols-2 gap-2 text-left sm:mt-8 sm:grid-cols-6 sm:gap-2.5 lg:grid-cols-5" aria-label="楽マッチ AIの5つの機能">
+            {FEATURES.map(({ label, icon: Icon }, index) => (
               <div
                 key={label}
-                className="flex min-h-11 items-center gap-2 rounded-xl border border-surface-200 bg-white px-3 py-2 shadow-sm last:col-span-2 last:justify-center sm:min-h-14 sm:last:col-auto sm:last:justify-start"
+                className={`flex min-h-11 items-center gap-1.5 rounded-xl border border-surface-200 bg-white px-2.5 py-2 shadow-sm last:col-span-2 last:justify-center sm:col-span-2 sm:min-h-14 sm:gap-2 sm:px-3 sm:last:col-span-2 sm:last:justify-start lg:col-span-1 lg:last:col-span-1 ${index === 3 ? 'sm:col-start-2 lg:col-start-auto' : ''}`}
               >
                 <Icon className="h-4 w-4 shrink-0 text-primary-600" aria-hidden="true" />
-                <span className="text-sm font-bold leading-snug text-ink-800">{label}</span>
+                <span className="text-sm font-bold leading-snug text-ink-800">{protect(label)}</span>
               </div>
             ))}
           </div>
@@ -83,23 +104,6 @@ export function Hero() {
             <p>7日間トライアル：カード登録あり・7日以内の解約は料金なし・8日目から課金</p>
           </div>
         </div>
-
-        <figure className="mx-auto mt-8 max-w-6xl sm:mt-14">
-          <div className="overflow-hidden rounded-2xl border border-surface-200 bg-white p-1.5 shadow-[0_24px_70px_rgba(20,54,48,0.16)] sm:rounded-3xl sm:p-2">
-            <Image
-              src="/shot-top-hero.webp"
-              alt="顧客情報、AIの提案、紹介候補の物件を表示した楽マッチ AIの製品画面"
-              width={1920}
-              height={1080}
-              preload
-              sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1280px) calc(100vw - 64px), 1152px"
-              className="h-auto w-full rounded-[0.7rem] sm:rounded-[1.1rem]"
-            />
-          </div>
-          <figcaption className="mt-3 text-center text-sm text-ink-600">
-            デモデータを表示した実際の製品画面
-          </figcaption>
-        </figure>
       </Container>
     </section>
   )

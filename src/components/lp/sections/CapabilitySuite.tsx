@@ -69,11 +69,11 @@ export function CapabilitySuite() {
                 delay={index * 0.05}
                 className={`min-w-0 sm:col-span-2 lg:col-span-1 ${index === 3 ? 'sm:col-start-2 lg:col-start-auto' : ''} ${index === 4 ? 'col-span-2 sm:col-span-2 lg:col-span-1' : ''}`}
               >
-                <div className="flex h-full min-w-0 flex-col rounded-2xl border border-surface-200 bg-surface-100/50 p-5 shadow-soft transition-shadow hover:shadow-soft-md">
+                <div className="flex h-full min-w-0 flex-col rounded-2xl border border-surface-200 bg-surface-100/50 p-4 shadow-soft transition-shadow hover:shadow-soft-md sm:p-5">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
                     <Icon className="h-5 w-5" strokeWidth={2} aria-hidden />
                   </span>
-                  <h3 className="mt-5 text-base font-bold text-ink-900">{protect(capability.title)}</h3>
+                  <h3 className="mt-5 text-sm font-bold text-ink-900 sm:text-base">{protect(capability.title)}</h3>
                   <p className="mt-2 min-w-0 flex-1 text-sm leading-relaxed text-ink-700">{protect(capability.body)}</p>
                   {capability.href ? (
                     <a
@@ -92,17 +92,19 @@ export function CapabilitySuite() {
 
         <Reveal delay={0.08}>
           <figure className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl border border-surface-200 bg-surface-100 shadow-soft-md">
-            <Image
-              src="/shot-bulk-input.webp"
-              alt="物件情報を取り込む楽マッチ AIの実画面"
-              width={1920}
-              height={1080}
-              sizes="(max-width: 899px) calc(100vw - 40px), 860px"
-              className="h-auto w-full"
-            />
+            <div className="relative aspect-video overflow-hidden bg-white">
+              <Image
+                src="/shot-bulk-input.webp"
+                alt="顧客情報と物件情報を取り込む楽マッチ AIの実画面"
+                fill
+                sizes="(max-width: 639px) 720px, 1634px"
+                className="scale-[1.9] object-cover"
+                style={{ transformOrigin: '55% 8%' }}
+              />
+            </div>
             <figcaption className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-sm sm:px-5">
               <span className="font-bold text-ink-800">物件情報を取り込み、内容を確認する画面</span>
-              <span className="text-xs text-ink-500">実画面・デモデータ</span>
+              <span className="text-xs text-ink-500">入力部分を拡大・実画面・デモデータ</span>
             </figcaption>
           </figure>
         </Reveal>

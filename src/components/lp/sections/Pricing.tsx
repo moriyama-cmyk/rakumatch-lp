@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { ArrowRight, Check, CircleHelp, CreditCard, MonitorPlay } from 'lucide-react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
@@ -58,6 +59,20 @@ export function Pricing() {
           </div>
         </Reveal>
 
+        <Reveal delay={0.14}>
+          <div className="mx-auto mt-6 max-w-3xl rounded-xl border border-surface-200 bg-surface-50 p-5 sm:p-6">
+            <p className="text-sm font-bold text-ink-900">どちらのプランにも含まれる5機能</p>
+            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+              {COMMON_FEATURES.map((feature) => (
+                <li key={feature} className="flex items-start gap-2 text-sm leading-relaxed text-ink-700 sm:last:col-span-2">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" strokeWidth={3} aria-hidden />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+
         <Reveal delay={0.16}>
           <div className="mx-auto mt-6 max-w-3xl rounded-xl border border-primary-200 bg-primary-50 p-5 sm:p-6">
             <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
@@ -97,12 +112,12 @@ export function Pricing() {
             <div className="flex items-start gap-3">
               <CircleHelp className="mt-0.5 h-5 w-5 shrink-0 text-primary-600" aria-hidden />
               <div>
-                <p className="text-sm font-bold text-ink-900">本ページ公開後の新規契約・先着5アカウントに、初回のオンライン相談</p>
+                <p className="text-sm font-bold text-ink-900">刷新版の本ページ公開後に成立した新規有料契約・先着5契約に、初回のオンライン相談</p>
                 <p className="mt-1 text-sm leading-relaxed text-ink-700">
-                  開発者本人が30分・1回、オンラインでご相談を受けます。対象は{SUPPORT_SCOPE.join('、')}です。契約後、登録メールアドレスへ日程調整をご案内します。
+                  1契約につき1回、開発者本人が30分、オンラインでご相談を受けます。対象は{SUPPORT_SCOPE.join('、')}です。契約後、登録メールアドレスへ日程調整をご案内します。
                 </p>
                 <p className="mt-2 text-xs leading-relaxed text-ink-500">
-                  入力代行、個別の営業判断、法務相談は対象外です。
+                  入力代行、個別の営業判断、法務相談は対象外です。受付枠が終了した場合は、本ページからこの案内を削除します。
                 </p>
               </div>
             </div>
@@ -110,9 +125,15 @@ export function Pricing() {
         </Reveal>
 
         <Reveal delay={0.12}>
-          <p className="mx-auto mt-6 max-w-3xl text-center text-xs leading-relaxed text-ink-500">
-            料金は税込・1人あたり月額です。お支払い方法や解約後の扱いは、特定商取引法に基づく表記をご確認ください。
-          </p>
+          <div className="mx-auto mt-6 flex max-w-3xl flex-col items-center text-center text-xs leading-relaxed text-ink-500">
+            <p>料金は税込・1人あたり月額です。</p>
+            <Link
+              href="/tokusho"
+              className="inline-flex min-h-11 items-center rounded-md font-bold text-primary-700 underline decoration-primary-300 underline-offset-4 hover:text-primary-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+            >
+              お支払い方法や解約後の扱いを、特定商取引法に基づく表記で確認する
+            </Link>
+          </div>
         </Reveal>
       </Container>
     </Section>
@@ -153,17 +174,7 @@ function PlanCard({ plan, featured }: { plan: Plan; featured: boolean }) {
         </dl>
       </div>
 
-      <p className="mt-5 text-sm font-bold text-ink-900">どちらのプランにも含まれる5機能</p>
-      <ul className="mt-3 flex-1 space-y-2.5">
-        {COMMON_FEATURES.map((feature) => (
-          <li key={feature} className="flex items-start gap-2 text-sm leading-relaxed text-ink-700">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-600" strokeWidth={3} aria-hidden />
-            {feature}
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-6 rounded-lg border border-surface-200 bg-white p-3.5">
+      <div className="mt-6 rounded-lg border border-surface-200 bg-white p-3.5 sm:mt-auto">
         <p className="flex items-center gap-2 text-sm font-bold text-ink-900"><CreditCard className="h-4 w-4 text-primary-600" aria-hidden />カード登録後、7日間試せます</p>
         <p className="mt-1 text-xs leading-relaxed text-ink-600">7日以内に解約すれば料金はかかりません。</p>
       </div>

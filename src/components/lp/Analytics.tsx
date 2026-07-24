@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import { SITE } from './site'
+import { copyVariantForPathname } from './site'
 
 /**
  * 計測タグ（GA4 + Microsoft Clarity）。両方とも無料。
@@ -38,9 +38,9 @@ declare global {
 
 export function Analytics() {
   const pathname = usePathname()
-  const isFirstPathname = useRef(true)
 
   useEffect(() => {
+    const initialCopyVariant = copyVariantForPathname(window.location.pathname)
     // --- GA4 ---
     if (GA_ID && !window.gtag) {
       const s = document.createElement('script')
@@ -63,7 +63,8 @@ export function Analytics() {
       // linker: LP（rakumatch-ai.com）→ アプリ（app.rakumatch-ai.com）の遷移を
       // 同一ユーザーとして計測する（クロスドメイン）。domains 配列はアプリ側と完全一致させる。
       gtag('config', GA_ID, {
-        user_properties: { copy_variant: SITE.copyVariant },
+        send_page_view: false,
+        user_properties: { copy_variant: initialCopyVariant },
         linker: { domains: ['rakumatch-ai.com', 'app.rakumatch-ai.com'] },
       })
     }
@@ -82,13 +83,35 @@ export function Analytics() {
       const first = document.getElementsByTagName('script')[0]
       first?.parentNode?.insertBefore(t, first)
       // 録画・ヒートマップをコピー別にフィルタできるようタグ付け
-      window.clarity('set', 'copy_variant', SITE.copyVariant)
+      window.clarity('set', 'copy_variant', initialCopyVariant)
     }
 
   }, [])
 
+  // RootLayout はページ遷移後も残るため、表示ページに合わせて計測タグを更新する。
+  useEffect(() => {
+    const activeCopyVariant = copyVariantForPathname(pathname)
+    window.gtag?.('set', 'user_properties', { copy_variant: activeCopyVariant })
+    window.clarity?.('set', 'copy_variant', activeCopyVariant)
+  }, [pathname])
+
+  // 自動送信と手動送信を併用せず、コピー識別子の更新後に各pathnameを1回だけ送る。
+  // GA4管理画面側でも「ブラウザ履歴イベントに基づくページの変更」を無効にすること。
+  useEffect(() => {
+    const activeCopyVariant = copyVariantForPathname(pathname)
+    window.gtag?.('event', 'page_view', {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: pathname,
+      copy_variant: activeCopyVariant,
+    })
+  }, [pathname])
+
   // Hero・お客様アプリ・料金まで実際に読まれたかを、CTAクリックと分けて記録する。
   useEffect(() => {
+    if (pathname !== '/') return
+
+    const activeCopyVariant = copyVariantForPathname(pathname)
     const sectionIds = ['top', 'customer-app', 'pricing'] as const
     const viewed = new Set<string>()
     const observer = new IntersectionObserver(
@@ -98,7 +121,7 @@ export function Analytics() {
           viewed.add(entry.target.id)
           window.gtag?.('event', 'section_view', {
             section_id: entry.target.id,
-            copy_variant: SITE.copyVariant,
+            copy_variant: activeCopyVariant,
           })
           window.clarity?.('set', 'section_id', entry.target.id)
           window.clarity?.('event', 'section_view')
@@ -114,20 +137,6 @@ export function Analytics() {
     }
 
     return () => observer.disconnect()
-  }, [])
-
-  // --- LP内ページ遷移の page_view（App Router の client 遷移は自動で発火しないため手動送信） ---
-  // 初回ロード分は gtag('config', ...) の自動 page_view があるためスキップし、
-  // 2回目以降（pathname が変わった＝クライアント側遷移）だけ送る。
-  useEffect(() => {
-    if (isFirstPathname.current) {
-      isFirstPathname.current = false
-      return
-    }
-    window.gtag?.('event', 'page_view', {
-      page_path: pathname,
-      copy_variant: SITE.copyVariant,
-    })
   }, [pathname])
 
   return null

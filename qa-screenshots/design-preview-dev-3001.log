@@ -1,0 +1,25 @@
+
+> rakumatch-lp@0.1.0 dev
+> next dev -p 3001
+
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://192.168.1.19:3001
+✓ Ready in 485ms
+- Experiments (use with caution):
+  · cpus: 1
+  ✓ workerThreads
+
+ GET /design-preview 200 in 2.1s (next.js: 1729ms, application-code: 366ms)
+ GET /design-preview 200 in 124ms (next.js: 5ms, application-code: 119ms)
+✓ Compiled in 75ms
+✓ Compiled in 106ms
+ GET /design-preview 200 in 404ms (next.js: 50ms, application-code: 354ms)
+ GET /design-preview 200 in 91ms (next.js: 2ms, application-code: 89ms)
+ GET /design-preview 200 in 101ms (next.js: 2ms, application-code: 98ms)
+ GET /design-preview 200 in 110ms (next.js: 2ms, application-code: 108ms)
+ GET /design-preview 200 in 116ms (next.js: 9ms, application-code: 107ms)
+ GET /design-preview 200 in 148ms (next.js: 7ms, application-code: 140ms)
+ GET /design-preview 200 in 93ms (next.js: 2ms, application-code: 90ms)
+ GET /design-preview 200 in 100ms (next.js: 3ms, application-code: 97ms)
+ GET /design-preview 200 in 99ms (next.js: 3ms, application-code: 96ms)
