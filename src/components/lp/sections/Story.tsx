@@ -24,11 +24,14 @@ export function Story() {
           </Reveal>
         </div>
 
+        {/* 2026-07-24 Phase5（森山さん指摘「もっとクオリティ高くしたい」対応・文言は一切変えない）:
+            ①写真を拡大（誰が作ったかを最初に大きく見せる）
+            ②末尾の孤立カードにあった核の一文「私はエンジニアではありません…」を、
+            　名前直後の大型プルクオートへ昇格（雑誌の人物記事の文法）。カードは統合し1枚に。 */}
         <Reveal delay={0.1}>
-          <div className="mx-auto mt-12 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 sm:p-10">
-            {/* 開発者の顔（主役・大きめ中央）。「誰が作ったか」を最初に見せる。 */}
+          <div className="mx-auto mt-12 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 sm:p-12">
             <div className="flex flex-col items-center text-center">
-              <span className="relative block h-32 w-32 overflow-hidden rounded-full bg-primary-50 shadow-soft-md ring-1 ring-ink-900/8 sm:h-44 sm:w-44">
+              <span className="relative block h-40 w-40 overflow-hidden rounded-full bg-primary-50 shadow-soft-md ring-1 ring-ink-900/8 sm:h-52 sm:w-52">
                 <picture>
                   <source srcSet="/founder.webp" type="image/webp" />
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -45,7 +48,16 @@ export function Story() {
               <p className="mt-1 text-sm text-ink-500">現役不動産営業 ／ 楽マッチ AI 開発者</p>
             </div>
 
-            <div className="mt-8 border-l-2 border-primary-600 pl-5">
+            {/* プルクオート（核の一文）。装飾の鉤括弧はaria-hiddenの飾り。 */}
+            <blockquote className="relative mx-auto mt-8 max-w-2xl text-center">
+              <span aria-hidden className="absolute -left-1 -top-4 text-5xl font-bold leading-none text-primary-200 sm:-left-6">“</span>
+              <p className="text-lg font-bold leading-relaxed text-ink-900 sm:text-xl">
+                私はエンジニアではありません。難しい操作は、私が一番嫌いです。だからこのアプリの操作は“貼るだけ”にしました。
+              </p>
+              <span aria-hidden className="absolute -bottom-6 -right-1 text-5xl font-bold leading-none text-primary-200 sm:-right-6">”</span>
+            </blockquote>
+
+            <div className="mx-auto mt-10 max-w-2xl border-l-2 border-primary-600 pl-5 text-left">
               <p className="text-base leading-relaxed text-ink-700">
                 東京で不動産売買をやっている、現役の営業マンです。
               </p>
@@ -65,16 +77,6 @@ export function Story() {
         <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-ink-500">
           これは投資家やエンジニアが机上で作ったツールではありません。現場の不便を1つずつ潰して作った、現場のための道具です。
         </p>
-
-        {/* 2026-07-19 森山さん指摘「こういうのいらん」で「導入事例は、まだ多くありません。」の
-            見出しと段落を削除。実績の少なさを自己申告するのは売る場面では自爆で、誠実さは
-            「現役営業が毎日使っている」という事実で十分に立っている。
-            ただし「私はエンジニアではありません／操作は"貼るだけ"」は製品の核なので残す。 */}
-        <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-surface-200 bg-white p-8 sm:p-10">
-          <p className="text-base leading-relaxed text-ink-700">
-            私はエンジニアではありません。難しい操作は、私が一番嫌いです。だからこのアプリの操作は“貼るだけ”にしました。
-          </p>
-        </div>
       </Container>
     </Section>
   )
