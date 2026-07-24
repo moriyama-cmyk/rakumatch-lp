@@ -35,10 +35,14 @@ interface PropertyCardProps {
 }
 
 /** 物件種別バッジの色分け（PropertiesPage.tsx の propertyTypeColor と同じ考え方の簡略版） */
+// 2026-07-24 Phase1: 異世界パレット排除→白緑金の範囲に整理。
+// マンション=primary(ブランド緑)、戸建=accent(ゴールド、バッジ用途で面塗り禁止規約に抵触しない)、
+// 土地/無指定=surface+ink(中立)、その他だけ注意色amberを残す（最小限）。
 function propertyTypeBadgeClass(propertyType?: string): string {
-  if (!propertyType) return 'bg-slate-100 text-slate-700'
-  if (propertyType.includes('マンション')) return 'bg-blue-100 text-blue-700'
-  if (propertyType === '土地') return 'bg-emerald-100 text-emerald-700'
+  if (!propertyType) return 'bg-surface-100 text-ink-700'
+  if (propertyType.includes('マンション')) return 'bg-primary-50 text-primary-700'
+  if (propertyType.includes('戸建')) return 'bg-accent-50 text-accent-700'
+  if (propertyType === '土地') return 'bg-surface-100 text-ink-700'
   return 'bg-amber-100 text-amber-700'
 }
 
@@ -52,7 +56,8 @@ export function PropertyCard({ variant, data, className }: PropertyCardProps) {
     return (
       <div className={cn('rounded-2xl bg-white p-3 shadow-md', className)}>
         <h3 className="truncate text-base font-bold leading-snug text-ink-900">{d.title}</h3>
-        <p className="mt-0.5 text-lg font-bold leading-tight text-blue-700">{d.price}</p>
+        {/* 2026-07-24 Phase1: blue-700→ink-900（太字のまま） */}
+        <p className="mt-0.5 text-lg font-bold leading-tight text-ink-900">{d.price}</p>
         {d.meta && <p className="mt-1 truncate text-sm leading-snug text-ink-600">{d.meta}</p>}
         {d.status && (
           <div className="mt-2 flex flex-wrap items-center gap-1.5">
@@ -100,7 +105,8 @@ export function PropertyCard({ variant, data, className }: PropertyCardProps) {
       {d.meta && <p className="mt-2 truncate text-sm text-ink-600">{d.meta}</p>}
       {d.matchCount != null && (
         <div className="mt-2 flex items-center justify-end border-t border-surface-100 pt-2">
-          <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full bg-violet-50 px-2.5 py-1 text-sm font-semibold text-violet-600">
+          {/* 2026-07-24 Phase1: violet-50/violet-600→primary-50/primary-700 */}
+          <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full bg-primary-50 px-2.5 py-1 text-sm font-semibold text-primary-700">
             <Users className="h-3.5 w-3.5" aria-hidden />
             マッチ {d.matchCount}名
           </span>

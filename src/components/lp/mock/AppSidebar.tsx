@@ -26,17 +26,20 @@ interface AppSidebarProps {
 
 /**
  * アプリ左サイドバーの再現（デスクトップ画面の額装で使用）。
- * 実装同様、'ai-hub' が選択中のときだけ紫、それ以外は青で塗る。
+ * 実装同様、'ai-hub' が選択中のときだけ一段濃いprimaryで、それ以外はprimary-600で塗る
+ * （2026-07-24 Phase1: 元は紫/青の別色相だったが、ブランド緑の濃淡差に統一）。
  */
 export function AppSidebar({ activeKey = 'properties', items = APP_SIDEBAR_ITEMS, className }: AppSidebarProps) {
   return (
-    <div className={cn('flex h-full w-48 shrink-0 flex-col bg-slate-900 py-4', className)}>
-      <div className="flex items-center gap-2 border-b border-slate-700 px-4 pb-4">
+    // 2026-07-24 Phase1: 異世界パレット排除→ブランド緑へ（slate-900→ink-900）
+    <div className={cn('flex h-full w-48 shrink-0 flex-col bg-ink-900 py-4', className)}>
+      <div className="flex items-center gap-2 border-b border-white/10 px-4 pb-4">
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary-600 text-sm font-bold text-white">
           R
         </span>
         <span className="truncate text-base font-bold text-white">
-          楽マッチ <span className="text-blue-400">AI</span>
+          {/* 2026-07-24 Phase1: blue-400→primary-200（ダーク面上の明るいブランド緑） */}
+          楽マッチ <span className="text-primary-200">AI</span>
         </span>
       </div>
       <nav className="flex-1 space-y-1 px-3 pt-3">
@@ -49,9 +52,11 @@ export function AppSidebar({ activeKey = 'properties', items = APP_SIDEBAR_ITEMS
                 'flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium',
                 active
                   ? item.key === 'ai-hub'
-                    ? 'bg-violet-600 text-white'
-                    : 'bg-blue-600 text-white'
-                  : 'text-slate-300',
+                    // 2026-07-24 Phase1: violet-600→primary-700（同系統で一段濃く区別）
+                    ? 'bg-primary-700 text-white'
+                    // 2026-07-24 Phase1: blue-600→primary-600
+                    : 'bg-primary-600 text-white'
+                  : 'text-white/60',
               )}
             >
               <item.icon className="h-4 w-4 shrink-0" aria-hidden />

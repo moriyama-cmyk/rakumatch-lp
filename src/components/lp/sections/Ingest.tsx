@@ -157,34 +157,35 @@ function MockReinsList({ selected = false }: { selected?: boolean }) {
       aria-hidden="true"
       className="overflow-hidden rounded-2xl border-2 border-surface-200 bg-white shadow-soft-lg"
     >
-      <div className="flex items-center justify-between bg-[#2f5b3f] px-4 py-3">
+      {/* 2026-07-24 Phase1: 直値排除。深緑のヘッダーはブランドトークンprimary-800へ寄せる */}
+      <div className="flex items-center justify-between bg-primary-800 px-4 py-3">
         <span className="text-sm font-bold text-white">売買検索結果一覧（在庫）</span>
         <span className="text-sm font-semibold text-white/90">500件</span>
       </div>
-      <div className={selected ? 'bg-[#2a5bb0]' : 'bg-white'}>
+      {/* 2026-07-24 Phase1: 全面ブルー(#2a5bb0)の塗りつぶしを鎮静化。
+          選択状態は薄いハイライト(/15)のみとし、テキスト色は通常のまま。
+          「選択中」であることの主張は下のフッター行（primary-700濃色）に集約する。 */}
+      <div className={selected ? 'bg-[#2a5bb0]/15' : 'bg-white'}>
         {MOCK_ROWS.map((r) => (
           <div
             key={r.no}
-            className={cn(
-              'flex items-center justify-between gap-3 border-b px-4 py-3.5 last:border-b-0',
-              selected ? 'border-white/25' : 'border-surface-100',
-            )}
+            className="flex items-center justify-between gap-3 border-b border-surface-100 px-4 py-3.5 last:border-b-0"
           >
             <div className="min-w-0">
-              <p className={cn('truncate text-sm font-semibold leading-snug', selected ? 'text-white' : 'text-ink-800')}>
+              <p className="truncate text-sm font-semibold leading-snug text-ink-800">
                 {r.type}
               </p>
-              <p className={cn('truncate text-sm leading-snug', selected ? 'text-white/90' : 'text-ink-500')}>
+              <p className="truncate text-sm leading-snug text-ink-500">
                 {r.addr}
               </p>
             </div>
-            <p className={cn('shrink-0 text-base font-bold leading-snug', selected ? 'text-white' : 'text-ink-900')}>
+            <p className="shrink-0 text-base font-bold leading-snug text-ink-900">
               {r.price}
             </p>
           </div>
         ))}
       </div>
-      <p className={cn('px-4 py-3 text-center text-sm font-semibold', selected ? 'bg-[#2a5bb0] text-white' : 'text-ink-600')}>
+      <p className={cn('px-4 py-3 text-center text-sm font-semibold', selected ? 'bg-primary-700 text-white' : 'text-ink-600')}>
         {selected ? '全選択中 — Ctrl+C でコピー' : '画面は再現イメージ（架空データ）'}
       </p>
     </div>

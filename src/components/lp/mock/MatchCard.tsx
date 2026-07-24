@@ -50,7 +50,8 @@ export function MatchCard({ data, className }: MatchCardProps) {
           className={cn(
             'shrink-0 whitespace-nowrap rounded-full border px-2.5 py-0.5 text-base font-bold',
             isHigh
-              ? 'border-emerald-300 bg-emerald-100 text-emerald-700'
+              // 2026-07-24 Phase1: emerald→primary（amberは注意色として維持）
+              ? 'border-primary-300 bg-primary-100 text-primary-700'
               : 'border-amber-300 bg-amber-100 text-amber-700',
           )}
         >
@@ -66,7 +67,8 @@ export function MatchCard({ data, className }: MatchCardProps) {
           {reasons.slice(0, 2).map((r) => (
             <span
               key={r}
-              className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-sm font-medium text-emerald-700"
+              // 2026-07-24 Phase1: emerald→primary（理由チップ）
+              className="inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-primary-200 bg-primary-50 px-2 py-0.5 text-sm font-medium text-primary-700"
             >
               <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
               {r}
