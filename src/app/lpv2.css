@@ -1206,11 +1206,16 @@
   border-collapse: collapse;
   background: var(--surface);
 }
+/* 6カラム版（Excel/A社/B社/C社/楽マッチ）。中間幅ではコンテナ内スクロールに逃がす */
+.lpv2 .compare-table--wide {
+  min-width: 1024px;
+}
 .lpv2 .compare-table th,
 .lpv2 .compare-table td {
   text-align: left;
-  padding: 1rem 1.15rem;
-  font-size: 0.9rem;
+  padding: 0.85rem 0.9rem;
+  font-size: 0.84rem;
+  line-height: 1.65;
   border-bottom: 1px solid var(--line);
   vertical-align: top;
 }
@@ -1222,10 +1227,25 @@
   font-weight: 700;
   background: rgba(15, 23, 42, 0.02);
 }
+.lpv2 .compare-table thead th .th-sub {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--sans, inherit);
+  font-size: 0.66rem;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  color: var(--text-500);
+}
+.lpv2 .compare-table thead th.win-head {
+  color: var(--text-900);
+  background: var(--emerald-100);
+  border-left: 3px solid var(--emerald-500);
+}
 .lpv2 .compare-table tbody th {
   color: var(--text-900);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
+  min-width: 9.5em;
 }
 .lpv2 .compare-table td.win {
   color: var(--text-900);
@@ -1266,25 +1286,27 @@
   flex-direction: column;
   gap: 0.55rem;
 }
+/* 2026-07-24 スマホ見やすさ改善: 右寄せ値をやめ、ラベル列固定の左寄せ2カラムに */
 .lpv2 .compare-card__row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0.8rem;
+  display: grid;
+  grid-template-columns: 6.6em 1fr;
+  align-items: start;
+  gap: 0.7rem;
   font-size: 0.86rem;
-  padding: 0.4rem 0.6rem;
+  padding: 0.45rem 0.6rem;
   border-radius: var(--radius-sm);
 }
 .lpv2 .compare-card__row-label {
   color: var(--text-500);
   font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.03em;
-  flex: none;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  line-height: 2;
 }
 .lpv2 .compare-card__row-value {
-  text-align: right;
+  text-align: left;
   color: var(--text-700);
+  line-height: 1.65;
 }
 .lpv2 .compare-card__row--win {
   background: var(--emerald-100);
@@ -1293,6 +1315,12 @@
 .lpv2 .compare-card__row--win .compare-card__row-value {
   color: var(--text-900);
   font-weight: 700;
+}
+.lpv2 .compare-note {
+  margin-top: 1.1rem;
+  font-size: 0.74rem;
+  line-height: 1.8;
+  color: var(--text-500);
 }
 
 /* ==========================================================
