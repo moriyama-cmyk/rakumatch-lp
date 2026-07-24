@@ -59,9 +59,10 @@ export function MockFrame({
         {variant === 'desktop' && (
           <div className="overflow-hidden rounded-xl border border-ink-900/8 bg-white shadow-soft-lg">
             <div className="flex items-center gap-2 border-b border-surface-200 bg-surface-100 px-4 py-2.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-surface-200" />
-              <span className="h-2.5 w-2.5 rounded-full bg-surface-200" />
-              <span className="h-2.5 w-2.5 rounded-full bg-surface-200" />
+              {/* 2026-07-24 Phase5: 灰一色→低彩度の赤黄緑信号機に（本物のブラウザ額装らしさ） */}
+              <span className="h-2.5 w-2.5 rounded-full bg-red-300" />
+              <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
+              <span className="h-2.5 w-2.5 rounded-full bg-green-300" />
               {/* 再現UI内の文字は最小14px（text-sm）。以前は 0.7rem=11.2px で読めなかった。 */}
               {/* min-w-0 が無いと flex 子の既定 min-width:auto で truncate が効かず、
                   長いURLがそのまま枠を押し広げる（モバイルで実際に起きた）。 */}

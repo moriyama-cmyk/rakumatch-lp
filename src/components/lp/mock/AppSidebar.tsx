@@ -33,10 +33,10 @@ export function AppSidebar({ activeKey = 'properties', items = APP_SIDEBAR_ITEMS
   return (
     // 2026-07-24 Phase1: 異世界パレット排除→ブランド緑へ（slate-900→ink-900）
     <div className={cn('flex h-full w-48 shrink-0 flex-col bg-ink-900 py-4', className)}>
+      {/* 2026-07-24 Phase5: 「R」頭文字ブロックの手作り感を解消し、LPヘッダーと同じ実アイコン画像で
+          ブランド統一（Header.tsx / Footer.tsx / ui/Logo.tsx と同じ /icon-192.png）。 */}
       <div className="flex items-center gap-2 border-b border-white/10 px-4 pb-4">
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary-600 text-sm font-bold text-white">
-          R
-        </span>
+        <img src="/icon-192.png" alt="" aria-hidden className="h-6 w-6 rounded-md" />
         <span className="truncate text-base font-bold text-white">
           {/* 2026-07-24 Phase1: blue-400→primary-200（ダーク面上の明るいブランド緑） */}
           楽マッチ <span className="text-primary-200">AI</span>

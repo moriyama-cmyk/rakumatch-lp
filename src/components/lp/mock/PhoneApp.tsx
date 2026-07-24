@@ -22,7 +22,8 @@ export function PhoneApp({ customerName = '田中様', properties, className, no
   return (
     <MockFrame variant="phone" className={className} note={note}>
       <div className="border-b border-surface-200 bg-white px-4 py-3">
-        <h2 className="truncate text-base font-bold text-ink-900">{customerName}の物件リスト</h2>
+        {/* 2026-07-24 Phase5: ヘッダーも本文と揃えて一段引き上げ（text-base→text-lg） */}
+        <h2 className="truncate text-lg font-bold text-ink-900">{customerName}の物件リスト</h2>
       </div>
       <div className="space-y-2.5 bg-surface-50 p-3">
         {properties.map((p, i) => (

@@ -55,10 +55,11 @@ export function PropertyCard({ variant, data, className }: PropertyCardProps) {
     const d = data as PropertyCardCustomerData
     return (
       <div className={cn('rounded-2xl bg-white p-3 shadow-md', className)}>
-        <h3 className="truncate text-base font-bold leading-snug text-ink-900">{d.title}</h3>
-        {/* 2026-07-24 Phase1: blue-700→ink-900（太字のまま） */}
-        <p className="mt-0.5 text-lg font-bold leading-tight text-ink-900">{d.price}</p>
-        {d.meta && <p className="mt-1 truncate text-sm leading-snug text-ink-600">{d.meta}</p>}
+        {/* 2026-07-24 Phase5: 物件名/価格/メタを一段引き上げ（お客様アプリの原寸再現として
+            読める太さ・大きさに。text-base/lg/sm → text-lg/xl/base）。 */}
+        <h3 className="truncate text-lg font-bold leading-snug text-ink-900">{d.title}</h3>
+        <p className="mt-0.5 text-xl font-bold leading-tight text-ink-900">{d.price}</p>
+        {d.meta && <p className="mt-1 truncate text-base leading-snug text-ink-600">{d.meta}</p>}
         {d.status && (
           <div className="mt-2 flex flex-wrap items-center gap-1.5">
             {d.status === 'viewing' && (
