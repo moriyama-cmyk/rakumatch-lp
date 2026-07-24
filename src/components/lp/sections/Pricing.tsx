@@ -126,7 +126,7 @@ export function Pricing() {
         <div className="mt-16 grid gap-5 sm:mt-20 sm:grid-cols-2">
           {PLANS.map((p, i) => (
             <Reveal key={p.name} delay={i * 0.08}>
-              <PlanCard plan={p} highlight={i === 1} />
+              <PlanCard plan={p} location={i === 1 ? 'pricing_premium' : 'pricing_standard'} />
             </Reveal>
           ))}
         </div>
@@ -146,18 +146,9 @@ export function Pricing() {
   )
 }
 
-function PlanCard({ plan, highlight }: { plan: Plan; highlight?: boolean }) {
+function PlanCard({ plan, location }: { plan: Plan; location: 'pricing_standard' | 'pricing_premium' }) {
   return (
-    <div
-      className={`relative flex h-full flex-col rounded-xl border p-7 sm:p-8 ${
-        highlight ? 'border-primary-600 bg-primary-50' : 'border-surface-200 bg-surface-50'
-      }`}
-    >
-      {highlight && (
-        <span className="absolute right-6 top-6 rounded-md bg-primary-600 px-3 py-1 text-xs font-bold text-white">
-          たっぷり
-        </span>
-      )}
+    <div className="flex h-full flex-col rounded-xl border border-surface-200 bg-surface-50 p-7 sm:p-8">
       <p className="text-lg font-bold text-ink-900">{plan.name}</p>
       <p className="mt-1 text-sm text-ink-500">{plan.tagline}</p>
 
@@ -190,9 +181,9 @@ function PlanCard({ plan, highlight }: { plan: Plan; highlight?: boolean }) {
 
       <GlowButton
         href={SITE.ctaTryUrl}
-        variant={highlight ? 'primary' : 'secondary'}
+        variant="secondary"
         className="mt-5 w-full"
-        onClick={() => trackCta(highlight ? 'pricing_premium' : 'pricing_standard', SITE.ctaTryUrl)}
+        onClick={() => trackCta(location, SITE.ctaTryUrl)}
       >
         無料で試す
         <ArrowRight className="h-4 w-4" />

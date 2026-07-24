@@ -46,11 +46,13 @@ export function Hero() {
                 右端で見切れた。下限を 1.9rem(≈30.4px・最長かたまり10字=304px<343px)に戻し、
                 かたまりを「〜の動き」「ができる。」の2つに割って折り返せるようにする。 */}
             <p className="mt-2.5 font-bold leading-[1.16] tracking-[-0.005em] text-ink-900 [font-size:clamp(1.9rem,6.4vw,4rem)] sm:mt-3.5">
+              {/* 2026-07-24 デザイン改修: 自社ルール「accent(金)は数値強調・実績バッジ限定」に準拠し、
+                  強調を3箇所から「トップ営業マンの動き」1箇所へ整理。 */}
               <span className="inline-block whitespace-nowrap">
-                <span className="text-accent-600">新人</span>でも、
+                <span>新人</span>でも、
               </span>
               <span className="inline-block whitespace-nowrap">
-                <span className="text-accent-600">初日</span>から
+                <span>初日</span>から
               </span>
               <br className="hidden sm:block" />
               <span className="inline-block whitespace-nowrap">

@@ -28,14 +28,14 @@ export function EraShift() {
           </Reveal>
         </div>
 
-        {/* ビフォーアフター2カラム。昔=沈んだグレー／今=ゴールド発光。優越断定語は使わない。 */}
+        {/* ビフォーアフター2カラム。昔=沈んだグレー／今=緑で浮かせる。優越断定語は使わない。 */}
         <Reveal delay={0.12}>
           <div className="mx-auto mt-10 flex max-w-3xl flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <div className="flex-1 rounded-xl border border-surface-200 bg-surface-100 p-6 text-center opacity-[0.85]">
-              {/* 親カードの opacity-[0.85] が乗るため、ink-500 だと 12px で 3.76:1 まで落ちる。
-                  ink-600 なら合成後も 4.80:1 で 4.5:1 を満たす（沈んだ見えは opacity 側で担保）。 */}
-              <p className="text-xs font-bold tracking-wide text-ink-600">これまでのAI営業ツール</p>
-              <ul className="mt-4 space-y-2 text-sm font-medium text-ink-700">
+            <div className="flex-1 rounded-xl bg-surface-100 p-6 text-center opacity-[0.85]">
+              {/* 沈んだ見えは opacity 側で担保しつつ、比較対象を読める文字サイズで明示する。
+                  ※色は ink-600 を維持（親の opacity-[0.85] 合成で ink-500 は 3.76:1 となり 4.5:1 を割る）。 */}
+              <p className="text-base font-bold tracking-wide text-ink-600">これまでのAI営業ツール</p>
+              <ul className="mt-4 space-y-2 text-base font-medium text-ink-600">
                 <li>初期費用 数十万円〜</li>
                 <li>法人・店舗単位の契約</li>
                 <li>個人には手が届かない</li>
@@ -46,7 +46,7 @@ export function EraShift() {
               <ArrowRight className="h-6 w-6 rotate-90 text-primary-400 sm:h-7 sm:w-7 sm:rotate-0" aria-hidden />
             </div>
 
-            <div className="flex-1 rounded-xl border border-accent-500/40 bg-white p-6 text-center transition-shadow duration-200 hover:shadow-soft-md">
+            <div className="flex-1 rounded-xl border border-primary-600/40 bg-primary-50 p-6 text-center transition-shadow duration-200 hover:shadow-soft-md">
               <p className="text-xs font-bold tracking-wide text-accent-700">楽マッチ</p>
               <p className="mt-3">
                 <span className="text-4xl font-bold text-primary-700 sm:text-5xl">月3,000円</span>
