@@ -82,7 +82,10 @@ export function Pricing() {
 
             <StepArrow />
             <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
-              <span aria-hidden="true" className="invisible rounded-full px-3 py-1 text-xs font-bold">
+              {/* 2026-07-24 修正: invisible要素はモバイル縦積みでも高さを占有し約28pxの
+                  幽霊余白になっていた。sm未満はhiddenで高さごと消し、sm以上のみinvisibleで
+                  基準線合わせ（0円ゾーンのラベル行と高さを揃える）を有効にする。 */}
+              <span aria-hidden="true" className="hidden rounded-full px-3 py-1 text-xs font-bold sm:invisible sm:block">
                 spacer
               </span>
               <div className="flex flex-1 items-stretch p-3">
@@ -92,7 +95,10 @@ export function Pricing() {
 
             <StepArrow />
             <div className="flex flex-1 flex-col items-center gap-2 sm:flex-initial">
-              <span aria-hidden="true" className="invisible rounded-full px-3 py-1 text-xs font-bold">
+              {/* 2026-07-24 修正: invisible要素はモバイル縦積みでも高さを占有し約28pxの
+                  幽霊余白になっていた。sm未満はhiddenで高さごと消し、sm以上のみinvisibleで
+                  基準線合わせ（0円ゾーンのラベル行と高さを揃える）を有効にする。 */}
+              <span aria-hidden="true" className="hidden rounded-full px-3 py-1 text-xs font-bold sm:invisible sm:block">
                 spacer
               </span>
               <div className="flex flex-1 items-stretch p-3">

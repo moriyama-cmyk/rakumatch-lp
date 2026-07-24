@@ -102,6 +102,8 @@ export function Why() {
           </Reveal>
         </div>
 
+        {/* 2026-07-24 修正: 右端白フェードが after 疑似要素と実体divで二重描画されていたため、
+            後から追加された実体divを撤去（after疑似要素のほうを正として残す）。 */}
         <Reveal delay={0.12}>
           <div className="relative mt-12 sm:mt-16 after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-20 after:w-10 after:bg-gradient-to-l after:from-white after:to-transparent sm:after:hidden">
             <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
@@ -149,10 +151,6 @@ export function Why() {
                 </tbody>
               </table>
             </div>
-            <div
-              className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white sm:hidden"
-              aria-hidden
-            />
           </div>
         </Reveal>
 
