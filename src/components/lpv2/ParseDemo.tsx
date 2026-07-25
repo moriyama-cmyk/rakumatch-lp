@@ -43,13 +43,24 @@ export function ParseDemo() {
     <div ref={ref} className="parse-demo">
       <div className="parse-demo__raw">
         <span className="tag">レインズ一覧のコピペ（例・架空データ）</span>
+        {/* 実装ノート(2026-07-25): 各行を素のJSXテキストで書くと、JSXが改行を半角スペースに
+            変換する／要素の直前後の改行は消える。その結果、全角スペース前に半角スペースが混ざり、
+            最後の「…ほか12件」も改行されず前の行に続いてしまっていた。
+            white-space:pre-wrap を活かすため、文字列は {'…'} で明示し、改行は \n で入れる
+            （AB案モックと同じ「物件1件ぶんの長い1行＋改行＋…ほか12件」の構成）。 */}
         <pre>
-          中央区月島2丁目　中古マンション　<span className="tok">3LDK</span>　専有<span className="tok">68.20㎡</span>
-          （21.29坪）　<span className="tok">6,480万円</span>（坪単価304万円）
-          <span className="tok">都営大江戸線「月島」徒歩4分</span>　総階数14階建/8階部分
-          <span className="tok">築11年</span>（2015年3月）　バルコニー南向き・角部屋　二重サッシ
-          　管理費28,000円／修繕積立金15,200円　取引態様：媒介　情報公開日：2026/06/03　現況：空家
-          　引渡し：相談
+          {'中央区月島2丁目　中古マンション　'}
+          <span className="tok">3LDK</span>
+          {'　専有'}
+          <span className="tok">68.20㎡</span>
+          {'（21.29坪）　'}
+          <span className="tok">6,480万円</span>
+          {'（坪単価304万円）　'}
+          <span className="tok">都営大江戸線「月島」徒歩4分</span>
+          {'　総階数14階建/8階部分　'}
+          <span className="tok">築11年</span>
+          <span className="nowrap">（2015年3月）</span>
+          {'　バルコニー南向き・角部屋　二重サッシ　管理費28,000円／修繕積立金15,200円　取引態様：媒介　情報公開日：2026/06/03　現況：空家　引渡し：相談\n'}
           <span className="parse-demo__more">…ほか12件</span>
         </pre>
         <span className="parse-demo__cursor" aria-hidden="true" />

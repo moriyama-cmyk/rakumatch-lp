@@ -12,7 +12,7 @@
 // （lpv2-crop-ai-input-panels / lpv2-crop-property-match）に差し替えている。
 // STEP3はお客様アプリ節からの「もう見えていました」の呼応（右パネル）を保つため
 // 全景（lpv2-customer-detail）のまま。
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { trackCta } from '@/lib/track'
 import { BrowserShot, type DetailCrop, type Pin } from './BrowserShot'
 import { ParseDemo } from './ParseDemo'
@@ -25,7 +25,7 @@ type StepDef = {
   step: StepId
   url: string
   label: string
-  title: string
+  title: ReactNode
   desc: string
   image: { src: string; width: number; height: number; alt: string }
   pins: Pin[]
@@ -71,7 +71,14 @@ const STEPS: StepDef[] = [
     step: '2',
     url: 'app.rakumatch-ai.com/properties/12',
     label: 'STEP 2 — MATCH',
-    title: '「誰に紹介するか」は、もう並んでいる。',
+    // 「」の直後で折れて「は、」が次行の頭に取り残されるため、文節をnowrapで固める（2026-07-25修正）
+    title: (
+      <>
+        <span className="nowrap">「誰に紹介するか」は、</span>
+        <wbr />
+        <span className="nowrap">もう並んでいる。</span>
+      </>
+    ),
     desc: '登録された物件には、マッチ○名バッジが自動でつく。開けば、条件に合う顧客がスコア順に並ぶ。顧客を開いても、合う物件が同じように並ぶ。案内が済んだ物件は、静かに候補から外れていく。',
     image: {
       src: '/lpv2/lpv2-property-detail.webp',
@@ -269,7 +276,8 @@ export function CoreLoopSection() {
                   </div>
                 </div>
                 <figcaption className="fig-caption">
-                  Fig.01–03 — 丸投げ入力 → 自動マッチ → そのまま提案（デモデータ表示）
+                  Fig.01–03 — <span className="nowrap">丸投げ入力 → 自動マッチ</span>{' '}
+                  <span className="nowrap">→ そのまま提案（デモデータ表示）</span>
                 </figcaption>
               </div>
             </div>

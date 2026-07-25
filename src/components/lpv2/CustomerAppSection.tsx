@@ -32,9 +32,9 @@ export function CustomerAppSection() {
         <div className="section-head">
           <p className="eyebrow">お客様アプリ</p>
           <h2>共有した物件が、届いている。</h2>
+          {/* ソースで折り返すとJSXが改行を半角スペースにして本文中に空きができる。1行で書く（2026-07-25修正） */}
           <p className="lead">
-            業界でも珍しい、逆方向の共有。お客様がポータルサイトで気になった物件を「共有」するだけで、
-            あなたの楽マッチにAIのコメント付きで届く。ご家族との共有もできる。
+            業界でも珍しい、逆方向の共有。お客様がポータルサイトで気になった物件を「共有」するだけで、あなたの楽マッチにAIのコメント付きで届く。ご家族との共有もできる。
           </p>
         </div>
 
@@ -54,7 +54,7 @@ export function CustomerAppSection() {
         <div className="app-back-note">
           <span aria-hidden="true">↑</span>
           <p>
-            <strong>営業側の画面は、もう見えていました。</strong>{' '}
+            <strong>営業側の画面は、もう見えていました。</strong>
             STEP3（Fig.03）の右側に写っていたのが、これです。顧客詳細の「アプリ」タブで、保存物件と温度感がそのまま見えます。
           </p>
         </div>

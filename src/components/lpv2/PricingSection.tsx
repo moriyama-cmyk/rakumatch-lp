@@ -14,8 +14,13 @@ export function PricingSection() {
       <div className="wrap">
         <div className="section-head">
           <p className="eyebrow">料金</p>
+          {/* スマホ幅で「円/」と「人から。」が分断されるため、価格の一続きをnowrapで固める（2026-07-25修正） */}
           <h2>
-            月<span className="num">3,000</span>円/人から。<span className="nowrap">隠しません。</span>
+            <span className="nowrap">
+              月<span className="num">3,000</span>円/人から。
+            </span>
+            <wbr />
+            <span className="nowrap">隠しません。</span>
           </h2>
           <p className="lead">本体価格以外、余計な費用はありません。価格の非公開が主流の業界で、これが楽マッチの立ち位置です。</p>
         </div>

@@ -29,11 +29,16 @@ export function NightStory() {
             <br />
             頭の中だけで探している。
           </h1>
+          {/* 実装ノート: 日本語の本文はJSX上でも1行に書く。ソースを折り返すと、
+              JSXが改行を半角スペース1個に変換して本文中に空きができる（2026-07-25修正）。 */}
           <p className="sub lpv2-reveal">
-            レインズの新着一覧。ポータルの反響メール。情報は増えていくのに、頼れるのは自分の記憶だけ。
-            表計算ソフトは、記録は残してくれる。けれど、次に誰に、どの物件を紹介すべきかまでは、教えてくれない。
+            レインズの新着一覧。ポータルの反響メール。情報は増えていくのに、頼れるのは自分の記憶だけ。表計算ソフトは、記録は残してくれる。けれど、次に誰に、どの物件を紹介すべきかまでは、教えてくれない。
           </p>
-          <p className="turn lpv2-reveal">——だから今夜、試してみることにした。</p>
+          {/* スマホ幅で「試してみる／ことにした。」と語中で割れるため、文節をnowrapで固める */}
+          <p className="turn lpv2-reveal">
+            <span className="nowrap">——だから今夜、</span>
+            <span className="nowrap">試してみることにした。</span>
+          </p>
           <p className="lpv2-reveal" style={{ marginTop: 22 }}>
             <a
               className="inline-link"
@@ -56,13 +61,17 @@ export function NightStory() {
           <p className="eyebrow lpv2-reveal center" style={{ justifyContent: 'center' }}>
             夜の記録 ・ 23:58
           </p>
-          <h2 className="lpv2-reveal">
-            答えは、
-            <br />
-            名前を持っていた。
-          </h2>
-          <p className="name-wordmark lpv2-reveal">楽マッチ</p>
-          <p className="turn-words lpv2-reveal">丸投げ入力　・　自動マッチ　・　そのまま提案</p>
+          {/* 2026-07-25 森山さん指示: 「答えは楽マッチAI」だけでよい。
+              「名前を持っていた。」の一行を削除し、ワードマークをフッター/ヘッダーと同じ「楽マッチAI」に統一。 */}
+          <h2 className="lpv2-reveal">答えは、</h2>
+          <p className="name-wordmark lpv2-reveal">楽マッチAI</p>
+          {/* 中黒はCSSの擬似要素で入れる。文字列で持つと、スマホ幅で
+              「…自動マッチ　・」と行末に中黒だけが取り残される（2026-07-25修正）。 */}
+          <p className="turn-words lpv2-reveal">
+            <span>丸投げ入力</span>
+            <span>自動マッチ</span>
+            <span>そのまま提案</span>
+          </p>
           <p className="turn-note lpv2-reveal">説明は、朝に。</p>
         </div>
       </section>

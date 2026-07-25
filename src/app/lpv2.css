@@ -402,6 +402,31 @@
   font-size: 0.9rem;
   letter-spacing: 0.22em;
   opacity: 0.72;
+  /* 3語＋中黒。中黒を擬似要素にすることで、折り返しても行末に中黒だけが残らない。 */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.9em;
+  row-gap: 0.3em;
+}
+.lpv2 .turn-words > span {
+  white-space: nowrap;
+}
+.lpv2 .turn-words > span + span::before {
+  content: '・';
+  margin-right: 0.9em;
+  opacity: 0.6;
+}
+/* 狭い端末では1行に収まるよう詰め、中黒は落としてgapだけで区切る */
+@media (max-width: 430px) {
+  .lpv2 .turn-words {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    column-gap: 1.2em;
+  }
+  .lpv2 .turn-words > span + span::before {
+    content: none;
+  }
 }
 .lpv2 .turn-note {
   margin-top: 16px;
