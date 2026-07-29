@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { SITE } from './site'
+import { ctaJustTracked } from '@/lib/track'
 
 /**
  * 計測タグ（GA4 + Microsoft Clarity）。両方とも無料。
@@ -12,7 +13,9 @@ import { SITE } from './site'
  *   空文字や 'off' を入れれば個別に無効化できる。
  * - 表示中のキャッチコピー識別子 SITE.copyVariant を GA4 のユーザープロパティと
  *   Clarity のタグに送る → 「どのコピーの時に何が起きたか」をコピー別に集計・録画フィルタできる。
- * - 主CTA（/try への遷移）クリックを cta_try_click イベントとして送る。
+ * - CTAクリックは trackCta()（src/lib/track.ts）が cta_click として送る。ここでは
+ *   trackCta を付け忘れた /try リンク（記事下CTA等・サーバーコンポーネントでonClick不可）
+ *   だけを cta_location:'other' で拾う。同一クリックの二重計上は ctaJustTracked() で防ぐ。
  *
  * バージョン非依存にするため next/script は使わず、標準DOMでスクリプトを注入する。
  */
@@ -84,15 +87,17 @@ export function Analytics() {
       window.clarity('set', 'copy_variant', SITE.copyVariant)
     }
 
-    // --- 主CTA（無料で試す＝/try 遷移）クリック計測 ---
+    // --- trackCta を持たない /try リンクの救済計測（イベント名は cta_click に一本化） ---
     const onClick = (e: MouseEvent) => {
       const anchor = (e.target as HTMLElement | null)?.closest('a') as HTMLAnchorElement | null
       if (!anchor?.href || !anchor.href.includes('/try')) return
-      window.gtag?.('event', 'cta_try_click', {
+      if (ctaJustTracked()) return // 同じクリックを trackCta() が既に送っている
+      window.gtag?.('event', 'cta_click', {
+        cta_location: 'other',
         copy_variant: SITE.copyVariant,
         link_url: anchor.href,
       })
-      window.clarity?.('event', 'cta_try_click')
+      window.clarity?.('event', 'cta_click')
     }
     document.addEventListener('click', onClick)
     return () => document.removeEventListener('click', onClick)

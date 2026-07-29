@@ -11,10 +11,12 @@ export const SITE = {
   categoryLine: '不動産営業専門',
   catchMain: '月3,000円で、月5万円のCRMに勝つ方法があります。',
   catchSub: 'このお客様に、何を。この物件を、誰に。— AIが両方から答えます。',
-  // 計測用バリアントID。上の catchMain / catchSub を差し替えるたびに必ずここも更新する。
+  // 計測用バリアントID。トップページの主コピーを差し替えるたびに必ずここも更新する。
   // この値が GA4 のユーザープロパティ／Clarity のタグに送られ、コピー別に成果を比較できる。
-  // 命名: v<連番>-<訴求軸>。例: v1-baseline-sales → v2-price-vs-5man → ...
-  copyVariant: 'v2-price-vs-5man',
+  // 命名: v<連番>-<訴求軸>。v1-baseline-sales → v2-price-vs-5man → v3-ability-shinjin
+  //   → v4-night-story（2026-07-24 LP v2＝夜→朝の物語。トップの文言は
+  //     src/components/lpv2/* が持つ。下の catchMain / catchSub は旧LP用で未表示）
+  copyVariant: 'v4-night-story',
   // 価格（森山さん指定・本番LP/特商法と同一表記）
   priceLead: '月々たったの3,000円（税込）/人',
   priceShort: '月3,000円/人（税込）',
