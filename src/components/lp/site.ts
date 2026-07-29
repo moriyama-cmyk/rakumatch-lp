@@ -13,10 +13,9 @@ export const SITE = {
   catchSub: 'このお客様に、何を。この物件を、誰に。— AIが両方から答えます。',
   // 計測用バリアントID。トップページの主コピーを差し替えるたびに必ずここも更新する。
   // この値が GA4 のユーザープロパティ／Clarity のタグに送られ、コピー別に成果を比較できる。
-  // 命名: v<連番>-<訴求軸>。v1-baseline-sales → v2-price-vs-5man → v3-ability-shinjin
-  //   → v4-night-story（2026-07-24 LP v2＝夜→朝の物語。トップの文言は
-  //     src/components/lpv2/* が持つ。下の catchMain / catchSub は旧LP用で未表示）
-  copyVariant: 'v4-night-story',
+  // 命名: v<連番>-<訴求軸>。v1-baseline-sales → v2-price-vs-5man → v3-ability-shinjin → v4-night-story
+  //   → v5-screen-visible（2026-07-30 LP v3＝実画面で次の提案が見える訴求）
+  copyVariant: 'v5-screen-visible',
   // 価格（森山さん指定・本番LP/特商法と同一表記）
   priceLead: '月々たったの3,000円（税込）/人',
   priceShort: '月3,000円/人（税込）',

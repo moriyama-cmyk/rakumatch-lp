@@ -39,24 +39,24 @@ const SITE_URL = 'https://rakumatch-ai.com';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: '楽マッチ AI｜不動産営業専門CRM・顧客/物件管理AI（月3,000円・税込）',
+    default: '楽マッチAI｜次に誰へ、何を提案するかが画面で見える不動産営業CRM',
     template: '%s | 楽マッチ AI',
   },
-  description: '不動産営業専門の顧客・物件管理AI。このお客様に何を、この物件を誰に — AIが両方から答える双方向マッチング。コピペ・PDFで物件登録（媒体連携0円）、通話録音の文字起こし・要約、お客様連動アプリ、契約・精算まで。個人でも会社でも月3,000円（税込）/人から。',
+  description: '物件情報を貼ると、合うお客様を理由つきで表示。顧客・物件の双方向マッチングからメール・電話・案内準備まで支える、売買・賃貸仲介向けAI営業CRM。登録なしで実画面を確認できます。',
   openGraph: {
-    title: '楽マッチ AI｜不動産営業専門CRM・顧客/物件管理AI',
-    description: 'このお客様に何を、この物件を誰に。AIが両方から答える双方向マッチング。コピペ・PDFで物件登録（媒体連携0円）、通話録音の要約、お客様連動アプリ、契約・精算まで。月3,000円（税込）/人から。',
+    title: '楽マッチAI｜次に誰へ、何を提案するかが画面で見える',
+    description: '物件を貼ると、合うお客様が理由つきで並ぶ。不動産仲介に特化したAI営業CRM。',
     url: SITE_URL,
-    siteName: '楽マッチ AI',
+    siteName: '楽マッチAI',
     locale: 'ja_JP',
     type: 'website',
-    images: [{ url: '/ogp-new.png', width: 1200, height: 630, alt: '楽マッチ AI｜不動産営業専門の顧客・物件管理AI（月3,000円・税込）' }],
+    images: [{ url: '/og-rakumatch.png', width: 1200, height: 630, alt: '楽マッチAI' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '楽マッチ AI｜不動産営業専門CRM・顧客/物件管理AI',
-    description: 'このお客様に何を、この物件を誰に。AIが両方から答える双方向マッチング。コピペ物件登録（媒体連携0円）・通話録音要約・お客様連動アプリ・契約・精算。月3,000円（税込）/人から。',
-    images: ['/ogp-new.png'],
+    title: '楽マッチAI｜次に誰へ、何を提案するかが画面で見える',
+    description: '物件を貼ると、合うお客様が理由つきで並ぶ。不動産仲介に特化したAI営業CRM。',
+    images: ['/og-rakumatch.png'],
   },
   alternates: {
     canonical: SITE_URL,
@@ -93,17 +93,6 @@ export default function RootLayout({
             "priceCurrency": "JPY",
             "offerCount": "2"
           }
-        })}} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "導入や初期設定は大変ですか？", "acceptedAnswer": { "@type": "Answer", "text": "無料でログイン前から中を触れます。物件や顧客は、画面を貼る・スクショ・PDFを投げ込むだけでAIが整理します。媒体とのAPI連携は不要です。" }},
-            { "@type": "Question", "name": "1人でも、会社でも使えますか？料金は？", "acceptedAnswer": { "@type": "Answer", "text": "はい。個人の営業の方も会社でも使えます。料金は同じ¥3,000/人（税込・スタンダード）。プレミアムは¥5,000/人（税込）でAI利用枠が拡大します。人数課金・初月割引あり。" }},
-            { "@type": "Question", "name": "お客様連動アプリは、お客様にアプリのインストールが必要ですか？", "acceptedAnswer": { "@type": "Answer", "text": "インストールもログインも不要です。リンクを開くだけで、すべての機能が使えます — SUUMO等で気になった物件の保存（共有ボタンから1タップ）、星評価、メモ、「内見したい」の送信まで。その内容はそのまま担当者に届きます。" }},
-            { "@type": "Question", "name": "通話録音は特別な機材がいりますか？", "acceptedAnswer": { "@type": "Answer", "text": "選んだマイクに入る音を録る方式なので、携帯でも固定電話でも対面でも使えます。高額な電話システムは不要です。接続のしかたやマイクの選び方は、アプリ内の「通話録音のヒント」で画面を見ながら確認でき、録音前のマイクテストもできます（録音はお相手の同意のうえで）。" }},
-            { "@type": "Question", "name": "賃貸でも使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "売買向けに作っていますが、顧客・物件の管理やマッチングはご利用いただけます。賃貸の細かな運用はサポートにご相談ください。" }}
-          ]
         })}} />
         {children}
         <Analytics />
