@@ -5,16 +5,20 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   Bot,
+  Brain,
   Building2,
   Check,
   ChevronDown,
   CircleUserRound,
   ClipboardCheck,
+  CreditCard,
+  Database,
   FileImage,
   FileText,
   Mail,
   Phone,
   PlayCircle,
+  Shield,
   Sparkles,
   UsersRound,
 } from "lucide-react";
@@ -240,6 +244,14 @@ const comparisonCardLabels: { key: "excel" | "a" | "b" | "c"; label: string }[] 
   { key: "c", label: "C社 汎用CRM" },
 ];
 
+// 文言は正本から一字一句そのまま使用し、盛らない・削らない。
+const securityItems = [
+  { icon: Brain, title: "Google AI（Gemini）搭載", desc: "世界最先端のAIエンジン" },
+  { icon: Database, title: "Amazon Web Services", desc: "世界最大級のクラウド基盤" },
+  { icon: CreditCard, title: "Stripe決済", desc: "世界135カ国以上で利用される決済インフラ" },
+  { icon: Shield, title: "通信・データは暗号化", desc: "決済情報を弊社サーバーで保持しません" },
+];
+
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -448,12 +460,48 @@ function CompareSection() {
   );
 }
 
-function DeveloperStorySection() {
+function SecuritySection() {
   return (
-    <section className="featureSection white storySection" id="founder">
+    <section className="featureSection pale securitySection" id="security">
       <div className="pageShell">
         <SectionHeading
-          number="11"
+          number="10"
+          label="セキュリティ"
+          sub="Google・Amazon・Stripeのインフラ上で稼働し、決済情報は当社を通りません。"
+        >
+          データは、<span>大手テック企業の</span>インフラで守る。
+        </SectionHeading>
+
+        <Reveal className="securityLead">
+          <p>自社で大手企業レベルのセキュリティを実現するのは、ほぼ不可能です。楽マッチAIは、Google・Amazon・Stripeという世界最大級のインフラ上で稼働。お客様のデータや決済情報を弊社サーバーで保持することはありません。</p>
+        </Reveal>
+
+        <div className="securityGrid">
+          {securityItems.map((item, index) => (
+            <Reveal className="securityCard" delay={index * 0.06} key={item.title}>
+              <span className="securityIcon">
+                <item.icon aria-hidden="true" />
+              </span>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="securityClosing">
+          <p>個人なら自分の顧客を自分で管理。会社なら全体を見ながら、担当者ごとに分けて運用できます。</p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function DeveloperStorySection() {
+  return (
+    <section className="featureSection pale storySection" id="founder">
+      <div className="pageShell">
+        <SectionHeading
+          number="12"
           label="開発者について"
           sub="机上で作ったツールではありません。現場の不便を1つずつ潰して作った、現場のための道具です。"
         >
@@ -775,9 +823,11 @@ export default function HomePage() {
 
       <CompareSection />
 
-      <section className="featureSection pale pricingSection" id="pricing">
+      <SecuritySection />
+
+      <section className="featureSection white pricingSection" id="pricing">
         <div className="pageShell">
-          <SectionHeading number="10" label="料金プラン" sub="個人・標準利用向けのStandardと、AI・書類を多く使うPremium。">
+          <SectionHeading number="11" label="料金プラン" sub="個人・標準利用向けのStandardと、AI・書類を多く使うPremium。">
             AI機能・モデルは同じ。<span>利用量で選べます。</span>
           </SectionHeading>
           <div className="pricingGrid">
@@ -814,9 +864,9 @@ export default function HomePage() {
 
       <DeveloperStorySection />
 
-      <section className="featureSection pale voicesSection" id="voices">
+      <section className="featureSection white voicesSection" id="voices">
         <div className="pageShell">
-          <SectionHeading number="12" label="現場の声" sub="営業担当者と、物件を探すお客様。それぞれの体験から届いた声です。">
+          <SectionHeading number="13" label="現場の声" sub="営業担当者と、物件を探すお客様。それぞれの体験から届いた声です。">
             探す仕事が、<span>確認する仕事へ。</span>
           </SectionHeading>
           <div className="voiceGrid">

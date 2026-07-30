@@ -1462,6 +1462,88 @@ html {
   font-weight: 600;
 }
 
+.securityLead {
+  width: min(920px, 100%);
+  margin: 8px auto 30px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.85;
+  font-weight: 650;
+}
+
+.securityLead p,
+.securityClosing p {
+  margin: 0;
+}
+
+.securityGrid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.securityCard {
+  min-width: 0;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 22px;
+  border: 1px solid #ccdaed;
+  border-radius: 24px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 12px 29px rgba(5, 32, 94, 0.07);
+}
+
+.securityIcon {
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(145deg, #0e5bd3, #06368f);
+}
+
+.securityIcon svg {
+  width: 29px;
+  height: 29px;
+  stroke-width: 2.3;
+}
+
+.securityCard h3 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 20px;
+  line-height: 1.45;
+  font-weight: 950;
+}
+
+.securityCard p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+  font-weight: 650;
+}
+
+.securityClosing {
+  width: min(880px, 100%);
+  margin: 28px auto 4px;
+  color: var(--navy);
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.75;
+  font-weight: 850;
+}
+
 .pricingGrid {
   flex: 1;
   min-height: 0;
@@ -2564,6 +2646,10 @@ html {
   .proofMetrics strong em {
     font-size: 11px;
   }
+
+  .securityGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 760px) {
@@ -2879,6 +2965,7 @@ html {
   .recordingLayout,
   .contractGrid,
   .onboardingLayout,
+  .securityGrid,
   .pricingGrid,
   .storyLayout,
   .storyPrinciples,
@@ -3459,6 +3546,54 @@ html {
   .onboardingSteps strong { font-size: 16px; }
   .onboardingSteps em { font-size: 9px; }
   .onboardingSteps p { font-size: 11px; }
+
+  .securityLead {
+    margin: 4px auto 18px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .securityGrid {
+    gap: 13px;
+  }
+
+  .securityCard {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    column-gap: 15px;
+    padding: 18px;
+    border-radius: 19px;
+    text-align: left;
+  }
+
+  .securityIcon {
+    width: 58px;
+    height: 58px;
+    grid-row: 1 / 3;
+    margin: 0;
+  }
+
+  .securityIcon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .securityCard h3 {
+    font-size: 17px;
+  }
+
+  .securityCard p {
+    margin-top: 4px;
+    font-size: 12px;
+  }
+
+  .securityClosing {
+    margin-top: 20px;
+    text-align: left;
+    font-size: 14px;
+  }
 
   .pricingGrid {
     gap: 20px;
