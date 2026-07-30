@@ -385,6 +385,58 @@ function DemoScreen({ src, alt, position = "center", className = "", privacyLabe
   );
 }
 
+// 文言は正本から一字一句そのまま使用し、盛らない。時代の転換から機能紹介へつなぐため、ヒーロー直後に置く。
+function EraShiftSection() {
+  return (
+    <section className="eraShiftSection" id="era-shift">
+      <div className="pageShell eraShiftShell">
+        <Reveal className="eraShiftIntro">
+          <p className="eraShiftLabel">時代の転換</p>
+          <h2>
+            大企業の武器だったAIが、
+            <br />
+            <span>あなた一人の手に。</span>
+          </h2>
+          <p className="eraShiftLead">
+            これまで数十万円と法人契約が要ったAI営業が、個人1名から持てる時代になりました。楽マッチは、その最初の1本。これが、これからのスタンダードになります。
+          </p>
+        </Reveal>
+
+        <Reveal className="eraShiftCompare" delay={0.08}>
+          <div className="eraShiftCard eraShiftCardPast">
+            <h3>これまでのAI営業ツール</h3>
+            <ul>
+              <li>初期費用 数十万円〜</li>
+              <li>法人・店舗単位の契約</li>
+              <li>個人には手が届かない</li>
+            </ul>
+          </div>
+
+          <div className="eraShiftArrow" aria-hidden="true">
+            <ArrowRight />
+          </div>
+
+          <div className="eraShiftCard eraShiftCardNow">
+            <h3>楽マッチ</h3>
+            <p className="eraShiftPrice">
+              <strong>月3,000円</strong>
+              <span>/人</span>
+            </p>
+            <ul>
+              <li>個人1名から契約OK</li>
+              <li>導入0円・7日間無料</li>
+            </ul>
+          </div>
+        </Reveal>
+
+        <Reveal className="eraShiftNote" delay={0.12}>
+          <p>※ 昔の価格帯は当社調べ（2026年6月時点・各社公開情報による）。単位・条件は各社により異なります。</p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function CompareSection() {
   return (
     <section className="featureSection white compareSection" id="compare">
@@ -624,6 +676,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 時代が変わったため個人が持てる、次に何ができるか、の順にするためセクション1の直前に置く。 */}
+      <EraShiftSection />
+
       <section className="featureSection white" id="how-it-works">
         <div className="pageShell">
           <SectionHeading number="1" sub="文章・PDF・画像を用意して貼ると、AIが項目へ整理。登録前に利用者が確認・修正します。">
@@ -661,6 +716,14 @@ export default function HomePage() {
               </div>
             </Reveal>
           </div>
+          {/* 文言は正本から一字一句そのまま使用し、盛らない。入力の速さではなく意味を締めに示すため、BenefitBandの直前に置く。 */}
+          <Reveal className="solutionCoreLine">
+            <p>
+              50件でも、その先でも。貼る手間は、<span>一瞬</span>のまま。
+              <br />
+              そして、その入力が初めて<span>意味</span>を持つ。
+            </p>
+          </Reveal>
           <BenefitBand left="PDFやスクリーンショットにも対応" right="転記を減らし、紹介先探しへ進めます" />
         </div>
       </section>
