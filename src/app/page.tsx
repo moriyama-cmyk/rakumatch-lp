@@ -281,9 +281,9 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   return (
     <motion.div
       className={`reveal ${className}`.trim()}
-      initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.16 }}
+      initial={false}
+      whileInView={reduceMotion ? undefined : { opacity: [0, 1], y: [24, 0] }}
+      viewport={{ once: true, amount: "some" }}
       transition={{ duration: 0.58, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
@@ -606,7 +606,7 @@ export default function HomePage() {
   const finalRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const options = { threshold: 0.12 };
+    const options = { threshold: 0 };
     const heroObserver = new IntersectionObserver(([entry]) => setHeroVisible(entry.isIntersecting), options);
     const finalObserver = new IntersectionObserver(([entry]) => setFinalVisible(entry.isIntersecting), options);
     if (heroRef.current) heroObserver.observe(heroRef.current);
