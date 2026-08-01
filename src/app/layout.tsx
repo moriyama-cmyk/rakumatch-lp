@@ -3,6 +3,7 @@ import { Noto_Sans_JP, Shippori_Mincho, Zen_Kaku_Gothic_New } from "next/font/go
 import "./globals.css";
 import "./lpv2.css";
 import { Analytics } from "../components/lp/Analytics";
+import UtmForwarder from "../components/UtmForwarder";
 
 // 日本語フォントを next/font でセルフホストし、CSS変数 --font-sans を実定義する。
 // globals.css の `font-family: var(--font-sans), ...` がこれで解決される。
@@ -95,6 +96,7 @@ export default function RootLayout({
           }
         })}} />
         {children}
+        <UtmForwarder />
         <Analytics />
       </body>
     </html>
