@@ -517,7 +517,9 @@ html {
 
 .heroDevices {
   position: relative;
-  min-height: 500px;
+  /* 2026-08-06: スマホ画像を撤去した分、以前スマホ用に確保していた
+     余白(500px)が下に空きすぎるため縮小(実測: 108px分の空白を解消)。 */
+  min-height: 390px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -604,7 +606,7 @@ html {
 .phonePrivacyMask {
   position: absolute;
   z-index: 2;
-  top: 50px;
+  top: 56px;
   left: 12px;
   right: 12px;
   min-height: 41px;
@@ -631,6 +633,20 @@ html {
      pageShellの1480px頭打ちで成長を止めた後もスマホだけ伸び続け、
      広い画面ほど再び比率が崩れる（1920pxでP/L比0.87まで悪化）ため。 */
   height: clamp(200px, 24vw, 370px);
+  /* 2026-08-06 修正: 新しいスマホ画像(hero-customer-list.webp)は正方形に近く
+     (680x640)、.phoneFrame標準の`width:auto`だと横幅が縦幅とほぼ同じまで
+     広がり、スマホらしい縦長シルエットが崩れる＋ノートPCのカードに
+     大きく重なってしまっていた(実測で最大55%の面積が重複)。
+     幅を明示してスマホらしい比率に固定し、画像側はcoverで左上(価格・物件名側)
+     を優先して見せる。 */
+  width: clamp(92px, 11vw, 170px);
+}
+
+.heroPhone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
 }
 
 .floatingTag {
@@ -654,8 +670,28 @@ html {
 }
 
 .tagMatch {
-  top: 24%;
-  right: 2.5%;
+  /* 2026-08-06: 8%だと1000px前後の幅でしっぽの先が空白で浮いていた。
+     14%にして常にラップトップのベゼルへ軽くかかる位置にする
+     (かかる先はカード上部の白い余白でコンテンツには重ならない)。 */
+  top: 14%;
+  right: 4%;
+}
+
+/* 2026-08-06: ふきだしの吹き出し先(しっぽ)。ラベルだけ浮いていると
+   何を指しているか分からないため、カード下部の「合致条件」タグへ
+   視線を誘導する三角を付ける。 */
+.tagMatch::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 28px;
+  width: 14px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  border-right: 1px solid #bed2ed;
+  border-bottom: 1px solid #bed2ed;
+  transform: rotate(45deg);
+  border-radius: 0 0 3px 0;
 }
 
 .valueStrip {
@@ -2891,6 +2927,7 @@ html {
     bottom: 0;
     /* laptopが640pxで頭打ちのため高さも固定値でよい(比率0.68で常にPCが大きい)。 */
     height: 260px;
+    width: 120px;
   }
 }
 
@@ -2915,6 +2952,7 @@ html {
      他帯域と同じ比率(0.73前後)に揃える。 */
   .heroPhone {
     height: clamp(200px, 20.5vw, 316px);
+    width: clamp(92px, 9.4vw, 145px);
   }
 }
 
@@ -3162,7 +3200,8 @@ html {
 
   .heroDevices {
     width: 100%;
-    min-height: 340px;
+    /* 2026-08-06: スマホ画像を撤去した分、旧340pxは実測87px分空きすぎていた。 */
+    min-height: 230px;
     margin-top: 24px;
   }
 
@@ -3189,6 +3228,7 @@ html {
     right: 5px;
     bottom: 0;
     height: 235px;
+    width: 108px;
     padding: 5px;
     border-radius: 25px;
   }
@@ -3212,11 +3252,18 @@ html {
   }
 
   .tagMatch {
-    top: 16%;
+    /* 2026-08-06: 旧位置(top:16%)は新しいノートPC画像の「マッチ顧客/紹介済み」
+       タブ行にちょうど重なっていた。ラップトップ本体の外(上)へ出し、
+       文字を隠さないようにする。 */
+    top: -14px;
     right: auto;
     left: 12px;
     padding: 8px 10px;
     font-size: 10px;
+  }
+
+  .tagMatch::after {
+    display: none;
   }
 
   .valueStrip {

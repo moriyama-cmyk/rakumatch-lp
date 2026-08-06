@@ -658,8 +658,7 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal className="heroDevices" delay={0.12}>
-              <Laptop src="/media/property-referral-match.webp" alt="物件から紹介先の顧客を探すAIマッチング画面" position="top" mask="デモ物件の紹介候補" priority />
-              <PhoneFrame src="/media/customer-app-home.webp" alt="お客様向け物件リスト画面" mask="デモ顧客さまの物件リスト" className="heroPhone" priority />
+              <Laptop src="/media/hero-referral-card.webp" alt="物件から紹介先の顧客を探すAIマッチング画面" position="center" priority />
               <span className="floatingTag tagMatch"><Sparkles aria-hidden="true" />合う理由まで表示</span>
             </Reveal>
           </div>
