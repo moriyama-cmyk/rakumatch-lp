@@ -412,8 +412,13 @@ html {
 
 .heroLine {
   display: block;
-  white-space: nowrap;
 }
+
+/* 2026-08-06 修正: 761px〜1349px(clampがfont-sizeを58px床で固定する帯域)では
+   36%幅の.heroCopy列に対して nowrap の「何を提案するかが」等が収まりきらず、
+   右の.heroDevices(ノートPC/スマホ画像)へ文字がはみ出して重なる崩れが発生していた。
+   nowrap を外し、収まらない時は行内で折り返す（=はみ出さない）安全側の挙動にする。
+   広い画面では元々1行に収まるため見た目は変わらない。 */
 
 .heroBlue,
 .sectionHeading h2 > span {
@@ -618,7 +623,14 @@ html {
   position: absolute;
   right: 0;
   bottom: -118px;
-  height: 440px;
+  /* 2026-08-06 修正: 固定440pxだと.laptop(幅%ベースで縮む)より狭い画面で
+     スマホの方がノートPCより背が高く見え、「パソコンが主役・大きく」の
+     意図と逆転していた。ノートPC側と同じくビューポート幅に連動して縮む
+     clamp にし、どの幅でもノートPCより小さいままにする。 */
+  /* 上限は370px（1541px以降はほぼ頭打ち）。440pxのままだと.laptopが
+     pageShellの1480px頭打ちで成長を止めた後もスマホだけ伸び続け、
+     広い画面ほど再び比率が崩れる（1920pxでP/L比0.87まで悪化）ため。 */
+  height: clamp(200px, 24vw, 370px);
 }
 
 .floatingTag {
@@ -1163,6 +1175,16 @@ html {
   bottom: 34px;
   left: 32px;
   background: var(--green);
+}
+
+/* 2026-08-06: 「物件から、紹介先を探す」カードだけ差し替え画像が変わり、
+   左下(物件詳細パネル)には「スコア順」に対応する要素が無くなった。
+   このカードだけ右側のマッチ顧客カード（100%スコア表示の下）を指すよう上書きする。 */
+.screenCard.focus .calloutBottom {
+  right: 28px;
+  left: auto;
+  top: 168px;
+  bottom: auto;
 }
 
 .aiOrbit {
@@ -2806,6 +2828,96 @@ html {
   }
 }
 
+/* 2026-08-06 追加（Opusレビューで実測のうえ2回設計し直し）:
+   1回目（761〜1348pxを丸ごと1カラムに積む案）は実測でヒーロー全高が
+   1400〜1720pxまで膨張し(900px想定の1画面設計が壊れる)、かつ既存の
+   `@media(max-width:1180px)`のheroActions全幅化と衝突してCTAが
+   画面幅いっぱいの巨大ピル2段になる新規バグを生んだため撤回。
+   761〜999px（36%列が225〜303pxしかなく2カラムが物理的に不可能な帯域）だけ
+   1カラムに積み、1000px以降はheroCopy列を46%へ広げて2カラムのまま収める
+   （実測でスクロールバー15px分を差し引いても列幅に余裕あり）。 */
+@media (min-width: 761px) and (max-width: 999px) {
+  .heroMain {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    gap: 0;
+    padding: 27px 4px 8px;
+  }
+
+  .heroCopy {
+    width: 100%;
+    padding: 0;
+  }
+
+  .heroCopy h1 {
+    /* 下限42pxは760px以下のモバイル版キャップ(42px)と同値にし、
+       761px境界をまたいだ瞬間に文字が小さくなる逆転を防ぐ。 */
+    font-size: clamp(42px, 5.2vw, 52px);
+    line-height: 1.14;
+  }
+
+  .heroLead {
+    font-size: 19px;
+  }
+
+  .heroActions {
+    /* max-width:1180pxブロックのflex-column/幅100%化を打ち消す。
+       全幅コンテナのままだとCTAが画面幅いっぱいの巨大ピルになるため。 */
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .heroActions > a {
+    width: auto;
+  }
+
+  .heroDevices {
+    width: 100%;
+    min-height: 320px;
+    margin-top: 28px;
+  }
+
+  .heroDevices .laptop {
+    /* 幅100%のままだとこの帯域の広さ(最大999px)でノートPC画像が
+       巨大化しヒーロー全高が膨張するため、上限を付けて頭打ちにする。 */
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto 55px;
+  }
+
+  .heroPhone {
+    right: 5px;
+    bottom: 0;
+    /* laptopが640pxで頭打ちのため高さも固定値でよい(比率0.68で常にPCが大きい)。 */
+    height: 260px;
+  }
+}
+
+/* 1000〜1535px: 2カラム構成は維持しつつ列比を46%/54%に広げ、見出しの
+   font-sizeもこの帯域専用のclampにする。1536px以降はpageShellが1480pxで
+   頭打ちになり元の36%/64%+clamp(58,4.3vw,66)でも実測上安全なため、
+   それより上は既存の基本ルール（未変更）に任せる。 */
+@media (min-width: 1000px) and (max-width: 1535px) {
+  .heroMain {
+    grid-template-columns: 46% 54%;
+  }
+
+  /* 上限を66pxにして1536px以降の基本clamp(58,4.3vw,66)と連続させる
+     （実測で1535px時点でも列幅に十分な余白があり安全）。 */
+  .heroCopy h1 {
+    font-size: clamp(40px, 4.6vw, 66px);
+  }
+
+  /* .heroDevices列を64%→54%に狭めた分ノートPCも縮むため、基本ルールの
+     clamp(200px,24vw,370px)（64%列前提）のままだとスマホがこの帯域だけ
+     ノートPC比0.83〜0.86まで大きくなる。列比の変化に合わせて縮め、
+     他帯域と同じ比率(0.73前後)に揃える。 */
+  .heroPhone {
+    height: clamp(200px, 20.5vw, 316px);
+  }
+}
+
 /* PC用の意匠を保ったまま、タブレット幅では3指標の表示領域を均等に確保する。 */
 @media (min-width: 761px) and (max-width: 980px) {
   .brandStrip {
@@ -4123,7 +4235,9 @@ html {
   }
 
   .heroCopy h1 {
-    font-size: 37px;
+    /* 2026-08-06: 320px幅で「が画面で見える。」が列幅ぴったり(280px)になり、
+       nowrap撤去後は37pxだと折り返してしまう。36pxに落として一行に収める。 */
+    font-size: 36px;
   }
 
   .heroLead {

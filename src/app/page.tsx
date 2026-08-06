@@ -658,7 +658,7 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal className="heroDevices" delay={0.12}>
-              <Laptop src="/media/property-ai-match.webp" alt="物件から合うお客様を探すAIマッチング画面" position="62% center" mask="デモ物件の紹介候補" priority />
+              <Laptop src="/media/property-referral-match.webp" alt="物件から紹介先の顧客を探すAIマッチング画面" position="top" mask="デモ物件の紹介候補" priority />
               <PhoneFrame src="/media/customer-app-home.webp" alt="お客様向け物件リスト画面" mask="デモ顧客さまの物件リスト" className="heroPhone" priority />
               <span className="floatingTag tagMatch"><Sparkles aria-hidden="true" />合う理由まで表示</span>
             </Reveal>
@@ -743,7 +743,7 @@ export default function HomePage() {
             <div className="aiOrbit" aria-hidden="true"><Bot />AI<br />双方向</div>
             <Reveal className="screenCard focus" delay={0.1}>
               <h3><span>家</span>物件から、紹介先を探す</h3>
-              <DemoScreen src="/media/property-ai-match.webp" alt="物件から顧客を探すAIマッチング画面" position="82% center" />
+              <DemoScreen src="/media/property-referral-match.webp" alt="物件から顧客を探すAIマッチング画面" position="top" />
               <i className="callout calloutTop">マッチ顧客</i>
               <i className="callout calloutBottom">スコア順</i>
             </Reveal>
