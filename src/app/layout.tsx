@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Shippori_Mincho, Zen_Kaku_Gothic_New } from "next/font/google";
+import { Noto_Sans_JP, Shippori_Mincho, Zen_Kaku_Gothic_New, Klee_One } from "next/font/google";
 import "./globals.css";
 import "./lpv2.css";
 import { Analytics } from "../components/lp/Analytics";
@@ -32,6 +32,15 @@ const zenKakuGothicNew = Zen_Kaku_Gothic_New({
   weight: ["400", "500", "700"],
   display: "swap",
   variable: "--font-zen-kaku-gothic-new",
+  preload: false,
+});
+
+// 手書き風メモ（物件登録フローの吹き出し）専用。本文フォントとは独立した変数にする。
+const kleeOne = Klee_One({
+  subsets: ["latin"],
+  weight: ["600"],
+  display: "swap",
+  variable: "--font-handwriting",
   preload: false,
 });
 
@@ -76,7 +85,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSansJP.variable} ${shipporiMincho.variable} ${zenKakuGothicNew.variable} h-full antialiased`}
+      className={`${notoSansJP.variable} ${shipporiMincho.variable} ${zenKakuGothicNew.variable} ${kleeOne.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-surface-50 text-ink-900">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

@@ -1001,6 +1001,21 @@ html {
   font-weight: 950;
 }
 
+/* 「資料をコピー」ボタンの右横に添える手書き風メモ。装飾のみのため aria-hidden。 */
+.handwrittenNote {
+  position: absolute;
+  z-index: 4;
+  right: -6px;
+  bottom: 26px;
+  transform: rotate(-9deg);
+  font-family: var(--font-handwriting), var(--font-sans), sans-serif;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 1.25;
+  color: #e8622c;
+  white-space: nowrap;
+}
+
 .miniLaptop {
   width: 100%;
   margin: auto 0;
@@ -3628,6 +3643,12 @@ html {
     width: 90px;
     height: 90px;
     font-size: 14px;
+  }
+
+  .handwrittenNote {
+    right: 6%;
+    bottom: 6px;
+    font-size: 12px;
   }
 
   .miniLaptop {

@@ -693,6 +693,7 @@ export default function HomePage() {
                   <div><FileText aria-hidden="true" /><strong>PDF</strong><small>ドロップ</small></div>
                   <div><FileImage aria-hidden="true" /><strong>スクショ</strong><small>ドロップ</small></div>
                   <span>資料を<br />コピー</span>
+                  <em className="handwrittenNote" aria-hidden="true">コピーする<br />だけ！</em>
                 </div>
               </div>
               <span className="flowArrow" aria-hidden="true" />
