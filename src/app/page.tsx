@@ -735,7 +735,7 @@ export default function HomePage() {
           <div className="dualMatch">
             <Reveal className="screenCard">
               <h3><span>人</span>顧客から、合う物件を探す</h3>
-              <DemoScreen src="/media/customer-ai-match.webp" alt="顧客から物件を探すAIマッチング画面" position="77% center" privacyLabel="デモ顧客／希望条件" />
+              <DemoScreen src="/media/customer-match-panel.jpg" alt="顧客から物件を探すAIマッチング画面" position="top" privacyLabel="デモ顧客／希望条件" />
               <i className="callout calloutTop">候補物件を表示</i>
               <i className="callout calloutBottom">合う理由を確認</i>
             </Reveal>
