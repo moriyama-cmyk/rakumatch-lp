@@ -336,7 +336,8 @@ html {
 .proofMetrics > div::before,
 .proofMetrics > div::after {
   position: absolute;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--gold);
   font-size: 41px;
   line-height: 1;

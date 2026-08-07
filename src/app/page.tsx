@@ -658,7 +658,7 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal className="heroDevices" delay={0.12}>
-              <Laptop src="/media/hero-referral-card.webp" alt="物件から紹介先の顧客を探すAIマッチング画面" position="center" priority />
+              <Laptop src="/media/hero-app-overview.jpg" alt="顧客詳細・AIアシスタント・マッチ物件が並ぶ実際の画面" position="center" priority />
               <span className="floatingTag tagMatch"><Sparkles aria-hidden="true" />合う理由まで表示</span>
             </Reveal>
           </div>
@@ -718,7 +718,7 @@ export default function HomePage() {
           {/* 文言は正本から一字一句そのまま使用し、盛らない。入力の速さではなく意味を締めに示すため、BenefitBandの直前に置く。 */}
           <Reveal className="solutionCoreLine">
             <p>
-              50件でも、その先でも。貼る手間は、<span>一瞬</span>のまま。
+              数百件でも、その先でも。貼る手間は、<span>一瞬</span>のまま。
               <br />
               そして、その入力が初めて<span>意味</span>を持つ。
             </p>
@@ -759,7 +759,7 @@ export default function HomePage() {
           <div className="assistantLayout">
             <Reveal className="screenCard focus assistantScreen">
               <h3><span>AI</span>顧客を理解したAIアシスタント</h3>
-              <DemoScreen src="/media/customer-ai-match.webp" alt="顧客専属AIの提案画面" position="64% center" privacyLabel="デモ顧客／活動履歴" />
+              <DemoScreen src="/media/assistant-panel.jpg" alt="顧客専属AIの提案画面" position="center top" privacyLabel="デモ顧客／活動履歴" />
               <span className="assistantBadge"><Sparkles aria-hidden="true" />顧客・物件・履歴を参照</span>
             </Reveal>
             <Reveal className="assistPoints" delay={0.1}>
@@ -855,7 +855,7 @@ export default function HomePage() {
             </Reveal>
             <Reveal className="screenCard" delay={0.1}>
               <h3><span>¥</span>日割り精算を保存</h3>
-              <DemoScreen src="/media/settlement.webp" alt="固都税と管理費の精算画面" className="containScreen" />
+              <DemoScreen src="/shot-settlement-form.webp" alt="固都税と管理費の精算画面" className="containScreen" />
             </Reveal>
           </div>
           <BenefitBand left="事前審査から決済までチェック" right="別の表計算へ移す手間を減らす" />
