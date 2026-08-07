@@ -518,18 +518,17 @@ html {
 
 .heroDevices {
   position: relative;
-  /* 2026-08-06: スマホ画像を撤去した分、以前スマホ用に確保していた
-     余白(500px)が下に空きすぎるため縮小(実測: 108px分の空白を解消)。 */
   min-height: 390px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  gap: 4%;
 }
 
 .laptop {
   position: relative;
-  width: 89%;
-  margin-right: 6%;
+  flex: 1 1 auto;
+  min-width: 0;
   filter: drop-shadow(0 17px 27px rgba(5, 32, 94, 0.18));
 }
 
@@ -623,24 +622,13 @@ html {
 }
 
 .heroPhone {
-  position: absolute;
-  right: 0;
-  bottom: -118px;
-  /* 2026-08-06 修正: 固定440pxだと.laptop(幅%ベースで縮む)より狭い画面で
-     スマホの方がノートPCより背が高く見え、「パソコンが主役・大きく」の
-     意図と逆転していた。ノートPC側と同じくビューポート幅に連動して縮む
-     clamp にし、どの幅でもノートPCより小さいままにする。 */
-  /* 上限は370px（1541px以降はほぼ頭打ち）。440pxのままだと.laptopが
-     pageShellの1480px頭打ちで成長を止めた後もスマホだけ伸び続け、
-     広い画面ほど再び比率が崩れる（1920pxでP/L比0.87まで悪化）ため。 */
-  height: clamp(200px, 24vw, 370px);
-  /* 2026-08-06 修正: 新しいスマホ画像(hero-customer-list.webp)は正方形に近く
-     (680x640)、.phoneFrame標準の`width:auto`だと横幅が縦幅とほぼ同じまで
-     広がり、スマホらしい縦長シルエットが崩れる＋ノートPCのカードに
-     大きく重なってしまっていた(実測で最大55%の面積が重複)。
-     幅を明示してスマホらしい比率に固定し、画像側はcoverで左上(価格・物件名側)
-     を優先して見せる。 */
-  width: clamp(92px, 11vw, 170px);
+  /* 2026-08-07 修正: 従来はノートPCへの絶対配置オーバーレイで最大55%の
+     面積重複が起きていた(2026-08-06に一度撤去)。ノートPCと同じ行に並ぶ
+     通常のflex要素にして、構造的に重ならないようにする。 */
+  position: relative;
+  flex: 0 0 auto;
+  height: clamp(180px, 20vw, 300px);
+  width: clamp(78px, 8.6vw, 132px);
 }
 
 .heroPhone img {
@@ -2928,22 +2916,18 @@ html {
     width: 100%;
     min-height: 320px;
     margin-top: 28px;
+    gap: 3%;
   }
 
   .heroDevices .laptop {
     /* 幅100%のままだとこの帯域の広さ(最大999px)でノートPC画像が
        巨大化しヒーロー全高が膨張するため、上限を付けて頭打ちにする。 */
-    width: 100%;
     max-width: 640px;
-    margin: 0 auto 55px;
   }
 
   .heroPhone {
-    right: 5px;
-    bottom: 0;
-    /* laptopが640pxで頭打ちのため高さも固定値でよい(比率0.68で常にPCが大きい)。 */
-    height: 260px;
-    width: 120px;
+    height: 230px;
+    width: 104px;
   }
 }
 
@@ -2962,14 +2946,6 @@ html {
     font-size: clamp(40px, 4.6vw, 66px);
   }
 
-  /* .heroDevices列を64%→54%に狭めた分ノートPCも縮むため、基本ルールの
-     clamp(200px,24vw,370px)（64%列前提）のままだとスマホがこの帯域だけ
-     ノートPC比0.83〜0.86まで大きくなる。列比の変化に合わせて縮め、
-     他帯域と同じ比率(0.73前後)に揃える。 */
-  .heroPhone {
-    height: clamp(200px, 20.5vw, 316px);
-    width: clamp(92px, 9.4vw, 145px);
-  }
 }
 
 /* PC用の意匠を保ったまま、タブレット幅では3指標の表示領域を均等に確保する。 */
@@ -3223,7 +3199,7 @@ html {
 
   .heroDevices .laptop {
     width: 100%;
-    margin: 0 0 45px;
+    margin: 0;
   }
 
   .laptopScreen {
@@ -3241,16 +3217,9 @@ html {
   }
 
   .heroPhone {
-    right: 5px;
-    bottom: 0;
-    height: 235px;
-    width: 108px;
-    padding: 5px;
-    border-radius: 25px;
-  }
-
-  .heroPhone img {
-    border-radius: 19px;
+    /* この幅ではノートPCが全幅を使うため、並べる余白が無い。
+       スマホ画像は761px以上（タブレット・デスクトップ）でのみ表示する。 */
+    display: none;
   }
 
   .heroPhone .phoneSpeaker {

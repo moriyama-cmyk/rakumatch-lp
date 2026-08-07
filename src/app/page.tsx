@@ -337,6 +337,7 @@ function Laptop({
   mask,
   className = "",
   priority = false,
+  badge,
 }: {
   src: string;
   alt: string;
@@ -344,6 +345,7 @@ function Laptop({
   mask?: string;
   className?: string;
   priority?: boolean;
+  badge?: ReactNode;
 }) {
   return (
     <div className={`laptop ${className}`}>
@@ -352,6 +354,7 @@ function Laptop({
         {mask ? <span className="screenPrivacyMask">{mask}</span> : null}
       </div>
       <div className="laptopBase" aria-hidden="true" />
+      {badge}
     </div>
   );
 }
@@ -658,8 +661,14 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal className="heroDevices" delay={0.12}>
-              <Laptop src="/media/hero-app-overview.jpg" alt="顧客詳細・AIアシスタント・マッチ物件が並ぶ実際の画面" position="center" priority />
-              <span className="floatingTag tagMatch"><Sparkles aria-hidden="true" />合う理由まで表示</span>
+              <Laptop
+                src="/media/hero-app-overview.jpg"
+                alt="顧客詳細・AIアシスタント・マッチ物件が並ぶ実際の画面"
+                position="center"
+                priority
+                badge={<span className="floatingTag tagMatch"><Sparkles aria-hidden="true" />合う理由まで表示</span>}
+              />
+              <PhoneFrame src="/media/customer-app-home.webp" alt="お客様向け物件リスト画面" mask="デモ顧客の物件リスト" className="heroPhone" />
             </Reveal>
           </div>
 
