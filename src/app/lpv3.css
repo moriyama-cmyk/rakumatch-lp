@@ -894,49 +894,56 @@ html {
 
 .documentStack {
   position: relative;
-  width: 88%;
+  width: 92%;
   height: 280px;
   margin: auto;
 }
 
 .documentStack > div {
   position: absolute;
-  width: 43%;
+  width: 22%;
   height: 168px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 12px 6px;
   border: 1px solid #b8c9e0;
   border-radius: 10px;
   background: #fff;
   box-shadow: 0 10px 23px rgba(5, 32, 94, 0.09);
 }
 
-.documentStack > div:first-child {
-  top: 44px;
+/* 4枚とも矩形として重ならないよう均等配置（左端0%〜右端100%、隙間4%）。
+   回転はカード自身の傾き演出のみで、テキストを隣のカードに隠さない。 */
+.documentStack > div:nth-child(1) {
+  top: 48px;
   left: 0;
-  transform: rotate(-5deg);
+  transform: rotate(-7deg);
 }
 
 .documentStack > div:nth-child(2) {
   top: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
+  left: 26%;
+  transform: rotate(-2deg);
 }
 
 .documentStack > div:nth-child(3) {
-  top: 44px;
-  right: 0;
-  transform: rotate(5deg);
+  top: 4px;
+  left: 52%;
+  transform: rotate(2deg);
+}
+
+.documentStack > div:nth-child(4) {
+  top: 48px;
+  left: 78%;
+  transform: rotate(7deg);
 }
 
 .documentStack svg {
-  width: 42px;
-  height: 42px;
-  margin-bottom: 10px;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 6px;
   color: var(--blue);
 }
 
@@ -947,7 +954,7 @@ html {
 
 .documentStack strong {
   color: var(--blue);
-  font-size: 17px;
+  font-size: 14px;
 }
 
 .documentStack small {
@@ -3575,26 +3582,27 @@ html {
 
   .documentStack {
     width: 90%;
-    height: 225px;
+    height: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
     align-items: center;
-    padding-bottom: 48px;
+    padding-bottom: 52px;
   }
 
   .documentStack > div {
     position: relative;
     inset: auto;
     width: 100%;
-    height: 128px;
+    height: 116px;
     padding: 8px 3px;
     transform: none;
   }
 
-  .documentStack > div:first-child,
+  .documentStack > div:nth-child(1),
   .documentStack > div:nth-child(2),
-  .documentStack > div:nth-child(3) {
+  .documentStack > div:nth-child(3),
+  .documentStack > div:nth-child(4) {
     inset: auto;
     transform: none;
   }

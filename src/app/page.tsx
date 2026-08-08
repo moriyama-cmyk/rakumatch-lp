@@ -16,6 +16,7 @@ import {
   FileImage,
   FileText,
   Mail,
+  NotebookPen,
   Phone,
   PlayCircle,
   Shield,
@@ -701,6 +702,7 @@ export default function HomePage() {
                   <div><FileText aria-hidden="true" /><strong>文章</strong><small>コピー</small></div>
                   <div><FileText aria-hidden="true" /><strong>PDF</strong><small>ドロップ</small></div>
                   <div><FileImage aria-hidden="true" /><strong>スクショ</strong><small>ドロップ</small></div>
+                  <div><NotebookPen aria-hidden="true" /><strong>手書きメモ</strong><small>撮影</small></div>
                   <span>資料を<br />コピー</span>
                   <em className="handwrittenNote" aria-hidden="true">コピーする<br />だけ！</em>
                 </div>
