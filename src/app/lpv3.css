@@ -3270,20 +3270,29 @@ html {
     margin-top: 24px;
   }
 
+  .heroDevices {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .heroDevices .laptop {
     width: 100%;
     margin: 0;
   }
 
-  /* 2026-08-09: 3列(顧客詳細/AIチャット/マッチ物件)をこの幅に並べると
-     文字が読めないほど潰れるため、狭幅ではAIチャット列だけを見せる。 */
-  .heroScreenCol:nth-child(1),
-  .heroScreenCol:nth-child(3) {
-    display: none;
+  /* 2026-08-09: 「3列を無理に見せる」でも「AIチャット列だけ隠す」でも
+     不評だったため、ノートPCの形は横長のまま保ち、中の3列は横スクロールの
+     スナップカルーセルにする(スマホ用件リストのカルーセルと同じ考え方)。
+     1列ずつ画面幅いっぱいで表示され、スワイプで切り替えられる。 */
+  .heroScreenCols {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .heroScreenCol:nth-child(2) {
-    border-right: none;
+  .heroScreenCol {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
   }
 
   .laptopScreen {
@@ -3292,16 +3301,10 @@ html {
     border-radius: 13px 13px 6px 6px;
   }
 
-  /* 2026-08-09: ノートPCの形自体が縦に伸びると見た目が不自然になるため、
-     全体に縦長(3:4)を強制するのはやめ、ヒーローだけ少し縦長(4:5)にする。
-     ミニノートPC(プロセス手順)は4:3のまま、横長の形は保ちつつ
-     16:9よりは高さを確保する。 */
+  /* ノートPCは横長の形のまま(16:9より少し高さがある4:3)を保ち、
+     「縦に伸びたノートPC」に見えないようにする。 */
   .laptopScreenCode {
     aspect-ratio: 4 / 3;
-  }
-
-  .heroDevices .laptopScreenCode {
-    aspect-ratio: 4 / 5;
   }
 
   .laptopBase {
@@ -3312,10 +3315,13 @@ html {
     font-size: 8px;
   }
 
-  .heroPhone {
-    /* この幅ではノートPCが全幅を使うため、並べる余白が無い。
-       スマホ画像は761px以上（タブレット・デスクトップ）でのみ表示する。 */
-    display: none;
+  /* 2026-08-09: 「iPhoneが無くなってる」という指摘を受け復活。
+     ノートPCの下にフルサイズで積む(横並びは幅が無いため)。 */
+  .heroDevices .heroPhone {
+    display: block;
+    width: auto;
+    height: 280px;
+    margin-top: 4px;
   }
 
   .heroPhone .phoneSpeaker {
