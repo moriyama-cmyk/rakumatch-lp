@@ -30,8 +30,6 @@ import { DualMatchRightMock } from "@/components/lp/mock/DualMatchRightMock";
 import { AiInputMock } from "@/components/lp/mock/AiInputMock";
 import { PropertyGridMock } from "@/components/lp/mock/PropertyGridMock";
 import { AiChatMock } from "@/components/lp/mock/AiChatMock";
-import { CustomerDetailMock } from "@/components/lp/mock/CustomerDetailMock";
-import { HeroMatchListMock } from "@/components/lp/mock/HeroMatchListMock";
 import { ContractPhaseMock } from "@/components/lp/mock/ContractPhaseMock";
 import { SettlementFormMock } from "@/components/lp/mock/SettlementFormMock";
 import { CallRecordingMock } from "@/components/lp/mock/CallRecordingMock";
@@ -680,16 +678,10 @@ export default function HomePage() {
 
             <Reveal className="heroDevices" delay={0.12}>
               <Laptop
+                src="/media/hero-app-overview.jpg"
                 alt="顧客詳細・AIアシスタント・マッチ物件が並ぶ実際の画面"
                 priority
                 badge={<span className="floatingTag tagMatch"><Sparkles aria-hidden="true" />合う理由まで表示</span>}
-                screen={
-                  <div className="heroScreenCols">
-                    <CustomerDetailMock className="heroScreenCol" />
-                    <AiChatMock className="heroScreenCol" />
-                    <HeroMatchListMock className="heroScreenCol" />
-                  </div>
-                }
               />
               <PhoneFrame src="/media/customer-app-home.webp" alt="お客様向け物件リスト画面" mask="デモ顧客の物件リスト" className="heroPhone" priority />
             </Reveal>
