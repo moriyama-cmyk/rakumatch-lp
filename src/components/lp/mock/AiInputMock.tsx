@@ -105,7 +105,7 @@ export function AiInputMock({ className }: AiInputMockProps) {
       style={{ containerType: 'inline-size' }}
       aria-hidden
     >
-      <div className="flex h-full w-full text-slate-800 text-[length:clamp(9px,2.4cqw,20px)] @[480px]:text-[length:clamp(4px,1.3cqw,20px)]">
+      <div className="flex h-full w-full text-slate-800 text-[length:clamp(9px,2.4cqw,20px)] @[400px]:text-[length:clamp(8px,1.5cqw,20px)]">
         <SideRail />
 
         <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden px-[1.9em] pt-[1.5em]">

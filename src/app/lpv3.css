@@ -1782,45 +1782,48 @@ html {
    4列1行になる981px以上でカードだけが450〜600pxに間延びする。
    行は中身の高さのまま中央に置き、余白は行の外側に逃がす。 */
 .securityGrid {
-  flex: 1;
+  flex: 0 0 auto;
   min-height: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
+  margin-top: 20px;
   align-items: stretch;
-  align-content: center;
+  align-content: start;
 }
 
 .securityCard {
   min-width: 0;
-  min-height: 260px;
+  min-height: 208px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px 22px;
+  padding: 23px 18px;
   border: 1px solid #ccdaed;
-  border-radius: 24px;
+  border-radius: 20px;
   background: #fff;
   text-align: center;
   box-shadow: 0 12px 29px rgba(5, 32, 94, 0.07);
 }
 
 .securityIcon {
-  width: 68px;
-  height: 68px;
+  width: 54px;
+  height: 54px;
   display: grid;
   place-items: center;
-  margin-bottom: 20px;
-  border-radius: 50%;
-  color: #fff;
-  background: linear-gradient(145deg, #0e5bd3, #06368f);
+  margin-bottom: 14px;
+  border: 1px solid #b9d2f5;
+  border-radius: 16px;
+  color: #0753bd;
+  background: linear-gradient(145deg, #f6faff, #dfebff);
+  box-shadow: inset 0 1px 0 #fff, 0 7px 16px rgba(5, 68, 161, 0.11);
 }
 
 .securityIcon svg {
-  width: 29px;
-  height: 29px;
-  stroke-width: 2.3;
+  width: 26px;
+  height: 26px;
+  stroke-width: 2.15;
 }
 
 .securityCard h3 {
@@ -1832,11 +1835,15 @@ html {
 }
 
 .securityCard p {
-  margin: 10px 0 0;
+  margin: 7px 0 0;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.65;
   font-weight: 650;
+}
+
+.securitySection > .pageShell {
+  justify-content: center;
 }
 
 .securityClosing {
@@ -2939,6 +2946,93 @@ html {
 
   .sectionHeading h2 {
     font-size: 48px;
+  }
+}
+
+/* 3ステップ自体は縦積みのまま、900〜1180pxでは各カード内を横組みにする。
+   モックの横幅を確保しながら、1100px付近でセクションが2000px超まで
+   伸びるのを防ぐ。 */
+@media (min-width: 900px) and (max-width: 1180px) {
+  .processGrid {
+    max-width: 1040px;
+    gap: 16px;
+  }
+
+  .processCard {
+    display: grid;
+    grid-template-columns: 176px minmax(0, 1fr);
+  }
+
+  .processHeader {
+    min-height: 0;
+    grid-column: 1;
+    grid-row: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: 22px 16px;
+    border-radius: 20px 0 0 20px;
+    text-align: center;
+    font-size: 21px;
+    line-height: 1.35;
+  }
+
+  .processCard.focus .processHeader {
+    border-radius: 17px 0 0 17px;
+  }
+
+  .processHeader b {
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
+    font-size: 26px;
+  }
+
+  .processBody {
+    grid-column: 2;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: minmax(170px, 0.4fr) minmax(0, 1fr);
+    grid-template-rows: 1fr auto;
+    gap: 12px 20px;
+    align-items: center;
+    padding: 16px 20px;
+  }
+
+  .processBody > p {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+    margin: 0;
+    text-align: left;
+    font-size: 17px;
+  }
+
+  .processBody > .documentStack,
+  .processBody > .miniLaptop {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+
+  .documentStack {
+    width: min(90%, 520px);
+    height: 230px;
+    margin: 0 auto;
+  }
+
+  .miniLaptop {
+    align-self: center;
+    margin: 0;
+  }
+
+  .processResult {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    margin: 0 auto;
+    padding: 10px 14px;
+    text-align: center;
+    font-size: 16px;
   }
 }
 
@@ -4083,29 +4177,30 @@ html {
   }
 
   .securityGrid {
+    margin-top: 0;
     gap: 13px;
   }
 
   .securityCard {
     min-height: 0;
     display: grid;
-    grid-template-columns: 58px minmax(0, 1fr);
+    grid-template-columns: 50px minmax(0, 1fr);
     column-gap: 15px;
-    padding: 18px;
+    padding: 16px;
     border-radius: 19px;
     text-align: left;
   }
 
   .securityIcon {
-    width: 58px;
-    height: 58px;
+    width: 50px;
+    height: 50px;
     grid-row: 1 / 3;
     margin: 0;
   }
 
   .securityIcon svg {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
   }
 
   .securityCard h3 {

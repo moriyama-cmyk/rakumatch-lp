@@ -132,7 +132,7 @@ export function PropertyGridMock({ className }: PropertyGridMockProps) {
       aria-hidden
     >
       <div
-        className="flex h-full w-full flex-col text-slate-800 text-[length:clamp(9px,2.6cqw,16px)] @[420px]:text-[length:clamp(7px,1.6cqw,16px)] @[680px]:text-[length:clamp(5px,0.92cqw,16px)]"
+        className="flex h-full w-full flex-col text-slate-800 text-[length:clamp(9px,2.6cqw,16px)] @[420px]:text-[length:clamp(8px,1.75cqw,16px)] @[680px]:text-[length:clamp(6px,1.05cqw,16px)]"
       >
         <div className="shrink-0 border-b border-slate-200 bg-white px-[1.4em] pb-[0.9em] pt-[1em]">
           <div className="flex items-center gap-[0.6em] overflow-x-auto">

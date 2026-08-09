@@ -5,16 +5,15 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   Bot,
-  Brain,
   Building2,
   Check,
   ChevronDown,
   CircleUserRound,
   ClipboardCheck,
-  CreditCard,
-  Database,
+  CloudCog,
   FileImage,
   FileText,
+  LockKeyhole,
   Mail,
   NotebookPen,
   Phone,
@@ -22,6 +21,7 @@ import {
   Shield,
   Sparkles,
   UsersRound,
+  WalletCards,
 } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { trackCta } from "@/lib/track";
@@ -257,10 +257,10 @@ const comparisonCardLabels: { key: "excel" | "a" | "b" | "c"; label: string }[] 
 
 // 文言は正本から一字一句そのまま使用し、盛らない・削らない。
 const securityItems = [
-  { icon: Brain, title: "Google AI（Gemini）搭載", desc: "世界最先端のAIエンジン" },
-  { icon: Database, title: "Amazon Web Services", desc: "世界最大級のクラウド基盤" },
-  { icon: CreditCard, title: "Stripe決済", desc: "世界135カ国以上で利用される決済インフラ" },
-  { icon: Shield, title: "通信・データは暗号化", desc: "決済情報を弊社サーバーで保持しません" },
+  { icon: Bot, title: "Google AI（Gemini）搭載", desc: "世界最先端のAIエンジン" },
+  { icon: CloudCog, title: "Amazon Web Services", desc: "世界最大級のクラウド基盤" },
+  { icon: WalletCards, title: "Stripe決済", desc: "世界135カ国以上で利用される決済インフラ" },
+  { icon: LockKeyhole, title: "通信・データは暗号化", desc: "決済情報を弊社サーバーで保持しません" },
 ];
 
 const softwareSchema = {
