@@ -25,6 +25,15 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { trackCta } from "@/lib/track";
+import { DualMatchLeftMock } from "@/components/lp/mock/DualMatchLeftMock";
+import { DualMatchRightMock } from "@/components/lp/mock/DualMatchRightMock";
+import { AiInputMock } from "@/components/lp/mock/AiInputMock";
+import { PropertyGridMock } from "@/components/lp/mock/PropertyGridMock";
+import { AiChatMock } from "@/components/lp/mock/AiChatMock";
+import { CustomerDetailMock } from "@/components/lp/mock/CustomerDetailMock";
+import { HeroMatchListMock } from "@/components/lp/mock/HeroMatchListMock";
+import { ContractPhaseMock } from "@/components/lp/mock/ContractPhaseMock";
+import { SettlementFormMock } from "@/components/lp/mock/SettlementFormMock";
 
 const TRY_URL = "https://app.rakumatch-ai.com/try";
 
@@ -339,19 +348,26 @@ function Laptop({
   className = "",
   priority = false,
   badge,
+  screen,
 }: {
-  src: string;
-  alt: string;
+  src?: string;
+  alt?: string;
   position?: string;
   mask?: string;
   className?: string;
   priority?: boolean;
   badge?: ReactNode;
+  /** 画像の代わりにコードで再現した画面をそのまま描画する（見切れバグの根治版） */
+  screen?: ReactNode;
 }) {
   return (
     <div className={`laptop ${className}`}>
       <div className="laptopScreen">
-        <img src={src} alt={alt} style={{ objectPosition: position }} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} />
+        {screen ? (
+          <div className="laptopScreenCode">{screen}</div>
+        ) : (
+          <img src={src} alt={alt} style={{ objectPosition: position }} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} />
+        )}
         {mask ? <span className="screenPrivacyMask">{mask}</span> : null}
       </div>
       <div className="laptopBase" aria-hidden="true" />
@@ -663,13 +679,18 @@ export default function HomePage() {
 
             <Reveal className="heroDevices" delay={0.12}>
               <Laptop
-                src="/media/hero-app-overview.jpg"
                 alt="顧客詳細・AIアシスタント・マッチ物件が並ぶ実際の画面"
-                position="center"
                 priority
                 badge={<span className="floatingTag tagMatch"><Sparkles aria-hidden="true" />合う理由まで表示</span>}
+                screen={
+                  <div className="heroScreenCols">
+                    <CustomerDetailMock className="heroScreenCol" />
+                    <AiChatMock className="heroScreenCol" />
+                    <HeroMatchListMock className="heroScreenCol" />
+                  </div>
+                }
               />
-              <PhoneFrame src="/media/customer-app-home.webp" alt="お客様向け物件リスト画面" mask="デモ顧客の物件リスト" className="heroPhone" />
+              <PhoneFrame src="/media/customer-app-home.webp" alt="お客様向け物件リスト画面" mask="デモ顧客の物件リスト" className="heroPhone" priority />
             </Reveal>
           </div>
 
@@ -713,7 +734,7 @@ export default function HomePage() {
               <div className="processHeader"><b>2</b><span>貼り付ける</span></div>
               <div className="processBody">
                 <p>コピーした文章を貼るか、<br />PDF・画像をドロップ。</p>
-                <Laptop src="/media/ai-input.webp" alt="AI一括入力画面" position="center" className="miniLaptop" />
+                <Laptop alt="AI一括入力画面" className="miniLaptop" screen={<AiInputMock />} />
                 <strong className="processResult">貼り付けるだけでOK！</strong>
               </div>
               <span className="flowArrow" aria-hidden="true" />
@@ -722,7 +743,7 @@ export default function HomePage() {
               <div className="processHeader"><b>3</b><span>AIが項目へ整理</span></div>
               <div className="processBody">
                 <p>内容を確認・修正して、<br />物件カードとして登録します。</p>
-                <Laptop src="/media/property-match-list.webp" alt="登録された物件カードの一覧" position="center" className="miniLaptop" />
+                <Laptop alt="登録された物件カードの一覧" className="miniLaptop" screen={<PropertyGridMock />} />
                 <strong className="processResult">確認して登録！</strong>
               </div>
             </Reveal>
@@ -747,14 +768,19 @@ export default function HomePage() {
           <div className="dualMatch">
             <Reveal className="screenCard">
               <h3><span>人</span>顧客から、合う物件を探す</h3>
-              <DemoScreen src="/media/customer-match-panel.jpg" alt="顧客から物件を探すAIマッチング画面" position="top" privacyLabel="デモ顧客／希望条件" />
+              <div className="demoScreen">
+                <DualMatchLeftMock />
+                <span className="demoPrivacyMask">デモ顧客／希望条件</span>
+              </div>
               <i className="callout calloutTop">候補物件を表示</i>
               <i className="callout calloutBottom">合う理由を確認</i>
             </Reveal>
             <div className="aiOrbit" aria-hidden="true"><Bot />AI<br />双方向</div>
             <Reveal className="screenCard focus" delay={0.1}>
               <h3><span>家</span>物件から、紹介先を探す</h3>
-              <DemoScreen src="/media/property-referral-match.webp" alt="物件から顧客を探すAIマッチング画面" position="top" />
+              <div className="demoScreen">
+                <DualMatchRightMock />
+              </div>
               <i className="callout calloutTop">マッチ顧客</i>
               <i className="callout calloutBottom">スコア順</i>
             </Reveal>
@@ -771,7 +797,10 @@ export default function HomePage() {
           <div className="assistantLayout">
             <Reveal className="screenCard focus assistantScreen">
               <h3><span>AI</span>顧客を理解したAIアシスタント</h3>
-              <DemoScreen src="/media/assistant-panel.jpg" alt="顧客専属AIの提案画面" position="center top" privacyLabel="デモ顧客／活動履歴" />
+              <div className="demoScreen">
+                <AiChatMock />
+                <span className="demoPrivacyMask">デモ顧客／活動履歴</span>
+              </div>
               <span className="assistantBadge"><Sparkles aria-hidden="true" />顧客・物件・履歴を参照</span>
             </Reveal>
             <Reveal className="assistPoints" delay={0.1}>
@@ -847,7 +876,9 @@ export default function HomePage() {
               <div><span><ClipboardCheck /></span><b>履歴保存</b><small>顧客ページへ残す</small></div>
             </Reveal>
             <Reveal className="recordingVisual" delay={0.1}>
-              <DemoScreen src="/media/customer-ai-match.webp" alt="AI要約を含む顧客活動画面" position="58% center" />
+              <div className="demoScreen">
+                <AiChatMock />
+              </div>
               <span className="waveform" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /></span>
             </Reveal>
           </div>
@@ -863,11 +894,11 @@ export default function HomePage() {
           <div className="contractGrid">
             <Reveal className="screenCard focus">
               <h3><span>6</span>契約フェーズを確認</h3>
-              <DemoScreen src="/media/contract-flow.webp" alt="売買契約の6フェーズ管理画面" />
+              <div className="demoScreen"><ContractPhaseMock /></div>
             </Reveal>
             <Reveal className="screenCard" delay={0.1}>
               <h3><span>¥</span>日割り精算を保存</h3>
-              <DemoScreen src="/shot-settlement-form.webp" alt="固都税と管理費の精算画面" className="containScreen" />
+              <div className="demoScreen"><SettlementFormMock /></div>
             </Reveal>
           </div>
           <BenefitBand left="事前審査から決済までチェック" right="別の表計算へ移す手間を減らす" />
