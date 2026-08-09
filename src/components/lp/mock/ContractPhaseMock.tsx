@@ -188,18 +188,18 @@ function CurrentPhaseRow() {
     <div className="flex shrink-0 items-stretch gap-[0.55em]">
       <Rail tone="current" last />
       <div className="min-w-0 flex-1 rounded-[0.8em] border border-violet-200/70 bg-[#f6f4ff] px-[0.85em] py-[0.75em]">
-        <div className="flex items-center gap-[0.5em]">
+        <div className="flex flex-wrap items-center gap-[0.5em]">
           <span className="shrink-0 text-[0.98em] font-bold leading-none text-violet-700">本審査</span>
           <span className="shrink-0 rounded-full bg-violet-600 px-[0.6em] py-[0.25em] text-[0.78em] font-bold leading-none text-white">
             現在地
           </span>
           <span className="shrink-0 text-[0.85em] leading-none text-slate-400">0/4 チェック済</span>
-          <span className="inline-flex min-w-0 shrink items-center gap-[0.3em] truncate rounded-full bg-rose-100 px-[0.6em] py-[0.25em] text-[0.76em] font-bold leading-none text-rose-500">
+          <ChevronUp className="ml-auto h-[1.1em] w-[1.1em] shrink-0 text-slate-300" />
+          <span className="inline-flex min-w-0 max-w-full shrink items-center gap-[0.3em] rounded-full bg-rose-100 px-[0.6em] py-[0.25em] text-[0.76em] font-bold leading-none text-rose-500">
             <Clock className="h-[1.1em] w-[1.1em] shrink-0" />
             <CalendarDays className="h-[1.1em] w-[1.1em] shrink-0" />
             <span className="truncate">2026-06-09 (47日超過)</span>
           </span>
-          <ChevronUp className="ml-auto h-[1.1em] w-[1.1em] shrink-0 text-slate-300" />
         </div>
 
         <p className="mt-[0.55em] text-[0.86em] leading-snug text-slate-600">

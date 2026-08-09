@@ -3270,10 +3270,27 @@ html {
     margin: 0;
   }
 
+  /* 2026-08-09: 3列(顧客詳細/AIチャット/マッチ物件)をこの幅に並べると
+     文字が読めないほど潰れるため、狭幅ではAIチャット列だけを見せる。 */
+  .heroScreenCol:nth-child(1),
+  .heroScreenCol:nth-child(3) {
+    display: none;
+  }
+
+  .heroScreenCol:nth-child(2) {
+    border-right: none;
+  }
+
   .laptopScreen {
     padding: 4px;
     border-width: 5px;
     border-radius: 13px 13px 6px 6px;
+  }
+
+  /* 2026-08-09: コードUIは1カラムに落として縦に積む前提なので、
+     狭幅では横長(16:9)より縦長のほうが中身が収まる。 */
+  .laptopScreenCode {
+    aspect-ratio: 3 / 4;
   }
 
   .laptopBase {
@@ -3764,7 +3781,9 @@ html {
 
   .screenCard .demoScreen {
     min-height: 330px;
-    aspect-ratio: 4 / 3;
+    /* 2026-08-09: 画像時代は横長(4/3)だったが、今はコードUIが縦に積み上がる
+       構成なので、狭幅では縦長のほうが中身が余裕を持って収まる。 */
+    aspect-ratio: 0.75;
   }
 
   .demoPrivacyMask {
@@ -3773,14 +3792,16 @@ html {
     font-size: 10px;
   }
 
+  /* 2026-08-09: 「合う理由を確認」等の吹き出しは画像時代の固定px位置のため、
+     コードUI化後は幅が狭いスマホで中身の文字・チップに重なる事故が起きていた。
+     装飾的な要素なので、この帯域では非表示にする。 */
   .callout {
-    right: 22px;
-    padding: 7px 10px;
-    font-size: 11px;
+    display: none;
   }
 
-  .calloutTop { top: 70px; }
-  .calloutBottom { right: auto; bottom: 25px; left: 22px; }
+  .assistantBadge {
+    display: none;
+  }
 
   .aiOrbit {
     position: relative;

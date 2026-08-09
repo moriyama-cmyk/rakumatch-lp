@@ -770,7 +770,6 @@ export default function HomePage() {
               <h3><span>人</span>顧客から、合う物件を探す</h3>
               <div className="demoScreen">
                 <DualMatchLeftMock />
-                <span className="demoPrivacyMask">デモ顧客／希望条件</span>
               </div>
               <i className="callout calloutTop">候補物件を表示</i>
               <i className="callout calloutBottom">合う理由を確認</i>
@@ -799,7 +798,6 @@ export default function HomePage() {
               <h3><span>AI</span>顧客を理解したAIアシスタント</h3>
               <div className="demoScreen">
                 <AiChatMock />
-                <span className="demoPrivacyMask">デモ顧客／活動履歴</span>
               </div>
               <span className="assistantBadge"><Sparkles aria-hidden="true" />顧客・物件・履歴を参照</span>
             </Reveal>
@@ -877,7 +875,7 @@ export default function HomePage() {
             </Reveal>
             <Reveal className="recordingVisual" delay={0.1}>
               <div className="demoScreen">
-                <AiChatMock />
+                <CustomerDetailMock />
               </div>
               <span className="waveform" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /></span>
             </Reveal>

@@ -105,10 +105,7 @@ export function AiInputMock({ className }: AiInputMockProps) {
       style={{ containerType: 'inline-size' }}
       aria-hidden
     >
-      <div
-        className="flex h-full w-full text-slate-800"
-        style={{ fontSize: 'clamp(4px, 1.3cqw, 20px)' }}
-      >
+      <div className="flex h-full w-full text-slate-800 text-[length:clamp(9px,2.4cqw,20px)] @[480px]:text-[length:clamp(4px,1.3cqw,20px)]">
         <SideRail />
 
         <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden px-[1.9em] pt-[1.5em]">
@@ -124,7 +121,7 @@ export function AiInputMock({ className }: AiInputMockProps) {
             </p>
           </div>
 
-          <div className="mt-[1.3em] flex min-h-0 flex-1 items-stretch gap-[1.4em]">
+          <div className="mt-[1.3em] flex min-h-0 flex-1 flex-col items-stretch gap-[1.4em] overflow-hidden @[480px]:flex-row">
             {CARDS.map((card) => (
               <HubCard key={card.title} data={card} />
             ))}

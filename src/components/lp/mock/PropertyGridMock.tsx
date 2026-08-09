@@ -132,11 +132,10 @@ export function PropertyGridMock({ className }: PropertyGridMockProps) {
       aria-hidden
     >
       <div
-        className="flex h-full w-full flex-col text-slate-800"
-        style={{ fontSize: 'clamp(5px, 0.92cqw, 16px)' }}
+        className="flex h-full w-full flex-col text-slate-800 text-[length:clamp(9px,2.6cqw,16px)] @[420px]:text-[length:clamp(7px,1.6cqw,16px)] @[680px]:text-[length:clamp(5px,0.92cqw,16px)]"
       >
         <div className="shrink-0 border-b border-slate-200 bg-white px-[1.4em] pb-[0.9em] pt-[1em]">
-          <div className="flex items-center gap-[0.6em]">
+          <div className="flex items-center gap-[0.6em] overflow-x-auto">
             {FILTER_TABS.map((tab, index) => (
               <FilterTab key={tab.label} data={tab} active={index === 0} />
             ))}
@@ -157,7 +156,7 @@ export function PropertyGridMock({ className }: PropertyGridMockProps) {
         <div className="flex min-h-0 flex-1 flex-col px-[1.4em] pt-[1.1em]">
           <p className="shrink-0 text-[0.95em] leading-none text-slate-500">14件</p>
 
-          <div className="mt-[1.1em] grid min-h-0 flex-1 grid-cols-3 content-start gap-[1.6em] overflow-hidden pb-[1.2em]">
+          <div className="mt-[1.1em] grid min-h-0 flex-1 grid-cols-1 content-start gap-[1.6em] overflow-hidden pb-[1.2em] @[420px]:grid-cols-2 @[680px]:grid-cols-3">
             {PROPERTIES.map((property) => (
               <PropertyItem key={property.name} data={property} />
             ))}
