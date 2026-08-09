@@ -578,7 +578,7 @@ function DeveloperStorySection() {
           label="開発者について"
           sub="机上で作ったツールではありません。現場の不便を1つずつ潰して作った、現場のための道具です。"
         >
-          現役の不動産営業マンが、<span>自分のために作りました。</span>
+          現役の不動産営業マンが、<span className="headingPhraseWrap">自分のために作りました。</span>
         </SectionHeading>
 
         <div className="storyLayout">
