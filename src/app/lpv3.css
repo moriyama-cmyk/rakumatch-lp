@@ -1608,6 +1608,7 @@ html {
 }
 
 .recordingVisual .demoScreen {
+  width: 100%;
   height: 100%;
 }
 
@@ -3287,10 +3288,16 @@ html {
     border-radius: 13px 13px 6px 6px;
   }
 
-  /* 2026-08-09: コードUIは1カラムに落として縦に積む前提なので、
-     狭幅では横長(16:9)より縦長のほうが中身が収まる。 */
+  /* 2026-08-09: ノートPCの形自体が縦に伸びると見た目が不自然になるため、
+     全体に縦長(3:4)を強制するのはやめ、ヒーローだけ少し縦長(4:5)にする。
+     ミニノートPC(プロセス手順)は4:3のまま、横長の形は保ちつつ
+     16:9よりは高さを確保する。 */
   .laptopScreenCode {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 3;
+  }
+
+  .heroDevices .laptopScreenCode {
+    aspect-ratio: 4 / 5;
   }
 
   .laptopBase {
@@ -3881,16 +3888,24 @@ html {
     width: min(358px, 100%);
   }
 
+  /* 2026-08-09: 3枚を並べて2枚を欠けさせるより、横スクロールで1枚ずつ
+     フルサイズに「浮き出る」カルーセルにする(森山さん指定)。 */
   .phoneShowcase {
-    min-height: 510px;
-    gap: 6px;
-    padding: 8px 0 2px;
+    min-height: 0;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding: 8px 28px 18px;
   }
 
   .phoneShowcase .phoneFrame {
-    height: 480px;
+    flex: 0 0 auto;
+    height: 440px;
     padding: 6px;
     border-radius: 29px;
+    scroll-snap-align: center;
   }
 
   .phoneShowcase .mainPhone {
@@ -3898,14 +3913,14 @@ html {
   }
 
   .phoneShowcase .sidePhone {
-    width: 27%;
-    height: 390px;
-    margin-inline: -18px;
-    opacity: 0.8;
+    width: auto;
+    height: 440px;
+    margin-inline: 0;
+    opacity: 1;
   }
 
   .phoneShowcase .sidePhone img {
-    width: 100%;
+    width: auto;
     object-fit: cover;
   }
 
@@ -3992,8 +4007,13 @@ html {
   }
 
   .recordingVisual .demoScreen {
+    width: 100%;
     min-height: 330px;
-    aspect-ratio: 4 / 3;
+    /* 2026-08-09: widthを明示せず min-height と aspect-ratio だけを
+       指定していたため、幅が高さから逆算されコンテナ幅(約302px)を
+       超えて440pxまで膨張し右側がクリップされていた(GPT Sol監査で発見)。
+       widthを100%に固定し、高さは幅から導く方向に統一する。 */
+    aspect-ratio: 0.85;
   }
 
   .contractGrid .screenCard {

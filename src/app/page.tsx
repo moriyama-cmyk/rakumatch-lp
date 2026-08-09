@@ -34,6 +34,7 @@ import { CustomerDetailMock } from "@/components/lp/mock/CustomerDetailMock";
 import { HeroMatchListMock } from "@/components/lp/mock/HeroMatchListMock";
 import { ContractPhaseMock } from "@/components/lp/mock/ContractPhaseMock";
 import { SettlementFormMock } from "@/components/lp/mock/SettlementFormMock";
+import { CallRecordingMock } from "@/components/lp/mock/CallRecordingMock";
 
 const TRY_URL = "https://app.rakumatch-ai.com/try";
 
@@ -875,9 +876,8 @@ export default function HomePage() {
             </Reveal>
             <Reveal className="recordingVisual" delay={0.1}>
               <div className="demoScreen">
-                <CustomerDetailMock />
+                <CallRecordingMock />
               </div>
-              <span className="waveform" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /><i /></span>
             </Reveal>
           </div>
           <BenefitBand left="振り返り時間を減らす" right="会話の要点を活動履歴へ残す" />
@@ -911,7 +911,6 @@ export default function HomePage() {
           <div className="onboardingLayout">
             <Reveal className="editorialCard">
               <img src="/media/editorial-agent.webp" alt="楽マッチAIを試す不動産営業担当者の利用イメージ" loading="lazy" />
-              <span>利用イメージ</span>
               <p>ブラウザですぐ試せて、<br />合えばそのまま運用へ。</p>
             </Reveal>
             <div className="onboardingSteps">
