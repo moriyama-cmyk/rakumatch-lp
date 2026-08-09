@@ -1,4 +1,4 @@
-import { ArrowUpDown, ChevronDown, Home, MapPin, Ruler, Star, TrainFront, Trash2, Users } from 'lucide-react'
+import { ArrowUpDown, ChevronDown, ChevronRight, Home, MapPin, Ruler, Star, TrainFront, Trash2, Users } from 'lucide-react'
 import { cn } from '../lib/cn'
 
 /**
@@ -135,10 +135,16 @@ export function PropertyGridMock({ className }: PropertyGridMockProps) {
         className="flex h-full w-full flex-col text-slate-800 text-[length:clamp(9px,2.6cqw,16px)] @[420px]:text-[length:clamp(8px,1.75cqw,16px)] @[680px]:text-[length:clamp(6px,1.05cqw,16px)]"
       >
         <div className="shrink-0 border-b border-slate-200 bg-white px-[1.4em] pb-[0.9em] pt-[1em]">
-          <div className="flex items-center gap-[0.6em] overflow-x-auto">
-            {FILTER_TABS.map((tab, index) => (
-              <FilterTab key={tab.label} data={tab} active={index === 0} />
-            ))}
+          <div className="relative">
+            <div className="flex items-center gap-[0.6em] overflow-x-auto pr-[3.8em] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {FILTER_TABS.map((tab, index) => (
+                <FilterTab key={tab.label} data={tab} active={index === 0} />
+              ))}
+            </div>
+            <span className="pointer-events-none absolute inset-y-0 right-0 flex w-[3.8em] items-center justify-end bg-gradient-to-l from-white via-white/95 to-transparent pr-[0.3em] text-[0.72em] font-bold text-emerald-600">
+              横へ
+              <ChevronRight className="h-[1.2em] w-[1.2em]" />
+            </span>
           </div>
 
           <div className="mt-[0.95em] flex items-center gap-[0.55em]">

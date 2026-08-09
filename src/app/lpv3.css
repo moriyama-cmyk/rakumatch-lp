@@ -1031,9 +1031,24 @@ html {
 }
 
 .miniLaptop .laptopScreen {
+  /* AiInputMock の container query と同じ content-box 幅を判定に使う。
+     幅だけを containment し、画面の高さは下の aspect-ratio で必ず確定させる。 */
+  container: mini-laptop-screen / inline-size;
   padding: 5px;
   border-width: 6px;
   border-radius: 16px 16px 7px 7px;
+}
+
+.miniLaptop .laptopScreenCode {
+  aspect-ratio: 16 / 9;
+}
+
+/* AiInputMock は同じ 480px 境界で2カードを縦積みにする。
+   ビューポートではなく実画面幅に追従させ、自然高への依存も避ける。 */
+@container mini-laptop-screen (width < 480px) {
+  .miniLaptop .laptopScreenCode {
+    aspect-ratio: 4 / 7;
+  }
 }
 
 .miniLaptop .laptopBase {
@@ -3363,12 +3378,6 @@ html {
     padding: 4px;
     border-width: 5px;
     border-radius: 13px 13px 6px 6px;
-  }
-
-  /* ミニノートPC(強み1のコード再現画面)は横長のまま(16:9より少し高さが
-     ある4:3)を保ち、「縦に伸びたノートPC」に見えないようにする。 */
-  .laptopScreenCode {
-    aspect-ratio: 4 / 3;
   }
 
   .laptopBase {
