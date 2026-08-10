@@ -64,8 +64,8 @@ export function ContractPhaseMock({ className }: ContractPhaseMockProps) {
 
         <div className="flex min-h-0 flex-1 flex-col gap-[0.6em] px-[0.9em] pt-[0.75em] pb-[0.8em]">
           <Stepper />
-          <PhaseRow title="事前審査" checked="0/4 チェック済" />
-          <PhaseRow title="契約" checked="0/5 チェック済" />
+          <PhaseRow title="事前審査" checked="4/4 チェック済" />
+          <PhaseRow title="契約" checked="5/5 チェック済" />
           <CurrentPhaseRow />
         </div>
       </div>
@@ -86,7 +86,7 @@ function Header() {
       <div className="ml-auto flex shrink-0 items-center gap-[0.4em]">
         <HeaderBadge icon={Building2} label="管理費等精算" tone="blue" />
         <HeaderBadge icon={FileText} label="固都税精算" tone="slate" />
-        <HeaderBadge icon={Clock} label="本審査まであと-47日" tone="amber" />
+        <HeaderBadge icon={Clock} label="本審査 47日超過" tone="amber" />
       </div>
     </div>
   )
@@ -198,7 +198,7 @@ function CurrentPhaseRow() {
           <span className="inline-flex min-w-0 max-w-full shrink items-center gap-[0.3em] rounded-full bg-rose-100 px-[0.6em] py-[0.25em] text-[0.76em] font-bold leading-none text-rose-500">
             <Clock className="h-[1.1em] w-[1.1em] shrink-0" />
             <CalendarDays className="h-[1.1em] w-[1.1em] shrink-0" />
-            <span className="truncate">2026-06-09 (47日超過)</span>
+            <span className="truncate">予定日から47日超過</span>
           </span>
         </div>
 

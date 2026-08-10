@@ -63,7 +63,7 @@ function RecordingControls() {
       <div className="flex min-w-0 items-center gap-[0.5em]">
         <p className="flex min-w-0 flex-1 items-center gap-[0.35em] truncate text-[0.78em] font-bold leading-none text-slate-500">
           <Mic className="h-[1.05em] w-[1.05em] shrink-0" />
-          <span className="truncate">録音コントロール</span>
+          <span className="truncate">録音の始め方</span>
         </p>
         <span className="inline-flex shrink-0 items-center gap-[0.35em] whitespace-nowrap text-[0.7em] font-medium leading-none text-slate-400">
           <span className="h-[0.55em] w-[0.55em] rounded-full bg-emerald-500" />
