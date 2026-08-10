@@ -600,6 +600,14 @@ html {
   border-radius: 21px;
 }
 
+.phoneScreenCode {
+  width: auto;
+  height: 100%;
+  aspect-ratio: 680 / 1478;
+  overflow: hidden;
+  border-radius: 21px;
+}
+
 .phoneSpeaker {
   position: absolute;
   z-index: 3;

@@ -33,6 +33,8 @@ import { AiChatMock } from "@/components/lp/mock/AiChatMock";
 import { ContractPhaseMock } from "@/components/lp/mock/ContractPhaseMock";
 import { SettlementFormMock } from "@/components/lp/mock/SettlementFormMock";
 import { CallRecordingMock } from "@/components/lp/mock/CallRecordingMock";
+import { OperationsDashboardMock } from "@/components/lp/mock/OperationsDashboardMock";
+import { CustomerHomeMock } from "@/components/lp/mock/CustomerHomeMock";
 
 const TRY_URL = "https://app.rakumatch-ai.com/try";
 
@@ -309,7 +311,7 @@ function SectionHeading({
   number: string;
   label?: string;
   children: ReactNode;
-  sub: string;
+  sub: ReactNode;
 }) {
   return (
     <Reveal className="sectionHeading">
@@ -375,11 +377,30 @@ function Laptop({
   );
 }
 
-function PhoneFrame({ src, alt, mask, className = "", priority = false }: { src: string; alt: string; mask?: string; className?: string; priority?: boolean }) {
+function PhoneFrame({
+  src,
+  alt,
+  mask,
+  className = "",
+  priority = false,
+  screen,
+}: {
+  src?: string;
+  alt: string;
+  mask?: string;
+  className?: string;
+  priority?: boolean;
+  /** 画像の代わりにコードで再現した画面をそのまま描画する */
+  screen?: ReactNode;
+}) {
   return (
     <div className={`phoneFrame ${className}`}>
       <span className="phoneSpeaker" aria-hidden="true" />
-      <img src={src} alt={alt} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} />
+      {screen ? (
+        <div className="phoneScreenCode">{screen}</div>
+      ) : (
+        <img src={src} alt={alt} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} />
+      )}
       {mask ? <span className="phonePrivacyMask">{mask}</span> : null}
     </div>
   );
@@ -560,7 +581,7 @@ function SecuritySection() {
         </div>
 
         <Reveal className="securityClosing">
-          <p>個人なら自分の顧客を自分で管理。会社なら全体を見ながら、担当者ごとに分けて運用できます。</p>
+          <p>アクセス範囲も担当者ごとに分けられるので、個人なら自分の顧客だけを、会社なら他の担当者のお客様情報が見えてしまう心配なく管理できます。</p>
         </Reveal>
       </div>
     </section>
@@ -705,7 +726,7 @@ export default function HomePage() {
       <section className="featureSection white" id="how-it-works">
         <div className="pageShell">
           <SectionHeading number="1" sub="文章・PDF・画像を用意して貼ると、AIが項目へ整理。登録前に利用者が確認・修正します。">
-            <span>物件登録</span>は、<span className="headingPhraseNeutral">コピー＆貼り付けだけ。</span>
+            <span>物件登録</span>は、<span className="headingPhraseNeutral">貼るだけ。</span>
           </SectionHeading>
           <div className="processGrid">
             <Reveal className="processCard">
@@ -783,8 +804,8 @@ export default function HomePage() {
 
       <section className="featureSection white" id="assistant">
         <div className="pageShell">
-          <SectionHeading number="3" sub="顧客情報・活動履歴・マッチ物件を見ながら、次に聞くことと提案内容を準備できます。">
-            メール・電話・案内準備まで、<span>AIが下書き。</span>
+          <SectionHeading number="3" sub="顧客情報・活動履歴・マッチ物件から潜在ニーズを見つけ、次に聞くことと提案内容を準備できます。">
+            メール・電話・<span className="whitespace-nowrap">案内準備</span>まで、<span>AIが下書き。</span>
           </SectionHeading>
           <div className="assistantLayout">
             <Reveal className="screenCard focus assistantScreen">
@@ -815,12 +836,12 @@ export default function HomePage() {
 
       <section className="featureSection pale" id="customer-app">
         <div className="pageShell">
-          <SectionHeading number="4" sub="保存・比較・AIコメント・家族共有。お客様の「気になる」が次の提案につながります。">
+          <SectionHeading number="4" sub={<>保存・比較・AIコメント・家族共有。お客様の<span className="whitespace-nowrap">「気になる」</span>が次の提案につながります。</>}>
             お客様も、スマホで<span>一緒に物件選び。</span>
           </SectionHeading>
           <Reveal className="phoneShowcase">
             <PhoneFrame src="/media/customer-app-comment.webp" alt="お客様向けAIコメント画面" className="sidePhone" />
-            <PhoneFrame src="/media/customer-app-home.webp" alt="お客様向け物件リスト画面" mask="デモ顧客さまの物件リスト" className="mainPhone" />
+            <PhoneFrame alt="お客様向け物件リスト画面" className="mainPhone" screen={<CustomerHomeMock />} />
             <PhoneFrame src="/media/customer-app-family.webp" alt="家族共有画面" className="sidePhone" />
           </Reveal>
           <div className="appValueGrid">
@@ -839,7 +860,7 @@ export default function HomePage() {
           </SectionHeading>
           <div className="dashboardLayout">
             <Reveal className="dashboardLaptop">
-              <Laptop src="/media/dashboard.webp" alt="今日のタスクと活動状況が見えるダッシュボード" position="center" />
+              <Laptop alt="今日のタスクと活動状況が見えるダッシュボード" screen={<OperationsDashboardMock />} />
             </Reveal>
             <Reveal className="operationPoints" delay={0.08}>
               <div><b>今日のタスク</b><p>期限と次に動く相手を確認。</p></div>
