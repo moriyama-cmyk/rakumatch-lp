@@ -100,12 +100,6 @@ const TASKS: TaskData[] = [
     due: '6/7',
     dueTone: 'bg-slate-100 text-slate-500',
   },
-  {
-    title: '事前審査書類の回収',
-    customer: '小林拓也',
-    due: '6/5',
-    dueTone: 'bg-slate-100 text-slate-500',
-  },
 ]
 
 interface ContractData {
@@ -192,7 +186,7 @@ export function OperationsDashboardMock({ className }: OperationsDashboardMockPr
           </div>
 
           <div className="mt-[1.1em] grid min-h-0 flex-1 grid-cols-3 gap-[0.75em]">
-            <Panel icon={ClipboardList} title="タスク" badge="4件" badgeTone="bg-amber-50 text-amber-600">
+            <Panel icon={ClipboardList} title="タスク" badge="3件" badgeTone="bg-amber-50 text-amber-600">
               <div className="flex flex-col gap-[0.6em]">
                 {TASKS.map((task) => (
                   <TaskRow key={task.title} data={task} />
