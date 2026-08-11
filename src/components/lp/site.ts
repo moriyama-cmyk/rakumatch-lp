@@ -9,8 +9,6 @@ export const SITE = {
   categoryShort: '不動産営業専門',
   // Hero のカテゴリ行・キャッチ（後から一行で差し替えられるよう定数化）
   categoryLine: '不動産営業専門',
-  catchMain: '月3,000円で、月5万円のCRMに勝つ方法があります。',
-  catchSub: 'このお客様に、何を。この物件を、誰に。— AIが両方から答えます。',
   // 計測用バリアントID。トップページの主コピーを差し替えるたびに必ずここも更新する。
   // この値が GA4 のユーザープロパティ／Clarity のタグに送られ、コピー別に成果を比較できる。
   // 命名: v<連番>-<訴求軸>。v1-baseline-sales → v2-price-vs-5man → v3-ability-shinjin → v4-night-story
@@ -34,8 +32,6 @@ export const SITE = {
 
 // Hero 用エイリアス（ブリーフ準拠の命名で参照できるように）
 export const CATEGORY_LINE = SITE.categoryLine
-export const CATCH_MAIN = SITE.catchMain
-export const CATCH_SUB = SITE.catchSub
 
 export type NavItem = { label: string; href: string }
 
